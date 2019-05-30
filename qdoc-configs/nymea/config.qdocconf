@@ -1,0 +1,34 @@
+include(../common/html-template.qdocconf)
+
+project = nymea
+description = nymea documentation
+
+dita.metadata.default.author      = Simon Stürz
+dita.metadata.default.permissions = all
+dita.metadata.default.publisher   = guh GmbH
+dita.metadata.default.copyryear = 2019
+dita.metadata.default.copyrholder = Simon Stürz
+dita.metadata.default.audience = programmer
+
+outputdir = ../../output/nymea-raw
+outputformats = HTML
+
+language = Cpp
+
+naturallanguage         = en_US
+outputencoding          = UTF-8
+sourceencoding          = UTF-8
+
+syntaxhighlighting = true
+imagedirs = images
+
+headerdirs = ../../source/nymea
+sourcedirs = ../../source/nymea
+
+headers.fileextensions = "*.h"
+sources.fileextensions = "*.cpp *.qdoc"
+
+Cpp.ignoredirectives = Q_DECLARE_METATYPE \
+                       Q_ENUM \
+                       Q_ENUMS 
+
