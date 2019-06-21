@@ -1,0 +1,229 @@
+#!/bin/bash
+
+CURRENT_DIR=$(pwd)
+SOURCE_DIR=${CURRENT_DIR}/source
+OUTPUT_DIR=${CURRENT_DIR}/output
+HTML_DIR=${OUTPUT_DIR}/html
+CONFIG_DIR=${CURRENT_DIR}/qdoc-configs
+TEMPLATE_DIR=${CURRENT_DIR}/html-templates
+
+NYMEA_BRANCH=master
+NYMEA_PLUGINS_BRANCH=master
+NYMEA_COAP_BRANCH=master
+NYMEA_MQTT_BRANCH=master
+
+
+#------------------------------------------------------------
+function usage() {
+  cat <<EOF
+Usage: $(basename $0) [OPTIONS]
+
+This tool generates a common documentation out of different projects:
+  - nymea:           https://github.com/guh/nymea
+  - nymea-plugins:   https://github.com/guh/nymea-plugins
+  - nymea-mqtt:      https://github.com/guh/nymea-mqtt
+  - nymea-coap:      https://github.com/guh/nymea-coap
+
+
+OPTIONS:
+  --nymea-branch [branch]           The repository branch to use for building nymea documentation. Default is master.
+  --nymea-plugins-branch [branch]   The repository branch to use for building nymea-plugins documentation. Default is master.
+  --nymea-mqtt-branch [branch]      The repository branch to use for building nymea-mqtt documentation. Default is master.
+  --nymea-coap-branch [branch]      The repository branch to use for building nymea-coap documentation. Default is master.
+  -h, --help                        Show this message
+
+EOF
+}
+
+
+#------------------------------------------------------------
+function printGreen() {
+    echo -e "\e[1;32m[+] $1\e[0m"
+}
+
+
+#------------------------------------------------------------
+function printRed() {
+    echo -e "\e[1;31m[!] $1\e[0m"
+}
+
+#------------------------------------------------------------
+function create-nymea-docs() {
+    printGreen "Clean nymea"
+    if [ -d ${SOURCE_DIR}/nymea ]; then rm -rf ${SOURCE_DIR}/nymea; fi
+    if [ -d ${OUTPUT_DIR}/nymea ]; then rm -rf ${OUTPUT_DIR}/nymea; fi
+    if [ -d ${OUTPUT_DIR}/nymea-raw ]; then rm -rf ${OUTPUT_DIR}/nymea-raw; fi
+    mkdir -p ${OUTPUT_DIR}/nymea
+    mkdir -p ${SOURCE_DIR} || true
+
+    printGreen "Get nymea source from branch ${NYMEA_BRANCH}"
+    cd ${SOURCE_DIR}
+    git clone -b ${NYMEA_BRANCH} --depth 1 https://github.com/guh/nymea.git
+
+    printGreen "Prepare nymea docs"
+    cd ${SOURCE_DIR}/nymea/doc
+    python generate-interfaces-qdoc.py
+    python generate-api-qdoc.py
+
+    printGreen "Create nymea docs"
+    cd ${CONFIG_DIR}/nymea
+    qdoc config.qdocconf
+
+    printGreen "Migrate html files"
+    for htmlFile in "${OUTPUT_DIR}/nymea-raw/"*.html; do
+        printGreen "--> $htmlFile"
+        htmlFileName=`basename $htmlFile`
+        ${CURRENT_DIR}/doc-tools.py -i ${htmlFile} -o ${OUTPUT_DIR}/nymea/${htmlFileName} -q
+    done
+
+    printGreen "Copy common data"
+    cp -rv ${TEMPLATE_DIR}/favicons/ ${OUTPUT_DIR}/nymea/
+    cp -rv ${TEMPLATE_DIR}/images/ ${OUTPUT_DIR}/nymea/
+    cp -rv ${TEMPLATE_DIR}/scripts ${OUTPUT_DIR}/nymea/
+    cp -rv ${TEMPLATE_DIR}/styles ${OUTPUT_DIR}/nymea/
+
+    printGreen "Copy nymea images"
+    cp -r ${SOURCE_DIR}/nymea/doc/images/* ${CURRENT_DIR}/output/nymea/images/
+}
+
+
+#------------------------------------------------------------
+function create-nymea-plugins-docs() {
+    printGreen "Clean nymea-plugins"
+    if [ -d ${SOURCE_DIR}/nymea-plugins ]; then rm -rf ${SOURCE_DIR}/nymea-plugins; fi
+    if [ -d ${OUTPUT_DIR}/nymea-plugins ]; then rm -rf ${OUTPUT_DIR}/nymea-plugins; fi
+    if [ -d ${OUTPUT_DIR}/nymea-plugins-raw ]; then rm -rf ${OUTPUT_DIR}/nymea-plugins-raw; fi
+
+    mkdir -p ${SOURCE_DIR} || true
+
+    printGreen "Get nymea-plugins source from branch ${NYMEA_PLUGINS_BRANCH}"
+    cd ${SOURCE_DIR}
+    git clone -b ${NYMEA_PLUGINS_BRANCH} --depth 1 https://github.com/guh/nymea-plugins.git
+
+    printGreen "Prepare nymea-plugins docs"
+    mkdir -p ${OUTPUT_DIR}/nymea-plugins
+
+    printGreen "Create nymea-plugins docs"
+    ${CURRENT_DIR}/doc-tools.py -p
+
+    printGreen "Copy common data"
+    cp -rv ${TEMPLATE_DIR}/favicons/ ${OUTPUT_DIR}/nymea-plugins/
+    cp -rv ${TEMPLATE_DIR}/images/ ${OUTPUT_DIR}/nymea-plugins/
+    cp -rv ${TEMPLATE_DIR}/scripts ${OUTPUT_DIR}/nymea-plugins/
+    cp -rv ${TEMPLATE_DIR}/styles ${OUTPUT_DIR}/nymea-plugins/
+}
+
+
+#------------------------------------------------------------
+function create-nymea-coap-docs() {
+    printGreen "Clean nymea-coap source"
+    if [ -d ${SOURCE_DIR}/nymea-coap ]; then rm -rf ${SOURCE_DIR}/nymea-coap; fi
+    if [ -d ${OUTPUT_DIR}/nymea-coap ]; then rm -rf ${OUTPUT_DIR}/nymea-coap; fi
+    if [ -d ${OUTPUT_DIR}/nymea-coap-raw ]; then rm -rf ${OUTPUT_DIR}/nymea-coap-raw; fi
+
+    mkdir -p ${SOURCE_DIR}
+    mkdir -p ${OUTPUT_DIR}/nymea-coap
+
+    printGreen "Get nymea-coap source from branch ${NYMEA_COAP_BRANCH}"
+    cd ${SOURCE_DIR}
+    git clone -b ${NYMEA_COAP_BRANCH} --depth 1 https://github.com/guh/nymea-coap.git
+
+    printGreen "Create nymea-coap docs"
+    cd ${CONFIG_DIR}/nymea-coap
+    qdoc config.qdocconf
+
+    printGreen "Migrate html files"
+    for htmlFile in "${OUTPUT_DIR}/nymea-coap-raw/"*.html; do
+        printGreen "--> $htmlFile"
+        htmlFileName=`basename $htmlFile`
+        ${CURRENT_DIR}/doc-tools.py -i ${htmlFile} -o ${OUTPUT_DIR}/nymea-coap/${htmlFileName} -q
+    done
+
+    printGreen "Copy common data"
+    cp -rv ${TEMPLATE_DIR}/favicons/ ${OUTPUT_DIR}/nymea-coap/
+    cp -rv ${TEMPLATE_DIR}/images/ ${OUTPUT_DIR}/nymea-coap/
+    cp -rv ${TEMPLATE_DIR}/scripts ${OUTPUT_DIR}/nymea-coap/
+    cp -rv ${TEMPLATE_DIR}/styles ${OUTPUT_DIR}/nymea-coap/
+
+    printGreen "Copy nymea-coap images"
+}
+
+
+#------------------------------------------------------------
+function create-nymea-mqtt-docs() {
+    printGreen "Clean nymea-mqtt source"
+    if [ -d ${SOURCE_DIR}/nymea-mqtt ]; then rm -rf ${SOURCE_DIR}/nymea-mqtt; fi
+    if [ -d ${OUTPUT_DIR}/nymea-mqtt ]; then rm -rf ${OUTPUT_DIR}/nymea-mqtt; fi
+    if [ -d ${OUTPUT_DIR}/nymea-mqtt-raw ]; then rm -rf ${OUTPUT_DIR}/nymea-mqtt-raw; fi
+    mkdir -p ${SOURCE_DIR}
+    mkdir -p ${OUTPUT_DIR}/nymea-mqtt
+
+    printGreen "Get nymea-mqtt source from branch ${NYMEA_MQTT_BRANCH}"
+    cd ${SOURCE_DIR}
+    git clone -b ${NYMEA_MQTT_BRANCH} --depth 1 https://github.com/guh/nymea-mqtt.git
+
+    printGreen "Create nymea-mqtt docs"
+    cd ${CONFIG_DIR}/nymea-mqtt
+    qdoc config.qdocconf
+
+    printGreen "Migrate html files"
+    for htmlFile in "${OUTPUT_DIR}/nymea-mqtt-raw/"*.html; do
+        printGreen "--> $htmlFile"
+        htmlFileName=`basename $htmlFile`
+        ${CURRENT_DIR}/doc-tools.py -i ${htmlFile} -o ${OUTPUT_DIR}/nymea-mqtt/${htmlFileName} -q
+    done
+
+    printGreen "Copy common data"
+    cp -rv ${TEMPLATE_DIR}/favicons/ ${OUTPUT_DIR}/nymea-mqtt/
+    cp -rv ${TEMPLATE_DIR}/images/ ${OUTPUT_DIR}/nymea-mqtt/
+    cp -rv ${TEMPLATE_DIR}/scripts ${OUTPUT_DIR}/nymea-mqtt/
+    cp -rv ${TEMPLATE_DIR}/styles ${OUTPUT_DIR}/nymea-mqtt/
+
+    printGreen "Copy nymea-mqtt images"
+}
+
+
+#------------------------------------------------------------
+# Main
+#------------------------------------------------------------
+
+while [ "$1" != "" ]; do
+    case $1 in
+        --nymea-branch )
+            NYMEA_BRANCH=$2
+            shift;;
+        --nymea-plugins-branch )
+            NYMEA_PLUGINS_BRANCH=$2
+            shift;;
+        --nymea-mqtt-branch )
+            NYMEA_MQTT_BRANCH=$2
+            shift;;
+        --nymea-coap-branch )
+            NYMEA_COAP_BRANCH=$2
+            shift;;
+        -h | --help )
+            usage && exit 0;;
+        * )
+            usage && exit 1;;
+    esac
+    shift
+done
+
+create-nymea-docs
+create-nymea-plugins-docs
+create-nymea-coap-docs
+create-nymea-mqtt-docs
+
+printGreen "Build html directory ${HTML_DIR}"
+if [ -d ${HTML_DIR} ]; then rm -rf ${HTML_DIR}; fi
+mkdir -p ${HTML_DIR} || true
+cp ${TEMPLATE_DIR}/index.html ${HTML_DIR}
+cp -r ${TEMPLATE_DIR}/scripts ${HTML_DIR}
+cp -r ${TEMPLATE_DIR}/styles ${HTML_DIR}
+cp -r ${TEMPLATE_DIR}/favicons ${HTML_DIR}
+cp -r ${TEMPLATE_DIR}/images ${HTML_DIR}
+
+cp -r ${OUTPUT_DIR}/nymea ${HTML_DIR}
+cp -r ${OUTPUT_DIR}/nymea-plugins ${HTML_DIR}
+cp -r ${OUTPUT_DIR}/nymea-coap ${HTML_DIR}
+cp -r ${OUTPUT_DIR}/nymea-mqtt ${HTML_DIR}

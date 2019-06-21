@@ -20,7 +20,12 @@ outputencoding          = UTF-8
 sourceencoding          = UTF-8
 
 syntaxhighlighting = true
-imagedirs = images
+imagedirs = images \
+            ../../source/nymea/doc/images
+
+exampledirs = examples/ \
+              ../../source/nymea/doc/examples
+
 
 headerdirs = ../../source/nymea
 sourcedirs = ../../source/nymea

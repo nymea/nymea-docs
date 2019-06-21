@@ -151,10 +151,7 @@ def buildNymeaPluginsDocumentation():
             
             print(mainContentDiv.prettify())
 
-            bodyTag = page.new_tag('body')
-            bodyTag.append(mainContentDiv)
-            
-            page = generatePage(bodyTag)
+            page = generatePage(mainContentDiv)
             saveXmlToFile(page, os.path.dirname(os.path.realpath(sys.argv[0])) + '/output/nymea-plugins/plugin-' + pluginDir + '.html')
 
 

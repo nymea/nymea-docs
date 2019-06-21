@@ -1,7 +1,7 @@
 include(../common/html-template.qdocconf)
 
-project = QtCoAP
-description = QtCoAP documentation
+project = nymea-coap
+description = nymea CoAP documentation
 
 dita.metadata.default.author      = Simon Stürz
 dita.metadata.default.permissions = all
@@ -10,7 +10,7 @@ dita.metadata.default.copyryear = 2019
 dita.metadata.default.copyrholder = Simon Stürz
 dita.metadata.default.audience = programmer
 
-outputdir = ../../output/qtcoap-raw
+outputdir = ../../output/nymea-coap-raw
 outputformats = HTML
 
 language = Cpp
@@ -22,8 +22,8 @@ sourceencoding          = UTF-8
 syntaxhighlighting = true
 imagedirs = images
 
-headerdirs = ../../source/qtcoap
-sourcedirs = ../../source/qtcoap
+headerdirs = ../../source/nymea-coap
+sourcedirs = ../../source/nymea-coap
 
 headers.fileextensions = "*.h"
 sources.fileextensions = "*.cpp *.qdoc"
