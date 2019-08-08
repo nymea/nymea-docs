@@ -28,54 +28,45 @@
         <meta name="msapplication-square310x310logo" content="favicons/mstile-310x310.png"/>
     </head>
     <body>
-        <div class="header-mainpage">
-            <img src="images/main-logo.svg" class="nymea-main-logo-mainpage"/>
-            <div class="mainpage-title">
-                <h1>nymea developer documentation</h1>
+        <header>
+            <div class="header-mainpage">
+                <a href="index.html"> <img src="images/main-logo.svg" class="nymea-main-logo-mainpage"/></a>
+                <div class="mainpage-title">
+                    <h1>nymea - developer documentation</h1>
+                </div>
+                <div class=mainpage-themeswitch>
+                    <label class="switch">
+                        <input id="themeSwitch" onclick="onSwitchChanged(this)" type="checkbox"/>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
             </div>
-            <div class=mainpage-themeswitch>
-                <label class="switch">
-                    <input id="themeSwitch" onclick="onSwitchChanged(this)" type="checkbox"/>
-                    <span class="slider round"></span>
-                </label>
-            </div>
-        </div>
+        </header>
         
-        <div class="content mainContent">
-            <h1>
-                Welcome!
-            </h1>
-            <p>
-                This is the main page of the developer documentation. Her you can find all generated documentations related to the nymea project.
-            </p>
-            <h2>
-                nymea
-            </h2>
-            <p>
-                If you want to get information about the nymea:core and the libnymea API documation and how to write plugins, please visit the nymea docs.
-            </p>
-            <a href="nymea/">nymea</a>
-            <h2>
-                nymea plugins
-            </h2>
-            <p>
-                If you want to get information about nymea plugins and get an overview of supported devices and services, please visit nymea-plugins docs.
-            </p>
-            <a href="nymea-plugins/">nymea plugins</a>
-            <h2>
-                nymea CoAP
-            </h2>
-            <p>
-                If you want to get information about nymea CoAP library, please visit nymea-coap docs.
-            </p>
-            <a href="nymea-coap/">nymea CoAP</a> 
-            <h2>
-                nymea MQTT
-            </h2>
-            <p>
-                If you want to get information about nymea MQTT library, please visit nymea-mqtt docs.
-            </p>
-            <a href="nymea-mqtt/">nymea MQTT</a> 
+        <div class="content mainPageContent">
+            <h1>Welcome!</h1>
+            <p>This is the main page of the developer documentation. Her you can find all generated documentations related to the nymea project.</p>
+            
+            <h2>nymea</h2>
+            <p>If you want to get information about the nymea:core and the libnymea API documation and how to write plugins, please visit the nymea docs.</p>
+            <li><a href="nymea/index.html">nymea</a></li>
+            <li><a href="nymea/nymeaserver.html">nymea server</a></li>
+            <li><a href="nymea/libnymea-module.html">libnymea</a></li>
+            <li><a href="nymea/interfaces.html">nymea interfaces</a></li>
+            <li><a href="nymea/jsonrpc.html">nymea JSON RPC API</a></li>
+            <li><a href="nymea/write-plugins.html">Write plugins</a></li>
+            
+            <h2>nymea plugins</h2>
+            <p>If you want to get information about nymea plugins and get an overview of supported devices and services, please visit nymea-plugins docs.</p>
+            <li><a href="nymea-plugins/index.html">nymea plugins</a></li>
+            
+            <h2>nymea CoAP </h2>
+            <p>If you want to get information about nymea CoAP library, please visit nymea-coap docs.</p>
+            <li><a href="nymea-coap/">nymea CoAP</a></li>
+            
+            <h2>nymea MQTT</h2>
+            <p>If you want to get information about nymea MQTT library, please visit nymea-mqtt docs.</p>
+            <li><a href="nymea-mqtt/">nymea MQTT</a></li>
         </div>
     </body>
     <div class="footer">

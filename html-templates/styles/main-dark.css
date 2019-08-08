@@ -580,6 +580,55 @@ html {
     z-index: 5;
 }
 
+.header-mainpage {
+    overflow: auto;
+    height: auto;
+    width: 100%;
+    background-color: #333;
+    z-index: 5;
+}
+
+.nymea-main-logo-mainpage {
+    overflow: auto;
+    height: auto;
+    padding-left: -10px;
+    max-height: 100px;
+    width: 10%;
+    float: left;
+    vertical-align: middle;
+}
+
+div.mainpage-title {
+    overflow: auto;
+    text-align: center;
+    height: auto;
+    float: left;
+    width: 80%;
+    vertical-align: middle;
+}
+
+div.mainpage-title h1 {
+    line-height: 100px;
+    margin: 0 0 0 0;
+}
+
+.mainpage-themeswitch {
+    overflow: auto;
+    width: 10%;
+    min-height: 100px;
+    float: right;
+    height: auto;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: center;
+}
+
+.header-mainpage:after {
+    clear: both;
+}
+
+
 code {
     padding-left: 5px;
 }
@@ -766,7 +815,6 @@ div.header + li {
     margin-left: auto;
     margin-right: auto;
     padding: 3rem 3.3rem 10rem;
-    top: 101px;
     width: 100%;
     position: relative;
 }

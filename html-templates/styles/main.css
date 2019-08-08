@@ -1,6 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                                                     *
  * Copyright (C) 2017 Georgi Yatsev <georgi.yatsev@guh.io>                             *
+ * Copyright (C) 2016 - 2019 Simon Stürz <simon.stuerz@nymea.io>                       *
  *                                                                                     *
  * Permission is hereby granted, free of charge, to any person obtaining a copy        *
  * of this software and associated documentation files (the "Software"), to deal       *
@@ -22,10 +23,13 @@
  *                                                                                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+
+/* Normal theme */
+
+
+/* Dark theme */
+
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -76,10 +80,6 @@ table {
     border-spacing: 0;
 }
 
-/**
- * modified version of normalize.css 3.0.2
- * http://necolas.github.io/normalize.css/
- */
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
@@ -628,6 +628,62 @@ div.mainpage-title h1 {
     clear: both;
 }
 
+.header-plugins {
+    overflow: auto;
+    height: auto;
+    width: 100%;
+    background-color: #efefef;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    min-height: 100px;
+}
+
+div.plugins-overview-button {
+    overflow: auto;
+    text-align: center;
+    height: auto;
+    float: left;
+    width: 40%;
+}
+
+div.plugins-overview-button h1 {
+    vertical-align: middle;
+    line-height: 100px;
+    margin: 0 0 0 0;
+}
+
+div.plugins-title {
+    overflow: auto;
+    text-align: center;
+    height: auto;
+    float: left;
+    width: 40%;
+    line-height: 100px;
+    vertical-align: middle;
+}
+
+div.plugins-title h1 {
+    line-height: 100px;
+    margin: 0 0 0 0;
+}
+
+.plugins-themeswitch {
+    overflow: auto;
+    width: 10%;
+    min-height: 100px;
+    float: right;
+    height: auto;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: center;
+}
+
+.header-plugins:after {
+    clear: both;
+}
+
 code {
     padding-left: 5px;
 }
@@ -819,9 +875,21 @@ div.header + li {
     margin-left: auto;
     margin-right: auto;
     padding: 3rem 3.3rem 10rem;
-    /*top: 101px;*/
+    top: 100px;
     width: 100%;
     position: relative;
+}
+
+.mainPageContent {
+    top: 0px;    
+}
+
+.mainContent {
+    top: 100px;
+}
+
+.mainContent li {
+    margin-left: 30px;
 }
 
 .content:before {

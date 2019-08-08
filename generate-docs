@@ -209,10 +209,10 @@ while [ "$1" != "" ]; do
     shift
 done
 
-create-nymea-docs
+#create-nymea-docs
 create-nymea-plugins-docs
-create-nymea-coap-docs
-create-nymea-mqtt-docs
+#create-nymea-coap-docs
+#create-nymea-mqtt-docs
 
 printGreen "Build html directory ${HTML_DIR}"
 if [ -d ${HTML_DIR} ]; then rm -rf ${HTML_DIR}; fi
