@@ -11,6 +11,7 @@ NYMEA_BRANCH=master
 NYMEA_PLUGINS_BRANCH=master
 NYMEA_COAP_BRANCH=master
 NYMEA_MQTT_BRANCH=master
+NYMEA_GPIO_BRANCH=master
 
 
 #------------------------------------------------------------
@@ -23,6 +24,7 @@ This tool generates a common documentation out of different projects:
   - nymea-plugins:   https://github.com/guh/nymea-plugins
   - nymea-mqtt:      https://github.com/guh/nymea-mqtt
   - nymea-coap:      https://github.com/guh/nymea-coap
+  - nymea-gpio:      https://github.com/guh/nymea-gpio
 
 
 OPTIONS:
@@ -30,6 +32,7 @@ OPTIONS:
   --nymea-plugins-branch [branch]   The repository branch to use for building nymea-plugins documentation. Default is master.
   --nymea-mqtt-branch [branch]      The repository branch to use for building nymea-mqtt documentation. Default is master.
   --nymea-coap-branch [branch]      The repository branch to use for building nymea-coap documentation. Default is master.
+  --nymea-gpio-branch [branch]      The repository branch to use for building nymea-gpio documentation. Default is master.
   -h, --help                        Show this message
 
 EOF
@@ -104,7 +107,7 @@ function create-nymea-plugins-docs() {
     mkdir -p ${OUTPUT_DIR}/nymea-plugins
 
     printGreen "Create nymea-plugins docs"
-    ${CURRENT_DIR}/doc-tools.py -p
+    ${CURRENT_DIR}/doc-tools.py -p -g /html-templates/header-plugin.html
 
     printGreen "Copy common data"
     cp -rv ${TEMPLATE_DIR}/favicons/ ${OUTPUT_DIR}/nymea-plugins/
@@ -182,6 +185,41 @@ function create-nymea-mqtt-docs() {
     printGreen "Copy nymea-mqtt images"
 }
 
+#------------------------------------------------------------
+function create-nymea-gpio-docs() {
+    printGreen "Clean nymea-gpio source"
+    if [ -d ${SOURCE_DIR}/nymea-gpio ]; then rm -rf ${SOURCE_DIR}/nymea-gpio; fi
+    if [ -d ${OUTPUT_DIR}/nymea-gpio ]; then rm -rf ${OUTPUT_DIR}/nymea-gpio; fi
+    if [ -d ${OUTPUT_DIR}/nymea-gpio-raw ]; then rm -rf ${OUTPUT_DIR}/nymea-gpio-raw; fi
+    mkdir -p ${SOURCE_DIR}
+    mkdir -p ${OUTPUT_DIR}/nymea-gpio
+
+    printGreen "Get nymea-gpio source from branch ${NYMEA_GPIO_BRANCH}"
+    cd ${SOURCE_DIR}
+    git clone -b ${NYMEA_GPIO_BRANCH} --depth 1 https://github.com/guh/nymea-gpio.git
+    cd nymea-gpio
+    qmake
+
+    printGreen "Create nymea-gpio docs"
+    cd ${CONFIG_DIR}/nymea-gpio
+    qdoc config.qdocconf
+
+    printGreen "Migrate html files"
+    for htmlFile in "${OUTPUT_DIR}/nymea-gpio-raw/"*.html; do
+        printGreen "--> $htmlFile"
+        htmlFileName=`basename $htmlFile`
+        ${CURRENT_DIR}/doc-tools.py -i ${htmlFile} -o ${OUTPUT_DIR}/nymea-gpio/${htmlFileName} -q -g /html-templates/header-gpio.html
+    done
+
+    printGreen "Copy common data"
+    cp -rv ${TEMPLATE_DIR}/favicons/ ${OUTPUT_DIR}/nymea-gpio/
+    cp -rv ${TEMPLATE_DIR}/images/ ${OUTPUT_DIR}/nymea-gpio/
+    cp -rv ${TEMPLATE_DIR}/scripts ${OUTPUT_DIR}/nymea-gpio/
+    cp -rv ${TEMPLATE_DIR}/styles ${OUTPUT_DIR}/nymea-gpio/
+
+    printGreen "Copy nymea-gpio images"
+}
+
 
 #------------------------------------------------------------
 # Main
@@ -201,6 +239,9 @@ while [ "$1" != "" ]; do
         --nymea-coap-branch )
             NYMEA_COAP_BRANCH=$2
             shift;;
+        --nymea-gpio-branch )
+            NYMEA_GPIO_BRANCH=$2
+            shift;;
         -h | --help )
             usage && exit 0;;
         * )
@@ -213,6 +254,7 @@ done
 create-nymea-plugins-docs
 #create-nymea-coap-docs
 #create-nymea-mqtt-docs
+create-nymea-gpio-docs
 
 printGreen "Build html directory ${HTML_DIR}"
 if [ -d ${HTML_DIR} ]; then rm -rf ${HTML_DIR}; fi
@@ -227,3 +269,4 @@ cp -r ${OUTPUT_DIR}/nymea ${HTML_DIR}
 cp -r ${OUTPUT_DIR}/nymea-plugins ${HTML_DIR}
 cp -r ${OUTPUT_DIR}/nymea-coap ${HTML_DIR}
 cp -r ${OUTPUT_DIR}/nymea-mqtt ${HTML_DIR}
+cp -r ${OUTPUT_DIR}/nymea-gpio ${HTML_DIR}

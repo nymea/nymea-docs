@@ -34,6 +34,7 @@ headers.fileextensions = "*.h"
 sources.fileextensions = "*.cpp *.qdoc"
 
 Cpp.ignoredirectives = Q_DECLARE_METATYPE \
+                       Q_LOGGING_CATEGORY \
+                       Q_DECLARE_LOGGING_CATEGORY \
                        Q_ENUM \
-                       Q_ENUMS 
 

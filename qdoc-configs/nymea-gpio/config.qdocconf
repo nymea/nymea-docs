@@ -1,7 +1,7 @@
 include(../common/html-template.qdocconf)
 
-project = nymea-coap
-description = nymea CoAP documentation
+project = nymea-gpio
+description = nymea-gpio documentation
 
 dita.metadata.default.author      = Simon Stürz
 dita.metadata.default.permissions = all
@@ -10,7 +10,7 @@ dita.metadata.default.copyryear = 2019
 dita.metadata.default.copyrholder = Simon Stürz
 dita.metadata.default.audience = programmer
 
-outputdir = ../../output/nymea-coap-raw
+outputdir = ../../output/nymea-gpio-raw
 outputformats = HTML
 
 language = Cpp
@@ -20,10 +20,9 @@ outputencoding          = UTF-8
 sourceencoding          = UTF-8
 
 syntaxhighlighting = true
-imagedirs = images
 
-headerdirs = ../../source/nymea-coap
-sourcedirs = ../../source/nymea-coap
+headerdirs = ../../source/nymea-gpio/libnymea-gpio/
+sourcedirs = ../../source/nymea-gpio/libnymea-gpio/
 
 headers.fileextensions = "*.h"
 sources.fileextensions = "*.cpp *.qdoc"

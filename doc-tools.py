@@ -55,19 +55,22 @@ def loadFileToSoap(inputFileName):
     inputSoup = BeautifulSoup(inputFile.read(), 'html.parser')
     inputFile.close()
     return inputSoup
-    
+
+
 #--------------------------------------------------------------------------
 def saveXmlToFile(page, outputFileName):
     printInfo('Write xml document to %s' % outputFileName)
     outputFile = open(outputFileName, 'w')
     outputFile.write(page.prettify(formatter="html5"))
-    outputFile.close()    
+    outputFile.close()
+
 
 #--------------------------------------------------------------------------
 def extractHtmlBody(inputFileName):
     printInfo('Extract body from %s' % inputFileName)
     inputSoup = loadFileToSoap(inputFileName)
     return inputSoup.body
+
 
 #--------------------------------------------------------------------------
 def createHtmlReferenceFromString(reference):
@@ -77,8 +80,9 @@ def createHtmlReferenceFromString(reference):
     for character in titleReference:
         if character in validCharacters:
             result += character
-    
+
     return result
+
 
 #--------------------------------------------------------------------------
 def generatePage(body, headerPath = '/html-templates/header'):
@@ -91,42 +95,42 @@ def generatePage(body, headerPath = '/html-templates/header'):
     page = BeautifulSoup('<!DOCTYPE html><html lang="en-US"></html>', 'html.parser')
     page.insert(1, Comment("Automatically created using nymea-doc tools. See https://nymea.io for more information."))
     page.html.append(head)
-    
+
     # Create body tag
     bodyTag = page.new_tag('body')
     bodyTag.append(header)
-    
+
     for bodyChild in body.contents:
         if (bodyChild.name == None):
             continue
-        
+
         # Note: the body tag does not allow the li tag as child
         if bodyChild.name == 'li':
             continue
-            
+
         bodyTag.append(bodyChild)
-    
+
     # Append the footer at the end of the body
     bodyTag.append(footer)
-    
+
     # Finalls insert the new body into the page and save the file
     page.html.append(bodyTag)
     return page
-    
+
 
 #--------------------------------------------------------------------------
 def buildNymeaPluginsDocumentation():
     pluginDirectory = os.path.dirname(os.path.realpath(sys.argv[0])) + '/source/nymea-plugins/'
     printInfo('Build nymea plugins documentations %s' % pluginDirectory)
-    
+
     pluginDirs = []
     excludeDirs = ['.git', 'debian' ]
-    
+
     for pluginDir in os.listdir(pluginDirectory):
         if os.path.isdir(pluginDirectory + pluginDir) and pluginDir not in excludeDirs:
             pluginDirs.append(pluginDir)
-        
-        
+
+
     pluginsLinkList = ""
     # Iterate plugin directories and generate html from markdown
     for pluginDir in pluginDirs:
@@ -135,7 +139,7 @@ def buildNymeaPluginsDocumentation():
             print('Process %s' % pluginReadmeFile)
             htmlResult = subprocess.run(['markdown', pluginReadmeFile], stdout=subprocess.PIPE)
             pluginSoup = BeautifulSoup(htmlResult.stdout, 'html.parser')
-                        
+
             # Generate contents and place the reference into the header of h2
             contentsString = ''
             headers = pluginSoup.find_all('h2')
@@ -144,15 +148,14 @@ def buildNymeaPluginsDocumentation():
                 print(header, headerReference)
                 header['id'] = headerReference
                 contentsString += '<li class="level1"><a href="#%s">%s</a></li>' % (headerReference, header.text)
-        
+
             # Build main content div
             tocDiv = BeautifulSoup('<div class="toc"><h3><a name="toc">Contents</a></h3><ul>%s</ul> </div>' % contentsString, 'html.parser')
             sidebarDiv = BeautifulSoup('<div class="sidebar">%s</div>' % tocDiv.prettify(), 'html.parser')
             contextDiv = BeautifulSoup('<div class="context">%s</div>' % pluginSoup.prettify(), 'html.parser')
             mainContentDiv = BeautifulSoup('<div class="content mainContent">%s%s</div>' % (sidebarDiv.prettify(), contextDiv.prettify()), 'html.parser')
-            
-            print(mainContentDiv.prettify())
 
+            print(mainContentDiv.prettify())
 
             # Create overview list element
             name = pluginSoup.find_all('h1')[0].text
@@ -160,8 +163,8 @@ def buildNymeaPluginsDocumentation():
             print(name, htmlFileName)
             listString = '<li> <a href="%s">%s</a></li>' % (htmlFileName, name)
             pluginsLinkList += listString
-                        
-            page = generatePage(mainContentDiv, '/html-templates/header-plugins.html')
+
+            page = generatePage(mainContentDiv, headerFile)
             saveXmlToFile(page, os.path.dirname(os.path.realpath(sys.argv[0])) + '/output/nymea-plugins/' + htmlFileName)
 
     # Create overview page
@@ -171,16 +174,14 @@ def buildNymeaPluginsDocumentation():
     saveXmlToFile(page, os.path.dirname(os.path.realpath(sys.argv[0])) + '/output/nymea-plugins/index.html')
 
 
-    
 #--------------------------------------------------------------------------
 def buildHtmlFromQdocBody(inputFileName, outputFileName):
     printInfo('Building html from qdoc body')
 
-    page = generatePage(extractHtmlBody(inputFileName))
+    page = generatePage(extractHtmlBody(inputFileName), headerFile)
     saveXmlToFile(page, outputFileName)
-    
 
-        
+
 ###########################################################################
 # Main
 ###########################################################################
@@ -190,6 +191,7 @@ if __name__ == '__main__':
     parser.add_argument('-v', '--version', action='version', version=__version__)
     parser.add_argument('-i', '--input-file', help='The name of the input file to process rellative to this tool path.', metavar='file')
     parser.add_argument('-o', '--output-file', help='The name of the output file', metavar='file', default='')
+    parser.add_argument('-g', '--header-file', help='The header file to use', metavar='file', default='/html-templates/header')
     parser.add_argument('-q', '--build-qdoc-html', help='Build a html site using the body from the give qdoc generated input file and save it to the output file.', action='store_true')
     parser.add_argument('-p', '--build-plugins-documentation', help='Build the plugins documentation located in /source/nymea-plugins.', action='store_true')
 
@@ -197,18 +199,16 @@ if __name__ == '__main__':
 
     inputFileName = args.input_file
     outputFileName = args.output_file
-   
+    headerFile = args.header_file
+
     # Build html using qdoc input file body and save to output file
     if args.build_qdoc_html:
         if not args.output_file:
             printError('No output file specified. Please specify the output file name using "-o", "--output-file"')
             exit(1)
-            
+
         buildHtmlFromQdocBody(inputFileName, outputFileName)
-    
+
     # Build nymea plugins documentation
     if args.build_plugins_documentation:
         buildNymeaPluginsDocumentation()
-    
-            
-    
