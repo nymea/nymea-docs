@@ -250,10 +250,10 @@ while [ "$1" != "" ]; do
     shift
 done
 
-#create-nymea-docs
+create-nymea-docs
 create-nymea-plugins-docs
-#create-nymea-coap-docs
-#create-nymea-mqtt-docs
+create-nymea-coap-docs
+create-nymea-mqtt-docs
 create-nymea-gpio-docs
 
 printGreen "Build html directory ${HTML_DIR}"
