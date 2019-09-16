@@ -51,6 +51,21 @@ function printRed() {
 }
 
 #------------------------------------------------------------
+function create-main-docs() {
+    printGreen "Create main docs"
+    if [ -d ${OUTPUT_DIR}/docs ]; then rm -rf ${OUTPUT_DIR}/docs; fi
+    mkdir -p ${OUTPUT_DIR}/docs
+
+
+    printGreen "Create nymea-plugins docs"
+    ${CURRENT_DIR}/doc-tools.py -m -o ${OUTPUT_DIR}/docs
+
+
+
+}
+
+
+#------------------------------------------------------------
 function create-nymea-docs() {
     printGreen "Clean nymea"
     if [ -d ${SOURCE_DIR}/nymea ]; then rm -rf ${SOURCE_DIR}/nymea; fi
@@ -197,8 +212,6 @@ function create-nymea-gpio-docs() {
     printGreen "Get nymea-gpio source from branch ${NYMEA_GPIO_BRANCH}"
     cd ${SOURCE_DIR}
     git clone -b ${NYMEA_GPIO_BRANCH} --depth 1 https://github.com/guh/nymea-gpio.git
-    cd nymea-gpio
-    qmake
 
     printGreen "Create nymea-gpio docs"
     cd ${CONFIG_DIR}/nymea-gpio
@@ -250,16 +263,18 @@ while [ "$1" != "" ]; do
     shift
 done
 
-create-nymea-docs
-create-nymea-plugins-docs
-create-nymea-coap-docs
-create-nymea-mqtt-docs
-create-nymea-gpio-docs
+create-main-docs
+#create-nymea-docs
+#create-nymea-plugins-docs
+#create-nymea-coap-docs
+#create-nymea-mqtt-docs
+#create-nymea-gpio-docs
 
 printGreen "Build html directory ${HTML_DIR}"
 if [ -d ${HTML_DIR} ]; then rm -rf ${HTML_DIR}; fi
 mkdir -p ${HTML_DIR} || true
-cp ${TEMPLATE_DIR}/index.html ${HTML_DIR}
+cp ${OUTPUT_DIR}/docs/*.html ${HTML_DIR}
+
 cp -r ${TEMPLATE_DIR}/scripts ${HTML_DIR}
 cp -r ${TEMPLATE_DIR}/styles ${HTML_DIR}
 cp -r ${TEMPLATE_DIR}/favicons ${HTML_DIR}

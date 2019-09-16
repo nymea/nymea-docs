@@ -22,7 +22,8 @@ sourceencoding          = UTF-8
 syntaxhighlighting = true
 
 headerdirs = ../../source/nymea-gpio/libnymea-gpio/
-sourcedirs = ../../source/nymea-gpio/libnymea-gpio/
+sourcedirs = ../../source/nymea-gpio/libnymea-gpio/ \
+             ../../source/nymea-gpio/docs
 
 headers.fileextensions = "*.h"
 sources.fileextensions = "*.cpp *.qdoc"

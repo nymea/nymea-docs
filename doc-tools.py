@@ -85,6 +85,35 @@ def createHtmlReferenceFromString(reference):
 
 
 #--------------------------------------------------------------------------
+def buildMainDocs():
+    # Collect all plugin docs
+    # Load default html parts
+    head = loadFileToSoap(os.path.dirname(os.path.realpath(sys.argv[0])) + '/html-templates/head')
+    header = loadFileToSoap(os.path.dirname(os.path.realpath(sys.argv[0])) + '/html-templates/header')
+    footer = loadFileToSoap(os.path.dirname(os.path.realpath(sys.argv[0])) + '/html-templates/footer')
+
+    docsDirectory = os.path.dirname(os.path.realpath(sys.argv[0])) + '/docs/'
+    docFiles = []
+
+    for docPage in os.listdir(docsDirectory):
+        docFile = docsDirectory + docPage
+        if docFile.endswith('.md'):
+            docFiles.append(docFile)
+
+    # Generate raw pages from markdown
+    for docFile in docFiles:
+        print('Process %s' % docFile)
+        docFileName = os.path.basename(docFile)
+        docFileBaseName = os.path.splitext(docFileName)[0]
+        htmlResult = subprocess.run(['markdown', docFile], stdout=subprocess.PIPE)
+        docSoup = BeautifulSoup(htmlResult.stdout, 'html.parser')
+        mainContentDiv = BeautifulSoup('<div class="content mainPageContent">%s</div>' % (docSoup.prettify()), 'html.parser')
+        page = generatePage(mainContentDiv, '/html-templates/header-main')
+        print(page)
+        saveXmlToFile(page, os.path.dirname(os.path.realpath(sys.argv[0])) + ('/output/docs/%s.html' % docFileBaseName))
+
+
+#--------------------------------------------------------------------------
 def generatePage(body, headerPath = '/html-templates/header'):
     # Load default html parts
     head = loadFileToSoap(os.path.dirname(os.path.realpath(sys.argv[0])) + '/html-templates/head')
@@ -193,6 +222,7 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--output-file', help='The name of the output file', metavar='file', default='')
     parser.add_argument('-g', '--header-file', help='The header file to use', metavar='file', default='/html-templates/header')
     parser.add_argument('-q', '--build-qdoc-html', help='Build a html site using the body from the give qdoc generated input file and save it to the output file.', action='store_true')
+    parser.add_argument('-m', '--build-main-documentation', help='Build the main documentation located in /docs.', action='store_true')
     parser.add_argument('-p', '--build-plugins-documentation', help='Build the plugins documentation located in /source/nymea-plugins.', action='store_true')
 
     args = parser.parse_args()
@@ -200,6 +230,11 @@ if __name__ == '__main__':
     inputFileName = args.input_file
     outputFileName = args.output_file
     headerFile = args.header_file
+
+    # Build main docs from markdown docs folder
+    if args.build_main_documentation:
+        buildMainDocs()
+        exit(0)
 
     # Build html using qdoc input file body and save to output file
     if args.build_qdoc_html:
