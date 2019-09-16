@@ -34,3 +34,8 @@ If you want to get information about nymea GPIO library, please visit nymea-gpio
 
 [nymea GPIO](nymea-gpio/index.html)
 
+## Example
+
+This is an example link for showing the link possibilities
+
+[example](example.html)
