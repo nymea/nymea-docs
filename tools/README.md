@@ -6,4 +6,4 @@ For building the documentation you just need to run `generate-docs.sh`.
 
 ## Install build dependencies
 
-    apt install qt5-default python3 python3-bs4
+    apt install qt5-default python3 python3-bs4 markdown
