@@ -110,7 +110,7 @@ def buildMainDocs():
         mainContentDiv = BeautifulSoup('<div class="content mainPageContent">%s</div>' % (docSoup.prettify()), 'html.parser')
         page = generatePage(mainContentDiv, '/html-templates/header-main')
         print(page)
-        saveXmlToFile(page, os.path.dirname(os.path.realpath(sys.argv[0])) + ('/output/docs/%s.html' % docFileBaseName))
+        saveXmlToFile(page, os.path.dirname(os.path.realpath(sys.argv[0])) + ('/output/nymea-docs/%s.html' % docFileBaseName))
 
 
 #--------------------------------------------------------------------------
