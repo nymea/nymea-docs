@@ -92,7 +92,7 @@ def buildMainDocs():
     header = loadFileToSoap(os.path.dirname(os.path.realpath(sys.argv[0])) + '/html-templates/header')
     footer = loadFileToSoap(os.path.dirname(os.path.realpath(sys.argv[0])) + '/html-templates/footer')
 
-    docsDirectory = os.path.dirname(os.path.realpath(sys.argv[0])) + '/docs/'
+    docsDirectory = os.path.dirname(os.path.realpath(sys.argv[0])) + '/../'
     docFiles = []
 
     for docPage in os.listdir(docsDirectory):
@@ -110,7 +110,7 @@ def buildMainDocs():
         mainContentDiv = BeautifulSoup('<div class="content mainPageContent">%s</div>' % (docSoup.prettify()), 'html.parser')
         page = generatePage(mainContentDiv, '/html-templates/header-main')
         print(page)
-        saveXmlToFile(page, os.path.dirname(os.path.realpath(sys.argv[0])) + ('/output/docs/%s.html' % docFileBaseName))
+        saveXmlToFile(page, os.path.dirname(os.path.realpath(sys.argv[0])) + ('/output/nymea-docs/%s.html' % docFileBaseName))
 
 
 #--------------------------------------------------------------------------

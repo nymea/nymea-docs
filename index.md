@@ -34,6 +34,12 @@ If you want to get information about nymea GPIO library, please visit nymea-gpio
 
 [nymea GPIO](nymea-gpio/index.html)
 
+## libnymea-networkmanager
+If you want to get information about libnymea-networkmanager library, please visit libnymea-networkmanager docs.
+
+[nymea GPIO](libnymea-networkmanager/index.html)
+
+
 ## Example
 
 This is an example link for showing the link possibilities
