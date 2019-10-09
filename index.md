@@ -22,6 +22,11 @@ Plugins provide a way to extend nymead features. Most commonly a nymea plugin ad
 
 [The nymea client API](nymea/jsonrpc.html) is used to build client applications for nymea. For instance, a mobile application like nymea:app interacts with nymea through this API. This JSON-RPC based API can either be used raw, or through a client lib.
 
+## Client libraries
+In order to ease up development for client applications, nymea provides client libraries and apps.
+
+### nymea:app
+nymea:app is a fully featured client app for nymea. It can be styled and branded but also used as a Qt/QML nymea client library to build a completely custom application UI.
 
 ## Standalone tools
 
