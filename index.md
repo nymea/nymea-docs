@@ -70,4 +70,4 @@ nymea provides build scripts and pre-built images for the Raspberry Pi based on 
 
 ### Yocto
 
-nymea provides a [meta-layer](https://gihtub.com/nymea/meta-nymea) for all the libraries and tools of nymea.
+nymea provides a [meta-layer](https://github.com/nymea/meta-nymea) for all the libraries and tools of nymea to be included in yocto images.
