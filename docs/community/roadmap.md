@@ -4,7 +4,7 @@ title: Roadmap
 ---
 
 
-# nymea Roadmap
+## nymea
 
 ## V 0.17.0  October 2019
 
@@ -21,7 +21,7 @@ nymea plug-ins
     Http Commander: Add server
 ```    
 
-## V 0.18.0 November 2019
+### V 0.18.0 November 2019
 ```text
 nymea 
  
@@ -29,4 +29,6 @@ nymea plug-ins
     New PlugIn: Websocket Commander
 
 ```
-## V 0.19.0 December 2019
+### V 0.19.0 December 2019
+
+## nymea:app

@@ -18,6 +18,11 @@
    ],
    "Write Clients": [
     "clients/write-clients"
+   ],
+   "Community": [
+    "community/roadmap",
+    "community/changelog",
+    "community/contribute"
    ]
   }
 }

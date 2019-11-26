@@ -3,10 +3,47 @@ id: changelog
 title: Changelog
 ---
 
+## nymea Changelog
 
-# nymea Changelog
+### V 0.17.0
+```text
+nymea-remoteproxy (0.1.7)
+   Add option to disable tests during builds
+libnymea-networkmanager (0.2.1)
+   Set wireless accesspoint to WPA2 and set reconnect forever
+   Fix wireless protected flag and add open network connection support
+nymea (0.17.0)
+   Allow more fine grained notification options
+   More complete setup
+   Drop old REST server
+   Experience plugins
+   Add a barcodescanner interface
+   Don't load devices if the plugin dropped support for it
+   Don't emit EventEmitted for invalid devices
+   Threaded log database
+   Weaken password requirements a bit
+nymea-plugins (0.17.0)
+   New Plugin: Tuya cloud
+   FlowerCare: Add a refresh rate setting
+   Packaging: Fix dpkg clean target
+   Simulation: Add a simulated barcode scanner device
+   Http commander: Add http server
+   DaylightSensor: Update README.md
+   dweet.io: Update README
+   Kodi: Automatically redetect Kodi when its IP address changes
+   Various Plugins: Spelling fixes in README files
+nymea-plugins-simulation (0.4)
+  No change rebuild
+nymea-plugin-modbuscommander (0.1.1)
+   Update build dep to min 0.16
+nymea-plugin-unipi (0.1.1)
+   Fixed neuron extension inputs
+   Maintenance update (build with nymea 0.17 and Qt 5.13)
+nymea-qtcreator-wizards (0.0.5)
+   Update plugin api
+```
 
-## V 0.16.0
+### V 0.16.0
 ```text
 nymea-mqtt (0.1.2)
     Fix a crash in topic matching.
@@ -42,7 +79,8 @@ nymea-plugins (0.16.0)
     Update to new plugin api
 ```
 
-## V 0.15.1
+### V 0.15.1
+
 ```text
 libnymea-networkmanager (0.1.1)
     Add access point functionality
@@ -72,7 +110,7 @@ nymea (0.15.1)
     New Plugin: UniPi- nymea-update-plugin-packagekit (0.3)
     Add support for Debian Buster
 ```
-## V 0.14.0
+### V 0.14.0
 
 ```text
 nymea (0.14.0)
@@ -101,7 +139,7 @@ nymea-qtcreator-wizards (0.0.4)
     Update to new plugin info compiler and update plugin.pri file
 ```
 
-## V 0.13.0
+### V 0.13.0
 
 ```text
 nymea (0.13.0)
@@ -145,7 +183,8 @@ nymea-zeroconf-plugin-avahi
     First implementation of a avahi platform plugin
 ```
 
-## V 0.12.0
+### V 0.12.0
+
 ```text
 nymea (0.12.0)
     New Release Mechanism
@@ -177,7 +216,7 @@ Documentation
     Update developer documentation
 ```
 
-## V 0.8.0
+### V 0.8.0
 
 ```text
 nymea (0.8.0)
@@ -188,7 +227,7 @@ nymea (0.8.0)
     Basic system settings
 ```
 
-## V 0.7.0
+### V 0.7.0
 
 ```text
 Add OAuth 2.0
@@ -201,7 +240,7 @@ Add more plugins
 CoAP Support
 ```
 
-## V 0.6.0
+### V 0.6.0
 
 ```text
 Add web socket server
@@ -216,7 +255,7 @@ Add snappy packaging support
 Many small bug fixes
 ```
 
-## V 0.5.0
+### V 0.5.0
 ```text
     Update documentation style
     Add Webserver
@@ -230,7 +269,8 @@ Many small bug fixes
     Add debug categories
     Add CORS support to webserver
 ```
-## V 0.4.0
+
+### V 0.4.0
 ```text
     Add "Edit" devices method
     Add "Edit" rules method
@@ -243,7 +283,8 @@ Many small bug fixes
     Many small bug fixes
     Add support for "writeable" states in plugin meta data
 ```
-## V 0.3.0
+
+### V 0.3.0
 ```text
     Add UPnP resource
     Add NetworkAccessManager resource
@@ -254,7 +295,8 @@ Many small bug fixes
     Add command line parser
     Many small bug fixes
 ```
-## V 0.2.0
+
+### V 0.2.0
 ```text
     Load plugins dynamic
     Add more tests
@@ -270,7 +312,8 @@ Many small bug fixes
     Add documentation
     Add more plugins
 ```
-## V 0.1.0
+
+### V 0.1.0
 ```text
     Create project structure
     Add debian scripts
@@ -286,4 +329,5 @@ Many small bug fixes
     Add test scripts (bash)
     Add license check
 ```
-## Project start 01.09.2013
+
+### Project start 01.09.2013

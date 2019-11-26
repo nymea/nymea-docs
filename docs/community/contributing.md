@@ -6,7 +6,7 @@ title: Contribute
 First off, thanks for taking the time to contribute. We are happy that you are interested in contributing to nymea!
 
 
-# Contribute
+## Contribute
 
 The main repositories of nymea are nymea:core, nymea:app and nymea:plugins.
 
@@ -28,16 +28,14 @@ The nymea-cli (command line interface) is an admin tool written in python to com
 
 But make sure to also check out the others, like nymea-networkmanager, nymea-mqtt etc. You can find them in our organization's GitHub.
 
-# License Agreement
+## License Agreement
 
 We’re required to have a signed agreement with everyone who puts effort in the development. It’s the easiest way for you to give us permission to use your contributions. Technically, with this agreement, you’re giving us a licence, but you still own the copyright — so you still have the right to modify your code and use it as you see fit. When you are ready to contribute to nymea, please make sure to have filled in this document and you've sent it to us using developer@nymea.io
 Download our license agreement https://nymea.io/download/CLA-Agreement.pdf
 
-# Coding style
+## Coding style
 
 Since nymea was written in C++ framework Qt, the coding style was taken over from Qt. The coding style guidelines and instruction can be found here:
 
     http://qt-project.org/wiki/Qt_Coding_Style | Qt coding style
     http://qt-project.org/wiki/Coding-Conventions | Qt coding conventions
-
-
