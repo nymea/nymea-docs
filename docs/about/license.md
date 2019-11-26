@@ -1,5 +1,6 @@
 ---
-title: License
+id: licence
+title: Licence
 ---
 
 

@@ -1,3 +1,8 @@
+---
+id: home
+title: Home
+---
+
 # Welcome!
 
 This is the main page of the developer documentation. Her you can find all generated documentations related to the nymea project.

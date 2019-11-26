@@ -1,5 +1,6 @@
 ---
-Interfaces
+id: interfaces
+title: Interfaces
 ---
 
 

@@ -1,4 +1,5 @@
 ---
+id: configurationFile
 title: Configuration file
 ---
 

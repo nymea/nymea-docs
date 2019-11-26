@@ -33,10 +33,10 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-//    {doc: 'about', label: 'Home'},
-//    {doc: 'index', label: 'Build'},
-//    {doc: 'index', label: 'Write Plug-Ins'},
-//    {doc: 'index', label: 'Write Clients'},
+    {doc: 'about/about', label: 'Home'},
+    {doc: 'build/buildNymea', label: 'Build'},
+    {doc: 'plugins/writePlugins', label: 'Write Plug-Ins'},
+    {doc: 'clients/writeClients', label: 'Write Clients'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
     { search: true },
@@ -52,8 +52,8 @@ const siteConfig = {
 
   /* Colors for website */
   colors: {
-    primaryColor: '#9fc8a4',
-    secondaryColor: '#8cc1b6',
+    primaryColor: '#69938c',
+    secondaryColor: '#676767',
   },
 
   /* Custom fonts for website */
@@ -92,7 +92,7 @@ const siteConfig = {
 
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.
-  // docsSideNavCollapsible: true,
+  docsSideNavCollapsible: true,
 
   // Show documentation's last contributor's name.
   // enableUpdateBy: true,
