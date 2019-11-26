@@ -102,30 +102,44 @@ class Index extends React.Component {
     );
 
     const TryOut = () => (
-      <Block id="try">
+      <Block id="purpose">
         {[
           {
             content:
-              'To make your landing page more attractive, use illustrations! Check out ' +
-              '[**unDraw**](https://undraw.co/) which provides you with customizable illustrations which are free to use. ' +
-              'The illustrations you see on this page are from unDraw.',
+              'Devices that needs to be connected to other services or devices, some examples:' +
+              ' Building automation' +
+              ' Heating controller' +
+              ' Irrigation or sprinkler system'
+              ' Access and alarm system' +
+              ' Smart Home Hubs' +
+              ' Audio device' +
+              ' Hot tub or sauna' +
+              ' Protocol adapter',
             image: `${baseUrl}img/undraw_code_review.svg`,
             imageAlign: 'left',
-            title: 'Wonderful SVG Illustrations',
+            title: 'Nymea is built for connected devices',
           },
         ]}
       </Block>
     );
 
     const Description = () => (
-      <Block background="dark">
+      <Block background="believes">
         {[
           {
             content:
-              'This is another description of how this project is useful',
+              'We think IoT devices, especially inside your home do not have to be cloud connected all the time.' +
+              'Privacy is one of our concerns, so we help to build better cloud independent products. A product doesnâ€™t' +
+              'have be rendered worthless as soon as the manufacturer shuts down the cloud. We acknowledge that to keep the' +
+              'devices up-to-date takes a lot of effort. Nymea is built to reduce this maintenance effort. There will be' +
+              'still maintenance effort and the resulting costs must be sustainable. We support manufacturers to charge for' +
+              'added value. Selling hardware was a main income for many manufacturers, we encourage for durable products not' +
+              'only as benefit to the user but also in favor of our environment.' +
+              ' ' +
+              'The nymea Team',
             image: `${baseUrl}img/undraw_note_list.svg`,
             imageAlign: 'right',
-            title: 'Description',
+            title: 'Affair of the heart',
           },
         ]}
       </Block>
@@ -140,7 +154,7 @@ class Index extends React.Component {
             image: `${baseUrl}img/undraw_youtube_tutorial.svg`,
             imageAlign: 'right',
             title: 'Randomly Generated Theme Colors',
-          },
+þ          },
         ]}
       </Block>
     );
