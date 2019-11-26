@@ -2,6 +2,7 @@
  "docs": {
   "About": [
     "about/about",
+    "about/features",
     "about/rule-engine",
     "about/interfaces",
     "about/configuration-file",
@@ -17,7 +18,10 @@
     "plugins/plugin-build-environment"
    ],
    "Write Clients": [
-    "clients/write-clients"
+    "clients/write-clients",
+    "clients/nymea-cli",
+    "clients/avahi-discovery",
+    "clients/upnp-discovery"
    ],
    "Community": [
     "community/roadmap",

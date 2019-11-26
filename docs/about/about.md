@@ -3,6 +3,33 @@ id: about
 title: About
 ---
 
-## About nymea
+*nymea* is an open IoT edge platform written in Qt.
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+The main purpose of nymea is to provide a collection of tools, libraries and services to build connected devices.
+Nymea can be used to solve specific small problems for IoT based use cases as well as building a fully featured smart home platform.
+
+## nymea structure
+
+nymea consists of three parts: nymea:core, nymea:ux and nymea:cloud.
+
+### nymea:core
+
+nymea:core is the core piece of the platform. It refers to the services and libraries used to build the edge device. It may run on Linux powered 
+devices like on a Raspberry Pi.
+
+* A typical smart home setup for instance would run a nymea:core on a Raspberry Pi in a home network and talk to IoT devices in the home via WiFi, Bluetooth, ZigBee etc.
+* A smart hot tub for instance would run nymea:core in a embedded device in the Hot Tub (e.g. a Beaglebone Black, or a Raspberry Pi) and control the hot tup through GPIOs.
+
+### nymea:ux
+
+nymea:ux refers to the user facing frontend of a nymea system. This can be a client app running on a phone, a frontend app running on the IoT edge device too (in case it has a display) or a command line interface. Please refer to the [Clients](https://nymea.io/en/wiki/nymea/master/clients) page for available frontends.
+
+## nymea:cloud
+
+nymea:cloud is optional and extends nymea with cloud centric features such as delivering push notifications to client devices or enabling remote connections from nymea:ux to nymea:core in an easy to setup and secure manner.
+
+<br /><br />
+
+![nymea structure](https://raw.githubusercontent.com/guh/nymea-wiki/master/docs/en/images/home-stack.png)
+
+<br />
