@@ -11,35 +11,32 @@
 // List of projects/orgs using your project for the users page.
 const users = [
   {
-    caption: 'User1',
+    caption: 'nymea',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/image.jpg'.
-    image: '/img/undraw_open_source.svg',
-    infoLink: 'https://www.facebook.com',
+    image: '/img/owl_white.svg',
+    infoLink: 'https://nymea.io',
     pinned: true,
   },
 ];
 
 const siteConfig = {
-  title: 'Test Site', // Title for your website.
-  tagline: 'A website for testing',
-  url: 'https://your-docusaurus-test-site.com', // Your website URL
+  title: 'nymea',
+  tagline: 'Developer Documentation',
+  url: 'https://nymea.io', // Your website URL
   baseUrl: '/', // Base URL for your project */
-  // For github.io type URLs, you would set the url and baseUrl like:
-  //   url: 'https://facebook.github.io',
-  //   baseUrl: '/test-site/',
+
 
   // Used for publishing and more
-  projectName: 'test-site',
-  organizationName: 'facebook',
-  // For top-level user or org sites, the organization is still the same.
-  // e.g., for the https://JoelMarcey.github.io site, it would be set like...
-  //   organizationName: 'JoelMarcey'
+  projectName: 'nymea',
+  organizationName: 'nymea GmbH',
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'doc1', label: 'Docs'},
-    {doc: 'doc4', label: 'API'},
+//    {doc: 'about', label: 'Home'},
+//    {doc: 'index', label: 'Build'},
+//    {doc: 'index', label: 'Write Plug-Ins'},
+//    {doc: 'index', label: 'Write Clients'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
   ],
@@ -48,21 +45,21 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/favicon.ico',
-  footerIcon: 'img/favicon.ico',
-  favicon: 'img/favicon.ico',
+  headerIcon: 'img/owl_white.svg',
+  footerIcon: 'img/owl_white.svg',
+  favicon: 'img/owl_white.svg',
 
   /* Colors for website */
   colors: {
-    primaryColor: '#0b2f94',
-    secondaryColor: '#072067',
+    primaryColor: '#9fc8a4',
+    secondaryColor: '#8cc1b6',
   },
 
   /* Custom fonts for website */
-  /*
+
   fonts: {
     myFont: [
-      "Times New Roman",
+      "Ubuntu",
       "Serif"
     ],
     myOtherFont: [
@@ -70,10 +67,10 @@ const siteConfig = {
       "system-ui"
     ]
   },
-  */
+
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Your Name or Your Company Name`,
+  copyright: `Copyright © ${new Date().getFullYear()} nymea GmbH`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
@@ -104,7 +101,7 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/facebook/test-site',
+  repoUrl: 'https://github.com/nymea/nymea',
 };
 
 module.exports = siteConfig;
