@@ -22,16 +22,16 @@ function Help(props) {
   const supportLinks = [
     {
       content: `See the [FAQ](${docUrl(
-        'index.html',
+        'faq.html',
       )})`,
       title: 'Frequently asked questions',
     },
     {
-      content: 'Ask questions about the documentation and project in the [nymea forum](https://nymea.io)',
+      content: 'Ask questions about the documentation and project in the nymea forum',
       title: 'Ask the forum',
     },
     {
-      content: "Stay in the [loop](https://t.me/nymeacommunity)",
+      content: 'Stay in the loop',
       title: 'Join the Telegram group',
     },
   ];

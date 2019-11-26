@@ -65,8 +65,8 @@ class HomeSplash extends React.Component {
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
             <Button href="#try">Build nymea</Button>
-            <Button href={docUrl('doc1.html')}>Write a plug-in</Button>
-            <Button href={docUrl('doc2.html')}>Write a client</Button>
+            <Button href={docUrl('about.html')}>Write a plug-in</Button>
+            <Button href={docUrl('index.html')}>Write a client</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -109,7 +109,7 @@ class Index extends React.Component {
               'Devices that needs to be connected to other services or devices, some examples:' +
               ' Building automation' +
               ' Heating controller' +
-              ' Irrigation or sprinkler system'
+              ' Irrigation or sprinkler system' +
               ' Access and alarm system' +
               ' Smart Home Hubs' +
               ' Audio device' +
@@ -117,7 +117,7 @@ class Index extends React.Component {
               ' Protocol adapter',
             image: `${baseUrl}img/undraw_code_review.svg`,
             imageAlign: 'left',
-            title: 'Nymea is built for connected devices',
+            title: 'nymea is built for connected devices',
           },
         ]}
       </Block>
@@ -150,11 +150,11 @@ class Index extends React.Component {
         {[
           {
             content:
-              'Each new Docusaurus project has **randomly-generated** theme colors.',
+              'nymea consists our of 3 components.',
             image: `${baseUrl}img/undraw_youtube_tutorial.svg`,
             imageAlign: 'right',
-            title: 'Randomly Generated Theme Colors',
-þ          },
+            title: 'nymea software stack',
+          },
         ]}
       </Block>
     );
