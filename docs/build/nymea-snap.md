@@ -3,7 +3,7 @@ id: snap
 title: Snap
 ---
 
-# Building the nymea-snap
+## Building the nymea-snap
 
 Install build dependencies:
 
@@ -11,14 +11,14 @@ Install build dependencies:
 
 Clone the project source code:
 
-    $ git clone https://github.com/guh/nymea-snap.git
+    $ git clone https://github.com/nymea/nymea-snap.git
     $ cd nymea-snap
 
 Build the snap:
 
     $ snapcraft
 
-# Install the snap
+## Install the snap
 
 > *Note:* you need to have a running `snapd`. See [here](http://snapcraft.io/docs/core/install) for more information.
 
@@ -26,7 +26,7 @@ Build the snap:
 
         $ sudo snap install nymea_<VERSION>_<ARCH>.snap --dangerous
 
-# Interact with the snap
+## Interact with the snap
 
 - Run the nymea-cli command line interfaces
 
@@ -57,7 +57,7 @@ Build the snap:
         $ sudo journalctl -f -u snap.nymea.nymead.service
 
 
-# Snap interfaces
+## Snap interfaces
 
 In order to enable the access to the different services, you need to connect the slots you need for your setup:
 

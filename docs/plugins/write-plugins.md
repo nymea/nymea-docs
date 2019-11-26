@@ -1,12 +1,10 @@
 ---
-id: writePlugins
+id: write-plugins
 title: Plug-in development
 ---
 
-# Plug-Ins
+## Plug-Ins
 ------------------------------------------
-
-
 
 nymea is built around plug-ins.
 

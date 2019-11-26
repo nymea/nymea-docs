@@ -1,9 +1,9 @@
 ---
-id: configurationFile
+id: configuration-file
 title: Configuration file
 ---
 
-# nymea Configuration file
+## nymea Configuration file
 
 !!! Note
     Usually you don't need to edit the configration file. Almost all options can be set within the nymea clients. 
@@ -293,7 +293,7 @@ Altering this value might compsomise the access to nymea:cloud.
 * Example:
     `uuid=@Variant(\0\0\0\x1e-\xb2?tRPL\x8c\xb3\x81\v\xcb\x61\x36\xe2\x9b)`
 
-# Logging configuration file
+## Logging configuration file
 
 This file helps to filter the debug output.
 This file is not necessary and is not created by default
@@ -329,7 +329,7 @@ PlatformUpdate.debug=false
 Bluez.debug=false
 ```
 
-# Devices configuration file
+## Devices configuration file
 
 This file is created and modified by the devicemanager. In generally this file should not be modified manually.
 If you need to change it manually make sure nymea is shut down before.
@@ -395,7 +395,7 @@ Example a gateway might be the parent of a light bulb. Or an account might be th
 
 Params and params ids are definded in the plug-in JSON file.
 
-# Rules configuration file
+## Rules configuration file
 
 Each rule beginns with a rule uuid, like [%7Bc7f72b5c-15e0-4519-9fbd-bbf2882f1631%7D].
 

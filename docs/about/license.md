@@ -3,14 +3,9 @@ id: licence
 title: Licence
 ---
 
-
-# Dual license
-
-
-# GPLv3
+## Dual license
 
 
-# Qt License
+### GPLv3
 
-
-# Commercial license
+### Commercial license

@@ -1,5 +1,5 @@
 ---
-id: writeClients
+id: write-clients
 title: Write clients
 ---
 

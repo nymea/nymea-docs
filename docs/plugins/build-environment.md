@@ -1,10 +1,9 @@
 ---
-id: pluginBuildEnvironment
+id: plugin-build-environment
 title: Build environment
 ---
 
-
-# Set up the build environment
+## Set up the build environment
 
 This documentation assumes you are working on a Debian or Ubuntu system. The recommended IDE to use is QtCreator. Other Linux distributions should work too, however at this point, nymea only ships packages for Debian and Ubuntu so libnymea needs to be build from code if you prefer to use a different linux distribution.
 Install Qt
@@ -35,4 +34,3 @@ Now you are ready to install the nymea packages:
 ```
 $ sudo apt-get install nymea nymea-doc libnymea1-dev nymea-dev-tools nymea-qtcreator-wizards
 ```
-

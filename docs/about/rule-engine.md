@@ -1,9 +1,9 @@
 ---
-id: ruleEngine
+id: rule-engine
 title: Rule engine
 ---
 
-# Rule engine
+## Rule engine
 
 Rules define all the logic in nymea. A Tule is composed by a set of Events, States and Actions.
 
@@ -67,7 +67,7 @@ and the light sensor reports values greater 10
 Having both types of triggers in a single rule is only possible by leaving the trigger path 1, crossing a black arrow and re-entering trigger path 2. 
 This however, converts the rule to an Event based rule which means, only the elements on trigger path 1 will be able to trigger the rule evaluation.
 
-###Examples
+### Examples
 
 * This rule will be evaluated whenever the remote button1 is pressed and executed only if the temperature is greater 10
 

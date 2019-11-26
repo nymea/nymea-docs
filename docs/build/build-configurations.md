@@ -1,5 +1,5 @@
 ---
-id: buildConfiguration
+id: build-configuration
 title: Build configurations
 ---
 

@@ -1,31 +1,31 @@
 ---
-id: extraTargets
+id: extra-targets
 title: Extra targets
 ---
 
-# *make* extra targets
+## *make* extra targets
 
-## Build documentation
+### Build documentation
 
         $ cd build-nymea
         $ make doc
 
-## Update translations
+### Update translations
 
         $ cd build-nymea
         $ make lupdate
 
-## Build translations
+### Build translations
 
         $ cd build-nymea
         $ make lrelease
 
-## Build and run tests
+### Build and run tests
 
         $ cd build-nymea
         $ make test -k "TESTARGS=-m 120 -p -o -p -,txt -p -o -p test-results.xml,xunitxml" "TESTRUNNER=dbus-test-runner --bus-type=system --task"
 
-## Check source code for missing license/copyright header
+### Check source code for missing license/copyright header
 
         $ cd build-nymea
         $ make licensecheck

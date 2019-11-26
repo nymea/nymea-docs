@@ -1,5 +1,5 @@
 ---
-id: buildNymea
+id: build-nymea
 title: Build nymea
 ---
 

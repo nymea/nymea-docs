@@ -1,4 +1,23 @@
 {
  "docs": {
+  "About": [
+    "about/about",
+    "about/rule-engine",
+    "about/interfaces",
+    "about/configuration-file",
+    "about/license"
+   ],
+   "Build": [
+    "build/build-nymea",
+    "build/build-configuration",
+    "build/crossbuilder"
+   ],
+   "Write Plug-Ins": [
+    "plugins/write-plugins",
+    "plugins/plugin-build-environment"
+   ],
+   "Write Clients": [
+    "clients/write-clients"
+   ]
   }
 }

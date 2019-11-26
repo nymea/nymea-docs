@@ -33,10 +33,10 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'about/about', label: 'Home'},
-    {doc: 'build/buildNymea', label: 'Build'},
-    {doc: 'plugins/writePlugins', label: 'Write Plug-Ins'},
-    {doc: 'clients/writeClients', label: 'Write Clients'},
+    {doc: 'about/about', label: 'About'},
+    {doc: 'build/build-nymea', label: 'Build'},
+    {doc: 'plugins/write-plugins', label: 'Write Plug-Ins'},
+    {doc: 'clients/write-clients', label: 'Write Clients'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
     { search: true },
@@ -88,7 +88,10 @@ const siteConfig = {
 
   // Open Graph and Twitter card images.
   ogImage: 'img/undraw_online.svg',
+
+  twitter: 'true',
   twitterImage: 'img/undraw_tweetstorm.svg',
+  twitterUsername: 'nymea_io', 
 
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.
