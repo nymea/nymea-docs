@@ -1,16 +1,11 @@
 ---
 id: configuration-file
-title: Configuration file
+title: Configuration File
 ---
 
-## nymea Configuration file
+> **Note:** Usually you don't need to edit the configration file. Almost all options can be set within the nymea clients. The config file will be created by nymea during start if there is no file present. Stop nymead before you make changes on the file.
 
-!!! Note
-    Usually you don't need to edit the configration file. Almost all options can be set within the nymea clients. 
-    The config file will be created by nymea during start if there is no file present. Stop nymead before you make 
-    changes on the file.
-
-### nymea.conf
+## nymea.conf
 ```
 [BluetoothServer]
 enabled=false
@@ -67,14 +62,14 @@ timeZone=@ByteArray(Europe/Vienna)
 uuid=@Variant(\0\0\0\x1e-\xb2?tRPL\x2c\xb3\x31\v\x3b\x61\x36\xe2\x9b)
 ```
 
-## Filesystem location
+### Filesystem location
 
 The location changes if you start nymea as root or as user.
 
 * Root: /etc/nymea/nymea.conf
 * User: ~/.nymea/nymea.conf
 
-## Section [BluetoothServer]
+### Section [BluetoothServer]
 
 #### enabled 
 
@@ -85,7 +80,7 @@ Offers the nymea API through a Bluetooth classic service. Requires Bluetooth cla
 * Default value: `false`
 * Example: `enabled=false`
 
-## Section [Logs]
+### Section [Logs]
 
 nymea will start also without a log-database configured.
 
@@ -101,7 +96,7 @@ logDBPassword=nymea
 logDBUser=nymea
 ```
 
-### logDBDriver
+#### logDBDriver
 
 Configure which kind of database is going to be used.
 
@@ -115,7 +110,7 @@ Configure which kind of database is going to be used.
     ```
 * Example: `logDBDriver=QSQLITE`
 
-### logDBHost
+#### logDBHost
 
 Specfies the IP address of the database. Use 127.0.0.1 if the log database is running on the same machine, otherwise enter the IP address of the database.
 
@@ -125,7 +120,7 @@ Specfies the IP address of the database. Use 127.0.0.1 if the log database is ru
 * Example:
     `logDBHost=127.0.0.1`
 
-### logDBMaxEntries
+#### logDBMaxEntries
 
 The maximum amount of database entries. If the database reaches the limit older entries will be deleted.
 
@@ -134,7 +129,7 @@ The maximum amount of database entries. If the database reaches the limit older 
 * Default value: `200000`
 * Example: `logDBMaxEntries=200000`
 
-### logDBName
+#### logDBName
 
 In case of sqLite this is the path to the database, otherwise it's the actual name.
 
@@ -143,7 +138,7 @@ In case of sqLite this is the path to the database, otherwise it's the actual na
 * Default value: `/var/log/nymead.sqlite`
 * Example: `logDBName=/var/log/nymead.sqlite`
 
-### logDBPassword
+#### logDBPassword
 
 Password for the log database. The default database has no password set. 
 Change it to the according password for the given database user.
@@ -153,7 +148,7 @@ Change it to the according password for the given database user.
 * Default value: ""
 * Example: `logDBPassword=nymea`
 
-### logDBUser
+#### logDBUser
 
 The log database username. This is not the username of nymea.
 
@@ -162,28 +157,28 @@ The log database username. This is not the username of nymea.
 * Default value: ` `
 * Example: `logDBUser=nymea`
 
-## Section [SSL]
+### Section [SSL]
 
-### certificate
+#### certificate
 
-### certificate-key
+#### certificate-key
 
-## Section [TcpServer]
+### Section [TcpServer]
 
 This section defines the TCP interface for the JSON-RPC. You can specify more than one TCP interface.
 The value before the backslash "\" is the name of the interface. Each interface needs it's unique name.
 
-## Section [WebSocketServer]
+### Section [WebSocketServer]
 
 Option are the same as for the TCP server, see section [TcpServer]
 
-## Section [MqttServer]
+### Section [MqttServer]
 
 Option are the same as for the TCP server, see section [TcpServer]
 
-## Section [WebServer]
+### Section [WebServer]
 
-### address
+#### address
 
 Defines from where the WebServer  can be reached. Use 127.0.0.1 to make it accessible only from the same maching,
 0.0.0.0 makes it accessible from any network interface.
@@ -193,7 +188,7 @@ Defines from where the WebServer  can be reached. Use 127.0.0.1 to make it acces
 * Default: `address=0.0.0.0`
 * Example: `insecure\address=0.0.0.0`
 
-### authenticationEnabled
+#### authenticationEnabled
 
 Requires the client to use an encrypted connection
 
@@ -202,7 +197,7 @@ Requires the client to use an encrypted connection
 * Default: `false`
 * Example: `insecure\authenticationEnabled=false`
 
-### port
+#### port
 
 Defines the port of the WebServer. Port 80 is the default port for browsers.
 
@@ -211,7 +206,7 @@ Defines the port of the WebServer. Port 80 is the default port for browsers.
 * Default: `80`
 * Example: `insecure\port=80`
 
-### publicFolder
+#### publicFolder
 
 Defines the where the web page is located.
 
@@ -220,7 +215,7 @@ Defines the where the web page is located.
 * Default: `/usr/share/nymea-webinterface/public/`
 * Example: `insecure\publicFolder=/usr/share/nymea-webinterface/public/`
 
-### restServerEnabled
+#### restServerEnabled
 
 Enables the WebServer.
 
@@ -229,7 +224,7 @@ Enables the WebServer.
 * Default: `false`
 * Example: `insecure\restServerEnabled=false`
 
-### sslEnabled
+#### sslEnabled
 
 Enable SSL for an encrypted connection (https)
 
@@ -238,13 +233,13 @@ Enable SSL for an encrypted connection (https)
 * Default: `false`
 * Example: `insecure\sslEnabled=false`
 
-## Section [WebSocketServer]
+### Section [WebSocketServer]
 
 Option are the same as for the TCP server, see section [TcpServer]
 
-## Section [nymead]
+### Section [nymead]
 
-### debugServerEnabled
+#### debugServerEnabled
 
 Enables the debug server, this should not be enabled by default as it states a security risk.
 Needs to have the webserver enabled.
@@ -252,20 +247,18 @@ Needs to have the webserver enabled.
 * Required: `true`
 * Type: `Bool`
 * Default value: `false`
-* Example: 
-    `debugServerEnabled=false`
-* Description:
+* Example: `debugServerEnabled=false`
 
-### language
+#### language
 
 The language is obtained by the host system language.
 
 * Required: `true`
-* Type: `Strin/locale`
+* Type: `String/locale`
 * Default value: `en_US`
 * Example: `language=en_US`
 
-### name
+#### name
 
 The name of your nymea.
 
@@ -273,32 +266,31 @@ The name of your nymea.
 * Type: `String`
 * Default value: `nymea`
 
-### timeZone
+#### timeZone
 
 The timezone is required for time based rules.
 
-* Required: true
+* Required: `true`
 * Type: `ByteArray`
 * Default: `Europe/Vienna`
 * Example: `timeZone=@ByteArray(Europe/Vienna)`
 
-### uuid
+#### uuid
 
 An unique value to identify the nymea instance, is required by nymea:cloud.
 Altering this value might compsomise the access to nymea:cloud.
 
 * Required: `true`
-* Type: Encoded string
+* Type: `Encoded string`
 * Default value: unique value
-* Example:
-    `uuid=@Variant(\0\0\0\x1e-\xb2?tRPL\x8c\xb3\x81\v\xcb\x61\x36\xe2\x9b)`
+* Example: `uuid=@Variant(\0\0\0\x1e-\xb2?tRPL\x8c\xb3\x81\v\xcb\x61\x36\xe2\x9b)`
 
 ## Logging configuration file
 
 This file helps to filter the debug output.
 This file is not necessary and is not created by default
 
-Example logging.conf file:
+Example *logging.conf* file:
 
 ```text
 [Rules]
@@ -367,8 +359,7 @@ Example devices.conf file:
 UUIDS are limited by %7B for "{" and %7D for "}", the first UUID is the device UUID that is unique for that particular device.
 The example files has 2 devices _6d15a39c-95c6-4af2-9036-3ecbedbc7c8c_ and _25fbd68c-1136-462b-9c0c-18797c11660f_. The first device is the parent of the second one.
 
-!!! Note
-    A device UUID is not a device class id, it is create during the device setup.
+> **Note:** A device UUID is not a device class id, it is create during the device setup.
 
 ### deviceName
 
