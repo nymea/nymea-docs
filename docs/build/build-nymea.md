@@ -6,7 +6,7 @@ title: Build nymea
 # Compile *nymea* from source code
 --------------------------------------------
 
-*nymea* is written in [Qt](https://www.qt.io/) which is a development framework including tools designed to streamline 
+*nymea* is written in [Qt](https://www.qt.io/). Which is an open source C++ development framework, including tools designed to streamline 
 the creation of applications and user interfaces for desktop, embedded, and mobile platforms. With Qt, you can reuse code 
 efficiently to target multiple platforms with one code base.
 
@@ -29,8 +29,6 @@ In order to build nymea you need to install the build dependencies:
 ## Compile *nymea* with the QtCreator
 
 1. If you want to open the *nymea*-project wit the Qt Creator (`SDK`), you have to install the needed packages from the official repository of your distribution:
-
-        
 
     You can also install Qt manually with the *Qt Installer for Linux*. All necessary downloads can be found here:
 

@@ -3,17 +3,15 @@ id: crossbuilder
 title: Crossbuilder
 ---
 
-## Crossbuilder
-
 In order to build a debian package for nymea, we provide a very useful tool for crosscompiling called `crosscompiler`.
-This tool makes it very easy to build a debian package inside a lxd container which can makes sure all required packages for building and deploying
+This tool makes helps to build a debian package inside a lxd container which can makes sure all required packages for building and deploying
 are available and also for different architectures.
 
 The `crossbuilder` tool can be started within a git source code repository and generates a brand new lxc container for the given distribution and architecture.
 
 Once `crossbuilder` has been installed you can check the available architectures and distribution using following command:
 
-    $ lxc image list nymea:
+    $ lxc image list nymea
 
 
 The source code of the project can be found [here](https://github.com/nymea/crossbuilder/).
