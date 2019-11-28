@@ -1,12 +1,22 @@
 {
  "docs": {
-  "About": [
+  "Nymea": [
     "about/about",
     "about/features",
     "about/rule-engine",
     "about/interfaces",
     "about/configuration-file",
-    "about/license"
+    "about/license",
+    {
+         "type": "subcategory",
+         "label": "Install",
+         "ids": [
+             "about/install/install",
+             "about/install/debian",
+             "about/install/snap",
+             "about/install/yocto"
+         ]
+     }
    ],
    "Build": [
     "build/build-nymea",
@@ -15,13 +25,35 @@
    ],
    "Write Plug-Ins": [
     "plugins/write-plugins",
-    "plugins/plugin-build-environment"
+    "plugins/plugin-build-environment",
+    {
+        "type": "subcategory",
+        "label": "File Structure",
+        "ids": [
+            "plugins/plugin-json",
+            "plugins/create-setup-methods",
+            "plugins/plugin-wizard"
+        ]
+    },
+    {
+        "type": "subcategory",
+        "label": "Tutorials",
+        "ids":  [
+            "plugins/tutorial-01",
+            "plugins/tutorial-02"
+        ]
+    }
    ],
    "Write Clients": [
     "clients/write-clients",
     "clients/nymea-cli",
-    "clients/avahi-discovery",
-    "clients/upnp-discovery"
+    "clients/discovery",
+    {
+         "type": "subcategory",
+         "label": "API",
+         "ids": [
+         ]
+     }
    ],
    "Community": [
     "community/roadmap",

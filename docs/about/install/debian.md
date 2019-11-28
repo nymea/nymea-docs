@@ -10,12 +10,12 @@ The repository provides packages for following architectures:
 
 
 -----------------------------
-| Debian     | Stretch 9.0  |
-|:----------:|:------------:|
-| `amd64`    |       ✔      |
-| `i386`     |       ✔      |
-| `armhf`    |       ✔      |
-| `arm64`    |       ✔      |
+| Debian     | Stretch 9.0  | Buster 10.0  |
+|:----------:|:------------:|:------------:|
+| `amd64`    |       ✔      |       ✔      |
+| `i386`     |       ✔      |       ✔      |
+| `armhf`    |       ✔      |       ✔      |
+| `arm64`    |       ✔      |       ✔      |
 
 
 In order to install *nymea* on Debian you need to create the `/etc/apt/sources.list.d/nymea.list` file and add the *nymea*-repository:
@@ -27,6 +27,7 @@ In order to install *nymea* on Debian you need to create the `/etc/apt/sources.l
     In the repository are following distributions available:
     * ~~`jessie`~~ (end of support 01.01.2018)
     * `stretch`
+    * `buster`
 
     Available architectures are `amd64` `i386` `armhf` and `arm64`.
     
@@ -35,8 +36,8 @@ In order to install *nymea* on Debian you need to create the `/etc/apt/sources.l
     Copy following lines into the file and save it:
 
         ## nymea repo
-        deb http://repository.nymea.io stretch main
-        deb-src http://repository.nymea.io stretch main
+        deb http://repository.nymea.io buster main
+        deb-src http://repository.nymea.io buster main
 
 
     > **Alternative:** `$ echo -e "\n## nymea repo\ndeb http://repository.nymea.io stretch main\ndeb-src http://repository.nymea.io stretch main" | sudo tee /etc/apt/sources.list.d/nymea.list`
@@ -66,6 +67,3 @@ In order to install *nymea* on Debian you need to create the `/etc/apt/sources.l
         
         $ sudo apt-get source nymea
         $ sudo apt-get source nymea-cli
-        
-Once, the installation is finished you continue with the [Getting-Started](/wiki/nymea/master/getting-started) instruction.
-

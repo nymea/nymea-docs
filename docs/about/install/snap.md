@@ -3,10 +3,7 @@ id: snap
 title: Snap
 ---
 
-# The nymea snap
-----------------------------------
-
-Get the snap from the official Snap Store:
+Get the nymea snap from the official Snap Store:
 
 <dl>
 <a href="http://snapcraft.io/nymea" style="display:inline-block;overflow:hidden;background:url(https://snapcraft.io/static/images/badges/en/snap-store-black.svg) no-repeat;width:182px;height:56px;background-size:contain;"></a>

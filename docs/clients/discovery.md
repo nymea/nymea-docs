@@ -1,11 +1,13 @@
 ---
-id: upnp-discovery
-title: UPnP discovery
+id: discovery
+title: Network Discovery
 ---
 
-## UPnP
+nymea can be discovered in the local network by using eather **UPnP 1.1** ([Universal Plug and Play](https://en.wikipedia.org/wiki/Universal_Plug_and_Play)) network discovery or **Zeroconf** (mDNS/DNS-SD). Both services are implemented because routers' settings sometimes block UPnP packages or are unreliable with Zeroconf.
 
-The nymead server can be discovered in the local network by using the **UPnP 1.1** ([Universal Plug and Play](https://en.wikipedia.org/wiki/Universal_Plug_and_Play)) network discovery. The server will present itself as [UPnP Basic 1.0](http://upnp.org/specs/basic/basic1/) device according to the following specifications:
+## UPnP 1.1
+
+ The server will present itself as [UPnP Basic 1.0](http://upnp.org/specs/basic/basic1/) device according to the following specifications:
 
 http://upnp.org/specs/basic/UPnP-basic-Basic-v1-Device.pdf
 
@@ -13,9 +15,9 @@ A detailed documentation of the UPnP device architecture can be found here:
 
 http://upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.1.pdf
 
-## Discovering nymea in the network
+### Network Discovery with UPnP
 
-Once nymead is started it can be discovered over the [Simple Service Discovery Protocol](https://en.wikipedia.org/wiki/Simple_Service_Discovery_Protocol) (SSDP). A client can perform a discovery by binding to the UDP multicast address `239.255.255.250` on port `1900`.
+Once nymea is started, it can be discovered over the [Simple Service Discovery Protocol](https://en.wikipedia.org/wiki/Simple_Service_Discovery_Protocol) (SSDP). A client can perform a discovery by binding to the UDP multicast address `239.255.255.250` on port `1900`.
 
 In order to search for UPnP devices in the network a client can send following message to the UPD multicast socket:
 
@@ -39,7 +41,7 @@ Each UPnP device in the network will respond to the SSDP search message with a *
     ST:upnp:rootdevice
     USN:uuid:81d520cd-90cd-422d-9cbb-a0287e467e79::urn:schemas-upnp-org:device:Basic:1
 
-From this message you can use the `Location` header to get information about the nymead server. The server will present it self as Basic 1.0 device. At this point you already know the IP address of the server in the network. The server information will be available as `xml` document and can be accessed by performing a HTTP `GET` request to the `Location` header:
+From this message you can use the `Location` header to get information about the nymea. The server will present it self as Basic 1.0 device. At this point you already know the IP address of the server in the network. The server information will be available as `xml` document and can be accessed by performing a HTTP `GET` request to the `Location` header:
 
     GET http://10.10.10.50:80/server.xml
 
@@ -144,12 +146,43 @@ The `URLBase` value of the device description shows you on which port and addres
 
 The `device` section provides information about the server according to the UPnP 1.1 specification. The icons can be accessed with a `GET` call on `URLBase` + `iconURL`.
 
+## Zeroconf
+
+In order to find nymea instances in the network, it registers Zeroconf services in the network. nymea provides different [Zeroconf](https://en.wikipedia.org/wiki/Zero-configuration_networking) service types for clients.
+
+The nymead offers following service types:
+
+* `_ws._tcp`: This service indicates that there is a websocket server running. The information needed for connecting to this server are provided in the `txt` record of the service, `address` and `port` properties.
+* `_http._tcp`: This service indicates a running webserver. The information needed for connecting to this server are provided in the `txt` record of the service, `address` and `port` properties.
+* `_jsonrpc._tcp`: This service indicates a TCP server running the nymea [JSON-RPC API](https://doc.nymea.io/jsonrpc.html). The information needed for connecting to this server are provided in the `txt` record of the service, `address` and `port` properties.
 
 
+### Network discovery with Avahi
 
+[Avahi](https://www.avahi.org) is an open source Zeroconf implementation. Assuming you have `avahi-discover` and `avahi-utils` installed, you can run following command in order to search for nymea systems in your network:
 
+    $ avahi-browse -arl | grep -P '^=' -A 4 | grep "IPv4 nymea-" -A 4
 
-
-
-
-
+    =  wlan0 IPv4 nymea-http-secure                             Web Site             local
+       hostname = [nymea.local]
+       address = [10.10.10.121]
+       port = [443]
+       txt = ["uuid={c82f7b33-d283-44f0-85df-6e7992dcf9e6}" "name=nymea" "sslEnabled=true" "jsonrpcVersion=1.4" "manufacturer=nymea GmbH" "serverVersion=0.9.0"]
+    
+    =  wlan0 IPv4 nymea-http-insecure                           Web Site             local
+       hostname = [nymea.local]
+       address = [10.10.10.121]
+       port = [80]
+       txt = ["uuid={c82f7b33-d283-44f0-85df-6e7992dcf9e6}" "name=nymea" "sslEnabled=false" "jsonrpcVersion=1.4" "manufacturer=nymea GmbH" "serverVersion=0.9.0"]
+    
+    =  wlan0 IPv4 nymea-tcp-default                             _jsonrpc._tcp        local
+       hostname = [nymea.local]
+       address = [10.10.10.121]
+       port = [2222]
+       txt = ["uuid={c82f7b33-d283-44f0-85df-6e7992dcf9e6}" "name=nymea" "sslEnabled=false" "jsonrpcVersion=1.4" "manufacturer=nymea GmbH" "serverVersion=0.9.0"]
+    
+    =  wlan0 IPv4 nymea-ws-default                              _ws._tcp             local
+       hostname = [nymea.local]
+       address = [10.10.10.121]
+       port = [4444]
+       txt = ["uuid={c82f7b33-d283-44f0-85df-6e7992dcf9e6}" "name=nymea" "sslEnabled=false" "jsonrpcVersion=1.4" "manufacturer=nymea GmbH" "serverVersion=0.9.0"]

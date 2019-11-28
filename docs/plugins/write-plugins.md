@@ -1,26 +1,25 @@
 ---
 id: write-plugins
-title: Plug-in development
+title: Plug-in Development
 ---
 
-## Plug-Ins
-------------------------------------------
+Plugins in nymea are used to expand the functionality and capabilities of nymea. A plugin is basically a shared library, which will be loaded dynamically by nymea during the start up process. It abstact the services and devices into nymeas internal [ABI](https://en.wikipedia.org/wiki/Application_binary_interface). 
 
-Plugins in nymea are used to expand the functionality and capabilities of the nymea server. A plugin is basically a shared library, which will be loaded dynamically by the nymea server during the start up process. Each plugin has a name, a UUID and a list of supported vendors which will be visible in the system once the plugin is loaded. Each of those Vendors contains a list of supported DeviceClasses. A DeviceClass describes how the supported Device looks like, how it will be created (CreateMethod), how the setup (SetupMethod) looks like and what you can do with the Device.
+Once a device is abstracted inside of nymea, the Rule-Engine can be used to create rules, the Log-Engine logs everythings automatically and it can be controlled by the nymea:app without changing single line of the App. 
 
-A plug-in is needed to abstact the services and devices into nymeas internal [ABI](https://en.wikipedia.org/wiki/Application_binary_interface).
+Each plugin has a name, a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) and a list of supported vendors which will be visible in the system once the plugin is loaded. Each of those Vendors contains a list of supported Device types.
 
-A _device_ in nymea can represent a _real_ devices such as lightbulbs, gateways or garage door openers, but can also represent online service, for example a weather service, or an E-Mail service. When you want to add support for your own device/service in nymea, you should try to abstract that device and think in terms like:
+A _device_ in nymea can represent a _real_ devices such as lightbulbs, gateways or garage door openers, but can also represent online service, like weather-, or E-Mail services.
 
 ## Terms definition
 
 ### Params
 
-Params will be needed to set up the device. Common params are IP address, port or device identificatio. Params give the needed  information to setup and load a device.
+Params are parameters that are needed to setup the device. Common params are IP address, port or device identification. Params are usually defined during the device setup, and are required to enable to reload the device after a reboot. Params are stored within other device information inisde the device.conf file.
 
 ### Settings
 
-Settings are like params, with the exception that the user (and also the plugin developer) can change them at runtime. Settings should be used to change the behavior of a device. An example would be the refresh interval for polling a web server
+Settings are like params, with the exception that the user (and also the plugin developer) can change them at runtime. Settings should be used to change the behavior of a device. An example would be the refresh interval for polling a web server.
 
 ### States    
 
