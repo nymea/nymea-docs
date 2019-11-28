@@ -4,10 +4,9 @@ title: Debian
 ---
 
 
-# Install nymea on Debian
+## Install nymea on Debian or Ubuntu
 
 The repository provides packages for following architectures:
-
 
 -----------------------------
 | Debian     | Stretch 9.0  | Buster 10.0  |
@@ -17,6 +16,13 @@ The repository provides packages for following architectures:
 | `armhf`    |       ✔      |       ✔      |
 | `arm64`    |       ✔      |       ✔      |
 
+------------------------------
+| Ubuntu     | 16.04 Xenial | 18.04 Bionic |
+|:-----------|:------------:|:------------:|
+| `amd64`    |       ✔      |       ✔      |
+| `i386`     |       ✔      |       ✔      |
+| `armhf`    |       ✔      |       ✔      |
+| `arm64`    |       ✔      |       ✔      |
 
 In order to install *nymea* on Debian you need to create the `/etc/apt/sources.list.d/nymea.list` file and add the *nymea*-repository:
 
@@ -25,22 +31,34 @@ In order to install *nymea* on Debian you need to create the `/etc/apt/sources.l
         $ sudo nano /etc/apt/sources.list.d/nymea.list
         
     In the repository are following distributions available:
-    * ~~`jessie`~~ (end of support 01.01.2018)
-    * `stretch`
-    * `buster`
+    * Debian
+        * ~~`jessie`~~ (end of support 01.01.2018)
+        * `stretch`
+        * `buster`
+    * Ubuntu
+        * ~~`trusty`~~ (end of support: 10.05.2016)
+        * ~~`utopic`~~ (end of support: 29.04.2016)
+        * ~~`vivid`~~ (end of support: 16.02.2017)
+        * ~~`wily`~~ (end of support: 01.09.2017)
+        * `xenial`
+        * ~~`zesty`~~ (end of support: 01.01.2018)
+        * `artful`
+        * `bionic`
+        * `disco`
 
     Available architectures are `amd64` `i386` `armhf` and `arm64`.
     
-    > *Note:* You can get your system version with `cat /etc/os-release`.
+    > **Note:** please replace `<dist>` with the codename of your Ubuntu or Debian distribution. You can get your system version with `lsb_release -a` or `$ cat /etc/os-release`.
 
+    Copy following lines into the file (replace `<dist>` with your distribution codename) and save it:
     Copy following lines into the file and save it:
 
         ## nymea repo
-        deb http://repository.nymea.io buster main
-        deb-src http://repository.nymea.io buster main
+        deb http://repository.nymea.io <dist> main
+        deb-src http://repository.nymea.io <dist> main
 
 
-    > **Alternative:** `$ echo -e "\n## nymea repo\ndeb http://repository.nymea.io stretch main\ndeb-src http://repository.nymea.io stretch main" | sudo tee /etc/apt/sources.list.d/nymea.list`
+    > **Alternative:** `$ echo -e "\n## nymea repo\ndeb http://repository.nymea.io stretch main\ndeb-src http://repository.nymea.io <dist> main" | sudo tee /etc/apt/sources.list.d/nymea.list`
 
     Add the public key of the [*nymea*-repo](http://repository.nymea.io) to your keylist.
     

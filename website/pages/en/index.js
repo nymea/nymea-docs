@@ -60,13 +60,13 @@ class HomeSplash extends React.Component {
 
     return (
       <SplashContainer>
-        <Logo img_src={`${baseUrl}img/undraw_monitor.svg`} />
+
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
-            <Button href={docUrl('build/build-nymea.html')}>Build nymea</Button>
-            <Button href={docUrl('plugins/write-plugins.html')}>Write a plug-in</Button>
-            <Button href={docUrl('clients/write-clients.html')}>Write a client</Button>
+            <Button href={docUrl('build/build-nymea.html')}>Write Plug-Ins</Button>
+            <Button href={docUrl('plugins/write-plugins.html')}>Write Clients</Button>
+            <Button href={docUrl('clients/write-clients.html')}>Build nymea</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -92,12 +92,12 @@ class Index extends React.Component {
       </Container>
     );
 
-    const FeatureCallout = () => (
+    const Intro = () => (
       <div
         className="productShowcaseSection paddingBottom"
         style={{textAlign: 'center'}}>
-        <h2>Feature Callout</h2>
-        <MarkdownBlock>These are features of this project</MarkdownBlock>
+        <h2>Open edge IoT middleware</h2>
+        <MarkdownBlock>nymea is an open source IoT stack. Its main components are the core, the plugins and the client app. Do you want to enable your hardware to work with nymea? Plugin development is what you want. Do you want to create your user interface? Check out nymea:app as a reference implementation. Eager to extend the overall platform? Dive into core development!</MarkdownBlock>
       </div>
     );
 
@@ -115,7 +115,7 @@ class Index extends React.Component {
               ' Audio device' +
               ' Hot tub or sauna' +
               ' Protocol adapter',
-            image: `${baseUrl}img/undraw_code_review.svg`,
+            image: `${baseUrl}img/help-buoy.svg`,
             imageAlign: 'left',
             title: 'nymea is built for connected devices',
           },
@@ -137,7 +137,7 @@ class Index extends React.Component {
               'only as benefit to the user but also in favor of our environment.' +
               ' ' +
               'The nymea Team',
-            image: `${baseUrl}img/undraw_note_list.svg`,
+            image: `${baseUrl}img/heart.svg`,
             imageAlign: 'right',
             title: 'Affair of the heart',
           },
@@ -151,7 +151,7 @@ class Index extends React.Component {
           {
             content:
               'nymea consists our of 3 components.',
-            image: `${baseUrl}img/undraw_youtube_tutorial.svg`,
+            image: `${baseUrl}img/Software.svg`,
             imageAlign: 'right',
             title: 'nymea software stack',
           },
@@ -163,22 +163,22 @@ class Index extends React.Component {
       <Block layout="fourColumn">
         {[
           {
-            content: 'This is the content of my feature',
-            image: `${baseUrl}img/undraw_react.svg`,
+            content: 'The nymea core is main part of the whole stack and does the overall management. Check the docs for a detailed description on how it works and how to speak with it.',
+            image: `${baseUrl}img/volume-high.svg`,
             imageAlign: 'top',
-            title: 'Device Manager',
+            title: 'Core Development',
           },
           {
-            content: 'The content of my second feature',
-            image: `${baseUrl}img/undraw_operating_system.svg`,
+            content: 'A plug-in\'s purpose is to handle the communication between nymea and the device or service. Everything else is provided by nymea like events, states, actions, logs, clients and API.',
+            image: `${baseUrl}img/volume-medium.svg`,
             imageAlign: 'top',
-            title: 'Rule Engine',
+            title: 'Plug-In Development',
           },
           {
-            content: 'The content of my second feature',
-            image: `${baseUrl}img/undraw_operating_system.svg`,
+            content: 'nymea:app is the community app for you to use or provide a starting point for creating your own nymea client.',
+            image: `${baseUrl}img/volume-low.svg`,
             imageAlign: 'top',
-            title: 'Log Engine',
+            title: 'Client Development',
           },
         ]}
       </Block>
@@ -217,8 +217,8 @@ class Index extends React.Component {
       <div>
         <HomeSplash siteConfig={siteConfig} language={language} />
         <div className="mainContainer">
+          <Intro />
           <Features />
-          <FeatureCallout />
           <LearnHow />
           <TryOut />
           <Description />

@@ -2,6 +2,7 @@
  "docs": {
   "Nymea": [
     "about/about",
+    "about/usage",
     "about/features",
     "about/rule-engine",
     "about/interfaces",
@@ -32,6 +33,7 @@
         "ids": [
             "plugins/plugin-json",
             "plugins/create-setup-methods",
+            "plugins/paramtypes-ui-elements",
             "plugins/plugin-wizard"
         ]
     },
@@ -42,7 +44,8 @@
             "plugins/tutorial-01",
             "plugins/tutorial-02"
         ]
-    }
+    },
+    "plugins/test-your-plugin"
    ],
    "Write Clients": [
     "clients/write-clients",
