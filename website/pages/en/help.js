@@ -21,18 +21,18 @@ function Help(props) {
 
   const supportLinks = [
     {
-      content: `Learn more using the [documentation on this site.](${docUrl(
-        'doc1.html',
+      content: `See the [FAQ](${docUrl(
+        'faq.html',
       )})`,
-      title: 'Browse Docs',
+      title: 'Frequently asked questions',
     },
     {
-      content: 'Ask questions about the documentation and project',
-      title: 'Join the community',
+      content: 'Ask questions about the documentation and project in the nymea forum',
+      title: 'Ask the forum',
     },
     {
-      content: "Find out what's new with this project",
-      title: 'Stay up to date',
+      content: 'Stay in the loop',
+      title: 'Join the Telegram group',
     },
   ];
 

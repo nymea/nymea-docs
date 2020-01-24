@@ -10,5 +10,12 @@
   },
   "devDependencies": {
     "docusaurus": "^1.14.2"
-  }
+  },
+  "name": "website",
+  "description": "This website was created with [Docusaurus](https://docusaurus.io/).",
+  "version": "1.0.0",
+  "main": "siteConfig.js",
+  "dependencies": {},
+  "author": "",
+  "license": "ISC"
 }
