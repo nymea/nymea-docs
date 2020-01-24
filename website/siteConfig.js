@@ -33,12 +33,13 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-//    {doc: 'about', label: 'Home'},
-//    {doc: 'index', label: 'Build'},
-//    {doc: 'index', label: 'Write Plug-Ins'},
-//    {doc: 'index', label: 'Write Clients'},
+    {doc: 'about/about', label: 'About'},
+    {doc: 'build/build-nymea', label: 'Build'},
+    {doc: 'plugins/write-plugins', label: 'Write Plug-Ins'},
+    {doc: 'clients/write-clients', label: 'Write Clients'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
+    { search: true },
   ],
 
   // If you have users set above, you add it here:
@@ -51,8 +52,8 @@ const siteConfig = {
 
   /* Colors for website */
   colors: {
-    primaryColor: '#9fc8a4',
-    secondaryColor: '#8cc1b6',
+    primaryColor: '#69938c',
+    secondaryColor: '#676767',
   },
 
   /* Custom fonts for website */
@@ -87,11 +88,14 @@ const siteConfig = {
 
   // Open Graph and Twitter card images.
   ogImage: 'img/undraw_online.svg',
+
+  twitter: 'true',
   twitterImage: 'img/undraw_tweetstorm.svg',
+  twitterUsername: 'nymea_io', 
 
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.
-  // docsSideNavCollapsible: true,
+  docsSideNavCollapsible: true,
 
   // Show documentation's last contributor's name.
   // enableUpdateBy: true,

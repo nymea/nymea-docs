@@ -1,10 +1,75 @@
 {
-  "docs": {
-    "Docusaurus": ["doc1"],
-    "First Category": ["doc2"],
-    "Second Category": ["doc3"]
-  },
-  "docs-other": {
-    "First Category": ["doc4", "doc5"]
+ "docs": {
+  "Nymea": [
+    "about/about",
+    "about/terms-definition",
+    "about/usage",
+    "about/features",
+    "about/rule-engine",
+    "about/interfaces",
+    "about/configuration-file",
+    {
+         "type": "subcategory",
+         "label": "Install",
+         "ids": [
+             "about/install/install",
+             "about/install/debian",
+             "about/install/snap",
+             "about/install/yocto"
+         ]
+    },
+    {
+         "type": "subcategory",
+         "label": "Available Plug-ins",
+         "ids": [
+         ]
+    }
+   ],
+   "Build": [
+    "build/build-nymea",
+    "build/build-configuration",
+    "build/crossbuilder"
+   ],
+   "Write Plug-Ins": [
+    "plugins/write-plugins",
+    "plugins/plugin-build-environment",
+    {
+        "type": "subcategory",
+        "label": "File Structure",
+        "ids": [
+            "plugins/plugin-json",
+            "plugins/create-setup-methods",
+            "plugins/paramtypes-ui-elements",
+            "plugins/plugin-wizard"
+        ]
+    },
+    {
+        "type": "subcategory",
+        "label": "Tutorials",
+        "ids":  [
+            "plugins/tutorial-01",
+            "plugins/tutorial-02"
+        ]
+    },
+    "plugins/test-your-plugin"
+   ],
+   "Write Clients": [
+    "clients/write-clients",
+    "clients/nymea-cli",
+    "clients/discovery",
+    {
+         "type": "subcategory",
+         "label": "API",
+         "ids": [
+         ]
+     }
+   ],
+   "Community": [
+    "community/roadmap",
+    "community/changelog",
+    "community/contribute",
+    "community/license",
+    "community/faq"
+   ]
   }
 }

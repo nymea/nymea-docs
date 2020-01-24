@@ -29,8 +29,10 @@ import sys
 import argparse
 import traceback
 import subprocess
+import json
 from bs4 import BeautifulSoup
 from bs4 import Comment
+from shutil import copyfile
 
 __version__='1.0.0'
 
@@ -161,46 +163,65 @@ def buildNymeaPluginsDocumentation():
 
 
     pluginsLinkList = ""
+    
+    copyfile(./website/sidebars.json, ./website/sidebars_old.json)
+    #TODO save old file
+    
     # Iterate plugin directories and generate html from markdown
     for pluginDir in pluginDirs:
         if 'README.md' in os.listdir(pluginDirectory + pluginDir):
             pluginReadmeFile = pluginDirectory + pluginDir + "/README.md"
             print('Process %s' % pluginReadmeFile)
-            htmlResult = subprocess.run(['markdown', pluginReadmeFile], stdout=subprocess.PIPE)
-            pluginSoup = BeautifulSoup(htmlResult.stdout, 'html.parser')
+            
+            with open("./website/sidebars.json") as f:
+                data = json.load(f)
+                
+            information["statistics"].append({
+                pluginReadmeFile.name,
+            })
+            
+            with open("./website/sidebars.json", "w") as sidebar:
+                json.dump(data, sidebar)
+                #json.dumps(person_dict, indent = 4, sort_keys=True)
+            
+            #TODO add plug-in name to sidebard
+            
+            
+            #htmlResult = subprocess.run(['markdown', pluginReadmeFile], stdout=subprocess.PIPE)
+            #pluginSoup = BeautifulSoup(htmlResult.stdout, 'html.parser')
 
             # Generate contents and place the reference into the header of h2
-            contentsString = ''
-            headers = pluginSoup.find_all('h2')
-            for header in headers:
-                headerReference = createHtmlReferenceFromString(header.text)
-                print(header, headerReference)
-                header['id'] = headerReference
-                contentsString += '<li class="level1"><a href="#%s">%s</a></li>' % (headerReference, header.text)
+            #contentsString = ''
+            #headers = pluginSoup.find_all('h2')
+            #for header in headers:
+            #    headerReference = createHtmlReferenceFromString(header.text)
+            #    print(header, headerReference)
+            #    header['id'] = headerReference
+            #    contentsString += '<li class="level1"><a href="#%s">%s</a></li>' % (headerReference, header.text)
 
             # Build main content div
-            tocDiv = BeautifulSoup('<div class="toc"><h3><a name="toc">Contents</a></h3><ul>%s</ul> </div>' % contentsString, 'html.parser')
-            sidebarDiv = BeautifulSoup('<div class="sidebar">%s</div>' % tocDiv.prettify(), 'html.parser')
-            contextDiv = BeautifulSoup('<div class="context">%s</div>' % pluginSoup.prettify(), 'html.parser')
-            mainContentDiv = BeautifulSoup('<div class="content mainContent">%s%s</div>' % (sidebarDiv.prettify(), contextDiv.prettify()), 'html.parser')
+            #tocDiv = BeautifulSoup('<div class="toc"><h3><a name="toc">Contents</a></h3><ul>%s</ul> </div>' % contentsString, 'html.parser')
+            #sidebarDiv = BeautifulSoup('<div class="sidebar">%s</div>' % tocDiv.prettify(), 'html.parser')
+            #contextDiv = BeautifulSoup('<div class="context">%s</div>' % pluginSoup.prettify(), 'html.parser')
+            #mainContentDiv = BeautifulSoup('<div class="content mainContent">%s%s</div>' % (sidebarDiv.prettify(), contextDiv.prettify()), 'html.parser')
 
-            print(mainContentDiv.prettify())
+            #print(mainContentDiv.prettify())
 
             # Create overview list element
-            name = pluginSoup.find_all('h1')[0].text
-            htmlFileName = 'plugin-' + pluginDir + '.html'
-            print(name, htmlFileName)
-            listString = '<li> <a href="%s">%s</a></li>' % (htmlFileName, name)
-            pluginsLinkList += listString
+            #name = pluginSoup.find_all('h1')[0].text
+            #htmlFileName = 'plugin-' + pluginDir + '.html'
+            #print(name, htmlFileName)
+            #listString = '<li> <a href="%s">%s</a></li>' % (htmlFileName, name)
+            #pluginsLinkList += listString
 
-            page = generatePage(mainContentDiv, headerFile)
-            saveXmlToFile(page, os.path.dirname(os.path.realpath(sys.argv[0])) + '/output/nymea-plugins/' + htmlFileName)
+            #page = generatePage(mainContentDiv, headerFile)
+            #saveXmlToFile(page, os.path.dirname(os.path.realpath(sys.argv[0])) + '/output/nymea-plugins/' + htmlFileName)
 
     # Create overview page
-    linkList = BeautifulSoup(pluginsLinkList, 'html.parser')
-    page = generatePage(BeautifulSoup('<div class="content mainContent">%s</div>' % (linkList.prettify()), 'html.parser'), '/html-templates/header-plugins.html')
-    print(page)
-    saveXmlToFile(page, os.path.dirname(os.path.realpath(sys.argv[0])) + '/output/nymea-plugins/index.html')
+    #linkList = BeautifulSoup(pluginsLinkList, 'html.parser')
+    #page = generatePage(BeautifulSoup('<div class="content mainContent">%s</div>' % (linkList.prettify()), 'html.parser'), '/html-templates/header-plugins.html')
+    #print(page)
+    #saveXmlToFile(page, os.path.dirname(os.path.realpath(sys.argv[0])) + '/output/nymea-plugins/index.html')
 
 
 #--------------------------------------------------------------------------

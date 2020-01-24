@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="660px" height="800px" viewBox="0 0 660 800" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Software</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#57BAAE" offset="0%"></stop>
+            <stop stop-color="#7CC09A" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Software">
+            <rect id="Rectangle-2" stroke="#676767" stroke-width="3" x="1.5" y="700.5" width="657" height="98" rx="8"></rect>
+            <path d="M39.5,112 L39.5,468" id="Line" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-1" d="M42.5,112 L36.5,112" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-2" d="M42.5,468 L36.5,468" stroke="#676767" stroke-width="3"></path>
+            <path d="M201.5,292.028162 L201.5,468" id="Line" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-1" d="M204.5,292.028162 L198.5,292.028162" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-2" d="M204.5,468 L198.5,468" stroke="#676767" stroke-width="3"></path>
+            <path d="M618.5,112 L618.5,306" id="Line-Copy" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-Copy-decoration-1" d="M621.5,112 L615.5,112" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-Copy-decoration-2" d="M621.5,306 L615.5,306" stroke="#676767" stroke-width="3"></path>
+            <path d="M330,669 L330,691" id="Line" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-1" d="M333,669 L327,669" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-2" d="M333,691 L327,691" stroke="#676767" stroke-width="3"></path>
+            <path d="M121,669 L121,691" id="Line" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-1" d="M124,669 L118,669" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-2" d="M124,691 L118,691" stroke="#676767" stroke-width="3"></path>
+            <path d="M541,669 L541,691" id="Line" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-1" d="M544,669 L538,669" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-2" d="M544,691 L538,691" stroke="#676767" stroke-width="3"></path>
+            <path d="M491,440 L491,462" id="Line" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-1" d="M494,440 L488,440" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-2" d="M494,462 L488,462" stroke="#676767" stroke-width="3"></path>
+            <path d="M491,289 L491,311" id="Line" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-1" d="M494,289 L488,289" stroke="#676767" stroke-width="3"></path>
+            <path id="Line-decoration-2" d="M494,311 L488,311" stroke="#676767" stroke-width="3"></path>
+            <g id="Group" transform="translate(21.000000, 740.000000)">
+                <rect id="Rectangle" fill="#EAEAEA" x="0" y="0" width="140" height="40" rx="8"></rect>
+                <text id="Device" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                    <tspan x="40.804" y="27">Device</tspan>
+                </text>
+            </g>
+            <g id="Group-2" transform="translate(180.000000, 740.000000)">
+                <rect id="Rectangle" fill="#EAEAEA" x="0" y="0" width="140" height="40" rx="8"></rect>
+                <text id="Sensor" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                    <tspan x="40.579" y="27">Sensor</tspan>
+                </text>
+            </g>
+            <g id="Group-3" transform="translate(341.000000, 740.000000)">
+                <rect id="Rectangle" fill="#EAEAEA" x="0" y="0" width="140" height="40" rx="8"></rect>
+                <text id="Service" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                    <tspan x="38.401" y="27">Service</tspan>
+                </text>
+            </g>
+            <g id="Group-3-Copy" transform="translate(500.000000, 740.000000)">
+                <rect id="Rectangle" fill="#EAEAEA" x="0" y="0" width="140" height="40" rx="8"></rect>
+                <text id="…" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                    <tspan x="61" y="27">…</tspan>
+                </text>
+            </g>
+            <g id="Group-18" transform="translate(0.000000, 480.000000)">
+                <path d="M1.5,7.99587851 L1.5,172.004121 C1.5,175.59445 4.40758885,178.5 7.99833222,178.5 L652.008976,178.5 C655.589751,178.5 658.5,175.589557 658.5,172.004121 L658.5,7.99587851 C658.5,4.40577087 655.590282,1.5 651.996417,1.5 L8.00358258,1.5 C4.41613454,1.5 1.5,4.41143823 1.5,7.99587851 Z" id="Rectangle-2" stroke="#676767" stroke-width="3"></path>
+                <text id="Your-connected-devic" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                    <tspan x="232.161" y="28">Your connected device</tspan>
+                </text>
+                <text id="Linux" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                    <tspan x="306.744" y="166">Linux</tspan>
+                </text>
+                <g id="Group-19" transform="translate(5.000000, 42.000000)">
+                    <rect id="Rectangle" fill="url(#linearGradient-1)" x="0" y="0" width="650" height="97.3818797" rx="4"></rect>
+                    <text id="nymea" font-family="Ubuntu-Bold, Ubuntu" font-size="24" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="287.38" y="28">nymea</tspan>
+                    </text>
+                    <g id="Group-21" transform="translate(16.000000, 42.000000)">
+                        <rect id="Rectangle" fill-opacity="0.8" fill="#FFFFFF" x="0" y="0" width="140" height="40" rx="8"></rect>
+                        <text id="Plug-In" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                            <tspan x="39.508" y="26">Plug-In</tspan>
+                        </text>
+                    </g>
+                    <g id="Group-8" transform="translate(176.000000, 42.000000)">
+                        <rect id="Rectangle" fill-opacity="0.8" fill="#FFFFFF" x="0" y="0" width="140" height="40" rx="8"></rect>
+                        <text id="Plug-In" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                            <tspan x="39.508" y="26">Plug-In</tspan>
+                        </text>
+                    </g>
+                    <g id="Group-9" transform="translate(337.000000, 42.000000)">
+                        <rect id="Rectangle" fill-opacity="0.8" fill="#FFFFFF" x="0" y="0" width="140" height="40" rx="8"></rect>
+                        <text id="Plug-In" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                            <tspan x="39.508" y="27">Plug-In</tspan>
+                        </text>
+                    </g>
+                    <g id="Group-9-Copy" transform="translate(496.000000, 42.000000)">
+                        <rect id="Rectangle" fill-opacity="0.8" fill="#FFFFFF" x="0" y="0" width="140" height="40" rx="8"></rect>
+                        <text id="…" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                            <tspan x="61" y="27">…</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-16" transform="translate(319.000000, 318.000000)">
+                <rect id="Rectangle-2" stroke="#676767" stroke-width="3" x="1.5" y="1.5" width="337" height="102" rx="8"></rect>
+                <rect id="Rectangle" fill="url(#linearGradient-1)" x="5" y="5" width="330" height="95" rx="5"></rect>
+                <text id="nymea:cloud" font-family="Ubuntu-Bold, Ubuntu" font-size="24" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="100.536" y="34">nymea</tspan>
+                    <tspan x="175.776" y="34" font-family="Ubuntu" font-weight="normal">:cloud</tspan>
+                </text>
+                <g id="Group-14" transform="translate(181.000000, 47.000000)">
+                    <rect id="Rectangle" fill-opacity="0.8" fill="#FFFFFF" x="0" y="0" width="140" height="40" rx="8"></rect>
+                    <text id="Notification" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                        <tspan x="17.926" y="27">Notification</tspan>
+                    </text>
+                </g>
+                <g id="Group-13" transform="translate(21.000000, 47.000000)">
+                    <rect id="Rectangle" fill-opacity="0.8" fill="#FFFFFF" x="0" y="0" width="140" height="40" rx="8"></rect>
+                    <text id="Remote" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                        <tspan x="36.268" y="27">Remote</tspan>
+                    </text>
+                </g>
+            </g>
+            <text id="Own-portfolio-or-3rd" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                <tspan x="216.294" y="726">Own portfolio or 3rd party</tspan>
+            </text>
+            <rect id="Rectangle-2" stroke="#676767" stroke-width="3" x="1.5" y="1.5" width="657" height="99" rx="8"></rect>
+            <g id="Group-4" transform="translate(20.000000, 40.000000)">
+                <rect id="Rectangle" fill="#EAEAEA" x="0" y="0" width="140" height="40" rx="8"></rect>
+                <text id="Analytics" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                    <tspan x="30.004" y="27">Analytics</tspan>
+                </text>
+            </g>
+            <g id="Group-5" transform="translate(180.000000, 40.000000)">
+                <rect id="Path" fill="#EAEAEA" x="0" y="0" width="140" height="40" rx="8"></rect>
+                <text id="Dashboard" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                    <tspan x="23.614" y="27">Dashboard</tspan>
+                </text>
+            </g>
+            <g id="Group-6" transform="translate(340.000000, 40.000000)">
+                <rect id="Path" fill="#EAEAEA" x="0" y="0" width="140" height="40" rx="8"></rect>
+                <text id="Maintenance" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                    <tspan x="14.461" y="27">Maintenance</tspan>
+                </text>
+            </g>
+            <g id="Group-6-Copy" transform="translate(500.000000, 40.000000)">
+                <rect id="Path" fill="#EAEAEA" x="0" y="0" width="140" height="40" rx="8"></rect>
+                <text id="…" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                    <tspan x="61" y="27">…</tspan>
+                </text>
+            </g>
+            <text id="Own-cloud-services-o" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                <tspan x="194.361" y="26">Own cloud services or 3rd party </tspan>
+            </text>
+            <g id="Group-17" transform="translate(80.000000, 140.000000)">
+                <g id="Group-15" transform="translate(5.000000, 40.000000)">
+                    <rect id="Rectangle" fill="url(#linearGradient-1)" x="0" y="0" width="490" height="95" rx="4"></rect>
+                    <g id="Group-12" transform="translate(336.000000, 40.000000)">
+                        <g id="Group-20">
+                            <rect id="Rectangle" fill-opacity="0.8" fill="#FFFFFF" x="0" y="0" width="140" height="40" rx="8"></rect>
+                            <text id="Touch" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                                <tspan x="43.909" y="27">Touch</tspan>
+                            </text>
+                        </g>
+                    </g>
+                    <g id="Group-11" transform="translate(176.000000, 40.000000)">
+                        <rect id="Rectangle" fill-opacity="0.8" fill="#FFFFFF" x="0" y="0" width="140" height="40" rx="8"></rect>
+                        <text id="Desktop" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                            <tspan x="33.64" y="27">Desktop</tspan>
+                        </text>
+                    </g>
+                    <g id="Group-10" transform="translate(16.000000, 40.000000)">
+                        <g id="Group-7">
+                            <rect id="Rectangle" fill-opacity="0.8" fill="#FFFFFF" x="0" y="0" width="140" height="40" rx="8"></rect>
+                            <text id="Mobile" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                                <tspan x="40.327" y="27">Mobile</tspan>
+                            </text>
+                        </g>
+                    </g>
+                    <text id="nymea:ux" font-family="Ubuntu-Bold, Ubuntu" font-size="24" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="211.408" y="27">nymea</tspan>
+                        <tspan x="286.648" y="27" font-family="Ubuntu" font-weight="normal">:ux</tspan>
+                    </text>
+                </g>
+                <rect id="Rectangle-2" stroke="#676767" stroke-width="3" x="1.5" y="1.5" width="497" height="137" rx="8"></rect>
+                <text id="your-customized-user" font-family="Ubuntu-Bold, Ubuntu" font-size="18" font-weight="bold" fill="#676767">
+                    <tspan x="116.656" y="27">your customized user interface</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
