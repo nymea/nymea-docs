@@ -2,12 +2,12 @@
  "docs": {
   "Nymea": [
     "about/about",
+    "about/terms-definition",
     "about/usage",
     "about/features",
     "about/rule-engine",
     "about/interfaces",
     "about/configuration-file",
-    "about/license",
     {
          "type": "subcategory",
          "label": "Install",
@@ -17,7 +17,13 @@
              "about/install/snap",
              "about/install/yocto"
          ]
-     }
+    },
+    {
+         "type": "subcategory",
+         "label": "Available Plug-ins",
+         "ids": [
+         ]
+    }
    ],
    "Build": [
     "build/build-nymea",
@@ -61,7 +67,9 @@
    "Community": [
     "community/roadmap",
     "community/changelog",
-    "community/contribute"
+    "community/contribute",
+    "community/license",
+    "community/faq"
    ]
   }
 }

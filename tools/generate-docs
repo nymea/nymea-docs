@@ -21,11 +21,11 @@ function usage() {
 Usage: $(basename $0) [OPTIONS]
 
 This tool generates a common documentation out of different projects and the overall developer documentation:
-  - nymea:                      https://github.com/guh/nymea
-  - nymea-plugins:              https://github.com/guh/nymea-plugins
-  - nymea-mqtt:                 https://github.com/guh/nymea-mqtt
-  - nymea-coap:                 https://github.com/guh/nymea-coap
-  - nymea-gpio:                 https://github.com/guh/nymea-gpio
+  - nymea:                      https://github.com/nymea/nymea
+  - nymea-plugins:              https://github.com/nymea/nymea-plugins
+  - nymea-mqtt:                 https://github.com/nymea/nymea-mqtt
+  - nymea-coap:                 https://github.com/nymea/nymea-coap
+  - nymea-gpio:                 https://github.com/nymea/nymea-gpio
   - libnymea-networkmanager:    https://github.com/nymea/libnymea-networkmanager
 
 
@@ -35,7 +35,7 @@ OPTIONS:
   --nymea-mqtt-branch [branch]                  The repository branch to use for building nymea-mqtt documentation. Default is master.
   --nymea-coap-branch [branch]                  The repository branch to use for building nymea-coap documentation. Default is master.
   --nymea-gpio-branch [branch]                  The repository branch to use for building nymea-gpio documentation. Default is master.
-  --libnymea-networkmanager-branch [branch]     The repository branch to use for building nymea-gpio documentation. Default is master.
+  --libnymea-networkmanager-branch [branch]     The repository branch to use for building nymea-networkmanager documentation. Default is master.
   -h, --help                                    Show this message
 
 EOF
@@ -75,7 +75,7 @@ function create-nymea-docs() {
 
     printGreen "Get nymea source from branch ${NYMEA_BRANCH}"
     cd ${SOURCE_DIR}
-    git clone -b ${NYMEA_BRANCH} --depth 1 https://github.com/guh/nymea.git
+    git clone -b ${NYMEA_BRANCH} --depth 1 https://github.com/nymea/nymea.git
 
     printGreen "Prepare nymea docs"
     cd ${SOURCE_DIR}/nymea/doc
@@ -115,7 +115,7 @@ function create-nymea-plugins-docs() {
 
     printGreen "Get nymea-plugins source from branch ${NYMEA_PLUGINS_BRANCH}"
     cd ${SOURCE_DIR}
-    git clone -b ${NYMEA_PLUGINS_BRANCH} --depth 1 https://github.com/guh/nymea-plugins.git
+    git clone -b ${NYMEA_PLUGINS_BRANCH} --depth 1 https://github.com/nymea/nymea-plugins.git
 
     printGreen "Prepare nymea-plugins docs"
     mkdir -p ${OUTPUT_DIR}/nymea-plugins
@@ -143,7 +143,7 @@ function create-nymea-coap-docs() {
 
     printGreen "Get nymea-coap source from branch ${NYMEA_COAP_BRANCH}"
     cd ${SOURCE_DIR}
-    git clone -b ${NYMEA_COAP_BRANCH} --depth 1 https://github.com/guh/nymea-coap.git
+    git clone -b ${NYMEA_COAP_BRANCH} --depth 1 https://github.com/nymea/nymea-coap.git
 
     printGreen "Create nymea-coap docs"
     cd ${CONFIG_DIR}/nymea-coap
@@ -177,7 +177,7 @@ function create-nymea-mqtt-docs() {
 
     printGreen "Get nymea-mqtt source from branch ${NYMEA_MQTT_BRANCH}"
     cd ${SOURCE_DIR}
-    git clone -b ${NYMEA_MQTT_BRANCH} --depth 1 https://github.com/guh/nymea-mqtt.git
+    git clone -b ${NYMEA_MQTT_BRANCH} --depth 1 https://github.com/nymea/nymea-mqtt.git
 
     printGreen "Create nymea-mqtt docs"
     cd ${CONFIG_DIR}/nymea-mqtt
@@ -210,7 +210,7 @@ function create-nymea-gpio-docs() {
 
     printGreen "Get nymea-gpio source from branch ${NYMEA_GPIO_BRANCH}"
     cd ${SOURCE_DIR}
-    git clone -b ${NYMEA_GPIO_BRANCH} --depth 1 https://github.com/guh/nymea-gpio.git
+    git clone -b ${NYMEA_GPIO_BRANCH} --depth 1 https://github.com/nymea/nymea-gpio.git
 
     printGreen "Create nymea-gpio docs"
     cd ${CONFIG_DIR}/nymea-gpio
@@ -295,27 +295,27 @@ while [ "$1" != "" ]; do
     shift
 done
 
-create-main-docs
-create-nymea-docs
+#create-main-docs
+#create-nymea-docs
 create-nymea-plugins-docs
-create-nymea-coap-docs
-create-nymea-mqtt-docs
-create-nymea-gpio-docs
-create-libnymea-networkmanager-docs
+#create-nymea-coap-docs
+#create-nymea-mqtt-docs
+#create-nymea-gpio-docs
+#create-libnymea-networkmanager-docs
 
-printGreen "Build html directory ${HTML_DIR}"
-if [ -d ${HTML_DIR} ]; then rm -rf ${HTML_DIR}; fi
-mkdir -p ${HTML_DIR} || true
-cp ${OUTPUT_DIR}/nymea-docs/*.html ${HTML_DIR}
+#printGreen "Build html directory ${HTML_DIR}"
+#if [ -d ${HTML_DIR} ]; then rm -rf ${HTML_DIR}; fi
+#mkdir -p ${HTML_DIR} || true
+#cp ${OUTPUT_DIR}/nymea-docs/*.html ${HTML_DIR}
 
-cp -r ${TEMPLATE_DIR}/scripts ${HTML_DIR}
-cp -r ${TEMPLATE_DIR}/styles ${HTML_DIR}
-cp -r ${TEMPLATE_DIR}/favicons ${HTML_DIR}
-cp -r ${TEMPLATE_DIR}/images ${HTML_DIR}
+#cp -r ${TEMPLATE_DIR}/scripts ${HTML_DIR}
+#cp -r ${TEMPLATE_DIR}/styles ${HTML_DIR}
+#cp -r ${TEMPLATE_DIR}/favicons ${HTML_DIR}
+#cp -r ${TEMPLATE_DIR}/images ${HTML_DIR}
 
-cp -r ${OUTPUT_DIR}/nymea ${HTML_DIR}
-cp -r ${OUTPUT_DIR}/nymea-plugins ${HTML_DIR}
-cp -r ${OUTPUT_DIR}/nymea-coap ${HTML_DIR}
-cp -r ${OUTPUT_DIR}/nymea-mqtt ${HTML_DIR}
-cp -r ${OUTPUT_DIR}/nymea-gpio ${HTML_DIR}
-cp -r ${OUTPUT_DIR}/libnymea-networkmanager ${HTML_DIR}
+#cp -r ${OUTPUT_DIR}/nymea ${HTML_DIR}
+#cp -r ${OUTPUT_DIR}/nymea-plugins ${HTML_DIR}
+#cp -r ${OUTPUT_DIR}/nymea-coap ${HTML_DIR}
+#cp -r ${OUTPUT_DIR}/nymea-mqtt ${HTML_DIR}
+#cp -r ${OUTPUT_DIR}/nymea-gpio ${HTML_DIR}
+#cp -r ${OUTPUT_DIR}/libnymea-networkmanager ${HTML_DIR}
