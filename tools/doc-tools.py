@@ -247,13 +247,34 @@ def buildDocusaurusJs(inputFileName, outputFileName):
     #   </Container>
     # </div>
 
-    htmlContent = BeautifulSoup('<div className="docMainWrapper wrapper"><Container className="mainContainer documentContainer postContainer"><div className="post">%s</div></Container></div>' % extractHtmlBody(inputFileName), 'html.parser')
+    body = extractHtmlBody(inputFileName)
+    bodyContent = BeautifulSoup('', 'html.parser')
+    for bodyChild in body.contents:
+        if (bodyChild.name == None):
+            continue
+
+        # Note: the body tag does not allow the li tag as child
+        if bodyChild.name == 'li':
+            continue
+
+        bodyContent.append(bodyChild)
+
+    htmlContent = BeautifulSoup('<div className="docMainWrapper wrapper"><Container className="mainContainer documentContainer postContainer"><div className="post">%s</div></Container></div>' % bodyContent, 'html.parser')
     # Remove comments since not supported from docusaurus
     comments = htmlContent.findAll(text=lambda text:isinstance(text, Comment))
     for comment in comments:
         comment.extract()
 
-    print(htmlContent.prettify())
+    # Make sure the casses will be called className= (not classname= and not class=)
+    pageContent = htmlContent.prettify(formatter="html5")
+    pageContent = pageContent.replace('classname=', 'className=')
+    pageContent = pageContent.replace('class=', 'className=')
+
+    # Intendent the html code for better reading
+    pageLines = pageContent.splitlines(True)
+    finalPageContent = ''
+    for line in pageLines:
+        finalPageContent = finalPageContent + '      ' + line
 
     fileContent = ''
     fileContent += "const React = require('react');\n"
@@ -265,7 +286,7 @@ def buildDocusaurusJs(inputFileName, outputFileName):
     fileContent += "  render() {\n"
     fileContent += "    const siteConfig = this.props.config;\n"
     fileContent += "    return (\n"
-    fileContent += htmlContent.prettify() #formatter="html5"
+    fileContent +=  finalPageContent
     fileContent += "\n"
     fileContent += "    );\n"
     fileContent += "  }\n"
@@ -274,6 +295,8 @@ def buildDocusaurusJs(inputFileName, outputFileName):
     fileContent += "NymeaGpio.title = 'libnymea GPIO';\n"
     fileContent += "NymeaGpio.description = 'Qt based library for nymea GPIO';\n"
     fileContent += "module.exports = NymeaGpio;\n"
+
+    print(fileContent)
 
 
     outputFile = open(outputFileName, 'w')
