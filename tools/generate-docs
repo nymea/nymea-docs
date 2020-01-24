@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 CURRENT_DIR=$(pwd)
 SOURCE_DIR=${CURRENT_DIR}/source
@@ -220,14 +220,15 @@ function create-nymea-gpio-docs() {
     for htmlFile in "${OUTPUT_DIR}/nymea-gpio-raw/"*.html; do
         printGreen "--> $htmlFile"
         htmlFileName=`basename $htmlFile`
-        ${CURRENT_DIR}/doc-tools.py -i ${htmlFile} -o ${OUTPUT_DIR}/nymea-gpio/${htmlFileName} -q -g /html-templates/header-gpio.html
+        fileName=${htmlFileName%%.*}.js
+        ${CURRENT_DIR}/doc-tools.py -i ${htmlFile} -o ${OUTPUT_DIR}/nymea-gpio/${fileName} -d
     done
 
-    printGreen "Copy common data"
-    cp -rv ${TEMPLATE_DIR}/favicons/ ${OUTPUT_DIR}/nymea-gpio/
-    cp -rv ${TEMPLATE_DIR}/images/ ${OUTPUT_DIR}/nymea-gpio/
-    cp -rv ${TEMPLATE_DIR}/scripts ${OUTPUT_DIR}/nymea-gpio/
-    cp -rv ${TEMPLATE_DIR}/styles ${OUTPUT_DIR}/nymea-gpio/
+    #printGreen "Copy common data"
+    #cp -rv ${TEMPLATE_DIR}/favicons/ ${OUTPUT_DIR}/nymea-gpio/
+    #cp -rv ${TEMPLATE_DIR}/images/ ${OUTPUT_DIR}/nymea-gpio/
+    #cp -rv ${TEMPLATE_DIR}/scripts ${OUTPUT_DIR}/nymea-gpio/
+    #cp -rv ${TEMPLATE_DIR}/styles ${OUTPUT_DIR}/nymea-gpio/
 }
 
 #------------------------------------------------------------
@@ -297,10 +298,10 @@ done
 
 #create-main-docs
 #create-nymea-docs
-create-nymea-plugins-docs
+#create-nymea-plugins-docs
 #create-nymea-coap-docs
 #create-nymea-mqtt-docs
-#create-nymea-gpio-docs
+create-nymea-gpio-docs
 #create-libnymea-networkmanager-docs
 
 #printGreen "Build html directory ${HTML_DIR}"
