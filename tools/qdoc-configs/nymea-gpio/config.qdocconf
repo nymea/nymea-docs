@@ -9,7 +9,11 @@ dita.metadata.default.copyrholder = Simon Stürz
 dita.metadata.default.audience = programmer
 
 outputdir = ../../output/nymea-gpio-raw
-outputformats = HTML
+outputformats = WebXML HTML
+
+WebXML.nosubdirs = true
+WebXML.outputsubdir = nymea-gpio-raw-webxml
+WebXML.quotinginformation = true
 
 naturallanguage         = en_US
 outputencoding          = UTF-8

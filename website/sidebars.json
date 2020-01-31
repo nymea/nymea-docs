@@ -51,7 +51,8 @@
             "plugins/tutorial-02"
         ]
     },
-    "plugins/test-your-plugin"
+    "plugins/test-your-plugin",
+    "plugins/interfaces"
    ],
    "Write Clients": [
     "clients/rawapi",
