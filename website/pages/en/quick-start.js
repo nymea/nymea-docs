@@ -3,12 +3,12 @@ const CompLibrary = require('../../core/CompLibrary.js');
 
 const Container = CompLibrary.Container;
 
-class Users extends React.Component {
+class QuickStart extends React.Component {
   render() {
     return <Container>
-        <h1>Users</h1>
+        <h1>Quick Start</h1>
       </Container>;
   }
 }
 
-module.exports = Users;
+module.exports = QuickStart;
