@@ -24,7 +24,7 @@ This tool generates a common documentation out of different projects and the ove
 
 
 OPTIONS:
-  -b, --branch [branch]         The branch to use for cloning. Example: experimental, landing. Default master
+  -b, --branch [branch]         The branch to use for cloning. Example: experimental-silo, landing-silo. Default is master.
   -h, --help                    Show this message
 
 EOF
@@ -57,7 +57,7 @@ function create-nymea-docs() {
 
     printGreen "Prepare nymea docs"
     python ${CURRENT_DIR}/generate-interfaces-markdown.py -i ${SOURCE_DIR}/nymea/libnymea/interfaces/ -o ${OUTPUT_DIR}/interfaces.md
-    #python generate-api-qdoc.py
+    python ${CURRENT_DIR}/generate-api-markdown.py -j ${SOURCE_DIR}/nymea/tests/auto/api.json -o ${OUTPUT_DIR}/json-rpc-api.md
 
     printGreen "Create libnymea docs"
     cd ${CONFIG_DIR}/libnymea

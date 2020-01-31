@@ -54,7 +54,6 @@ def writeToFile(line):
 
 #--------------------------------------------------------------------------
 def writeCodeSection(jsonData):
-
     writeToFile('')
     codeContent = json.dumps(jsonData, sort_keys=True, indent=4)
     codeLines = codeContent.splitlines(True)
@@ -111,9 +110,8 @@ def loadJsonData(fileName):
 
     return data
 
-
+#--------------------------------------------------------------------------
 def createMarkdownLink(linkName):
-    printInfo('Create markdown link for %s' % linkName)
     link = '#%s' % linkName.lower().replace(' ', '-')
     return link
 
