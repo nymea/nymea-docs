@@ -27,7 +27,6 @@ Like plaintext websockets they follow the registered URL schema for secure webso
 
     wss://192.168.0.10:4444
 
-
 ### SSL Certificates
 Given the typical installation of a nymea setup is in a local network, most nymea instances will use a self signed SSL certificate. A client implementation can not expect a publicly signed SSL certificate from the server. Because of this, it is highly recommended to use certificate pinning when implementing nymea clients to keep the security level up to expectations. That means, the first time the user connects to a new instance, an informational message should be displayed to the user. Once the user accepts this certificate, the fingerprint should be stored and in *all* subsequent connection attempts, the certificate provided by nymea should be checked against the locally storedd fingerprint and made sure it did not change. If it did change, the user shall be warned about that.
 
@@ -35,7 +34,7 @@ Given the typical installation of a nymea setup is in a local network, most nyme
 
 nymea can be discovered in the local network by using either **UPnP 1.1** ([Universal Plug and Play](https://en.wikipedia.org/wiki/Universal_Plug_and_Play)) network discovery or **Zeroconf** (mDNS/DNS-SD).
 
-### UPnP 1.1
+### UPnP
 
 The server will present itself as [UPnP Basic 1.0](http://upnp.org/specs/basic/basic1/) device according to the following specifications:
 
