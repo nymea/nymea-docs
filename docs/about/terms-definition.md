@@ -31,7 +31,7 @@ An Action can have params to give the possibility to parameterize the action, li
 
 ### Interfaces
 
-Interface define the character of a device/service, and require certain actions, states and events so that device category is always the same. An example, an interface that defines a simple light bulb, needs to have at leas an on/off action - so in the app this device will be displayed as a light with a toggle button and if nymea is connected to Alexa and co this services also recognice this device as a light.
+Interface define the character of a device/service, and require certain actions, states and events so that device category is always the same. An example, an interface that defines a simple light bulb, needs to have at leas an on/off action - so in the app this device will be displayed as a light with a toggle button and if nymea is connected to voice assistants also recognice this device as a light.
 
 ### Setup Methods
 
@@ -40,14 +40,15 @@ There are 3 setup methods, User, Discovery and Auto. Some Examples
 
 * User: Email service, the user is required to fill in the email server credentials
 * Discovery: Within a local area network to dsicover the ZigBee bridge.
-* Auto: After the ZigBee bridge is connected, the ZigBee devices apear automaticall without any involvement of the user.
+* Auto: After the ZigBee bridge is connected, the ZigBee devices apear automatically without any involvement of the user.
 
 ### Create Methods
 
-Well known from Bluetooth 
+
 
 ### Vendor
 
+Inside every device plug-in a vendor is defined that is the manufacturer of the device. So generic plug-ins that doesn't belong to a specific device have 'nymea' defined as vendor. 
 
 ### Device Class
 
@@ -58,7 +59,24 @@ Are extended plug-ins with access to all devices and the ability to extend the A
 
 ### Virtual device
 
+Is a 
 
-### 
+### Scripts
 
-The libnymea provides a list of HardwareResources, which can be used in every plugin. When sou start writing a plugin, you need to know which resource you will need. Each resource provides it's own interface for a DevicePlugin. In the plugin you don't have to take care about the resource.
+
+
+### Rules
+
+Rules are interconnect devices.
+
+### Magic
+
+The nymea:app calls rules "Magic" 
+
+### Scenes
+
+Scenes are rules that can be triggered manually.
+
+### Daemon
+
+In multitasking operating systems, a daemon is a computer program that runs as a background process.

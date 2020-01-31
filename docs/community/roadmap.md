@@ -6,29 +6,29 @@ title: Roadmap
 
 ## nymea
 
-## V 0.17.0  October 2019
+## V 0.19.0
 
 ```text
 nymea 
-    Raspberry Pi Buster Image
-    JavaScript Plug-Ins
-    New Devicemanager API
-    New Authorization Plug-In API
+    Load/Unload Plug-Ins during run time
+    Password recovery
+    Child devices deleteable
  
 nymea plug-ins
-    New PlugIn: Sonos Plug-In
-    New PlugIn: DoorBird Plug-In
-    Http Commander: Add server
+    New Plug-In: DoorBird
+    New Plug-In: OpenUV
+    New Plug-In: Wall-Be
+    New Plug-In: my-PV
+    New Plug-In: Dynatrace UFO
 ```    
 
-### V 0.18.0 November 2019
+### V 0.20.0
 ```text
 nymea 
+    Github JS Plug-In installer
+    Virtual Devices
  
 nymea plug-ins
-    New PlugIn: Websocket Commander
-
-```
-### V 0.19.0 December 2019
-
-## nymea:app
+    New Plug-In: Websocket Commander
+    New Plug-In: FTP Upload
+    New Plug-In: Lifx
