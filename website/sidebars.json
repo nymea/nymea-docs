@@ -32,6 +32,7 @@
    ],
    "Write Plug-Ins": [
     "plugins/write-plugins",
+    "plugins/interfaces",
     "plugins/plugin-build-environment",
     {
         "type": "subcategory",
@@ -51,8 +52,7 @@
             "plugins/tutorial-02"
         ]
     },
-    "plugins/test-your-plugin",
-    "plugins/interfaces"
+    "plugins/test-your-plugin"
    ],
    "Write Clients": [
     "clients/rawapi",
