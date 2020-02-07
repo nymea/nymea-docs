@@ -163,30 +163,30 @@ def buildNymeaPluginsDocumentation():
 
 
     pluginsLinkList = ""
-    
-    copyfile(./website/sidebars.json, ./website/sidebars_old.json)
+
+    copyfile('./website/sidebars.json', './website/sidebars_old.json')
     #TODO save old file
-    
+
     # Iterate plugin directories and generate html from markdown
     for pluginDir in pluginDirs:
         if 'README.md' in os.listdir(pluginDirectory + pluginDir):
             pluginReadmeFile = pluginDirectory + pluginDir + "/README.md"
             print('Process %s' % pluginReadmeFile)
-            
+
             with open("./website/sidebars.json") as f:
                 data = json.load(f)
-                
+
             information["statistics"].append({
                 pluginReadmeFile.name,
             })
-            
+
             with open("./website/sidebars.json", "w") as sidebar:
                 json.dump(data, sidebar)
                 #json.dumps(person_dict, indent = 4, sort_keys=True)
-            
+
             #TODO add plug-in name to sidebard
-            
-            
+
+
             #htmlResult = subprocess.run(['markdown', pluginReadmeFile], stdout=subprocess.PIPE)
             #pluginSoup = BeautifulSoup(htmlResult.stdout, 'html.parser')
 
@@ -232,6 +232,77 @@ def buildHtmlFromQdocBody(inputFileName, outputFileName):
     saveXmlToFile(page, outputFileName)
 
 
+#--------------------------------------------------------------------------
+def buildDocusaurusJs(inputFileName, outputFileName):
+    printInfo('Building docusaurus from qdoc body %s %s' % (inputFileName, outputFileName))
+
+    # Wrap HTML body with docusaurus tags
+
+
+    # <div className="docMainWrapper wrapper">
+    #   <Container className="mainContainer documentContainer postContainer">
+    #     <div className="post">
+    #    BODY
+    #     </div>
+    #   </Container>
+    # </div>
+
+    body = extractHtmlBody(inputFileName)
+    bodyContent = BeautifulSoup('', 'html.parser')
+    for bodyChild in body.contents:
+        if (bodyChild.name == None):
+            continue
+
+        # Note: the body tag does not allow the li tag as child
+        if bodyChild.name == 'li':
+            continue
+
+        bodyContent.append(bodyChild)
+
+    htmlContent = BeautifulSoup('<div className="docMainWrapper wrapper"><Container className="mainContainer documentContainer postContainer"><div className="post">%s</div></Container></div>' % bodyContent, 'html.parser')
+    # Remove comments since not supported from docusaurus
+    comments = htmlContent.findAll(text=lambda text:isinstance(text, Comment))
+    for comment in comments:
+        comment.extract()
+
+    # Make sure the casses will be called className= (not classname= and not class=)
+    pageContent = htmlContent.prettify(formatter="html5")
+    pageContent = pageContent.replace('classname=', 'className=')
+    pageContent = pageContent.replace('class=', 'className=')
+
+    # Intendent the html code for better reading
+    pageLines = pageContent.splitlines(True)
+    finalPageContent = ''
+    for line in pageLines:
+        finalPageContent = finalPageContent + '      ' + line
+
+    fileContent = ''
+    fileContent += "const React = require('react');\n"
+    fileContent += "const CompLibrary = require('../../core/CompLibrary.js');\n"
+    fileContent += "const Container = CompLibrary.Container;\n"
+    fileContent += "const GridBlock = CompLibrary.GridBlock;\n"
+    fileContent += "\n"
+    fileContent += "class NymeaGpio extends React.Component {\n\n"
+    fileContent += "  render() {\n"
+    fileContent += "    const siteConfig = this.props.config;\n"
+    fileContent += "    return (\n"
+    fileContent +=  finalPageContent
+    fileContent += "\n"
+    fileContent += "    );\n"
+    fileContent += "  }\n"
+    fileContent += "}\n"
+    fileContent += "\n"
+    fileContent += "NymeaGpio.title = 'libnymea GPIO';\n"
+    fileContent += "NymeaGpio.description = 'Qt based library for nymea GPIO';\n"
+    fileContent += "module.exports = NymeaGpio;\n"
+
+    print(fileContent)
+
+
+    outputFile = open(outputFileName, 'w')
+    outputFile.write(fileContent)
+    outputFile.close()
+
 ###########################################################################
 # Main
 ###########################################################################
@@ -245,6 +316,7 @@ if __name__ == '__main__':
     parser.add_argument('-q', '--build-qdoc-html', help='Build a html site using the body from the give qdoc generated input file and save it to the output file.', action='store_true')
     parser.add_argument('-m', '--build-main-documentation', help='Build the main documentation located in /docs.', action='store_true')
     parser.add_argument('-p', '--build-plugins-documentation', help='Build the plugins documentation located in /source/nymea-plugins.', action='store_true')
+    parser.add_argument('-d', '--build-docusaurus-js', help='Build a docusaurus js site using the body from the give qdoc generated input file and save it to the output file.', action='store_true')
 
     args = parser.parse_args()
 
@@ -256,6 +328,11 @@ if __name__ == '__main__':
     if args.build_main_documentation:
         buildMainDocs()
         exit(0)
+
+    if args.build_docusaurus_js:
+        buildDocusaurusJs(inputFileName, outputFileName)
+        exit(0)
+
 
     # Build html using qdoc input file body and save to output file
     if args.build_qdoc_html:

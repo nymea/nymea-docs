@@ -33,6 +33,7 @@
    ],
    "Write Plug-Ins": [
     "plugins/write-plugins",
+    "plugins/interfaces",
     "plugins/plugin-build-environment",
     {
         "type": "subcategory",
