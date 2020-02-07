@@ -3,7 +3,7 @@ id: usage
 title: Usage
 ---
 
-Once you have installed nymea successfully you can start the nymead daemon. There are two ways to start nymead:
+Once you have installed nymea successfully you can start the nymea. There are two ways to start nymea:
 
 * Starting nymea as daemon (service)
 * Starting nymea as application (terminal application)
@@ -21,10 +21,10 @@ manufacturers. With the powerful rule engine you are able to connect any
 device available in the system and create individual scenes and behaviors 
 for your environment.
 
-nymead 0.9.0 © 2014-2019 nymea GmbH
-Released under the GNU GENERAL PUBLIC LICENSE Version 2.
+nymead X.X.X © 2014-202X nymea GmbH
+Released under the GNU GENERAL PUBLIC LICENSE Version 3.
 
-API version: 1.3
+API version: X.X
 
 Options:
   -h, --help                                Displays this help.

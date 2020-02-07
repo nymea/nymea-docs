@@ -33,25 +33,9 @@ An Action can have params to give the possibility to parameterize the action, li
 
 Interface define the character of a device/service, and require certain actions, states and events so that device category is always the same. An example, an interface that defines a simple light bulb, needs to have at leas an on/off action - so in the app this device will be displayed as a light with a toggle button and if nymea is connected to voice assistants also recognice this device as a light.
 
-### Setup Methods
-
-Setup methods are the answer to your question _How do I get my device into the system?_
-There are 3 setup methods, User, Discovery and Auto. Some Examples
-
-* User: Email service, the user is required to fill in the email server credentials
-* Discovery: Within a local area network to dsicover the ZigBee bridge.
-* Auto: After the ZigBee bridge is connected, the ZigBee devices apear automatically without any involvement of the user.
-
-### Create Methods
-
-
-
 ### Vendor
 
 Inside every device plug-in a vendor is defined that is the manufacturer of the device. So generic plug-ins that doesn't belong to a specific device have 'nymea' defined as vendor. 
-
-### Device Class
-
 
 ### Experience Plug-In
 
@@ -63,11 +47,13 @@ Is a
 
 ### Scripts
 
-
+With scripts you can define more advanced rules. Scripts are written in QML/JS and can be installed and written inside the nymea:app.
 
 ### Rules
 
-Rules are interconnect devices.
+With rules you can tell what nymea should do automatically. No coding skills required.
+
+More about the [rule engine](/docs/about/rule-engine)
 
 ### Magic
 
