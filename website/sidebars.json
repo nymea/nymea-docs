@@ -6,6 +6,7 @@
     "about/usage",
     "about/features",
     "about/rule-engine",
+    "about/scripting",
     "about/interfaces",
     "about/configuration-file",
     {

@@ -33,5 +33,3 @@ nymea:cloud is optional and extends nymea with cloud centric features such as de
 ![nymea structure](https://raw.githubusercontent.com/guh/nymea-wiki/master/docs/en/images/home-stack.png)
 
 <br />
-
-![nymea privacy](/img/nymea_privacy_guard.png)

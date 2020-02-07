@@ -5,6 +5,64 @@ title: Changelog
 
 ## nymea Changelog
 
+### V 0.18.0
+```text
+nymea-zigbee (0.0.4)
+   Add assign operator for zigbee security configuration
+nymea-mqtt (0.1.3)
+   Fix build dependencies
+nymea-remoteproxy (0.1.9)
+   Fix building in sbuild
+   Update copyright
+nymea-gpio (1.0.1)
+   Update copyright
+libnymea-networkmanager (0.2.2)
+   Reinitialize nm if the initial properties cannot be loaded during
+nymea-networkmanager (0.5.1)
+   Update documentation
+   Fix building in sbuild
+nymea (0.18.0)
+   Scriptengine
+   Add basic docker files for running nymea in debian
+   Add System Time API
+   Add discovery mode to userandpassword mock device
+   Update company name
+   Improve log DB housekeeping performance
+   Support units in interfaces
+   Update device names when changed by the plugin
+   Subscribe to the entire device namespace in nymea:cloud MQTT
+   Use a more unique nonce for the remote connection
+   Update year and copyright
+   Generate a version.h file
+   Disconnect all slots of nymea:core on shutdown
+   Add Bluetooth media icon
+   Qt versions
+   Fix crash when removing a connected transport interface
+nymea-plugins (0.18.0)
+   New Plugin: Tuya cloud
+   Boblight: Fix behavior if color is changed very fast
+   New plugin: Tado
+   New Plugin: Nanoleaf
+   HttpCommander: Build with more strict compiler settings
+   New Plug-In: OpenUV
+   New Plugin: tp-link Kasa
+   TexasInstruments: Fix pressure unit for sensortag
+   Kodi: Skip link-local IPv6 addresses
+   New Plugin: UniFi network controller
+   New plugin: Nuki
+   New plugin: USB relay
+   All Plugins: Fix building in sbuild
+   EQ-3: Fix connection to MAX! cube
+   Bose SoundTouch: Fix actions and add source browsing
+nymea-plugins-simulation (0.5)
+   Fix building in sbuild
+nymea-plugin-modbuscommander (0.1.2)
+   Fix building in sbuild
+nymea-plugin-unipi (0.1.2)
+   fixed slave address
+   Fix building in sbuild
+```
+
 ### V 0.17.0
 ```text
 nymea-remoteproxy (0.1.7)
