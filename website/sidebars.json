@@ -54,9 +54,9 @@
     "plugins/test-your-plugin"
    ],
    "Write Clients": [
+    "clients/rawapi",
     "clients/write-clients",
     "clients/nymea-cli",
-    "clients/discovery",
     {
          "type": "subcategory",
          "label": "API",
