@@ -381,7 +381,7 @@ Properties may have multiple modifiers at the same time, as `property5` shows.
 
 ## Authentication
 
-Nymea can be configured to require authentication on the API (by default, authentication is enabled). The initial handshake will inform the client whether authentication is required or not through the `authenticationRequired` field. If authentication is required, each call, except `JSONRPC.Hello`, `JSONRPC.Introspect` and `JSONRPC.Authenticate` are required to contain a valid authentication token. The token is added to the method parameters on the topmost level. A method call package follows this format:
+Nymea can be configured to require authentication on the API (by default, authentication is enabled). The initial handshake will inform the client whether authentication is required or not through the `authenticationRequired` field. If authentication is required, each call, except `JSONRPC.Hello`, `JSONRPC.Introspect`, `Users.Authenticate` and `Users.RequestPushButtonAuth` are required to contain a valid authentication token. The token is added to the method parameters on the topmost level. A method call package follows this format:
 
     {
         "id": "Int",
@@ -414,7 +414,7 @@ Once `Users.CreateUser` succeeded, the `initialSetupRequired` property in the ha
 
 ### Obtaining a token
 
-A token is obtained by calling `JSONRPC.Authenticate` using username/password authentication or `JSONRPC.RequestPushButtonAuth` if the push button authentication is available.
+A token is obtained by calling `Users.Authenticate` using username/password authentication or `Users.RequestPushButtonAuth` if the push button authentication is available.
 
 #### Username and password
 
@@ -422,7 +422,7 @@ Authenticating via user and password requires the presence of a user in the syst
 
     {
         "id": 1,
-        "method": "JSONRPC.Authenticate`,
+        "method": "Users.Authenticate`,
         "params": {
             "username": "a.valid@email.org",
             "password": "...",
@@ -455,7 +455,7 @@ Note, the top level `status` property indicates success because the server did u
 
 #### Push button
 
-If push button authentication is available, in addition to the username and password authentication, `JSONRPC.RequestPushButtonAuth` is available.
+If push button authentication is available, in addition to the username and password authentication, `Users.RequestPushButtonAuth` is available.
 
 Note: It requires hardware support for push button authentication. For development purposes a fake push button module is provided in the nymea source repository in the tests/tools/simplepushbuttonhandler/ directory. Starting that utility will simulate the presence of a push button and allow "pressing the button" pressing the space bar on the keyboard.
 
@@ -463,7 +463,7 @@ The request looks like this:
 
     {
         "id": 1,
-        "method": "JSONRPC.RequestPushButtonAuth",
+        "method": "Users.RequestPushButtonAuth",
         "deviceName": "my cool device"
     }
     
@@ -484,7 +484,7 @@ Then it will start listening for button presses. If the button is pressed within
 
     {
         "id": 2,
-        "notification": "JSONRPC.PushButtonAuthFinished",
+        "notification": "Users.PushButtonAuthFinished",
         "params": {
             "success": true,
             "transactionId": "627f091d-06f0-4d17-b316-def225ddae25",
