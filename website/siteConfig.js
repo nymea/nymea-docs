@@ -33,12 +33,11 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'about/about', label: 'About'},
-    {doc: 'build/build-nymea', label: 'Build'},
-    {doc: 'plugins/write-plugins', label: 'Write Plug-Ins'},
-    {doc: 'clients/write-clients', label: 'Write Clients'},
-    {page: 'help', label: 'Help'},
-    {blog: true, label: 'Blog'},
+    { page: 'quick-start', label: 'Quick Start' },
+    { page: 'users', label: 'Users' },
+    { page: 'developers', label: 'Developers' },
+    { page: 'help', label: 'Help'},
+    { blog: true, label: 'Blog' },   
     { search: true },
   ],
 
