@@ -53,7 +53,7 @@ def writeToFile(line):
 
 #--------------------------------------------------------------------------
 def createMarkdownLink(linkName):
-    link = '#%s' % linkName.lower().replace(' ', '-')
+    link = '#%s' % linkName.lower().replace(' ', '-').replace('.', '')
     return link
 
 #--------------------------------------------------------------------------
@@ -208,7 +208,11 @@ def extractEnums(enums):
 
     enumSorted = sorted(enumList)
     for enum in enumSorted:
-        writeToFile('### %s' % enum)
+        writeToFile(' * [%s](%s)' % (enum, createMarkdownLink(enum)))
+
+    for enum in enumSorted:
+        writeToFile('------------------------------')
+        writeToFile('#### %s' % enum)
         writeCodeSection(enums[enum])
         writeToFile(createReferenceLine(enums[enum]))
         writeToFile('')
@@ -222,7 +226,11 @@ def extractTypes(types):
 
     typesSorted = sorted(typesList)
     for type in typesSorted:
-        writeToFile('### %s' % type)
+        writeToFile(' * [%s](%s)' % (type, createMarkdownLink(type)))
+
+    for type in typesSorted:
+        writeToFile('------------------------------')
+        writeToFile('##### %s' % type)
         writeCodeSection(types[type])
         deprecatedWarning = createDeprecatedWarning(types[type])
         if deprecatedWarning:
@@ -240,9 +248,14 @@ def extractFlags(flags):
     for flag in flags:
         flagList.append(flag)
 
+
     flagSorted = sorted(flagList)
     for flag in flagSorted:
-        writeToFile('### %s' % flag)
+        writeToFile(' * [%s](%s)' % (flag, createMarkdownLink(flag)))
+
+    for flag in flagSorted:
+        writeToFile('------------------------------')
+        writeToFile('##### %s' % flag)
         writeToFile('')
         writeCodeSection(flags[flag])
         writeToFile('')
@@ -258,15 +271,23 @@ def extractMethods(methods):
 
     methodsSorted = sorted(methodsList)
     for method in methodsSorted:
-        writeToFile('### %s' % method)
+        writeToFile(' * [%s](%s)' % (method, createMarkdownLink(method)))
+
+    for method in methodsSorted:
+        writeToFile('------------------------------')
+        writeToFile('##### **%s**' % method)
         writeToFile('')
         writeToFile('%s' % methods[method]['description'])
         writeToFile('')
-        writeToFile('**Params**')
+        if 'deprecated' in methods[method]:
+            writeToFile("> **Warning**: this method is deprecated. %s" % methods[method]['deprecated'])
+
+        writeToFile('')
+        writeToFile('*Params*')
         writeToFile('')
         writeCodeSection(methods[method]['params'])
         writeToFile('')
-        writeToFile('**Returns**')
+        writeToFile('*Returns*')
         writeToFile('')
         writeCodeSection(methods[method]['returns'])
         writeToFile('')
@@ -287,11 +308,19 @@ def extractNotifications(notifications):
 
     notificationsSorted = sorted(notificationsList)
     for notification in notificationsSorted:
-        writeToFile('### %s' % notification)
+        writeToFile(' * [%s](%s)' % (notification, createMarkdownLink(notification)))
+
+    for notification in notificationsSorted:
+        writeToFile('------------------------------')
+        writeToFile('##### %s' % notification)
         writeToFile('')
         writeToFile('%s' % notifications[notification]['description'])
         writeToFile('')
-        writeToFile('**Params**')
+        if 'deprecated' in notifications[notification]:
+            writeToFile("> **Warning**: this notification is deprecated. %s" % notifications[notification]['deprecated'])
+
+        writeToFile('')
+        writeToFile('*Params*')
         writeToFile('')
         writeCodeSection(notifications[notification]['params'])
         deprecatedWarning = createDeprecatedWarning(notifications[notification])
@@ -308,7 +337,6 @@ def writeDocumentationContent(apiVersion, apiJson):
     printInfo('--> Write API documentation content')
     printInfo('--> API version: \"%s\"' % (version))
 
-    writeToFile('# JSON-RPC API documentation')
     writeToFile('')
     writeToFile('In the following section you can find a detaild description of the current API version **%s**.' % apiVersion)
     writeToFile('')
@@ -317,32 +345,36 @@ def writeDocumentationContent(apiVersion, apiJson):
     writeToFile(' * [Types](#types)')
     writeToFile(' * [Methods](#methods)')
     writeToFile(' * [Notifications](#notifications)')
-    writeToFile(' * [Full introspect](#full-introspect)')
     writeToFile('')
     writeToFile('')
 
     if 'enums' in apiJson:
-        writeToFile('## Enums')
+        writeToFile('------------------------------')
+        writeToFile('### Enums')
         writeToFile('')
         extractEnums(apiJson['enums'])
 
     if 'flags' in apiJson:
-        writeToFile('## Flags')
+        writeToFile('------------------------------')
+        writeToFile('### Flags')
         writeToFile('')
         extractFlags(apiJson['flags'])
 
     if 'types' in apiJson:
-        writeToFile('## Types')
+        writeToFile('------------------------------')
+        writeToFile('### Types')
         writeToFile('')
         extractTypes(apiJson['types'])
 
     if 'methods' in apiJson:
-        writeToFile('## Methods')
+        writeToFile('------------------------------')
+        writeToFile('### Methods')
         writeToFile('')
         extractMethods(apiJson['methods'])
 
     if 'notifications' in apiJson:
-        writeToFile("## Notifications")
+        writeToFile('------------------------------')
+        writeToFile("### Notifications")
         extractNotifications(apiJson['notifications'])
 
     writeToFile('')

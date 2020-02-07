@@ -249,8 +249,6 @@ function writeInterfacesDocumentation() {
     FILETOMODIFY=${OUTPUT_DIR}/interfaces.md.in
     sed -e "/$REPLACSTRING/r $FILETOINSERT" -e "/$REPLACSTRING/d" $FILETOMODIFY > ${OUTPUT_DIR}/interfaces.md
     cp -v ${OUTPUT_DIR}/interfaces.md ${CURRENT_DIR}/../docs/plugins/interfaces.md
-    # Make sure the merged content will not be in any commit
-    #git update-index --assume-unchanged ${CURRENT_DIR}/../docs/plugins/interfaces.md
 }
 
 function writeApiDocumentation() {
@@ -266,8 +264,6 @@ function writeApiDocumentation() {
     FILETOMODIFY=${OUTPUT_DIR}/raw-api.md.in
     sed -e "/$REPLACSTRING/r $FILETOINSERT" -e "/$REPLACSTRING/d" $FILETOMODIFY > ${OUTPUT_DIR}/raw-api.md
     cp -v ${OUTPUT_DIR}/raw-api.md ${CURRENT_DIR}/../docs/clients/raw-api.md
-    # Make sure the merged content will not be in any commit
-    #git update-index --assume-unchanged ${CURRENT_DIR}/../docs/clients/raw-api.md
 }
 
 
@@ -288,7 +284,7 @@ while [ "$1" != "" ]; do
     shift
 done
 
-create-nymea-docs
+#create-nymea-docs
 writeInterfacesDocumentation
 writeApiDocumentation
 

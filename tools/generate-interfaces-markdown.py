@@ -121,15 +121,15 @@ def writeDocumentationContent():
 
     writeToFile('# Available interfaces')
     writeToFile('')
-    writeToFile('This following list shows you the current available interfaces.')
-    writeToFile('')
+    #writeToFile('This following list shows you the current available interfaces.')
+    #writeToFile('')
 
     # Create the interfaces list
-    for interfaceName in interfaceNames:
-        writeToFile(' * [%s](%s)' % (interfaceName, createMarkdownLink(interfaceName)))
+    #for interfaceName in interfaceNames:
+    #    writeToFile(' * [%s](%s)' % (interfaceName, createMarkdownLink(interfaceName)))
 
-    writeToFile('')
-    writeToFile('')
+    #writeToFile('')
+    #writeToFile('')
 
     # Extract interface information
     writeInterfaces()
