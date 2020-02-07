@@ -250,7 +250,7 @@ function writeInterfacesDocumentation() {
     sed -e "/$REPLACSTRING/r $FILETOINSERT" -e "/$REPLACSTRING/d" $FILETOMODIFY > ${OUTPUT_DIR}/interfaces.md
     cp -v ${OUTPUT_DIR}/interfaces.md ${CURRENT_DIR}/../docs/plugins/interfaces.md
     # Make sure the merged content will not be in any commit
-    git update-index --assume-unchanged ${CURRENT_DIR}/../docs/plugins/interfaces.md
+    #git update-index --assume-unchanged ${CURRENT_DIR}/../docs/plugins/interfaces.md
 }
 
 function writeApiDocumentation() {
