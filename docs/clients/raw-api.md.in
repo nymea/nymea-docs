@@ -195,7 +195,7 @@ If nymea:core accepts a request, it will reply with a response following this fo
         "error": "string",
     }
 
-Whenever replying to a request, nymea:core will fill in the same `id` as the request contained. A client may use this `id` to match a given response to the request it had sent to nymea:core earlier. The `status` field always contains one of the two values of `success` or `error`. If the request passed validation, this will be set to `success`, otherwise, for instance if the used method has not been found, this will contain `error`. In case of success, the response will contain an additional field `params` conaining the response params. The actual content again depends on the acutal called method in the request. In case of failure, instead of params, the response will contain an `error` field with a message that might help the client developer to determine the source of the problem. This error message will always indicate a program error and should not be presented to the user.
+Whenever replying to a request, nymea:core will fill in the same `id` as the request contained. A client may use this `id` to match a given response to the request it had sent to nymea:core earlier. The `status` field always contains either `success`, `error` or `unauthorized`. If the request passed validation, this will be set to `success`, otherwise, for instance if the used method has not been found, this will contain `error` or `unauthorized` if a client is not allowed to call a certain method. In case of success, the response will contain an additional field `params` conaining the response params. The actual content again depends on the acutal called method in the request. In case of failure, instead of params, the response will contain an `error` field with a message that might help the client developer to determine the source of the problem. This error message will always indicate a program error and should not be presented to the user.
 
 ### The initial handshake
 
@@ -377,6 +377,124 @@ In this example `property1` has no modifiers. When a method returns an entry of 
 `property4` is marked as deprecated. This means, when a method returns an entry of this type, it will include `property4`, however, developers are strongly adviced to not rely on it any more because it may disappear in the next major version of the API. When a method takes an entry of this object in its params, the client must still include it in the request parameters, but be prepared that a future update of the API will not support this any more and reject the call. The `protocol version` field in the initial handshake message may be used to determine if a property is to be included in a call or not.
 
 Properties may have multiple modifiers at the same time, as `property5` shows.
+
+
+## Authentication
+
+Nymea can be configured to require authentication on the API (by default, authentication is enabled). The initial handshake will inform the client whether authentication is required or not through the `authenticationRequired` field. If authentication is required, each call, except `JSONRPC.Hello`, `JSONRPC.Introspect` and `JSONRPC.Authenticate` are required to contain a valid authentication token. The token is added to the method parameters on the topmost level. A method call package follows this format:
+
+    {
+        "id": "Int",
+        "method": "String",
+        "o:token": "String",
+        "o:params": "Object"
+    }
+
+`token` is marked as optional because it is might not be required for servers configured to not require authentication. However, if the token is not included on a server that does require quthentication, the response will indicate a failure like this:
+
+    {
+        "id": "...",
+        "status": "unauthorized"
+    }
+    
+### Creating users
+
+Currently, nymea only supports a single user. When a fresh nymea system is started up, there will be no user. This is indicated in the initial handshake through the `initialSetupRequired` property. In this case, a client cannot authenticate to the API yet. Instead a one-time setup needs to be performed by calling `Users.CreateUser`. A user can be created by providing a valid email address to the `username` field, a valid password in the `password` field. A password is valid if it fulfills the minimum password requirements which are enforce a minimum length of 8 characters, the use of uppercase and lowercase characters, as well as numbers.
+
+    {
+        "id": 1,
+        "method": "Users.CreateUser",
+        "params": {
+            "username": "a.valid@email.org",
+            "password": "Upper,lower and a 1"
+        }
+    }
+
+Once `Users.CreateUser` succeeded, the `initialSetupRequired` property in the handshake will turn to false. As of this point, `Users.CreateUser` can not be called any more as long as multi-user is not supported in nymea.
+
+### Obtaining a token
+
+A token is obtained by calling `JSONRPC.Authenticate` using username/password authentication or `JSONRPC.RequestPushButtonAuth` if the push button authentication is available.
+
+#### Username and password
+
+Authenticating via user and password requires the presence of a user in the system. The authenticate call requires the client to provide `username` and `password` in the call parameters as well as a `deviceName` parameter which is used to present this login to the user. Hence, the device name should be a user displayable indicating the user as clear as possible who logged it. A good example for this would be "nymea:app on Steve's iPhone". A bad example for this would be "device-1342".
+
+    {
+        "id": 1,
+        "method": "JSONRPC.Authenticate`,
+        "params": {
+            "username": "a.valid@email.org",
+            "password": "...",
+            "deviceName": "my client device"
+        }
+    }
+    
+If authentication succeeds, the call will return a token that can be used to all subsequent calls. For instance:
+
+    {
+        "id": 1,
+        "status": "success",
+        "params": {
+            "success": "true",
+            "token": "NGE4ZTRjOWQtMjdiNi00ZDk0LTljOTYtOWRmNjkwYzY1MDNlCg=="
+        }
+    }
+    
+In the case of authentication failure, the response would look like this:
+
+    {
+        "id": 1,
+        "status": "success",
+        "params": {
+            "success": "false"
+        }
+    }
+
+Note, the top level `status` property indicates success because the server did understand and process the request. However, the `success` property in the return value `params` object indicates the authentication failure and the token is missing. The `Authenticate` method is scarse on details by design. There is only a boolean flag for "success" because a potential attacker should not get more than the absolute minimum required about the failure.
+
+#### Push button
+
+If push button authentication is available, in addition to the username and password authentication, `JSONRPC.RequestPushButtonAuth` is available.
+
+Note: It requires hardware support for push button authentication. For development purposes a fake push button module is provided in the nymea source repository in the tests/tools/simplepushbuttonhandler/ directory. Starting that utility will simulate the presence of a push button and allow "pressing the button" pressing the space bar on the keyboard.
+
+The request looks like this:
+
+    {
+        "id": 1,
+        "method": "JSONRPC.RequestPushButtonAuth",
+        "deviceName": "my cool device"
+    }
+    
+The `deviceName` property serves the same purpose as in the user/password authentication case.
+
+When requesting push button authentication, nymea:core will immediately reply with with the status message and - in case everything is fine - a transaction id.
+
+    {
+        "id": 1,
+        "status": "success",
+        "params": {
+            "transactionId": "627f091d-06f0-4d17-b316-def225ddae25"
+        }
+    }
+
+
+Then it will start listening for button presses. If the button is pressed within the timeout (30 seconds), the API will emit a notification to the client requesting the authentication containing the transaction id and an access token.
+
+    {
+        "id": 2,
+        "notification": "JSONRPC.PushButtonAuthFinished",
+        "params": {
+            "success": true,
+            "transactionId": "627f091d-06f0-4d17-b316-def225ddae25",
+            "token": "NGE4ZTRjOWQtMjdiNi00ZDk0LTljOTYtOWRmNjkwYzY1MDNlCg=="
+        }
+    }
+    
+Note: If a client requests push button authentication while another client has already started it, or the same client requests a new push button transaction before a previous one is finished. All previous attempts will be cancelled by a `PushButtonAuthFinished` notification with a non-successful status.
+
+If the user does not press the push button on within the timeout, the `PushButtonAuthFinished` notification with a non-successful status.
 
 
 ## The complete API
