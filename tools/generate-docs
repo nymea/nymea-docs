@@ -55,10 +55,6 @@ function create-nymea-docs() {
     cd ${SOURCE_DIR}
     git clone -b ${BRANCH} --depth 1 https://github.com/nymea/nymea.git
 
-    printGreen "Prepare nymea docs"
-    python ${CURRENT_DIR}/generate-interfaces-markdown.py -i ${SOURCE_DIR}/nymea/libnymea/interfaces/ -o ${OUTPUT_DIR}/interfaces.md
-    python ${CURRENT_DIR}/generate-api-markdown.py -j ${SOURCE_DIR}/nymea/tests/auto/api.json -o ${OUTPUT_DIR}/json-rpc-api.md
-
     printGreen "Create libnymea docs"
     cd ${CONFIG_DIR}/libnymea
     qdoc config.qdocconf
@@ -240,6 +236,24 @@ function create-libnymea-networkmanager-docs() {
 
 }
 
+function writeInterfacesDocumentation() {
+    printGreen "Prepare nymea docs"
+    python ${CURRENT_DIR}/generate-interfaces-markdown.py -i ${SOURCE_DIR}/nymea/libnymea/interfaces/ -o ${OUTPUT_DIR}/interfaces-generated.md
+    python ${CURRENT_DIR}/generate-api-markdown.py -j ${SOURCE_DIR}/nymea/tests/auto/api.json -o ${OUTPUT_DIR}/json-rpc-api-generated.md
+
+    # Merge interfaces.md.in content with generated content
+    cp ${CURRENT_DIR}/../docs/plugins/interfaces.md.in ${OUTPUT_DIR}/
+    #INTERFACES_GENERATED=$(cat ${OUTPUT_DIR}/interfaces-generated.md)
+    REPLACSTRING=@@GENERATED@@
+    FILETOINSERT=${OUTPUT_DIR}/interfaces-generated.md
+    FILETOMODIFY=${OUTPUT_DIR}/interfaces.md.in
+    sed -e "/$REPLACSTRING/r $FILETOINSERT" -e "/$REPLACSTRING/d" $FILETOMODIFY > ${OUTPUT_DIR}/interfaces.md
+    cp ${OUTPUT_DIR}/interfaces.md ${CURRENT_DIR}/../docs/plugins/interfaces.md
+    # Make sure the merged content will not be in any commit
+    git update-index --assume-unchanged ${CURRENT_DIR}/../docs/plugins/interfaces.md
+
+}
+
 
 #------------------------------------------------------------
 # Main
@@ -258,7 +272,9 @@ while [ "$1" != "" ]; do
     shift
 done
 
-create-nymea-docs
+#create-nymea-docs
+writeInterfacesDocumentation
+
 #create-nymea-plugins-docs
 #create-nymea-coap-docs
 #create-nymea-mqtt-docs
