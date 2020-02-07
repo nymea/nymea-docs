@@ -4,7 +4,7 @@
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                         #
-#  Copyright (C) 2018 Simon Stuerz <simon.stuerz@guh.io>                  #
+#  Copyright (C) 2019-2020 Simon Stuerz <simon.stuerz@nymea.io>           #
 #                                                                         #
 #  This file is part of nymea.                                            #
 #                                                                         #
@@ -338,7 +338,7 @@ def writeDocumentationContent(apiVersion, apiJson):
     printInfo('--> API version: \"%s\"' % (version))
 
     writeToFile('')
-    writeToFile('In the following section you can find a detaild description of the current API version **%s**.' % apiVersion)
+    writeToFile('In the following section you can find a detailed description of the current API version **%s**.' % apiVersion)
     writeToFile('')
     writeToFile(' * [Enums](#enums)')
     writeToFile(' * [Flags](#flags)')

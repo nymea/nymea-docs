@@ -74,6 +74,9 @@ function create-nymea-docs() {
 
     printGreen "Copy libnymea images"
     cp -r ${SOURCE_DIR}/nymea/doc/images/* ${CURRENT_DIR}/output/libnymea/images/
+
+    writeInterfacesDocumentation
+    writeApiDocumentation
 }
 
 
@@ -285,8 +288,7 @@ while [ "$1" != "" ]; do
 done
 
 create-nymea-docs
-writeInterfacesDocumentation
-writeApiDocumentation
+
 
 #create-nymea-plugins-docs
 #create-nymea-coap-docs
