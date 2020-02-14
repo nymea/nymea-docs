@@ -33,24 +33,16 @@
    ],
    "Write Plug-Ins": [
     "plugins/write-plugins",
-    "plugins/interfaces",
     "plugins/plugin-build-environment",
     {
         "type": "subcategory",
-        "label": "File Structure",
+        "label": "Integration plugins",
         "ids": [
             "plugins/plugin-json",
             "plugins/create-setup-methods",
+            "plugins/interfaces",
             "plugins/paramtypes-ui-elements",
-            "plugins/plugin-wizard"
-        ]
-    },
-    {
-        "type": "subcategory",
-        "label": "Tutorials",
-        "ids":  [
-            "plugins/tutorial-01",
-            "plugins/tutorial-02"
+            "plugins/tutorial-integration"
         ]
     },
     "plugins/test-your-plugin"
