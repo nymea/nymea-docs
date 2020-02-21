@@ -175,7 +175,7 @@ If the plugin developer would like to allow the user to also manually enter the 
 
     "createMethods": ["CreateMethodUser", "CreateMethodDiscovery"]
 
-See [Basic Concepts](basic-concepts#thing-creation) for more details on create methods.
+See [things setup](thing-setup#thing-creation) for more details on create methods.
 
 ### Setup method
 
@@ -192,11 +192,11 @@ For example, a device with a push button would use:
 
     "setupMethod": "PushButton"
     
-See [Basic Concepts](basic-concepts#thing-creation) for more details on create methods.
+See [things setup](thing-setup#thing-setup) for more details on setup methods.
 
 ### Events
 
-Each thing can have events. For more details on how events work, see [Basic concepts](basic-concepts#thing-events).
+Each thing can have events. For more details on how events work, see [this page](events-actions-states#thing-events).
 
 Events are defined as `eventTypes` and follow this structure:
 
@@ -211,7 +211,7 @@ The properties `id`, `name` and `displayName` are required and are to be filled 
 
 ### Actions
 
-Optionally, a thing can have actions defined as `actionTypes`. For more details on how actions work, see [Basic concepts](basic-concepts#thing-actions).
+Optionally, a thing can have actions defined as `actionTypes`. For more details on how actions work, see [this page](events-actions-states#thing-actions).
 
 Actions are defined as `actionTypes` and follow this structure:
 
@@ -227,7 +227,7 @@ As usual, `id`, `name` and `displayName` are required and follow the definition 
 
 ### States
 
-A thing may have states defined in the `stateTypes` property. For more details on how states work, see [Basic concepts](basic-concepts#thing-states).
+A thing may have states defined in the `stateTypes` property. For more details on how states work, see [this page](events-actions-states#thing-states).
 
 The defintion follows this this structure:
 

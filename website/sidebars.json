@@ -39,17 +39,18 @@
         "label": "Integration plugins",
         "ids": [
             "plugins/getting-started-integration",
-            "plugins/basic-concepts",
-            "plugins/plugin-json",
+            "plugins/thing-setup",
+            "plugins/events-actions-states",
+            "plugins/browsing",
             "plugins/interfaces",
+            "plugins/plugin-json",
             "plugins/plugin-cpp",
             "plugins/plugin-js",
             "plugins/building-testing",
-            "plugins/paramtypes-ui-elements",
-            "plugins/tutorial-integration"
+            "plugins/tutorial-integration-cpp",
+            "plugins/tutorial-integration-js"
         ]
-    },
-    "plugins/test-your-plugin"
+    }
    ],
    "Write Clients": [
     "clients/rawapi",

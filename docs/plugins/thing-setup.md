@@ -1,70 +1,65 @@
 ---
-id:basic-concepts
-title: Basic concepts
+id:thing-setup
+title: Things setup
 ---
 
-Integration plugins in nymea provide support for additional integrations with hardware devices and online services, commonly referred to as "things". A single plugin can provide support for multiple things.
+The main purpose of an integration plugin is to allow nymea to connect to services and devices. For that, nymea creates "things" objects which is the main data structure to establish the communication. When a thing is created in nymea, it walks through a setup flow. How this actual flow looks like is depending on the capabilities of a thing class defined in the plugins [JSON file](plugin-json).
 
-A plugin is responsible for translating the nymea internal things api into the device or service specific protocol. This mainly consists of handling setup and connecting to a given thing and then monitoring it for state changes and forwarding actions triggered by nymea to it.
 
-Integration plugins can be written either using C++/Qt or using JavaScript. However, either way a [plugin JSON](plugin-json) file is required to define all the supported integrations by this plugin.
+However, adding a thing to the nymea system is always done in two steps:
 
-## Adding and configuring new things
+1. Creation
+2. Setup
 
-Setting up a thing is done in two steps:
-
-* Creation
-* Setup
-
-### Thing creation
+## Thing creation
 
 There are different ways how things can be created in nymea:
 
-#### User
+### User
 
 This is used if a thing needs to be configured manually by the user. For example by entering an IP address to connect to it.
 
-#### Discovery
+### Discovery
 
 This is used if a thing can be discovered. For example things that can be found via ZeroConf in the local network. The user can perform a discovery for such things and pick which ones should be added to the system.
 
 Plugins supporting discovery must implement the `discoverThings` method.
 
-#### Automatic
+### Automatic
 
 This is used if a device should be added to the system without the user having to interact with it at all. For example, if the user adds a bridge device to the system and then all the devices connected to this bridge will automatically appear in the system.
 
 Plugins supporting automatic thing creation must emit the `autoThingsAppeared` signal to indicate the appearance of such things. Also, such plugins plugins may implement `startMonitoringAutoDevices` if an entry point for watching things is required.
 
-### Thing setup
+## Thing setup
 
 Once it is known how a thing can be created in the system, it needs to be set up. Also this offers various options:
 
-#### JustAdd
+### JustAdd
 
 This is used for things that do not require any sort of authentication. A user can, after having discovered or manually entered connection parameters for such a thing, just add it to the system and it will be functional.
 
-#### Username and passwort
+### Username and passwort
 
 If a thing requires entering a username and password for nymea to interact with it, this setup method should be used. It will prompt the user to enter the login credentials upon setup.
 
-#### Display PIN
+### Display PIN
 
 Some things, for example smart TVs will require to use a PIN code for authentication. In this example, the TV will display the PIN to the user on the TV screen and the user can enter it in nymea upon device setup.
 
-#### Enter PIN
+### Enter PIN
 
 Some things might have an input method (e.g. a number pad) but no display and require the user to enter a PIN on the device. Nymea can display this PIN diuring device setup and allow the user to enter it on the device.
 
-#### Push button
+### Push button
 
 For devices that have a push button it is often required to press this button during setup to grant an authorization token to nymea. Using this setup method will tell the user to press the button during setup and continue once the button has been pressed.
 
-#### OAuth
+### OAuth
 
 Some things, mostly online services, use OAuth to allow the user logging in. Using this setup method will start an out of band login process. During the first step of the pairing, the plugin fetches a OAuth URL from the remote service and redirects the nymea user to this URL. The user then logs in and upon success the user is redirected back to nymea containing the information required to obtain an authorization token.
 
-### Combinations
+## Examples
 
 In general a plugin implementation can freely combine those create and setup methods to reflect the actual device or service. However, keep in mind that not all combinations of create methods and setup methods make sense. For example things that are added automatically will generally use JustAdd as setup method as they might be created in the system without user interaction at all.
 
@@ -128,27 +123,6 @@ Some example flows:
 4. | The plugin runs confirmPairing() and exchanges the OAuth code for a authorization token.
 5. | The plugin runs setupThing() and connects to the remote service using the authorization token.
 
-
-## Thing events
-
-In nymea, every thing can have a set of states. For example, a device with buttons would trigger an event for `buttonPressed` whenever the user presses the button. Event can also have parameters. In the example of a remote control, the `buttonPressed` event would also contain a parameter to indicate which button has been pressed.
-
-## Thing actions
-
-Similar to events, but the other direction, a thing can have actions. For example, a smart speaker would have multiple actions, like `play`, `pause` and so on. The user (or some automation) can then execute those actions to control the device. Like events, also actions can have parameters. As an example for this, an online service that sends out notifications to the user would have an action named `notify` with two parameters, one for `title` and one for `body`. Those parameters will then contain the actual content of the notification.
-
-## Thing states
-
-Every thing can also have a set of states. States are used to represent a set of properties that might change over time. For example a temperature sensor might have a state named "temperature" to indicate the currently measured temperature. Whenever the measured temperature changes, the plugin implemenation updates the state value in nymea.
-
-Every state change will implicitly trigger an event in the system which will propagate the state change through the entire system.
-
-States can be read only or writable. A read only state will only read a certain things state and make its value available to nymea. A writable state can also be changed in nymea, which would then change the state on the thing. A writable state will implicitly generate the according action which is used in nymea to set the states value.
-
-
-## Browsing things
-
-Some things might offer the feature to be browsable. For example, a smart speaker can allow the user to browse the available playlists. Browsing a thing is like browsing a file system. It can be a simple list of entries, but also an entire tree which can be entered.
 
 ## Parent child relationships
 
