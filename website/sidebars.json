@@ -40,7 +40,8 @@
         "ids": [
             "plugins/basic-concepts",
             "plugins/plugin-json",
-            "plugins/create-setup-methods",
+            "plugins/plugin-cpp",
+            "plugins/plugin-js",
             "plugins/interfaces",
             "plugins/paramtypes-ui-elements",
             "plugins/tutorial-integration"

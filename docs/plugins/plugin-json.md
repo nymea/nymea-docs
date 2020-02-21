@@ -39,7 +39,11 @@ The `type` field defines the actual data type to be used. The value for this fie
 
 ### Unit
 
+@@UNITS@@
+
 ### Input type
+
+@@INPUTTYPE@@
 
 ## Parameters
 
@@ -83,7 +87,7 @@ The contents of the plugin JSON file is a json object. This JSON object contains
         "id": <uuid>,
         "name: <string>
         "displayName": <string>,
-        ...
+        "vendors": [...]
     }
     
 The information about a plugin consists of an `id`, a `name` and a `displayName`. Those should be filled in by the plugin developer as described above. For instance, an integration plugin that adds support for various online services might use something like this:
@@ -92,10 +96,28 @@ The information about a plugin consists of an `id`, a `name` and a `displayName`
         "id": "35fb22d3-e4f0-4bbf-85d1-d7531111cacd",
         "name: "onlineServices",
         "displayName": "Online services,
-        ...
+        "vendors": [...]
     }
 
 ## Vendor information
+
+Each integration plugin defines a list of vendors it supports. A vendor describes the manufacturer of things. The vendor definition follows this strucuture:
+
+    {
+        "id": <uuid>,
+        "name": <string>,
+        "displayName": <string>,
+        "thingClasses": [...]
+    }
+    
+As usual, `id`, `name` and `displayName` are to be filled in as described in [Identification properties](#identification-properties). A single vendor can then define multiple thing classes, that is, devices or services made by this venddor. For example, a fictional company named "ACME Inc." would be defined like this:
+
+    {
+        "id": "b7e96b02-1a69-43a3-ae24-cde4bb48e821",
+        "name": "acme",
+        "displayName": "ACME Inc.",
+        "thingClasses": [...]
+    }
 
 ## Thing classes
 
@@ -130,22 +152,110 @@ Optional:
 * `createMethods`: Defines how a thing of this thing class can be created. See [Create methods](#create-methods) for more details.
 * `discoveryParamTypes`: Only applicable if `createMethods` includes `CreateMethodDiscovery`. See [Create methods](#create-methods) for more details.
 * `setupMethod`: Defines how a thing of this thing class is set up. See [Setup method](#setup-method) for more details.
-* `interfaces`: A list of interfaces a certain thing class implements. For instance, a wifi light bulb would use `"interfaces: ["light", "connectable"]` to indicate to the system that it can control a light and indicate whether it is connected or not. See [Interfaces](docs/plugins/interfaces) for more information on interfaces. Note that adding interfaces here will require this thing class to also provide other properties as required by the interfaces used.
-* `browsable`: A boolean value. Set this to `true` if the thing can be browsed. Defaults to `false`.
-* `eventTypes`
-* `stateTypes`
-* `actionTypes`
-* `browsable`
-* `browserItemActionTypes`
+* `interfaces`: A list of interfaces a certain thing class implements. For instance, a wifi light bulb would use `"interfaces: ["light", "connectable"]` to indicate to the system that it can control a light and indicate whether it is connected or not. See [Interfaces](interfaces) for more information on interfaces. Note that adding interfaces here will require this thing class to also provide other properties as required by the interfaces used.
+* `browsable`: A boolean value. Set this to `true` if the thing can be browsed. Defaults to `false`. See [Browsing](#browsing) for more details.
+* `browserItemActionTypes`: See [Browsing](#browsing) for more details.
+* `eventTypes`: A list of event definitions. See [Events](#events) for more details.
+* `stateTypes`: A list of state definitions. See [States](#states) for more details.
+* `actionTypes`: A list of action defintions. See [Actions](#actions) for more details.
 
 ### Create methods
 
+The create methods define how things of this thing class are created in nymea. This is a flag of one or more of the possible values. The allowed values are:
+
+* `user`: This thing is created manually by the user.
+* `discovery`: This thing can be discovered automatically.
+* `auto`: This thing is created by the plugin implementation without user interaction.
+
+For example, for a device that can be discovered in the local network the plugin would use this:
+
+    "createMethods": ["CreateMethodDiscovery"]
+    
+If the plugin developer would like to allow the user to also manually enter the device's IP address in case the discovery fails to detect the device, additionally the manual creation method can be added.
+
+    "createMethods": ["CreateMethodUser", "CreateMethodDiscovery"]
+
+See [Basic Concepts](basic-concepts#thing-creation) for more details on create methods.
+
 ### Setup method
+
+The setup method defines how the thing is set up. The possible values are:
+
+* `JustAdd`: The thing can be connected as is, no login required.
+* `UserAndPassword`: The thing requires a login via username and password.
+* `DisplayPin`: The thing displays a PIN code which the user needs to enter during setup.
+* `EnterPin`: The thing requires a PIN to be entered on the thing.
+* `PushButton`: The thing has a push button that needs to be pressed by the user during setup.
+* `OAuth`: The thing requires out of band pairing during the setup.
+
+For example, a device with a push button would use:
+
+    "setupMethod": "PushButton"
+    
+See [Basic Concepts](basic-concepts#thing-creation) for more details on create methods.
 
 ### Events
 
-### States
+Each thing can have events. For more details on how events work, see [Basic concepts](basic-concepts#thing-events).
+
+Events are defined as `eventTypes` and follow this structure:
+
+    {
+        "id": <uuid>,
+        "name": <string>,
+        "displayName": <string>,
+        "paramTypes": [...]
+    }
+    
+The properties `id`, `name` and `displayName` are required and are to be filled in as described in [Identification properties](#identification-properties). Additionally, any event can optionally contain parameter defintions, so called `paramTypes`, as described in [Parameters](#parameters)
 
 ### Actions
 
+Optionally, a thing can have actions defined as `actionTypes`. For more details on how actions work, see [Basic concepts](basic-concepts#thing-actions).
+
+Actions are defined as `actionTypes` and follow this structure:
+
+    {
+        "id": <uuid>
+        "name": <string>
+        "displayName": <string>,
+        "paramTypes": [...]
+    }
+    
+    
+As usual, `id`, `name` and `displayName` are required and follow the definition in [Identification properties](#identification-properties). Additionally, optional parameters can be defined for actions in the `paramTypes` property as described in [Parameters](#parameters).
+
+### States
+
+A thing may have states defined in the `stateTypes` property. For more details on how states work, see [Basic concepts](basic-concepts#thing-states).
+
+The defintion follows this this structure:
+
+    {
+        "id": <uuid>,
+        "name": <string>,
+        "displayName": <string>,
+        "displayNameEvent": <string>,
+        "displayNameAction": <string>,
+        "writable": <bool>,
+        "type": <type>,
+        "unit": <string>,
+        "inputType": <string>,
+        "defaultValue": <value>,
+        "minValue": <value>,
+        "maxValue": <value>,
+        "possibleValues": <list of values>
+    }
+
+States have, as all other entities the required [Identification properties](#identification-properties) of `id`, `name` and `displayName`. In addition to those, `displayNameEvent` must be provided for the autogenerated event that is emitted when this state changes.
+
+A state is also required to have a data type for this value. For this, all the properties defined in [Type properties](#type-properties) must be provided.
+
+A state can be made writable by setting the `writable` property to `true`. If a state is marked as writable, the `displayNameAction` property must be provided for the autogenerated action for modifying this state.
+
+    
 ### Browsing
+
+A thing can be made browsable by setting the `browsable` property to `true`. See [Browsing](basic-concepts#browsing) for more information on browsing things.
+
+If a thing is browsable, individual entries in the browser can have context actions which are defined in `browserItemActionTypes`. The browser item action defintion follows the exact same format as regular thing actions which are described in [Actions](#actions).

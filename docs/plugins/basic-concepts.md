@@ -26,9 +26,13 @@ This is used if a thing needs to be configured manually by the user. For example
 
 This is used if a thing can be discovered. For example things that can be found via ZeroConf in the local network. The user can perform a discovery for such things and pick which ones should be added to the system.
 
+Plugins supporting discovery must implement the `discoverThings` method.
+
 #### Automatic
 
 This is used if a device should be added to the system without the user having to interact with it at all. For example, if the user adds a bridge device to the system and then all the devices connected to this bridge will automatically appear in the system.
+
+Plugins supporting automatic thing creation must emit the `autoThingsAppeared` signal to indicate the appearance of such things. Also, such plugins plugins may implement `startMonitoringAutoDevices` if an entry point for watching things is required.
 
 ### Thing setup
 
@@ -53,6 +57,10 @@ Some things might have an input method (e.g. a number pad) but no display and re
 #### Push button
 
 For devices that have a push button it is often required to press this button during setup to grant an authorization token to nymea. Using this setup method will tell the user to press the button during setup and continue once the button has been pressed.
+
+#### OAuth
+
+Some things, mostly online services, use OAuth to allow the user logging in. Using this setup method will start an out of band login process. During the first step of the pairing, the plugin fetches a OAuth URL from the remote service and redirects the nymea user to this URL. The user then logs in and upon success the user is redirected back to nymea containing the information required to obtain an authorization token.
 
 ### Combinations
 
@@ -110,6 +118,14 @@ Some example flows:
 6. | The plugin runs confirmPairing() using the user entered PIN and requests an authentication token at the TV.
 4. | The plugin runs setupThing() and connects to the smart TV using the authentication token obtained before.
 
+#### Create method "User" - setup method "OAuth"
+
+1. | The user selects "Add new thing" for a thing with create method "User".
+2. | The plugin runs startPairing() and obtains the OAuth URL from the remote service which it returns to nymea.
+3. | The user is redirected to the OAuth URL and performs the login which returns with a OAuth code.
+4. | The plugin runs confirmPairing() and exchanges the OAuth code for a authorization token.
+5. | The plugin runs setupThing() and connects to the remote service using the authorization token.
+
 
 ## Thing events
 
@@ -131,3 +147,9 @@ States can be read only or writable. A read only state will only read a certain 
 ## Browsing things
 
 Some things might offer the feature to be browsable. For example, a smart speaker can allow the user to browse the available playlists. Browsing a thing is like browsing a file system. It can be a simple list of entries, but also an entire tree which can be entered.
+
+## Parent child relationships
+
+Configured things in the system may have parent-child relationships. This is expressed by some things having a parent thing. If a thing does not have any parents it either is a standalone thing or it may be a parent to other things. If a thing does have a parent id set, it is a child of the given parent. One thing can be a parent to many others.
+
+This parent-child relationship mostly has effect when managing things. If a parent is removed from the system, all its childs will be removed too.
