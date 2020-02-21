@@ -7,6 +7,8 @@ Integration plugins in nymea provide support for additional integrations with ha
 
 A plugin is responsible for translating the nymea internal things api into the device or service specific protocol. This mainly consists of handling setup and connecting to a given thing and then monitoring it for state changes and forwarding actions triggered by nymea to it.
 
+Integration plugins can be written either using C++/Qt or using JavaScript. However, either way a [plugin JSON](plugin-json) file is required to define all the supported integrations by this plugin.
+
 ## Adding and configuring new things
 
 Setting up a thing is done in two steps:

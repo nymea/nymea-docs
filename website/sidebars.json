@@ -38,11 +38,13 @@
         "type": "subcategory",
         "label": "Integration plugins",
         "ids": [
+            "plugins/getting-started-integration",
             "plugins/basic-concepts",
             "plugins/plugin-json",
+            "plugins/interfaces",
             "plugins/plugin-cpp",
             "plugins/plugin-js",
-            "plugins/interfaces",
+            "plugins/building-testing",
             "plugins/paramtypes-ui-elements",
             "plugins/tutorial-integration"
         ]
