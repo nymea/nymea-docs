@@ -38,6 +38,7 @@
         "type": "subcategory",
         "label": "Integration plugins",
         "ids": [
+            "plugins/basic-concepts",
             "plugins/plugin-json",
             "plugins/create-setup-methods",
             "plugins/interfaces",
