@@ -25,7 +25,8 @@ imagedirs = images \
 
 
 headerdirs = ../../source/nymea/libnymea
-sourcedirs = ../../source/nymea/libnymea
+sourcedirs = ../../source/nymea/libnymea \
+             ../../source/nymea/doc
 
 headers.fileextensions = "*.h"
 sources.fileextensions = "*.cpp *.qdoc"

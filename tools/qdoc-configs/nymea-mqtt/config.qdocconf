@@ -5,8 +5,8 @@ description = nymea-mqtt documentation
 
 dita.metadata.default.author      = Simon Stürz
 dita.metadata.default.permissions = all
-dita.metadata.default.publisher   = guh GmbH
-dita.metadata.default.copyryear = 2019
+dita.metadata.default.publisher   = nymea GmbH
+dita.metadata.default.copyryear = 2020
 dita.metadata.default.copyrholder = Simon Stürz
 dita.metadata.default.audience = programmer
 
@@ -22,7 +22,8 @@ sourceencoding          = UTF-8
 syntaxhighlighting = true
 
 headerdirs = ../../source/nymea-mqtt/libnymea-mqtt
-sourcedirs = ../../source/nymea-mqtt/libnymea-mqtt
+sourcedirs = ../../source/nymea-mqtt/docs/ \
+             ../../source/nymea-mqtt/libnymea-mqtt
 
 headers.fileextensions = "*.h"
 sources.fileextensions = "*.cpp *.qdoc"

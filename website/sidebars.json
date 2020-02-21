@@ -72,6 +72,9 @@
     "community/contribute",
     "community/license",
     "community/faq"
-   ]
+    ],
+    "Libraries": [
+     "libraries/overview"
+     ]
   }
 }
