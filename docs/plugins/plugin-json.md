@@ -1,6 +1,261 @@
 ---
 id:plugin-json
-title: JSON File
+title: The plugin JSON file
 ---
 
-Each Plugin in nymea will be defined in the corresponding JSON file. You can find information how to read JSON here. This file will be loaded from the DeviceManager to define the plugin and the corresponding DeviceClasses internal.
+The first entry point for integration plugins in nymea is the plugin JSON file. This file describes all the capabilities of this plugin. It will list all the information about the things it supports and how those things look like in the nymea system.
+
+
+## Identification properties
+
+Throughout the plugin JSON file, most entities will contain some properties which are always to be used in the same manner. Those are `id`, `name` and `displayName`. 
+
+* `id`: Whenever an `id` field is required, a new, unique UUID is to be created and inserted. This UUID must stay the same throughout the lifetime of a integration plugin as settings, log entries and all will be linked using this ID. A plugin developer should use the `uuidgen` command to create a new uuid once and never change it again. 
+
+* `name`: The `name` property is used to define variables which will be used in the code to refer to certain parts of the JSON file. It must not contain whitespaces or special characters. This name can be changed at any time without breaking existing setups when a plugin is updated. For instance, if a device vendor renames a product, the name in nymea can be aligned without causing issues on existing setups. The name will update for the user but all settings will continue to work as they are linked using the `id`, not the `name`. Worth noting that changing the name will require also the plugin code to be updated. 
+
+* `displayName`: This name should reflect the `name` property but will be presented to the user when the user interacts with nymea. Because of this it should be nicely formatted to match the vendor / device / service name as close as possible, including whitespaces and special characters. Also, this property can be localized to the users language.
+    
+## Type properties
+
+### Type
+
+As the plugin JSON file defines how the system will interact with a thing, it often will need to define data types to be used when exchanging data. Like identification properties, those type properties can appear at various places in the file but they will always follow the same structure:
+
+    {
+        ...
+        "type": <string>,
+        ...
+    }
+    
+The `type` field defines the actual data type to be used. The value for this field can be one of: 
+* `bool`: For boolean (true/false) data types.
+* `int`: For integer number data types.
+* `uint`: For unsigned integer data types.
+* `double`: For floating point data types.
+* `QString`: For character strings.
+* `QColor`: For color types. Can be either #RRGGBB, #AARRGGBB or a svg color scheme name such as `red`.
+* `QStringList` For list types.
+
+### Unit
+
+@@UNITS@@
+
+### Input type
+
+@@INPUTTYPE@@
+
+## Parameters
+
+Many entities can have parameters. Parameters are options that can be modified by the user and change the behavior of a certain entity. Those parameters are defined in the JSON file by adding `paramTypes` definitions. Those definitions look like this:
+
+    "paramTypes: [
+        {
+            "id": <uuid>,
+            "name": <string>,
+            "displayName": <string>,
+            "type": <type>,
+            "unit": <string>,
+            "inputType": <string>,
+            "defaultValue": <value>,
+            "minValue": <value>,
+            "maxValue": <value>,
+            "allowedValues": <list of values>
+        },
+        ...
+    ]
+
+Required properties:
+
+* `id`: See [Identification properties](#identification-properties)
+* `name`: See [Identification properties](#identification-properties)
+* `displayName`: See [Identification properties](#identification-properties)
+* `type`: See [Type properties](#type-properties)
+* `defaultValue`: The default value for this paramter. Depending on the type, this might be a number, a string, a color etc.
+
+Optional properties:
+
+* `minValue`: The minimum value for this parameter. This is only applicable to number paramter types, such as `int`, `uint` and `double`.
+* `maxValue`: The maximum value for this parameter. This is only applicable to number parameter types.
+* `allowedValues`: A list of allowed values the user can assign to this parameter.
+
+## Plugin information
+
+The contents of the plugin JSON file is a json object. This JSON object contains some information about the plugin itself.
+
+    {
+        "id": <uuid>,
+        "name: <string>
+        "displayName": <string>,
+        "vendors": [...]
+    }
+    
+The information about a plugin consists of an `id`, a `name` and a `displayName`. Those should be filled in by the plugin developer as described above. For instance, an integration plugin that adds support for various online services might use something like this:
+
+    {
+        "id": "35fb22d3-e4f0-4bbf-85d1-d7531111cacd",
+        "name: "onlineServices",
+        "displayName": "Online services,
+        "vendors": [...]
+    }
+
+## Vendor information
+
+Each integration plugin defines a list of vendors it supports. A vendor describes the manufacturer of things. The vendor definition follows this strucuture:
+
+    {
+        "id": <uuid>,
+        "name": <string>,
+        "displayName": <string>,
+        "thingClasses": [...]
+    }
+    
+As usual, `id`, `name` and `displayName` are to be filled in as described in [Identification properties](#identification-properties). A single vendor can then define multiple thing classes, that is, devices or services made by this venddor. For example, a fictional company named "ACME Inc." would be defined like this:
+
+    {
+        "id": "b7e96b02-1a69-43a3-ae24-cde4bb48e821",
+        "name": "acme",
+        "displayName": "ACME Inc.",
+        "thingClasses": [...]
+    }
+
+## Thing classes
+
+    {
+        "id": <uuid>,
+        "name": <string>,
+        "displayName": <string>,
+        "paramTypes": <list of param types>
+        "settingsTypes": <list of param types>
+        "createMethods": <list of strings>,
+        "setupMethod": <string>,
+        "discoveryParamTypes": <list of param types>,
+        "interfaces": <list of string>,
+        "browsable": <bool>,
+        "eventTypes": <list of event types>,
+        "stateTypes": <list of state types>,
+        "actionTypes": <list of action types>,
+        "browsable": <bool>,
+        "browserItemActionTypes>: <list of action types>
+    }
+
+Required:
+
+* `id`: See [Identification properties](#identification-properties)
+* `name`: See [Identification properties](#identification-properties)
+* `displayName`: See [Identification properties](#identification-properties)
+
+Optional:
+
+* `paramTypes`: Parameters to be used when setting up a thing. For example, this could be a parameter for an IP address for a device. See [Parameters](#parameters) for their definition. Parameters cannot be changed by the user at run time, only when setting up or reconfiguring a thing.
+* `settingsTypes`: Settings for a thing. Settings can be changed by the user at run time. For example, this could be a timeout or refresh rate setting for a thing. See [Parameters](#parameters) for their definition.
+* `createMethods`: Defines how a thing of this thing class can be created. See [Create methods](#create-methods) for more details.
+* `discoveryParamTypes`: Only applicable if `createMethods` includes `CreateMethodDiscovery`. See [Create methods](#create-methods) for more details.
+* `setupMethod`: Defines how a thing of this thing class is set up. See [Setup method](#setup-method) for more details.
+* `interfaces`: A list of interfaces a certain thing class implements. For instance, a wifi light bulb would use `"interfaces: ["light", "connectable"]` to indicate to the system that it can control a light and indicate whether it is connected or not. See [Interfaces](interfaces) for more information on interfaces. Note that adding interfaces here will require this thing class to also provide other properties as required by the interfaces used.
+* `browsable`: A boolean value. Set this to `true` if the thing can be browsed. Defaults to `false`. See [Browsing](#browsing) for more details.
+* `browserItemActionTypes`: See [Browsing](#browsing) for more details.
+* `eventTypes`: A list of event definitions. See [Events](#events) for more details.
+* `stateTypes`: A list of state definitions. See [States](#states) for more details.
+* `actionTypes`: A list of action defintions. See [Actions](#actions) for more details.
+
+### Create methods
+
+The create methods define how things of this thing class are created in nymea. This is a flag of one or more of the possible values. The allowed values are:
+
+* `user`: This thing is created manually by the user.
+* `discovery`: This thing can be discovered automatically.
+* `auto`: This thing is created by the plugin implementation without user interaction.
+
+For example, for a device that can be discovered in the local network the plugin would use this:
+
+    "createMethods": ["CreateMethodDiscovery"]
+    
+If the plugin developer would like to allow the user to also manually enter the device's IP address in case the discovery fails to detect the device, additionally the manual creation method can be added.
+
+    "createMethods": ["CreateMethodUser", "CreateMethodDiscovery"]
+
+See [things setup](thing-setup#thing-creation) for more details on create methods.
+
+### Setup method
+
+The setup method defines how the thing is set up. The possible values are:
+
+* `JustAdd`: The thing can be connected as is, no login required.
+* `UserAndPassword`: The thing requires a login via username and password.
+* `DisplayPin`: The thing displays a PIN code which the user needs to enter during setup.
+* `EnterPin`: The thing requires a PIN to be entered on the thing.
+* `PushButton`: The thing has a push button that needs to be pressed by the user during setup.
+* `OAuth`: The thing requires out of band pairing during the setup.
+
+For example, a device with a push button would use:
+
+    "setupMethod": "PushButton"
+    
+See [things setup](thing-setup#thing-setup) for more details on setup methods.
+
+### Events
+
+Each thing can have events. For more details on how events work, see [this page](events-actions-states#thing-events).
+
+Events are defined as `eventTypes` and follow this structure:
+
+    {
+        "id": <uuid>,
+        "name": <string>,
+        "displayName": <string>,
+        "paramTypes": [...]
+    }
+    
+The properties `id`, `name` and `displayName` are required and are to be filled in as described in [Identification properties](#identification-properties). Additionally, any event can optionally contain parameter defintions, so called `paramTypes`, as described in [Parameters](#parameters)
+
+### Actions
+
+Optionally, a thing can have actions defined as `actionTypes`. For more details on how actions work, see [this page](events-actions-states#thing-actions).
+
+Actions are defined as `actionTypes` and follow this structure:
+
+    {
+        "id": <uuid>
+        "name": <string>
+        "displayName": <string>,
+        "paramTypes": [...]
+    }
+    
+    
+As usual, `id`, `name` and `displayName` are required and follow the definition in [Identification properties](#identification-properties). Additionally, optional parameters can be defined for actions in the `paramTypes` property as described in [Parameters](#parameters).
+
+### States
+
+A thing may have states defined in the `stateTypes` property. For more details on how states work, see [this page](events-actions-states#thing-states).
+
+The defintion follows this this structure:
+
+    {
+        "id": <uuid>,
+        "name": <string>,
+        "displayName": <string>,
+        "displayNameEvent": <string>,
+        "displayNameAction": <string>,
+        "writable": <bool>,
+        "type": <type>,
+        "unit": <string>,
+        "inputType": <string>,
+        "defaultValue": <value>,
+        "minValue": <value>,
+        "maxValue": <value>,
+        "possibleValues": <list of values>
+    }
+
+States have, as all other entities the required [Identification properties](#identification-properties) of `id`, `name` and `displayName`. In addition to those, `displayNameEvent` must be provided for the autogenerated event that is emitted when this state changes.
+
+A state is also required to have a data type for this value. For this, all the properties defined in [Type properties](#type-properties) must be provided.
+
+A state can be made writable by setting the `writable` property to `true`. If a state is marked as writable, the `displayNameAction` property must be provided for the autogenerated action for modifying this state.
+
+    
+### Browsing
+
+A thing can be made browsable by setting the `browsable` property to `true`. See [Browsing](basic-concepts#browsing) for more information on browsing things.
+
+If a thing is browsable, individual entries in the browser can have context actions which are defined in `browserItemActionTypes`. The browser item action defintion follows the exact same format as regular thing actions which are described in [Actions](#actions).

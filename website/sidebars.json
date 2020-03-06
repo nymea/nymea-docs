@@ -33,27 +33,24 @@
    ],
    "Write Plug-Ins": [
     "plugins/write-plugins",
-    "plugins/interfaces",
     "plugins/plugin-build-environment",
     {
         "type": "subcategory",
-        "label": "File Structure",
+        "label": "Integration plugins",
         "ids": [
+            "plugins/getting-started-integration",
+            "plugins/thing-setup",
+            "plugins/events-actions-states",
+            "plugins/browsing",
+            "plugins/interfaces",
             "plugins/plugin-json",
-            "plugins/create-setup-methods",
-            "plugins/paramtypes-ui-elements",
-            "plugins/plugin-wizard"
+            "plugins/plugin-cpp",
+            "plugins/plugin-js",
+            "plugins/building-testing",
+            "plugins/tutorial-integration-cpp",
+            "plugins/tutorial-integration-js"
         ]
-    },
-    {
-        "type": "subcategory",
-        "label": "Tutorials",
-        "ids":  [
-            "plugins/tutorial-01",
-            "plugins/tutorial-02"
-        ]
-    },
-    "plugins/test-your-plugin"
+    }
    ],
    "Write Clients": [
     "clients/rawapi",
