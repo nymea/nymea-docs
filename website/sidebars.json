@@ -31,7 +31,7 @@
     "build/build-configuration",
     "build/crossbuilder"
    ],
-   "Write Plug-Ins": [
+   "Plug-In development": [
     "plugins/write-plugins",
     "plugins/plugin-build-environment",
     {
