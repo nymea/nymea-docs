@@ -277,7 +277,13 @@ def extractMethods(methods):
         writeToFile('------------------------------')
         writeToFile('##### **%s**' % method)
         writeToFile('')
-        writeToFile('%s' % methods[method]['description'])
+        description = methods[method]['description']
+        descriptionTokens = description.split('\n')
+        for token in descriptionTokens:
+            writeToFile('%s' % token)
+            writeToFile('')
+            writeToFile('')
+
         writeToFile('')
         if 'deprecated' in methods[method]:
             writeToFile("> **Warning**: this method is deprecated. %s" % methods[method]['deprecated'])
