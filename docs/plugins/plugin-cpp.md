@@ -362,7 +362,7 @@ Once done, nymea will call `confirmPairing` again. In this case neither the `use
 
             // All good. Store the API key
             pluginStorage()->beginGroup(info->thingId().toString());
-            pluginStorage()->setValue("apiKey", apiKey);
+            pluginStorage()->setValue("apiKey", data);
             pluginStorage()->endGroup();
 
             info->finish(Thing::ThingErrorNoError);
@@ -375,7 +375,7 @@ OAuth is a little more complex than the previous examples, however, the basic fl
 
 This example shows the OAuth procedure for the google OAuth service. The plugin developer must obtain the clientId and clientSecret from the remote service, usually by signing up for a developer account. When registering for such a developer account, a callback URL must be provided. Nymea requires this callback url to start with "https://127.0.0.1". The rest of the callback URL is not relevant to nymea.
 
-    void IntegrationPluginMock::startPairing(ThingPairingInfo *info)
+    void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
     {
         // Those credentials need to be obtained from the service provider
         QString clientId= "937667874529-pr6s5ciu6sfnnqmt2sppvb6rokbkjjta.apps.googleusercontent.com";
@@ -400,8 +400,9 @@ This example shows the OAuth procedure for the google OAuth service. The plugin 
 
 When the client app completed the OAuth login the procedure continues with `confirmPairing()`
 
-    void IntegrationPluginMock::confirmPairing(ThingPairingInfo *info, const QString &username, const QString &secret)
+    void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QString &username, const QString &secret)
     {
+        Q_UNUSED(username)
         // Extract the code from the callback URL
         QUrl url(secret);
         QUrlQuery query(url);
@@ -449,11 +450,131 @@ When the client app completed the OAuth login the procedure continues with `conf
         });
     }
 
+### DisplayPin
 
+Some devices are capable of displaying a PIN code. For example smart TVs. Those devices can be handled as following:
+
+    void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
+    {
+        // Compose a network request that would trigger displayig the PIN on the remote device
+        QString host = info->params().paramValue(myCoolDeviceThingIpParamTypeId).toString();
+        QNetworkRequest request(QUrl("http://" + host + "/displayPin"));
+
+        // Send the request
+        QNetworkReply *reply = hardwareManager()->networkManager()->post(request, QByteArray());
+        connect(reply, &QNetworkReply::finished, reply, &QNetworkReply::deleteLater);
+        connect(reply, &QNetworkReply::finished, info, [this, reply, info](){
+        
+            // Check the response for errors
+            if (reply->error() != QNetworkReply::NoError) {
+                info->finish(Thing::ThingErrorHardwareFailure, QT_TR_NOOP("Error connecting to the device."));
+                return;
+            }
+
+            // And finish the startPairing procedure
+            info->finish(Thing::ThingErrorNoError);
+        }
+    }
+
+The user is then asked to enter the PIN on the client app. Once that is completed, the plugin's `completePairing()` will be called. The PIN is provided in the `secret` parameter.
+
+    void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QString &username, const QString &secret)
+    {
+        Q_UNUSED(username)
+
+        // Obtain the connectivity information from the thing params
+        QString host = info->params().paramValue(myCoolDeviceThingIpParamTypeId).toString();
+        
+        QUrl url("http://" + host + "/completePairing");
+        QUrlQuery query;
+        query.addQueryItem("pin", secret);
+        url.setQuery(query);
+        QNetworkRequest request(url);
+        
+        // And send the network request to the device
+        QNetworkReply *reply = hardwareManager()->networkManager()->get(request);
+        connect(reply, &QNetworkReply::finished, reply, &QNetworkReply::deleteLater);
+
+        connect(reply, &QNetworkReply::finished, info, [this, info, reply](){
+
+            // Check the response for errors
+            if (reply->error() != QNetworkReply::NoError) {
+                info->finish(Thing::ThingErrorHardwareFailure, QT_TR_NOOP("Error connecting to the device."));
+                return;
+            }
+            QByteArray data = reply->readAll();
+            if (data.isEmpty()) {
+                qCWarning(dcExample) << "Failed to pair with device: did not get any key from the bridge";
+                return info->finish(Thing::ThingErrorAuthenticationFailure, QT_TR_NOOP("The device has rejected the connection request."));
+            }
+
+            // All good. Store the API key
+            pluginStorage()->beginGroup(info->thingId().toString());
+            pluginStorage()->setValue("apiKey", data);
+            pluginStorage()->endGroup();
+
+            info->finish(Thing::ThingErrorNoError);
+        });
+    }
+
+    
 ## Browsing
 
-TODO
+Things that can be browsed, for example media players, need to have `browsable` set to true in their plugin JSON file. In additon to that, at least 2 methods must be implemented: `browseThing()` and `browserItem()`.
+
+`browseThing()` will be used to actually browse the device or service, while `browserItem()` is used to retrieve a single item from the browser. The browsed items can be flat (i.e. just a list of items) or structured in a tree (i.e. a file system with folders and subfolders). Every item returned in `browseThing()` must be uniquely identifiable so that it can be retrieved at any time in `browserItem()`. This following example would return results from a an object tree:
+
+    void IntegrationPluginMock::browseThing(BrowseResult *result)
+    {
+        VirtualFsNode *node = m_virtualFs->findNode(result->itemId());
+        if (!node) {
+            result->finish(Thing::ThingErrorItemNotFound);
+            return;
+        }
+
+        foreach (VirtualFsNode *child, node->childs) {
+            result->addItem(child->item);
+        }
+        result->finish(Thing::ThingErrorNoError);
+    }
+
+The given `result` object contains the starting point given by `result->itemId()`. First the plugin tries to find that item in the file system. For the first time this method is called, `result->itemId()` will be empty. That indicates the root item. Once the item has been found in the file system, a list of child items is added to the result by using `BrowseResult::addItem(const BrowserItem &item)`. Each of the added items needs to have the item id filled in properly, for example "/item1", "/item2" and so on. If the user enters item1, this method will be called again, but the `result`'s itemId will contain "/item1". The plugin again finds this item in its file system and returns the list of its childs. In this case the item ids might be something like "/item1/subitem1", "/item1/subitem2" etc...
+
+The plugin calls the `finish()` method as usual to indicate when it's done.
+
+At a later point, nymea might retrieve info for a particular item again. This is done by calling `browserItem()` on the plugin:
+
+
+    void IntegrationPluginExample::browserItem(BrowserItemResult *result)
+    {
+        VirtualFsNode *node = m_virtualFs->findNode(result->itemId());
+        if (!node) {
+            result->finish(Thing::ThingErrorItemNotFound);
+            return;
+        }
+        result->finish(node->item);
+    }
+
+Again, the result object will contain the requested item id. Once the item is found, it is returned in the finish() call. If the item can't be found, the finish() method is to be called with the appropriate error as usual.
 
 ## Settings
 
-TODO
+Things can have settings. For instance, a bluetooth device with a small battery might not be possible to be connected all the time in order to not drain the battery. Such a device might need to be polled regularly. However, for some use cases (i.e. measuring a plant's soil moisture) a polling interval of once per hour might be enough, while for other use cases (i.e. triggering an alarm when something gets moist) a much more frequent interval might be required. To have the plugin catering for both use cases, thing settings can be implemented.
+
+Thing settings are very similar to the params used during setup, however, they can be changed at runtime, without having to reconfigure a thing. Like params, also settings need to be defined in the plugin's JSON file. For that, the plugin should connect to the things `settingChanged(const ParamTypeId &paramTypeId, const QVariant &value)` signal and handle it accordingly.
+
+    
+    void IntegrationPluginExample::setupDevice(ThingSetupInfo *info) {
+
+        // Do thing setup
+        ...
+        
+        // Update refresh schedule when the refresh rate setting is changed
+        connect(thing, &Thing::settingChanged, this, [this] (const ParamTypeId &paramTypeId, const QVariant &value) {
+            if (paramTypeId == myCoolDeviceThingRefreshIntervalSettingTypeId) {
+                qCDebug(dcExample) << "Polling interval changed to" << value.toInt() << "minutes";
+                ...
+            }
+        });
+    }
+
