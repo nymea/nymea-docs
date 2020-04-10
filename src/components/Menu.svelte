@@ -4,7 +4,7 @@
 
 <style></style>
 
-<h1>nymea</h1>
+<h1><a href="/">nymea</a></h1>
 
 {#if segment === 'getting-started'}
   <p>Getting Started</p>
