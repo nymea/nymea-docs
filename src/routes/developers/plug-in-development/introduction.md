@@ -1,5 +1,5 @@
 ---
-id: write-plugins
+id: introduction
 title: Introduction
 ---
 

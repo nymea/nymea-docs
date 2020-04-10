@@ -1,9 +1,9 @@
 ---
-id: build-configuration
+id: build-configurations
 title: Build configurations
 ---
 
-# Build configuration
+# Build configurations
 
 In order to customize the build process, the project ofers some build configurations.
 
