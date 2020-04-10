@@ -1,46 +1,22 @@
-<style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
+<script></script>
 
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-	figure {
-		margin: 0 0 1em 0;
-	}
-
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
-
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
-</style>
+<style></style>
 
 <svelte:head>
-	<title>Sapper project template</title>
+	<title>documentation &middot; nymea</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+<section>
+	<h2>Getting Started</h2>
+	<a href="/getting-started">Go</a>
+</section>
 
-<figure>
-	<img alt='Borat' src='great-success.png'>
-	<figcaption>HIGH FIVE!</figcaption>
-</figure>
+<section>
+	<h2>Users</h2>
+	<a href="/users">Go</a>
+</section>
 
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+<section>
+	<h2>Developers</h2>
+	<a href="/developers">Go</a>
+</section>
