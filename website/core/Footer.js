@@ -55,7 +55,7 @@ class Footer extends React.Component {
             <h5><a href={ this.pageUrl('developers', this.props.language) }>Developers</a></h5>
             <ul>
               <li><a href={ this.docUrl('plugins/write-plugins') }>Write Plug-Ins</a></li>
-              <li><a href={ this.docUrl('clients/write-clients') }>Write Clients</a></li>
+              <li><a href={ this.docUrl('clients/clients-introduction') }>Write Clients</a></li>
               <li><a href={ this.docUrl('build/build-nymea') }>Build Nymea</a></li>
             </ul>
           </div>

@@ -53,9 +53,10 @@
     }
    ],
    "Write Clients": [
+    "clients/clients-introduction",
     "clients/rawapi",
-    "clients/write-clients",
-    "clients/nymea-cli",
+    "clients/nymea-app-lib",
+    "clients/nymea-cli-dev",
     {
          "type": "subcategory",
          "label": "API",
