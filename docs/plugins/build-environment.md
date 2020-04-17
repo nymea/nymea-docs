@@ -34,3 +34,12 @@ Now you are ready to install the nymea packages:
 ```
 $ sudo apt-get install nymea nymea-doc libnymea1-dev nymea-dev-tools nymea-qtcreator-wizards
 ```
+
+This should be enough to start wring a plugin from scratch. However, in order to build existing plugins
+additional dependencies might be required. Those vary between plugins. All the required dependencies for
+building the main nymea-plugins repository can be installed with
+
+```
+$ sudo apt-get build-dep nymea-plugins
+```
+
