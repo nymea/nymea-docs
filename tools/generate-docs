@@ -245,13 +245,13 @@ function writeInterfacesDocumentation() {
 
     # Merge interfaces.md.in content with generated content
     printGreen "Merge interfaces docs with generated content"
-    cp ${CURRENT_DIR}/../docs/plugins/interfaces.md.in ${OUTPUT_DIR}/
+    cp ${CURRENT_DIR}/../docs/developers/integrations/interfaces.md.in ${OUTPUT_DIR}/
     #INTERFACES_GENERATED=$(cat ${OUTPUT_DIR}/interfaces-generated.md)
-    REPLACSTRING=@@GENERATED@@
+    REPLACESTRING=@@GENERATED@@
     FILETOINSERT=${OUTPUT_DIR}/interfaces-generated.md
     FILETOMODIFY=${OUTPUT_DIR}/interfaces.md.in
-    sed -e "/$REPLACSTRING/r $FILETOINSERT" -e "/$REPLACSTRING/d" $FILETOMODIFY > ${OUTPUT_DIR}/interfaces.md
-    cp -v ${OUTPUT_DIR}/interfaces.md ${CURRENT_DIR}/../docs/plugins/interfaces.md
+    sed -e "/$REPLACESTRING/r $FILETOINSERT" -e "/$REPLACESTRING/d" $FILETOMODIFY > ${OUTPUT_DIR}/interfaces.md
+    cp -v ${OUTPUT_DIR}/interfaces.md ${CURRENT_DIR}/../docs/developers/integrations/interfaces.md
 }
 
 function writeApiDocumentation() {
@@ -260,13 +260,13 @@ function writeApiDocumentation() {
 
     # Merge interfaces.md.in content with generated content
     printGreen "Merge API docs with generated content"
-    cp ${CURRENT_DIR}/../docs/clients/raw-api.md.in ${OUTPUT_DIR}/
+    cp ${CURRENT_DIR}/../docs/developers/clients/raw-api.md.in ${OUTPUT_DIR}/
     #INTERFACES_GENERATED=$(cat ${OUTPUT_DIR}/interfaces-generated.md)
-    REPLACSTRING=@@GENERATED@@
+    REPLACESTRING=@@GENERATED@@
     FILETOINSERT=${OUTPUT_DIR}/json-rpc-api-generated.md
     FILETOMODIFY=${OUTPUT_DIR}/raw-api.md.in
-    sed -e "/$REPLACSTRING/r $FILETOINSERT" -e "/$REPLACSTRING/d" $FILETOMODIFY > ${OUTPUT_DIR}/raw-api.md
-    cp -v ${OUTPUT_DIR}/raw-api.md ${CURRENT_DIR}/../docs/clients/raw-api.md
+    sed -e "/$REPLACESTRING/r $FILETOINSERT" -e "/$REPLACESTRING/d" $FILETOMODIFY > ${OUTPUT_DIR}/raw-api.md
+    cp -v ${OUTPUT_DIR}/raw-api.md ${CURRENT_DIR}/../docs/developers/clients/raw-api.md
 }
 
 
