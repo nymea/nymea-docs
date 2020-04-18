@@ -2,6 +2,7 @@
     "docs": {
         "About nymea": [
             "about/overview",
+            "about/nymeainaction",
             "about/integrations",
             "about/features",
             "about/license",
