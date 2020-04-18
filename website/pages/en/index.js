@@ -69,7 +69,7 @@ class HomeSplash extends React.Component {
             <Button href={ docUrl('about/overview') }>About nymea</Button>
             <Button href={ docUrl('users/installation/gettingstarted') }>Users guide</Button>
             <Button href={ docUrl('developers/introduction') }>Developers guide</Button>
-            <Button href={ docUrl('developers/introduction') }>B2B services</Button>
+            <Button href={ './b2bservices' }>B2B services</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -105,7 +105,7 @@ class Index extends React.Component {
     );
 
     const TryOut = () => (
-      <Block id="purpose">
+      <Block id="purpose" background="light">
         {[
           {
             content:
@@ -138,7 +138,7 @@ class Index extends React.Component {
     );
 
     const LearnHow = () => (
-      <Block background="light">
+      <Block>
         {[
           {
             content:
@@ -152,7 +152,7 @@ class Index extends React.Component {
     );
 
     const Features = () => (
-      <Block layout="fourColumn">
+      <Block layout="fourColumn" background="light">
         {[
           {
             content: 'nymea gets you up and running with your smart home setup in no time. Just install nymea:core and nymea:app and you\'re all set with a powerful smart home solution that does not require powerful hardware or fiddling with cryptic configuration files. Using 100% free and open source software.',
