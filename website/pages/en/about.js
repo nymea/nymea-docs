@@ -6,7 +6,7 @@ const Container = CompLibrary.Container;
 class QuickStart extends React.Component {
   render() {
     return <Container>
-        <h1>Quick Start</h1>
+        <h1>About nymea</h1>
       </Container>;
   }
 }

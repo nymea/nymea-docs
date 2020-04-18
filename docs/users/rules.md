@@ -1,6 +1,6 @@
 ---
-id: rule-engine
-title: Rule engine
+id: rules
+title: Smart rules
 ---
 
 ## Rule engine
@@ -8,7 +8,7 @@ title: Rule engine
 Rules define all the logic in nymea. A Tule is composed by a set of Events, States and Actions.
 
 This diagram shows how rules are composed and interpreted by the Rule Engine.
-
+    
 //TODO add rule engine image
 
 A basic concept of a Rule is the trigger path. The path defines when a Rule is triggered for evaluation. 

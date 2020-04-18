@@ -3,10 +3,10 @@ id: license
 title: License
 ---
 
+nymea software and libraries are provided under a dual license model designed to meet the development and distribution needs of both commercial distributors (such as OEMs and VARs) and open source projects.
+
 ## Commercial license
 
-nymea software and libraries are provided under a dual license model designed to meet the development and distribution needs of both commercial distributors (such as OEMs and VARs) and open source projects.
-Commercial License
 
 With the commercial license you can combine and distribute your software with nymea for any commercial purpose. You don’t have to comply with the rules of the open-source license.
 
@@ -28,7 +28,7 @@ More about the GPLv3 and LGPLv3 here: https://www.gnu.org/licenses/licenses.html
 
 If you consider to create commercial products based on open-source licenses, we advise to check for any legal implications.
 
- 
+
 
 Not sure what to do?
 [Ask the Forum](https://forum.nymea.io)
