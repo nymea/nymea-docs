@@ -3,7 +3,7 @@ id: features
 title: Features
 ---
 
-## Features of nymea:core
+## Supported platforms
 
 ### nymea:core platform support
 
@@ -27,7 +27,7 @@ title: Features
 *   Other proven setups (experimental/tech previews)
       *   Kiosk: Native application suited for wall-mounted panels, kiosks and similar.
 
-### nymea:cloud integration
+## nymea:cloud integration
 
 * Remote connection
 * Push-notifications
@@ -156,10 +156,3 @@ title: Features
 * Filter for entries in a given timeframe
 * Filter for a dedicated device
 
-### Plug-Ins - Check the nymea-plugins repository for the latest plug-in list.
-
-* Though every plug-in have the same structure the main usage for plug-ins can be categorised as following:
-    * Simulation Plug-Ins - simulation of common device categories, used for tests or getting used to nymea
-    * Commander Plug-Ins - low level plug-in for example to receive or send TCP packages
-    * Device Plug-Ins - Add devices to nymea like Philips Hue
-    * Service Plug-Ins - integrate online services, like Netatmo or OpenWeather Map

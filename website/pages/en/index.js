@@ -6,6 +6,7 @@
  */
 
 const React = require('react');
+
 const CompLibrary = require('../../core/CompLibrary.js');
 
 const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
@@ -14,6 +15,8 @@ const GridBlock = CompLibrary.GridBlock;
 
 class HomeSplash extends React.Component {
   render() {
+    console.log("***");
+    console.log(this.props);
     const {siteConfig, language = ''} = this.props;
     const {baseUrl, docsUrl} = siteConfig;
     const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
@@ -63,9 +66,10 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
-            <Button href={docUrl('build/build-nymea.html')}>Write Plug-Ins</Button>
-            <Button href={docUrl('plugins/write-plugins.html')}>Write Clients</Button>
-            <Button href={docUrl('clients/clients-introduction.html')}>Build nymea</Button>
+            <Button href={ docUrl('about/overview') }>About nymea</Button>
+            <Button href={ docUrl('users/installation/gettingstarted') }>Users guide</Button>
+            <Button href={ docUrl('developers/introduction') }>Developers guide</Button>
+            <Button href={ docUrl('developers/introduction') }>B2B services</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -75,22 +79,145 @@ class HomeSplash extends React.Component {
 
 class Index extends React.Component {
   render() {
-    return <Container>
-      <ul>
-        <li>
-          <h3><a href="./quick-start">Quick Start</a></h3>
-          <p>Get started by installing nymea on a platform of your choice.</p>
-        </li>
-        <li>
-          <h3><a href="./users">Users</a></h3>
-          <p>Learn how to leverage nymea for different use cases and configure it to suit your needs.</p>
-        </li>
-        <li>
-          <h3><a href="./developers">Developers</a></h3>
-          <p>Learn how to integrate devices/services and how to write your own client.</p>
-        </li>
-      </ul>
-    </Container>;
+    const {config: siteConfig, language = ''} = this.props;
+    const {baseUrl} = siteConfig;
+
+    const Block = props => (
+      <Container
+        padding={['bottom', 'top']}
+        id={props.id}
+        background={props.background}>
+        <GridBlock
+          align="center"
+          contents={props.children}
+          layout={props.layout}
+        />
+      </Container>
+    );
+
+    const Intro = () => (
+      <div
+        className="productShowcaseSection paddingBottom"
+        style={{textAlign: 'center'}}>
+        <h2>Open edge IoT middleware</h2>
+        <MarkdownBlock>nymea is an open source IoT stack. Its main components are the core, the plugins and the client app. Do you want to enable your hardware to work with nymea? Plugin development is what you want. Do you want to create your user interface? Check out nymea:app as a reference implementation. Eager to extend the overall platform? Dive into core development!</MarkdownBlock>
+      </div>
+    );
+
+    const TryOut = () => (
+      <Block id="purpose">
+        {[
+          {
+            content:
+              'Connect lighting, media, heatings, irrigations and sprinklers, garage doors, alarm systems and many more to a centralized, local and privacy focused control center with nymea. Or build your device running nymea to connect and integrate with other solutions, such as Alexa or Google Home.',
+            image: `${baseUrl}img/nymea-integrations.png`,
+            imageAlign: 'left',
+            title: 'nymea is built for connected devices',
+          },
+        ]}
+      </Block>
+    );
+
+    const Description = () => (
+      <Block background="believes">
+        {[
+          {
+            content:
+              'We think that IoT devices, especially inside your home do not have to be cloud connected all the time. ' +
+              'Privacy and reliability are our main concerns. With that in mind we build anything we do with a offline-first approach. ' +
+              'This results in blazing fast reaction times, full control over personal data and guarantees your product won\'t be rendered ' +
+              'useless if the cloud provider you\'ve been betting on shuts down their service. <br> ' +
+              ' ' +
+              'The nymea Team',
+            image: `${baseUrl}img/heart.svg`,
+            imageAlign: 'right',
+            title: 'Affair of the heart',
+          },
+        ]}
+      </Block>
+    );
+
+    const LearnHow = () => (
+      <Block background="light">
+        {[
+          {
+            content:
+              'Simple, yet powerful.<br><br>The nymea core stack is written in C++ and Qt. This results in low hardware requirements and high performance. To ease and speed up development time, individual integrations and automation behaviours can be added with JavaScript.',
+            image: `${baseUrl}img/Software.svg`,
+            imageAlign: 'right',
+            title: 'The nymea software stack',
+          },
+        ]}
+      </Block>
+    );
+
+    const Features = () => (
+      <Block layout="fourColumn">
+        {[
+          {
+            content: 'nymea gets you up and running with your smart home setup in no time. Just install nymea:core and nymea:app and you\'re all set with a powerful smart home solution that does not require powerful hardware or fiddling with cryptic configuration files. Using 100% free and open source software.',
+            image: `${baseUrl}img/users.svg`,
+            imageAlign: 'top',
+            title: 'For users',
+          },
+          {
+            content: 'When you\'re building your own IoT device, nymea will help with all the software efforts. Whether it\'s connecting your device to others, adding easy set-up features or are looking for a command & control center for your devices, nymea\'s got your back.',
+            image: `${baseUrl}img/developers.svg`,
+            imageAlign: 'top',
+            title: 'For developers',
+          },
+          {
+            content: 'Building IoT enabled customer grade products can be hard. We\'ve ramped up with all the required know-how and with the nymea stack we\'ll be supporting your business. Whether it\'s fast prototyping and consulting, providing needed components, building entire products or caring for deployments and updates. Together with our partners we offer in-field experience for all of those aspects.',
+            image: `${baseUrl}img/businesses.svg`,
+            imageAlign: 'top',
+            title: 'For businesses',
+          },
+        ]}
+      </Block>
+    );
+
+    const Showcase = () => {
+      if ((siteConfig.users || []).length === 0) {
+        return null;
+      }
+
+      const showcase = siteConfig.users
+        .filter(user => user.pinned)
+        .map(user => (
+          <a href={user.infoLink} key={user.infoLink}>
+            <img src={user.image} alt={user.caption} title={user.caption} />
+          </a>
+        ));
+
+      const pageUrl = page => baseUrl + (language ? `${language}/` : '') + page;
+
+      return (
+        <div className="productShowcaseSection paddingBottom">
+          <h2>nymea Showcases</h2>  
+          <p>This project is used for those projects</p>
+          <div className="logos">{showcase}</div>
+          <div className="more-users">
+            <a className="button" href={pageUrl('users.html')}>
+              More Showcases
+            </a>
+          </div>
+        </div>
+      );
+    };
+
+    return (
+      <div>
+        <HomeSplash siteConfig={siteConfig} language={language} />
+        <div className="mainContainer">
+          <Intro />
+          <Features />
+          <LearnHow />
+          <TryOut />
+          <Description />
+          <Showcase />
+        </div>
+      </div>
+    );
   }
 }
 

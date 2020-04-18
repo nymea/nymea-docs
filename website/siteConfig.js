@@ -22,7 +22,7 @@ const users = [
 
 const siteConfig = {
   title: 'nymea',
-  tagline: 'Developer Documentation',
+  tagline: 'IoT - Connectivity - Smart Home',
   url: 'https://nymea.io', // Your website URL
   baseUrl: '/', // Base URL for your project */
 

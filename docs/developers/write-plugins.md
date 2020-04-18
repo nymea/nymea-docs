@@ -1,6 +1,6 @@
 ---
 id: write-plugins
-title: Introduction
+title: Plugin development
 ---
 
 Plugins in nymea are used to extend the functionality and capabilities of nymea. A plugin is basically a shared library, which will be loaded dynamically by nymea during the start up process.

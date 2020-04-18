@@ -1,36 +1,171 @@
 ---
-id: crossbuilder
-title: Crossbuilder
+id: build-nymea
+title: Building nymea
 ---
 
-In order to build a debian package for nymea, we provide a very useful tool for crosscompiling called `crosscompiler`.
+This section assumes that the build environment has already been set up. Please refer to the previous 
+section if the build environment has not been set up yet.
+
+Depending on the need, nymea can be built using a graphical IDE or via command line. If the purpose of 
+building nymea from source is to install nymea on a new system, or do only small modifications like 
+applying patches, building via the command line might be the better choice. A developer changing the 
+code will most likely want to use QtCreator as it offers code completion, inline documentation and all 
+the other features that are expected from an IDE. 
+
+## Building natively
+
+The nymea source code can be obtained from [GitHub](https://github.com/nymea/). There is a range of repositories. Depending on the
+need, only a selection of those repositories might be checked out.
+
+If the entire nymea stack is to be built from source, all those repositories are required.
+
+If only individual parts are to be built from source, each individual repository can be built individually and the others uses 
+from the nymea. After following the instructions for setting up the build environment all parts should be available as binary 
+form on the development machine already.
+
+Each module supports different build configurations. In order to activate those, append the given option to the `qmake` line. For
+example: `qmake .. PREFIX=/usr CONFIG+=release`.
+
+### nymea-gpio
+
+```
+git clone https://github.com/nymea/nymea-gpio
+mkdir nymea-gpio/builddir
+cd nymea-gpio/builddir
+qmake .. PREFIX=/usr/
+make
+sudo make install
+```
+
+This module supports the following build configurations:
+
+* debug: `CONFIG+=debug`
+* release: `CONFIG+=debug`
+
+### libnymea-networkmanager
+
+```
+git clone https://github.com/nymea/libnymea-networkmanager
+mkdir libnymea-networkmanager/builddir
+cd libnymea-networkmanager/builddir
+qmake .. PREFIX=/usr/
+make
+sudo make install
+```
+
+This module supports the following build configurations:
+
+* debug: `CONFIG+=debug`
+* release: `CONFIG+=debug`
+
+### nymea-networkmanager
+
+```
+git clone https://github.com/nymea/nymea-networkmanager
+mkdir nymea-networkmanager/builddir
+cd nymea-networkmanager/builddir
+qmake .. PREFIX=/usr/
+make
+sudo make install
+```
+
+This module supports the following build configurations:
+
+* debug: `CONFIG+=debug`
+* release: `CONFIG+=debug`
+
+### nymea-remoteproxyclient
+
+```
+git clone https://github.com/nymea/nymea-remoteproxyclient
+mkdir nymea-remoteproxyclient/builddir
+cd nymea-remoteproxyclient/builddir
+qmake .. PREFIX=/usr/
+make
+sudo make install
+```
+
+This module supports the following build configurations:
+
+* debug: `CONFIG+=debug`
+* release: `CONFIG+=debug`
+
+### nymea-mqtt
+
+```
+git clone https://github.com/nymea/nymea-mqtt
+mkdir nymea-mqtt/builddir
+cd nymea-mqtt/builddir
+qmake .. PREFIX=/usr/
+make
+sudo make install
+```
+
+This module supports the following build configurations:
+
+* debug: `CONFIG+=debug`
+* release: `CONFIG+=debug`
+
+### nymea
+
+```
+git clone https://github.com/nymea/nymea
+mkdir nymea/builddir
+cd nymea/builddir
+qmake .. PREFIX=/usr/
+make
+sudo make install
+```
+
+This module supports the following build configurations:
+
+* debug: `CONFIG+=debug`
+* release: `CONFIG+=debug`
+* build without tests: `CONFIG+=disabletesting`
+* enable code coverage reporting for tests: `CONFIG+=coverage`
+
+### nymea-plugins
+
+```
+git clone https://github.com/nymea/nymea-plugins
+mkdir nymea-plugins/builddir
+cd nymea-plugins/builddir
+qmake .. PREFIX=/usr/
+make
+sudo make install
+```
+
+This module supports the following build configurations:
+
+* debug: `CONFIG+=debug`
+* release: `CONFIG+=debug`
+* build individual plugins only: `CONFIG+=selection`
+* select a plugin to be built: `PLUGINS+=pluginname` (requires `CONFIG+=selection`, can be given multiple times)
+
+
+## Cross-compiling
+
+In order to build debian packages for nymea for your target device, we provide a tool for crosscompiling called `crosscompiler`.
 This tool makes helps to build a debian package inside a lxd container which can makes sure all required packages for building and deploying
 are available and also for different architectures.
 
 The `crossbuilder` tool can be started within a git source code repository and generates a brand new lxc container for the given distribution and architecture.
 
-Once `crossbuilder` has been installed you can check the available architectures and distribution using following command:
-
-    $ lxc image list nymea
-
-
-The source code of the project can be found [here](https://github.com/nymea/crossbuilder/).
-
-## Installation
+### Installation
 
 Install the crossbuilder package from the nymea repositoy (see install section):
 
     $ sudo apt-get install crossbuilder
 
 
-## Setup
+### Setup
 
 In order to set up the crossbuilder lxd environment you can run following command and follow the setup instructions:
 
     $ crossbuilder setup-lxd
 
 
-## Building a project using crossbuilder
+### Building
 
 Assuming you are running crossbuilder on a `amd64` Ubuntu machine, and you want to build a project for `armhf` debian `stretch` you can do following steps.
 
@@ -139,7 +274,7 @@ Here you can add the remote information of the target machine (in this example a
 
 Each new build will from now on be installed automatically on the target machine until you delete the configuration file.
 
-## Interacting with the containers
+### Interacting with the containers
 
 Remove a container if the source repositoy does not exist any more:
 
