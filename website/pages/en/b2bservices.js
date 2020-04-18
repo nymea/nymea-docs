@@ -37,7 +37,7 @@ class Index extends React.Component {
         {[
           {
             content:
-              'Make your product work with anything.<br><br>Nymea is ready to extend connectivity of your IoT device to virtually anything. Adding new integrations is easily done via over-the-air updates.',
+              'nymea is ready to extend connectivity of your IoT device to virtually anything. Adding new integrations is easily done via over-the-air updates.<br><br>nymea is ready to be integrated on a variety of GNU/Linux based devices. Be it Yocto, Ubuntu Core, Debian or anything else, we\'ve got the experience in delivering the nymea stack to your platform of choice.',
             image: `${baseUrl}img/nymea-integrations.png`,
             imageAlign: 'left',
             title: 'Save thousands of integration hours',
@@ -51,7 +51,7 @@ class Index extends React.Component {
         {[
           {
             content:
-              'A powerful, yet lean addon for your device firmware.',
+              'A powerful, yet lean addon for your device firmware.<br><br>nymea does not require a power horse, it\'s perfectly fine with low cost modules as long as GNU/Linux is available for them.',
             image: `${baseUrl}img/nymea_vs_java_footprint.png`,
             imageAlign: 'right',
             title: 'The worlds smallest footprint',
@@ -65,7 +65,7 @@ class Index extends React.Component {
         {[
           {
             content:
-              'As reliable as a Swiss watch.<br><br>As flexible as a Swiss Army knife.',
+              'Together with our partners we have developed embedded devices ready to base your IoT product on.',
             image: `${baseUrl}img/HW-SW-modules.png`,
             imageAlign: 'right',
             title: 'Also need hardware?',
