@@ -161,7 +161,7 @@ class Index extends React.Component {
             title: 'For users',
           },
           {
-            content: 'When you\'re building your own IoT device, nymea will help with all the software efforts. Whether it\'s connecting your device to others, adding easy set-up features or are looking for a command & control center for your devices, nymea\'s got your back.',
+            content: 'When you\'re building your own IoT device, nymea will help with all the software efforts. Whether it\'s connecting your device to others, adding easy set-up features, creating smart hubs for for all your devices or adding control and setup frontends, nymea\'s got your back.',
             image: `${baseUrl}img/developers.svg`,
             imageAlign: 'top',
             title: 'For developers',
