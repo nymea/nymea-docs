@@ -100,7 +100,7 @@ class Index extends React.Component {
         className="productShowcaseSection paddingBottom"
         style={{textAlign: 'center'}}>
         <h2>Open edge IoT middleware</h2>
-        <MarkdownBlock>nymea is an open source IoT stack. It is used to build smart IoT devices, smart home gateways or enable individual IoT related features in connected products.</MarkdownBlock>
+        <MarkdownBlock>nymea is an open source IoT stack. It is used to build smart IoT devices, smart home gateways or enable individual IoT related features in connected products. We follow a \"local first\" approach, which means nymea will keep users data private and will still be functional even without Internet connection. Obviously, cloud integration is still available if wanted.</MarkdownBlock>
       </div>
     );
 
