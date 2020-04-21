@@ -5,6 +5,130 @@ title: Changelog
 
 ## nymea Changelog
 
+### V 0.20.0
+```text
+nymea:app
+    Rework grouping behavior a bit
+    Support “Thing” instead of “Device” in script editor
+    Upgrade to Qt 5.14 (Android and iOS)
+    Build multi-arch Android packages
+    Some fixes when reconfiguring discovered things
+    Fix pressure unit in weather view
+    Fix broken time settings on Android
+    Fix some graphs not updating correctly when imperial units are used
+    Fix spaces and “Umlauts” in ScriptEditor’s code completion
+    Fix missing state change values in the log viewer
+    Add support for the Radio Paradise icon when browsing media
+    Fix removing things being broken in some circumstances
+    Fix dark-on-dark font in the header with some styles
+
+libnymea-networkmanager (0.3.0)
+    Remove misleading return value, now that the method is async
+
+nymea-networkmanager (0.5.2)
+    Fix race conditions at startup.
+
+nymea (0.20.0)
+    Rename devices to Integrations/Things
+    Add Radio Paradise icon support in the browser
+    Fix param values getting lost in ScriptEvents
+    Add better error reporting when a client fails to establish the
+    Allow removal of discovered child things
+    Add a displayMessage for errors to browsing operations
+    Fix initialization of ScriptState values on startup
+    Fix remving of things without plugin
+
+nymea-plugins (0.20.0)
+    Denon Plug-In: Heos add browsing
+    New Plugin: Air Quality Index
+    New Plug-In: Dynatrace UFO
+    Keba: add interfaces, async actions and async setup
+    Hue: Add support for scenes and cleanup removed devices
+    aWATTar: Add support for aWATTar Germany
+    Shelly: Fix channel parameter for generated switch on Shelly1
+    OpenWeatherMap: Fix support for custom OWM API tokens
+    Shelly: Fix connection status if a Shelly connects too fast
+    FlowerCare: Fix rediscovery for reconfiguration
+    Netatmo: Added userandpassword setup method
+    PhilipsHue: Fix motion sensor timeout
+    Shelly: Provide defaults for all parameters
+    Philips Hue: Fix bridge rediscovery
+    OneWire: Fix manual discovery of connected devices
+    CoinMarketCap: New API
+    TCP Commander: Fix input with multiple incoming connections
+
+nymea-plugins-simulation (0.7)
+    Update to API changes (IntegrationPlugins and Things)
+
+nymea-plugin-modbuscommander (0.1.3)
+    Update to API changes (IntegrationPlugin and Things)
+
+nymea-plugin-unipi (0.1.4)
+    Add command queue and update to new API
+
+nymea-plugin-knx (0.0.2)
+    Add to nymea release process
+    Add to nymea release chain
+    Fix scaling issue in the dimming code
+
+nymea-qtcreator-wizards (0.0.7)
+    Update DevicePlugin to IntegrationPlugin
+
+nymea-plugin-ekey (0.0.3)
+    Update to new API (IntegrationPlugin and Things)
+```
+
+### V 0.19.0
+```text
+nymea:app (1.0.187)
+    Fix shadows when using multiple tabs
+    Hide delete option for child things
+    Open context menus on longpress
+    Fix a crash on some Android devices
+    Reduce minimum tile size
+    Add a placeholder on switches when there are no presses yet
+    Improve error reporting when a thing fails to set up
+    Add support for changing the password and revoke tokens
+    Fix log viewer for action parameters
+    Fix weather view conversion to imperial
+
+nymea (0.19.0)
+    Delete devices before plugin destruction
+    Cleanup Rule definition in introspection
+    Add more detailed setup status to API
+    Improve heating interfaces
+    Add Users API
+    Fix some issues reported by valgrind
+    Fix ScriptAction qqmlparserstatus
+    Keep devices without plugins in the system
+    Update copyright in --help text
+    Bump version for 0.19
+    Add units: newton, newtonmeter and rpm
+    Stabilize logging tests
+
+nymea-plugins (0.19.0)
+    Shelly: Add 2.5, 1PM, Dimmer, RGBW2 and Plug/PlugS
+    Bose: Add support for presets
+    TP-Link: Add support for HS100, HS103, HS105, HS200 and KP100
+
+nymea-mqtt (0.1.5)
+    Fix a memory leak reported by valgrind
+    Allow clients with protocol version 3.1.0 to connect to the server
+    Initial attempt to start documenting things
+
+libnymea-networkmanager (0.2.3)
+    Reinitialize nm if the initial properties cannot be loaded during startup
+
+nymea-zeroconf-plugin-avahi (0.5)
+    Fix the workaround for bad routers after refactoring
+
+nymea-qtcreator-wizards (0.0.6)
+
+    Update build deps in wizard created dpkg
+    Add displayName properties to wizard
+
+```
+
 ### V 0.18.0
 ```text
 nymea-zigbee (0.0.4)
