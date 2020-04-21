@@ -12,6 +12,9 @@ Nymea can be used to solve specific small problems for IoT based use cases as we
 
 nymea consists of three parts: nymea:core, nymea:ux and nymea:cloud.
 
+
+![](/img/nymea-overview.svg)
+
 ### nymea:core
 
 nymea:core is the core piece of the platform. It refers to the services and libraries used to build the edge device where the main software is the nymea daemon or nymead. It can run on Linux powered 
@@ -28,8 +31,9 @@ nymea:ux refers to the user facing frontend of a nymea system. This can be a cli
 
 nymea:cloud is optional and extends nymea with cloud centric features such as delivering push notifications to client devices or enabling remote connections from nymea:ux to nymea:core in an easy to setup and secure manner.
 
-<br /><br />
+## Plug-in based and extensible
+
+nymea is made of building blocks. Using plugins for many tasks, a large variety of setup combinations is possible.
 
 ![nymea structure](https://raw.githubusercontent.com/guh/nymea-wiki/master/docs/en/images/home-stack.png)
 
-<br />

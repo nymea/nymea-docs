@@ -5,29 +5,48 @@ title: nymea:app
 
 The typical use case for nymea:app is to be installed on the mobile device of the users along with additional installations on laptops, desktop PCs and wall mounted or centrally placed touch screens to interact with the system.
 
-### Android
+## Smartphones and tablets
 
-nymea:app can be found in the Google Play store ready to be installed on any Android device supporting Android 5.0 or greater.
+nymea:app can be found in the Google Play store for Android, on the iTunes store for iOS and on the Open Store for the Ubuntu phone.
 
-### iOS
+<div align="center">
+<a href="https://play.google.com/store/apps/details?id=io.guh.nymeaapp"><img src="/img/badges/playstore.png" height="50px"></a>
+<a href="https://itunes.apple.com/us/app/nymea-app/id1400810250?mt=8"><img src="/img/badges/appstore.png" height="50px"></a>
+<a href="https://open-store.io/app/io.guh.nymeaapp"><img src="/img/badges/open-store.svg" height="50px"/></a>
+</div>
 
-nymea:app can be found in the iTunes store ready to be installed on any iOS device supporting iOS 11.0 or greater.
 
-### Ubuntu Touch
+Minimum system requirements:
+* iOS 11 or greater
+* Android 5.0 or greater
+* Ubuntu Phone framework 16.04 or greater
 
-nymea:app can be found in the Open Store and should work fine on any Ubuntu Phone with at least framework 16.04 in place.
+## Laptops and Desktops
 
-### macOS
+nymea:app can be found in the macOS app store and the Ubuntu Core Snap store. For Windows we offer an offline installer from our downloads section.
 
-nymea:app can be found in the macOS app store and should work fine on any Mac with macOS 10.13 or greater.
+![](/img/desktop-app.png)
 
-### Windows
 
-nymea:app for Windows can be downloaded from [here](https://downloads.nymea.io/nymea-app/). Please note that installing the app from the downloads section will require to manually redownload and update to newer versions. At this point we do not providing a package for the Windows app store.
+<div align="center">
+<a href="https://apps.apple.com/us/app/nymea-app/id1488785734"><img src="/img/badges/macos.svg" height="50px"/></a>
+<a href="https://snapcraft.io/nymea-app"><img src="/img/badges/snap-store.png" height="50px"/></a>
+<a href="https://downloads.nymea.io/nymea-app/nymea-app-win-installer.exe"><img src="/img/badges/windows.svg" height="50px"/></a>
+</div>
 
-### Debian GNU/Linux and Ubuntu
+Minimum system requirements:
 
-nymea:app for Debian GNU/Linux and Ubuntu can be found in the same repository as nymea:core.
+* Windows 10 or greater
+* macOS 10.13 or greater
+* Ubuntu Core 18.04 or greater
+
+> Please note that installing the app from the downloads section will require to manually redownload and update to newer versions. At this point we do not providing a package for the Windows app store.
+
+> Alternatively, on Ubuntu and Debian GNU/Linux, the repository version can be used too. See below for details.
+
+## Embedded devices and manual setups
+
+nymea:app can also be installed from the same package repository as nymea:core.
 
 Currently, these versions are officially supported:
 
@@ -62,14 +81,3 @@ sudo apt-get install nymea-app
 
 Once this command completes, nymea:app should be installed and ready to use from the applications menu.
 
-### Snap
-
-The nymea:app snap can be found in the [snap app store](https://snapcraft.io/nymea-app). For the snap, nymea
-provides amd64 and armhf packages.
-
-
-It can be installed using the app store application of the used distribution, or via this command:
-
-```
-sudo snap install nymea-app
-```
