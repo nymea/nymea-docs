@@ -9,10 +9,12 @@ The typical use case for nymea:app is to be installed on the mobile device of th
 
 nymea:app can be found in the Google Play store for Android, on the iTunes store for iOS and on the Open Store for the Ubuntu phone.
 
+![](/img/mobile-app.png)
+
 <div align="center">
-<a href="https://play.google.com/store/apps/details?id=io.guh.nymeaapp"><img src="/img/badges/playstore.png" height="50px"></a>
 <a href="https://itunes.apple.com/us/app/nymea-app/id1400810250?mt=8"><img src="/img/badges/appstore.png" height="50px"></a>
 <a href="https://open-store.io/app/io.guh.nymeaapp"><img src="/img/badges/open-store.svg" height="50px"/></a>
+<a href="https://play.google.com/store/apps/details?id=io.guh.nymeaapp"><img src="/img/badges/playstore.png" height="50px"></a>
 </div>
 
 

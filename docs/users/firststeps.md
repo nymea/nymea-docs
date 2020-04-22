@@ -20,33 +20,32 @@ connected to the network.
 Connect the LAN cable to the system running nymea:core. It will automatically obtain the network
 configuration via DHCP.
 
-### WiFi setup in nymea:app
+### Connecting via WiFi
 
-Depending on the used hardware, there are different ways to connect to WiFi. If nymea:app is running
-on the same system as nymea:core, for example on a Raspberry Pi with touch screen, the network can be
-set up using nymea:app by entering the *Network settings* in the *System Settings* view.
+Depending whether the system with nymea:core has a display or not, the WiFi can be set up directly
+on the nymea:core system, or from another device by provisioning the WiFi credentials to nymea:core
+via Bluetooth.
 
-TODO: Screenies!
+#### Local WiFi setup in nymea:app
 
-### Bluetooth to WiFi setup
+If nymea:app is running on the same system as nymea:core, for example on a Raspberry Pi with touch 
+screen, the network can be set up directly by entering the *Network settings* in the 
+*System Settings* view.
+
+![](/img/setup-wifi.gif)
+
+#### Remote WiFi setup via Bluetooth
 
 If nymea:core is running on a headless system, nymea:app can be used from another device, e.g. a smart phone
 or Laptop to configure the WiFi of the nymea:core system by connecting via Bluetooth.
 
-In nymea:app, open the *Wireless setup* menu and wait for the nymea:core system to appear in the list.
+* In nymea:app, open the *Wireless setup* menu and wait for `BT WLAN Setup` to appear in the list.
+* Connecto to nymea:core by selecting it from the list.
+* Once connected, nymea:core will start scanning for WiFi networks and present the result to nymea:app.
+* Select the preferred WiFi from the list and enter the password.
+* If everything went well, the nymea:core system is now connected to the WiFi.
 
-TODO: Screenie
-
-Connecto to nymea:core by selecting it from the list. Once connected, nymea:core will start scanning for
-WiFi networks and present the result to nymea:app.
-
-TODO: Screenie
-
-Select the preferred WiFi from the list and enter the password.
-
-TODO: Screenie
-
-If everything went well, the nymea:core system is now connected to the WiFi.
+![](/img/bt-wifi-setup.gif)
 
 
 ## First setup
@@ -55,3 +54,6 @@ Now that nymea:core is connected to the network, it is time to create login cred
 setup protected. When connecting to a nymea:core system for the first time, it will prompt for a username
 and a password.
 
+Enter your email address as username and pick a new password.
+
+![](/img/user-setup.gif)
