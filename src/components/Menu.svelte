@@ -1,86 +1,122 @@
 <script>
-  import * as app from '@sapper/app';
+  import { onMount } from 'svelte';
+  import { stores } from '@sapper/app';
 
+  const { preloading, page, session } = stores();
 
-  export let segment;
+  export let level = 0;
+  export let base = '';
+  export let items = [];
+  export let parents = [];
 </script>
 
-<style></style>
+<style>
+  :root {
+    --nav-list-header-color: #676767;
+    --nav-item-color: #202020;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0 0 0 0.75rem;
+  }
 
-<h1><a href="/">nymea</a></h1>
+  ul.level-0,
+  ul.level-1 {
+    margin-left: 0;
+  }
 
-{#if segment === 'getting-started'}
-  <p>Getting Started</p>
-{:else if segment === 'users'}
-  <p>Users</p>
-{:else if segment === 'developers'}
-  <p>Developers</p>
-  <ul>
-    <li>
-      Nymea
-      <ul>
-        <li><a href="{segment}/nymea/about">About</a></li>
-        <li><a href="{segment}/nymea/terms-definition">Terms definition</a></li>
-        <li><a href="{segment}/nymea/usage">Usage</a></li>
-        <li><a href="{segment}/nymea/features">Features</a></li>
-        <li><a href="{segment}/nymea/rule-engine">Rule engine</a></li>
-        <li><a href="{segment}/nymea/scripting">Scripting</a></li>
-        <li><a href="{segment}/nymea/interfaces">Interfaces</a></li>
-        <li><a href="{segment}/nymea/configuration">Configuration</a></li>
-        <li>
-          <a href="{segment}/nymea/install">Install</a>
-          <ul>
-            <li><a href="{segment}/nymea/install/debian">Debian</a></li>
-            <li><a href="{segment}/nymea/install/snap">Snap</a></li>
-            <li><a href="{segment}/nymea/install/yocto">Yocto</a></li>
-          </ul>  
-        </li>
-      </ul>
-    </li>
-    <li>
-      Build
-      <ul>
-        <li><a href="{segment}/build/build-nymea">Build nymea</a></li>
-        <li><a href="{segment}/build/build-configurations">Build configurations</a></li>
-        <li><a href="{segment}/build/crossbuilder">Crossbuilder</a></li>
-      </ul>
-    </li>
-    <li>
-      Plug-In Development
-      <ul>
-        <li><a href="{segment}/plug-in-development/introduction">Introduction</a></li>
-        <li><a href="{segment}/plug-in-development/build-environment">Build environment</a></li>
-        <li><a href="{segment}/plug-in-development/plugin-wizard">Plugin Wizard</a></li>
-        <li><a href="{segment}/plug-in-development/integration-plugins">Integration plugins</a></li>
-        <ul>
-          <li><a href="{segment}/plug-in-development/integration-plugins/getting-started-integration">Getting started</a></li>
-          <li><a href="{segment}/plug-in-development/integration-plugins/thing-setup">Things setup</a></li>
-          <li><a href="{segment}/plug-in-development/integration-plugins/events-actions-states">Events, actions & states</a></li>
-          <li><a href="{segment}/plug-in-development/integration-plugins/browsing">Browsing things</a></li>
-          <!-- <li><a href="{segment}/plug-in-development/integration-plugins/interfaces">Interfaces</a></li> -->
-          <li><a href="{segment}/plug-in-development/integration-plugins/plugin-json">The plugin JSON file</a></li>
-          <li><a href="{segment}/plug-in-development/integration-plugins/plugin-cpp">The plugin code (C++/Qt)</a></li>
-          <li><a href="{segment}/plug-in-development/integration-plugins/plugin-js">The plugin code (JavaScript)</a></li>
-          <li><a href="{segment}/plug-in-development/integration-plugins/building-testing">Building & Testing</a></li>
-          <li><a href="{segment}/plug-in-development/integration-plugins/tutorial-integration-cpp">Tutorial (C++/Qt)</a></li>
-          <li><a href="{segment}/plug-in-development/integration-plugins/tutorial-integration-js">Tutorial (JavaScript)</a></li>
-        </ul>
-      </ul>
-    </li>
-    <li>
-      Write Clients
-    </li>
-    <li>
-      <a href="{segment}/community">Community</a>
-      <ul>
-        <li><a href="{segment}/community/roadmap">Roadmap</a></li>
-        <li><a href="{segment}/community/changelog">Changelog</a></li>
-        <li><a href="{segment}/community/contributing">Contribute</a></li>
-        <li><a href="{segment}/community/license">License</a></li>
-        <li><a href="{segment}/community/faq">FAQ</a></li>
-      </ul>
-    </li>
-  </ul>
-{:else}
-  <p>Documentation</p>
-{/if}
+  ul.level-0 > li:first-child {
+    margin-top: 2.25rem;
+  }
+
+  ul.level-2 {
+  }
+
+  /* ul.level-0 > li { */ 
+  li.group {
+    color: var(--nav-list-header-color);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    margin: 2.25rem 0 1rem;
+    text-transform: uppercase;
+  }
+
+  a {
+    line-height: 1.875rem;
+    text-decoration: none;
+  }
+
+/* :root {
+    --nav-list-header-color: #676767;
+    --nav-item-color: #202020;
+  } */
+
+  /* nav {
+		flex-basis: 30rem;
+		flex-grow: 1;
+	}
+
+  ul li {
+    color: var(--nav-list-header-color);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    margin: 3rem 0;
+    text-transform: uppercase;
+  } */
+
+  /* li a {
+    color: var(--nav-item-color);
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  li.active a {
+    color: red;
+  }
+
+  li ul li {
+		font-size: 1rem;
+    margin: 0.75rem 0;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  li ul li a {
+    display: initial;
+    margin-bottom: 0;
+  }
+  
+  a {
+    text-decoration: none;
+  } */
+</style>
+
+<!-- <nav>
+  <h1><a href="/">nymea</a></h1>
+
+  {#if segment === 'getting-started'}
+    <p>Getting Started</p>
+  {:else if segment === 'users'}
+    <p>Users</p>
+  {:else if segment === 'developers'} -->
+  <!-- {#if segment === 'developers'} -->
+    <!-- <p>Developers</p> -->
+    <!-- basePath: {basePath} -->
+    <!-- parents: {parents} -->
+    <ul class="level-{level}">
+      {#each items as item}
+        {#if item.link == true}
+        <li><a href="{base}{parents.length > 0 ? '/' + parents.join('/') : ''}{item.id !== 'index' ? '/' + item.id : ''}">{item.title}</a></li>
+        {:else}
+        <li class="group">{item.title}</li>
+        {/if}
+
+        {#if item.children.length > 0}
+        <svelte:self {base} parents={[ ...parents, item.id ]} level={level + 1} items={item.children}/>
+        {/if}
+      {/each}
+    </ul>
+  <!-- {:else}
+    <p>Documentation</p> -->
+  <!-- {/if} -->
+<!-- </nav> -->
