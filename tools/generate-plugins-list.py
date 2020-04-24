@@ -3,13 +3,13 @@
 import os
 import json
 from urllib.request import urlopen, Request
-from git import Repo
+import git
 import shutil
 
 def read_config():
   with open('plugins-config.json') as configFile:
     data = json.load(configFile)
-    return data["plugins"]
+    return data
 
 def parse_repo_url(repository):
   repo_name = repository.split("/")[4]
@@ -18,8 +18,14 @@ def parse_repo_url(repository):
 def clone_repos(repos, target):
   for repo in repos:
     repo_name = parse_repo_url(repo)
-    print("Cloning repo: %s" % repo_name)
-    Repo.clone_from(repo, "%s/%s" % (target, repo_name), branch="rework-readmes")
+    try:
+      g = git.Repo("%s/%s" % (target, repo_name))
+      g.remotes.origin.pull()
+      print("Pulled repo: %s" % repo_name)
+    except:
+      print("Cloning repo: %s" % repo_name)
+      g = git.Repo.clone_from(repo, "%s/%s" % (target, repo_name))
+    g.git.checkout('rework-readmes')
 
 def has_plugin_meta(path):
   found_meta = False
@@ -93,10 +99,10 @@ def compose_meta(plugins, outputpath):
   with open("%s/_meta.js" % outputpath, "w") as outfile:
     outfile.write(outputtext)
 
-builddir = "build/"
-outputpath = "../src/routes/overview/documentation/integrations/"
-shutil.rmtree(builddir, ignore_errors=True)
-repos = read_config()
-clone_repos(repos, builddir)
-plugins = find_plugins(builddir)
-compose_meta(plugins, outputpath)
+
+### Main
+
+config = read_config()
+clone_repos(config["plugins"], config["srcdir"])
+plugins = find_plugins(config["srcdir"])
+compose_meta(plugins, config["outputdir"])
