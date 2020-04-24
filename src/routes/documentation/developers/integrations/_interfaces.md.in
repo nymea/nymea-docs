@@ -6,9 +6,11 @@ title: Interfaces
 
 When creating ThingClasses, the interfaces field can be used to specify a list of interfaces this ThingClass implements.
 
+
 When implementing an interface, the ThingClass must follow the interface specification for the according interface. This 
 means the ThingClass needs to have at least all the states, actions and events the given interface requires. A ThingClass 
 may add custom states, actions or events, or even implement multiple interfaces.
+
 
 The main purpose of interfaces is to provide for a better user experience. Using interfaces, a plugin developer can suggest 
 the ui to be used for this ThingClass. For example, having a plugin that can control a dimmable light would likely have a 

@@ -7,3 +7,4 @@ yarn-error.log
 
 toos/src/
 src/routes/overview/documentation/integrations
+src/routes/developers/documentation/integrations/interfaces.md
