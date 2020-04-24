@@ -71,25 +71,25 @@ def compose_meta(plugins, outputpath):
       print("WARNING: Plugin %s has invalid meta.json" % plugin["name"])
       continue
 
-    plugin_meta["readme"] = "%s.md" % plugin["name"]
+    plugin_meta["readme"] = "_%s.md" % plugin["name"]
     try:
-      shutil.copyfile("%s/%s/README.md" % (plugin["path"], plugin["name"]), "%s/%s.md" % (outputpath, plugin["name"]))
+      shutil.copyfile("%s/%s/README.md" % (plugin["path"], plugin["name"]), "%s/_%s.md" % (outputpath, plugin["name"]))
     except:
       print("WARNING: Plugin %s has invalid README.md" % plugin["name"])
       continue
 
     icon = plugin_meta["icon"]
     try:
-      shutil.copyfile("%s/%s/%s" % (plugin["path"], plugin["name"], icon), "%s/%s-%s" % (outputpath, plugin["name"], icon))
+      shutil.copyfile("%s/%s/%s" % (plugin["path"], plugin["name"], icon), "%s/_%s-%s" % (outputpath, plugin["name"], icon))
     except:
       print("WARNING: Plugin %s has invalid icon: %s" % (plugin["name"], plugin_meta["icon"]))
       continue
-    plugin_meta["icon"] = "%s-%s" % (plugin["name"], icon)
+    plugin_meta["icon"] = "_%s-%s" % (plugin["name"], icon)
 
     meta.append(plugin_meta)
 
   outputtext = "export const meta = "
-  outputtext += json.dumps(meta, indent=4)
+  outputtext += json.dumps(meta, indent=2)
   with open("%s/_meta.js" % outputpath, "w") as outfile:
     outfile.write(outputtext)
 
