@@ -78,7 +78,7 @@ def find_plugins(path):
           all_plugins.append(plugin)
   return all_plugins
 
-def compose_meta(plugins, outputpath, iconoutputpath):
+def compose_meta(plugins, outputpath, iconoutputpath, categories, technologies):
   meta = []
 
   if not os.path.exists(iconoutputpath):
@@ -97,6 +97,22 @@ def compose_meta(plugins, outputpath, iconoutputpath):
     except:
       print("WARNING: Plugin %s has invalid plugininfo json" % plugin["name"])
       continue
+
+    ok = True
+    for category in plugin_meta["categories"]:
+      if category not in categories:
+        ok = False
+    if not ok:
+      print("WARNING: Plugin %s has invalid categories: %s. Allowed: %s" % (plugin["name"], plugin_meta["categories"], categories))
+      continue
+
+    if "technology" in plugin_meta:
+      for technology in plugin_meta["technology"]:
+        if technology not in technologies:
+          ok = False
+      if not ok:
+        print("WARNING: Plugin %s has invalid technologies: %s. Allowed: %s" % (plugin["name"], plugin_meta["technology"], technologies))
+        continue
 
     vendors = {}
     for vendor in plugin_info["vendors"]:
@@ -134,4 +150,4 @@ def compose_meta(plugins, outputpath, iconoutputpath):
 config = read_config()
 clone_repos(config["plugins"], config["srcdir"])
 plugins = find_plugins(config["srcdir"])
-compose_meta(plugins, config["outputdir"], config["iconoutputdir"])
+compose_meta(plugins, config["outputdir"], config["iconoutputdir"], config["allowed_categories"], config["allowed_technologies"])
