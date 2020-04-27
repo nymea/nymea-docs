@@ -5,6 +5,7 @@ import json
 from urllib.request import urlopen, Request
 import git
 import shutil
+import re
 
 def read_config():
   with open('plugins-config.json') as configFile:
@@ -44,9 +45,19 @@ def extract_plugin_meta(path):
     data = json.load(metaFile)
     return data
 
+def extract_plugin_info(path, name):
+  jsonFile = list_files(os.path.join(path, name),  "integrationplugin[a-z0-9]*\.json")[0]
+  with open(os.path.join(path, name, jsonFile)) as pluginInfo:
+    data = json.load(pluginInfo)
+    return data
+
 def list_subdirs(path):
   subdirs = [ f.name for f in os.scandir(path) if f.is_dir() ]
   return subdirs
+
+def list_files(path, filter):
+  files = [ f.name for f in os.scandir(path) if f.is_file() and re.match(filter, f.name) ]
+  return files
 
 def find_plugins(path):
   all_plugins = []
@@ -81,12 +92,26 @@ def compose_meta(plugins, outputpath, iconoutputpath):
       print("WARNING: Plugin %s has invalid meta.json" % plugin["name"])
       continue
 
-    plugin_meta["readme"] = "%s.md" % plugin["name"]
+    try:
+      plugin_info = extract_plugin_info(plugin["path"], plugin["name"])
+    except:
+      print("WARNING: Plugin %s has invalid plugininfo json" % plugin["name"])
+      continue
+
+    vendors = {}
+    for vendor in plugin_info["vendors"]:
+      thingClasses = []
+      for thingClass in vendor["thingClasses"]:
+        thingClasses.append(thingClass["displayName"])
+      vendors[vendor["displayName"]] = thingClasses
+    plugin_meta["things"] = vendors
+
     try:
       shutil.copyfile("%s/%s/README.md" % (plugin["path"], plugin["name"]), "%s/%s.md" % (outputpath, plugin["name"]))
     except:
       print("WARNING: Plugin %s has invalid README.md" % plugin["name"])
       continue
+    plugin_meta["readme"] = "%s.md" % plugin["name"]
 
     icon = plugin_meta["icon"]
     try:
