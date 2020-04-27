@@ -5,6 +5,8 @@ yarn-error.log
 /cypress/screenshots/
 /__sapper__/
 
+*_meta.js
 toos/src/
-src/routes/overview/documentation/integrations
-src/routes/developers/documentation/integrations/interfaces.md
+src/routes/documentation/overview/integrations
+src/routes/documentation/developers/integrations/interfaces.md
+static/img/integrationlogos/

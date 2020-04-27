@@ -4,5 +4,6 @@
     "https://github.com/nymea/nymea-plugin-unipi"
   ],
   "srcdir": "src",
-  "outputdir": "../src/routes/documentation/overview/integrations"
+  "outputdir": "../src/routes/documentation/overview/integrations",
+  "iconoutputdir": "../static/img/integrationlogos"
 }

@@ -67,7 +67,7 @@ def find_plugins(path):
           all_plugins.append(plugin)
   return all_plugins
 
-def compose_meta(plugins, outputpath):
+def compose_meta(plugins, outputpath, iconoutputpath):
   meta = []
   for plugin in plugins:
 
@@ -86,7 +86,7 @@ def compose_meta(plugins, outputpath):
 
     icon = plugin_meta["icon"]
     try:
-      shutil.copyfile("%s/%s/%s" % (plugin["path"], plugin["name"], icon), "%s/_%s-%s" % (outputpath, plugin["name"], icon))
+      shutil.copyfile("%s/%s/%s" % (plugin["path"], plugin["name"], icon), "%s/_%s-%s" % (iconoutputpath, plugin["name"], icon))
     except:
       print("WARNING: Plugin %s has invalid icon: %s" % (plugin["name"], plugin_meta["icon"]))
       continue
@@ -105,4 +105,4 @@ def compose_meta(plugins, outputpath):
 config = read_config()
 clone_repos(config["plugins"], config["srcdir"])
 plugins = find_plugins(config["srcdir"])
-compose_meta(plugins, config["outputdir"])
+compose_meta(plugins, config["outputdir"], config["iconoutputdir"])
