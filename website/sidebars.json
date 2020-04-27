@@ -73,8 +73,11 @@
     "community/license",
     "community/faq"
     ],
+    "Available Plugins": [
+     "users/plugins/available-plugins"
+    ],
     "Libraries": [
      "libraries/overview"
-     ]
+    ]
   }
 }

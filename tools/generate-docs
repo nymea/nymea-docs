@@ -17,6 +17,17 @@ Usage: $(basename $0) [OPTIONS]
 This tool generates a common documentation out of different projects and the overall developer documentation:
   - nymea:                      https://github.com/nymea/nymea
   - nymea-plugins:              https://github.com/nymea/nymea-plugins
+    - external plugins:
+        * Knx                   https://github.com/nymea/nymea-plugin-knx
+        * Zigbee                https://github.com/nymea/nymea-plugin-zigbee
+        * Simulations           https://github.com/nymea/nymea-plugins-simulation
+        * Modbus commander      https://github.com/nymea/nymea-plugin-modbuscommander
+    - non-free plugins:
+        * Marantec              https://gitlab.nymea.io/marantec/nymea-marantecplugin
+        * Nuki                  https://gitlab.nymea.io/marantec/nymea-nukiplugin
+        * Maveo USB Relay       https://gitlab.nymea.io/maveo/nymea-plugin-maveo-usbrelay
+        * Stream unlimited      https://gitlab.nymea.io/streamunlimited/nymea-streamunlimited-plugin
+        * Maveo scanner         https://gitlab.nymea.io/maveo/nymea-plugin-maveo-scanner
   - nymea-mqtt:                 https://github.com/nymea/nymea-mqtt
   - nymea-coap:                 https://github.com/nymea/nymea-coap
   - nymea-gpio:                 https://github.com/nymea/nymea-gpio
@@ -83,27 +94,35 @@ function create-nymea-docs() {
 #------------------------------------------------------------
 function create-nymea-plugins-docs() {
     printGreen "Clean nymea-plugins"
-    if [ -d ${SOURCE_DIR}/nymea-plugins ]; then rm -rf ${SOURCE_DIR}/nymea-plugins; fi
-    if [ -d ${OUTPUT_DIR}/nymea-plugins ]; then rm -rf ${OUTPUT_DIR}/nymea-plugins; fi
-    if [ -d ${OUTPUT_DIR}/nymea-plugins-raw ]; then rm -rf ${OUTPUT_DIR}/nymea-plugins-raw; fi
-
-    mkdir -p ${SOURCE_DIR} || true
+    if [ -d ${SOURCE_DIR}/plugins ]; then rm -rf ${SOURCE_DIR}/plugins; fi
+    mkdir -p ${SOURCE_DIR}/plugins || true
 
     printGreen "Get nymea-plugins source from branch ${BRANCH}"
-    cd ${SOURCE_DIR}
+    cd ${SOURCE_DIR}/plugins
     git clone -b ${BRANCH} --depth 1 https://github.com/nymea/nymea-plugins.git
+
+    printGreen "Get external plugins"
+    mkdir -p ${SOURCE_DIR}/plugins/external || true
+    cd ${SOURCE_DIR}/plugins/external
+
+    #git clone -b ${BRANCH} --depth 1 https://github.com/nymea/nymea-plugin-knx.git
+    #git clone -b ${BRANCH} --depth 1 https://github.com/nymea/nymea-plugin-zigbee.git
+    #git clone -b ${BRANCH} --depth 1 https://github.com/nymea/nymea-plugins-simulation.git
+    #git clone -b ${BRANCH} --depth 1 https://github.com/nymea/nymea-plugin-modbuscommander.git
+
+
+    printGreen "Get nonfree plugins"
+    mkdir -p ${SOURCE_DIR}/plugins/nonfree || true
+
+
 
     printGreen "Prepare nymea-plugins docs"
     mkdir -p ${OUTPUT_DIR}/nymea-plugins
 
     printGreen "Create nymea-plugins docs"
-    ${CURRENT_DIR}/doc-tools.py -p -g /html-templates/header-plugin.html
+    cd ${CURRENT_DIR}/
+    ${CURRENT_DIR}/generate-plugin-documentations.py
 
-    printGreen "Copy common data"
-    cp -rv ${TEMPLATE_DIR}/favicons/ ${OUTPUT_DIR}/nymea-plugins/
-    cp -rv ${TEMPLATE_DIR}/images/ ${OUTPUT_DIR}/nymea-plugins/
-    cp -rv ${TEMPLATE_DIR}/scripts ${OUTPUT_DIR}/nymea-plugins/
-    cp -rv ${TEMPLATE_DIR}/styles ${OUTPUT_DIR}/nymea-plugins/
 }
 
 
@@ -287,11 +306,12 @@ while [ "$1" != "" ]; do
     shift
 done
 
-create-nymea-docs
-create-nymea-gpio-docs
-create-nymea-mqtt-docs
-create-nymea-coap-docs
-create-libnymea-networkmanager-docs
+#create-nymea-docs
+create-nymea-plugins-docs
+#create-nymea-gpio-docs
+#create-nymea-mqtt-docs
+#create-nymea-coap-docs
+#create-libnymea-networkmanager-docs
 
 #create-nymea-plugins-docs
 
