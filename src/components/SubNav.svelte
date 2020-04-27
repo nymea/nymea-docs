@@ -8,15 +8,13 @@
 
 <style>
   nav {
-    background-color: #fafafa;
-    height: auto;
-    min-height: 100%;
-    /* margin-top: 7rem; */
-    padding: 8rem 3rem;
+    --header-height: 7.5rem;
+    height: calc(100vh - var(--header-height));
+    overflow: scroll;
+    padding: 0 0 0 3rem;
   }
 </style>
 
 <nav>
-  <!-- {base} -->
   <Menu {base} {segment} {items} />
 </nav>

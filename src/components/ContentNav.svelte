@@ -116,13 +116,15 @@
 </script>
 
 <style>
-  :root {
+  /* :root {
     --nav-list-header-color: #676767;
     --nav-item-color: #202020;
   }
 
   div {
-    padding: 8rem 3rem 1.5rem;
+    height: auto;
+    min-height: 100%;
+    padding: 0 0 0 3rem;
   }
 
   p {
@@ -151,7 +153,7 @@
 
   a.active {
     text-decoration: underline;
-  }
+  } */
 
   /* div {
     border-left: 1px solid #efefef;
@@ -171,6 +173,7 @@
     margin-top: 0.75rem; 
   } */
 </style>
+
 
 <div>
   {#if links.length > 0}
