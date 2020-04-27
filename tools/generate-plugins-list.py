@@ -46,7 +46,7 @@ def extract_plugin_meta(path):
     return data
 
 def extract_plugin_info(path, name):
-  jsonFile = list_files(os.path.join(path, name),  "integrationplugin[a-z0-9]*\.json")[0]
+  jsonFile = list_files(os.path.join(path, name),  "integrationplugin[a-z0-9\-]*\.json")[0]
   with open(os.path.join(path, name, jsonFile)) as pluginInfo:
     data = json.load(pluginInfo)
     return data
