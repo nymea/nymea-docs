@@ -81,7 +81,7 @@ def compose_meta(plugins, outputpath, iconoutputpath):
       print("WARNING: Plugin %s has invalid meta.json" % plugin["name"])
       continue
 
-    plugin_meta["readme"] = "_%s.md" % plugin["name"]
+    plugin_meta["readme"] = "%s.md" % plugin["name"]
     try:
       shutil.copyfile("%s/%s/README.md" % (plugin["path"], plugin["name"]), "%s/%s.md" % (outputpath, plugin["name"]))
     except:
@@ -94,7 +94,7 @@ def compose_meta(plugins, outputpath, iconoutputpath):
     except:
       print("WARNING: Plugin %s has invalid icon: %s" % (plugin["name"], plugin_meta["icon"]))
       continue
-    plugin_meta["icon"] = "_%s-%s" % (plugin["name"], icon)
+    plugin_meta["icon"] = "%s-%s" % (plugin["name"], icon)
 
     meta.append(plugin_meta)
 
