@@ -264,13 +264,13 @@ function writeInterfacesDocumentation() {
 
     # Merge interfaces.md.in content with generated content
     printGreen "Merge interfaces docs with generated content"
-    cp ${CURRENT_DIR}/../docs/plugins/interfaces.md.in ${OUTPUT_DIR}/
+    cp ${CURRENT_DIR}/../docs/developers/integrations/interfaces.md.in ${OUTPUT_DIR}/
     #INTERFACES_GENERATED=$(cat ${OUTPUT_DIR}/interfaces-generated.md)
-    REPLACSTRING=@@GENERATED@@
+    REPLACESTRING=@@GENERATED@@
     FILETOINSERT=${OUTPUT_DIR}/interfaces-generated.md
     FILETOMODIFY=${OUTPUT_DIR}/interfaces.md.in
-    sed -e "/$REPLACSTRING/r $FILETOINSERT" -e "/$REPLACSTRING/d" $FILETOMODIFY > ${OUTPUT_DIR}/interfaces.md
-    cp -v ${OUTPUT_DIR}/interfaces.md ${CURRENT_DIR}/../docs/plugins/interfaces.md
+    sed -e "/$REPLACESTRING/r $FILETOINSERT" -e "/$REPLACESTRING/d" $FILETOMODIFY > ${OUTPUT_DIR}/interfaces.md
+    cp -v ${OUTPUT_DIR}/interfaces.md ${CURRENT_DIR}/../docs/developers/integrations/interfaces.md
 }
 
 function writeApiDocumentation() {
@@ -279,13 +279,13 @@ function writeApiDocumentation() {
 
     # Merge interfaces.md.in content with generated content
     printGreen "Merge API docs with generated content"
-    cp ${CURRENT_DIR}/../docs/clients/raw-api.md.in ${OUTPUT_DIR}/
+    cp ${CURRENT_DIR}/../docs/developers/clients/raw-api.md.in ${OUTPUT_DIR}/
     #INTERFACES_GENERATED=$(cat ${OUTPUT_DIR}/interfaces-generated.md)
-    REPLACSTRING=@@GENERATED@@
+    REPLACESTRING=@@GENERATED@@
     FILETOINSERT=${OUTPUT_DIR}/json-rpc-api-generated.md
     FILETOMODIFY=${OUTPUT_DIR}/raw-api.md.in
-    sed -e "/$REPLACSTRING/r $FILETOINSERT" -e "/$REPLACSTRING/d" $FILETOMODIFY > ${OUTPUT_DIR}/raw-api.md
-    cp -v ${OUTPUT_DIR}/raw-api.md ${CURRENT_DIR}/../docs/clients/raw-api.md
+    sed -e "/$REPLACESTRING/r $FILETOINSERT" -e "/$REPLACESTRING/d" $FILETOMODIFY > ${OUTPUT_DIR}/raw-api.md
+    cp -v ${OUTPUT_DIR}/raw-api.md ${CURRENT_DIR}/../docs/developers/clients/raw-api.md
 }
 
 
@@ -306,12 +306,44 @@ while [ "$1" != "" ]; do
     shift
 done
 
+<<<<<<< HEAD
 #create-nymea-docs
 create-nymea-plugins-docs
 #create-nymea-gpio-docs
 #create-nymea-mqtt-docs
 #create-nymea-coap-docs
 #create-libnymea-networkmanager-docs
+=======
+create-nymea-docs
+create-nymea-gpio-docs
+create-nymea-mqtt-docs
+create-nymea-coap-docs
+create-libnymea-networkmanager-docs
+
+#create-nymea-plugins-docs
+
+
+printGreen "Copy libnymea-raw into static docusaurus folder"
+if [ -d ${CURRENT_DIR}/../website/static/libnymea-raw ]; then rm -r ${CURRENT_DIR}/../website/static/libnymea-raw; fi
+cp -r ${OUTPUT_DIR}/libnymea-raw ${CURRENT_DIR}/../website/static/
+
+printGreen "Copy nymea-gpio-docs into static docusaurus folder"
+if [ -d ${CURRENT_DIR}/../website/static/nymea-gpio-raw ]; then rm -r ${CURRENT_DIR}/../website/static/nymea-gpio-raw; fi
+cp -r ${OUTPUT_DIR}/nymea-gpio-raw ${CURRENT_DIR}/../website/static/
+
+printGreen "Copy nymea-coap-docs into static docusaurus folder"
+if [ -d ${CURRENT_DIR}/../website/static/nymea-coap-raw ]; then rm -r ${CURRENT_DIR}/../website/static/nymea-coap-raw; fi
+cp -r ${OUTPUT_DIR}/nymea-coap-raw ${CURRENT_DIR}/../website/static/
+
+printGreen "Copy nymea-mqtt-docs into static docusaurus folder"
+if [ -d ${CURRENT_DIR}/../website/static/nymea-mqtt-raw ]; then rm -r ${CURRENT_DIR}/../website/static/nymea-mqtt-raw; fi
+cp -r ${OUTPUT_DIR}/nymea-mqtt-raw ${CURRENT_DIR}/../website/static/
+
+printGreen "Copy libnymea-networkmanager-docs into static docusaurus folder"
+if [ -d ${CURRENT_DIR}/../website/static/libnymea-networkmanager-raw ]; then rm -r ${CURRENT_DIR}/../website/static/libnymea-networkmanager-raw; fi
+cp -r ${OUTPUT_DIR}/libnymea-networkmanager-raw ${CURRENT_DIR}/../website/static/
+
+>>>>>>> d252bc142a59369b785185e54951e6b3c138ae5c
 
 #create-nymea-plugins-docs
 

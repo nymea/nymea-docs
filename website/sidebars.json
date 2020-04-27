@@ -1,57 +1,67 @@
 {
- "docs": {
-  "Nymea": [
-    "about/about",
-    "about/terms-definition",
-    "about/usage",
-    "about/features",
-    "about/rule-engine",
-    "about/scripting",
-    "about/interfaces",
-    "about/configuration-file",
-    {
-         "type": "subcategory",
-         "label": "Install",
-         "ids": [
-             "about/install/install",
-             "about/install/debian",
-             "about/install/snap",
-             "about/install/yocto"
-         ]
-    },
-    {
-         "type": "subcategory",
-         "label": "Available Plug-ins",
-         "ids": [
-         ]
-    }
-   ],
-   "Build": [
-    "build/build-nymea",
-    "build/build-configuration",
-    "build/crossbuilder"
-   ],
-   "Write Plug-Ins": [
-    "plugins/write-plugins",
-    "plugins/interfaces",
-    "plugins/plugin-build-environment",
-    {
-        "type": "subcategory",
-        "label": "File Structure",
-        "ids": [
-            "plugins/plugin-json",
-            "plugins/create-setup-methods",
-            "plugins/paramtypes-ui-elements",
-            "plugins/plugin-wizard"
+    "docs": {
+        "About nymea": [
+            "about/overview",
+            "about/nymeainaction",
+            "about/integrations",
+            "about/features",
+            "about/license",
+            "about/roadmap",
+            "about/changelog",
+            "about/faq",
+            "about/contribute"
+        ],
+        "Users guide": [
+            {
+                "type": "subcategory",
+                "label": "Installation",
+                "ids": [
+                    "users/installation/gettingstarted",
+                    "users/installation/core",
+                    "users/installation/app"
+                ]
+            },
+            "users/firststeps",
+            "users/things",
+            "users/rules",
+            "users/scripting",
+            "users/configuration-file"
+        ],
+        "Developers guide": [
+            "developers/introduction",
+            "developers/build-env",
+            "developers/build-nymea",
+            "developers/qtcreator",
+            "developers/write-plugins",
+            {
+                "type": "subcategory",
+                "label": "Integration plugins",
+                "ids": [
+                    "developers/integrations/getting-started-integration",
+                    "developers/integrations/thing-setup",
+                    "developers/integrations/events-actions-states",
+                    "developers/integrations/browsing",
+                    "developers/integrations/interfaces",
+                    "developers/integrations/plugin-json",
+                    "developers/integrations/plugin-cpp",
+                    "developers/integrations/plugin-js",
+                    "developers/integrations/building-testing",
+                    "developers/integrations/tutorial-integration-cpp",
+                    "developers/integrations/tutorial-integration-js"
+                ]
+            },
+            {
+                "type": "subcategory",
+                "label": "Client development",
+                "ids": [
+                    "developers/clients/clients-introduction",
+                    "developers/clients/rawapi",
+                    "developers/clients/nymea-app-lib",
+                    "developers/clients/nymea-cli-dev"
+                ]
+            }
         ]
-    },
-    {
-        "type": "subcategory",
-        "label": "Tutorials",
-        "ids":  [
-            "plugins/tutorial-01",
-            "plugins/tutorial-02"
-        ]
+<<<<<<< HEAD
     },
     "plugins/test-your-plugin"
    ],
@@ -80,4 +90,7 @@
      "libraries/overview"
     ]
   }
+=======
+    }
+>>>>>>> d252bc142a59369b785185e54951e6b3c138ae5c
 }

@@ -17,6 +17,11 @@ tools/source/
 docs/plugins/interfaces.md
 docs/clients/raw-api.md
 
+package-lock.json
+*npm-debug.log
+
+*.directory
+
 website/static/libnymea-networkmanager-raw/
 website/static/libnymea-raw/
 website/static/nymea-coap-raw/

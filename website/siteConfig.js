@@ -22,7 +22,7 @@ const users = [
 
 const siteConfig = {
   title: 'nymea',
-  tagline: 'Developer Documentation',
+  tagline: 'IoT - Connectivity - Smart Home',
   url: 'https://nymea.io', // Your website URL
   baseUrl: '/', // Base URL for your project */
 
@@ -33,9 +33,8 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    { page: 'quick-start', label: 'Quick Start' },
-    { page: 'users', label: 'Users' },
-    { page: 'developers', label: 'Developers' },
+    { page: 'index', label: 'About' },
+    { page: 'b2bservices', label: 'B2B services' },
     { page: 'help', label: 'Help'},
     { blog: true, label: 'Blog' },   
     { search: true },
