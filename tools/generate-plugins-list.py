@@ -69,6 +69,10 @@ def find_plugins(path):
 
 def compose_meta(plugins, outputpath, iconoutputpath):
   meta = []
+
+  if not os.path.exists(iconoutputpath):
+    os.mkdir(iconoutputpath)
+
   for plugin in plugins:
 
     try:
@@ -79,14 +83,14 @@ def compose_meta(plugins, outputpath, iconoutputpath):
 
     plugin_meta["readme"] = "_%s.md" % plugin["name"]
     try:
-      shutil.copyfile("%s/%s/README.md" % (plugin["path"], plugin["name"]), "%s/_%s.md" % (outputpath, plugin["name"]))
+      shutil.copyfile("%s/%s/README.md" % (plugin["path"], plugin["name"]), "%s/%s.md" % (outputpath, plugin["name"]))
     except:
       print("WARNING: Plugin %s has invalid README.md" % plugin["name"])
       continue
 
     icon = plugin_meta["icon"]
     try:
-      shutil.copyfile("%s/%s/%s" % (plugin["path"], plugin["name"], icon), "%s/_%s-%s" % (iconoutputpath, plugin["name"], icon))
+      shutil.copyfile("%s/%s/%s" % (plugin["path"], plugin["name"], icon), "%s/%s-%s" % (iconoutputpath, plugin["name"], icon))
     except:
       print("WARNING: Plugin %s has invalid icon: %s" % (plugin["name"], plugin_meta["icon"]))
       continue
