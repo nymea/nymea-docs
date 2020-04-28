@@ -240,8 +240,12 @@
   <h1>Integrations</h1>
   <div class="search">
     <!-- <label for="search">Search for Vendor and/or Thing</label> -->
-    <input id="search" placeholder="Bose SoundTouch" on:input={(event) => search(event.target.value)} />
-    <ion-icon name="search"></ion-icon>
+    <input id="search" placeholder="Bose SoundTouch" bind:value={$searchInput} on:input={(event) => search(event.target.value)} />
+    {#if $searchInput === ''}
+      <ion-icon name="search"></ion-icon>
+    {:else}
+      <ion-icon name="close" on:click={() => search('')}></ion-icon>
+    {/if}
   </div>
 </div>
 
