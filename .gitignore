@@ -7,6 +7,5 @@ yarn-error.log
 
 *_meta.js
 toos/src/
-src/routes/documentation/overview/integrations
-src/routes/documentation/developers/integrations/interfaces.md
+src/routes/documentation/overview/integrations/*.md
 static/img/integrationlogos/
