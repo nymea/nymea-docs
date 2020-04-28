@@ -106,12 +106,12 @@ def compose_meta(plugins, outputpath, iconoutputpath, categories, technologies):
       print("WARNING: Plugin %s has invalid categories: %s. Allowed: %s" % (plugin["name"], plugin_meta["categories"], categories))
       continue
 
-    if "technology" in plugin_meta:
-      for technology in plugin_meta["technology"]:
+    if "technologies" in plugin_meta:
+      for technology in plugin_meta["technologies"]:
         if technology not in technologies:
           ok = False
       if not ok:
-        print("WARNING: Plugin %s has invalid technologies: %s. Allowed: %s" % (plugin["name"], plugin_meta["technology"], technologies))
+        print("WARNING: Plugin %s has invalid technologies: %s. Allowed: %s" % (plugin["name"], plugin_meta["technologies"], technologies))
         continue
 
     vendors = {}

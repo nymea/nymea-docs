@@ -33,6 +33,7 @@
     "cloud",
     "sub-ghz",
     "serial-port",
-    "one-wire"
+    "one-wire",
+    "mqtt"
   ]
 }
