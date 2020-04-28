@@ -1,7 +1,11 @@
 {
   "plugins": [
     "https://github.com/nymea/nymea-plugins",
-    "https://github.com/nymea/nymea-plugin-unipi"
+    "https://github.com/nymea/nymea-plugin-unipi",
+    "https://github.com/nymea/nymea-plugin-knx",
+    "https://github.com/nymea/nymea-plugin-modbuscommander",
+    "https://github.com/nymea/nymea-plugin-zigbee",
+    "https://github.com/nymea/nymea-plugins-simulation"
   ],
   "srcdir": "src",
   "outputdir": "../src/routes/documentation/overview/integrations",
@@ -19,7 +23,8 @@
     "lock",
     "switch",
     "notification",
-    "weather"
+    "weather",
+    "shading"
   ],
   "allowed_technologies": [
     "network",
