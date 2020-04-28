@@ -14,14 +14,6 @@
     searchInput.update((searchInput) => searchInput = input);
   }
 
-  function setCategory(category) {
-    if (category === null || category.toLowerCase() === categoryFilter) {
-      categoryFilter = null;
-    } else {
-      categoryFilter = category.toLowerCase();
-    }
-  }
-
   function show(type) {
     displayType = type;
   }

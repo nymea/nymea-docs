@@ -81,16 +81,17 @@ export const currentTechnology = createCurrent();
 
 export const technologies = readable([], function start(set) {
   const technologies = meta
-    .reduce((technologies, plugin) => {
-      return technologies.concat(plugin.technology);
+    .reduce((technologies, integration) => {
+      return technologies.concat(integration.technologies);
     }, ['other'])
     .reduce((technologies, technology) => removeDuplicates(technologies, technology), [])
     .map((technology) => {
+      meta.map((integration) => console.log('integration', integration.title, integration.technologies));
       return {
         title: snakeCaseToUserReadable(technology),
         count: technology === 'other'
-          ? meta.filter((integration) => integration.technology.length === 0).length
-          : meta.filter((integration) => integration.technology.find((integrationTechnology) => {
+          ? meta.filter((integration) => integration.technologies.length === 0).length
+          : meta.filter((integration) => integration.technologies.find((integrationTechnology) => {
             return integrationTechnology === technology;
           })).length
       };
@@ -137,8 +138,8 @@ export const filteredIntegrations = derived([integrations, categories, currentCa
         $currentTechnology === null
         || (
           $currentTechnology === 'other'
-            ? integration.technology.length === 0
-            : integration.technology.find((technology) => technology === $currentTechnology) !== undefined
+            ? integration.technologies.length === 0
+            : integration.technologies.find((technology) => technology === $currentTechnology) !== undefined
         )
       );
   })
