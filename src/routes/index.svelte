@@ -64,6 +64,26 @@
     font-size: 1rem;
     margin: 0 0 -0.1rem 0.75rem;
   }
+
+  .viewsection {
+    height: 80vh;
+  }
+
+  #for-whom ion-icon {
+    font-size: 10rem;
+    margin: 0 0.75rem -0.2rem 0;
+  }
+
+  #what-2 img {
+    display: block;
+    width: 100;
+  }
+
+  #why ion-icon {
+    display: block;
+    width: 100;
+  }
+
 </style>
 
 <svelte:head>
@@ -91,7 +111,7 @@
 </Wrapper>
 
 <Wrapper>
-  <section id="what-1">
+  <section id="what-1" class="viewsection">
     <Row>
       <Col offset="20" width="60">
         <h2>From individual features to a full blown IoT device</h2>
@@ -102,17 +122,20 @@
 </Wrapper>
 
 <Wrapper>
-  <section id="for-whom">
+  <section id="for-whom" class="viewsection">
     <Row>
       <Col offset="20" width="20">
+        <ion-icon name="people-outline"></ion-icon>
         <h2>For Users</h2>
         <p>nymea gets you up and running with your smart home setup in no time. Just install nymea:core and nymea:app and you're all set with a powerful smart home solution that does not require powerful hardware or fiddling with cryptic configuration files. Using 100% free and open source software.</p>
       </Col>
       <Col width="20">
+        <ion-icon name="build-outline"></ion-icon>
         <h2>For Developers</h2>
         <p>When you're building your own IoT device, nymea will help with all the software efforts. Whether it's connecting your device to others, adding easy set-up features, creating smart hubs for for all your devices or adding control and setup frontends, nymea's got your back.</p>
       </Col>
       <Col width="20">
+        <ion-icon name="rocket-outline"></ion-icon>
         <h2>For Businesses</h2>
         <p>Building IoT enabled customer grade products can be hard. We've ramped up with all the required know-how and with the nymea stack we'll be supporting your business. Whether it's fast prototyping and consulting, providing needed components, building entire products or caring for deployments and updates. Together with our partners we offer in-field experience for all of those aspects.</p>
       </Col>
@@ -121,9 +144,26 @@
 </Wrapper>
 
 <Wrapper>
+  <section id="what-2" class="viewsection">
+    <Row>
+      <Col offset="20" width="30">
+        <h2>Built for connected devices</h2>
+        <p>Connect lighting, media, heating, irrigations and sprinklers, garage doors, alarm systems and many more to a centralized, local and privacy focused control center with nymea. Or build your device running nymea to connect and integrate with other solutions, such as Alexa or Google Home.</p>
+      </Col>
+      <Col width="30">
+        <img src="img/nymea-integrations.png">
+      </Col>
+    </Row>
+  </section>
+</Wrapper>
+
+<Wrapper>
   <section id="how">
     <Row>
-      <Col offset="20" width="60">
+      <Col offset="20" width="30">
+        <img src="img/Software.svg">
+      </Col>
+      <Col width="30">
         <h2>Nymea Software Stack</h2>
         <p>Simple, yet powerful.</p>
         <p>The nymea core stack is written in C++ and Qt. This results in low hardware requirements and high performance. To ease and speed up development time, individual integrations and automation behaviours can be added with JavaScript.</p>
@@ -133,23 +173,15 @@
 </Wrapper>
 
 <Wrapper>
-  <section id="what-2">
-    <Row>
-      <Col offset="20" width="60">
-        <h2>Built for connected devices</h2>
-        <p>Connect lighting, media, heatings, irrigations and sprinklers, garage doors, alarm systems and many more to a centralized, local and privacy focused control center with nymea. Or build your device running nymea to connect and integrate with other solutions, such as Alexa or Google Home.</p>
-      </Col>
-    </Row>
-  </section>
-</Wrapper>
-
-<Wrapper>
   <section id="why">
     <Row>
-      <Col offset="20" width="60">
+      <Col offset="20" width="30">
         <h2>Affair of the heart</h2>
         <p>We think that IoT devices, especially inside your home do not have to be cloud connected all the time. Privacy and reliability are our main concerns. With that in mind we build anything we do with a offline-first approach. This results in blazing fast reaction times, full control over personal data and guarantees your product won't be rendered useless if the cloud provider you've been betting on shuts down their service.
 The nymea Team</p>
+      </Col>
+      <Col width="30">
+          <ion-icon name="heart-filled"></ion-icon>
       </Col>
     </Row>
   </section>
