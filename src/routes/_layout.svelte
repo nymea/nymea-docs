@@ -9,7 +9,7 @@
   export let segment;
 
   let styles = {
-    '--background-color': 'white',
+    // '--background-color': 'white',
     // '--background-color-left': 'red',
     // '--background-color-right': 'green',
   };
@@ -17,7 +17,10 @@
 
 <style>
   div {
-    padding-top: 7.5rem;
+    min-height: 100vh;
+    /* margin-top: 7.5rem; */
+    /* margin: 0 1rem;
+    padding: 0 2rem; */
     width: 100%;
   }
 

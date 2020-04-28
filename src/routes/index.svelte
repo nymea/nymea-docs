@@ -9,9 +9,11 @@
 		--header-height: 7.5rem;
 		display: flex;
 		flex-direction: column;
-		height: calc(100vh - var(--header-height));
+		/* height: calc(100vh - var(--header-height)); */
+		height: 100vh;
 		justify-content: center;
 		margin: calc(-1 * var(--header-height)) 0 4.5rem;
+		/* margin: 0 0 4.5rem; */
 		padding-top: 7.5rem;
 	}
 

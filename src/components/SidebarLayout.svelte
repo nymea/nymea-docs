@@ -46,7 +46,7 @@
   }
 
   .content {
-    background-color: var(--content-background-color);
+    /* background-color: var(--content-background-color); */
     flex-basis: 0;
     flex-grow: 999;
   }

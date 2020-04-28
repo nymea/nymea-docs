@@ -11,16 +11,30 @@
 
 <style>
   header {
+    /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); */
+                /* 0 2px 4px rgba(0, 0, 0, 0.05), 
+                0 4px 8px rgba(0, 0, 0, 0.05), 
+                0 8px 16px rgba(0, 0, 0, 0.05), 
+                0 16px 32px rgba(0, 0, 0, 0.05); */
     /* display: flex; */
     /* padding: 1.5rem 0; */
   }
 
   div {
+    background-color: #fff;
+    /* background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.7) 80%, rgba(255, 255, 255, 0.2)); */
+    /* backdrop-filter: blur(1px); */
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.6); */
     display: flex;
+    /* margin: 0 1rem; */
     padding: 1.5rem 3rem;
   }
 
-  div.border {
+  .content-header {
+    /* border-bottom: 1px solid #efefef; */
+  }
+
+  .content-header.border {
     border-left: 1px solid #efefef;
     border-right: 1px solid #efefef;
   }
@@ -56,7 +70,7 @@
     <Col width="20"></Col>
 
     <Col width="60">
-      <div class:border={border}>
+      <div class="content-header" class:border={border}>
         <a class="logo" href=".">
           <Logo {height} />
         </a>

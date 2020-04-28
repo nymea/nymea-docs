@@ -11,6 +11,7 @@
 	// import SidebarLayout from '../components/SidebarLayout.svelte';
 	import SubNav from '../../components/SubNav.svelte';
 	import ContentNav from '../../components/ContentNav.svelte';
+	import IntegrationsFilter from '../../components/IntegrationsFilter.svelte';
 	import items from '../../routes/_menu-manual.js';
 
 	const { preloading, page, session } = stores();
@@ -60,9 +61,10 @@
 		--header-height: 7.5rem;
 		border-left: 1px solid #efefef;
 		border-right: 1px solid #efefef;
-		height: calc(100vh - var(--header-height));
+		/* height: calc(100vh - var(--header-height)); */
+		height: 100vh;
 		overflow: scroll;
-		padding: 3rem;
+		padding: 10.5rem 3rem 0;
 	}
 
 	/* .main-inner {
@@ -83,6 +85,10 @@
 		font-size: 0.8em;
 		text-transform: uppercase;
 	} */
+
+	.content-wrapper {
+		margin-bottom: 3rem;
+	}
 </style>
 
 <Wrapper {styles}>
@@ -94,11 +100,15 @@
 		</Col>
 		<Col width="60">
 			<main>
-				<slot></slot>
+				<div class="content-wrapper">
+					<slot></slot>
+				</div>
 			</main>
 		</Col>
 		<Col width="20">
-			{#if $page.path.includes('documentation')}
+			{#if $page.path === '/documentation/overview/integrations'}
+				<IntegrationsFilter />
+			{:else if $page.path.includes('/documentation')}
 				<!-- <ContentNav></ContentNav> -->
 			{/if}
 		</Col>

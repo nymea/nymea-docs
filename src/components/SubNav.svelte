@@ -11,7 +11,7 @@
     --header-height: 7.5rem;
     height: calc(100vh - var(--header-height));
     overflow: scroll;
-    padding: 0 0 0 3rem;
+    padding: 10.5rem 0 0 3rem;
   }
 </style>
 

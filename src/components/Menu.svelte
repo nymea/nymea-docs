@@ -33,7 +33,7 @@
   }
 
   ul.level-0 > li:first-child {
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
   }
 
   li.group {
