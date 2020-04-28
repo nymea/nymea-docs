@@ -34,6 +34,7 @@
     "sub-ghz",
     "serial-port",
     "one-wire",
-    "mqtt"
+    "mqtt",
+    "i2c"
   ]
 }
