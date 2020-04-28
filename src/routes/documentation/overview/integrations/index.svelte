@@ -3,72 +3,14 @@
   import Tiles from '../../../../components/Tiles.svelte';
   import Tile from '../../../../components/Tile.svelte';
   import { meta } from './_meta.js';
-  import { integrations, integrationsCountAll, searchInput, vendorsCountAll } from './_stores.js';
+  import { integrations, filteredIntegrations, searchInput, things, vendors } from './_stores.js';
 
   const { page } = stores();
 
   let categoryFilter = null;
-  // let searchInput = '';
-  let plugins = meta;
-
-  // $: integrationsCountAll = $integrations.length;
-  // $: vendorsCountAll = $integrations.reduce((vendorsCountAll, integration) => {
-  //   return vendorsCountAll = vendorsCountAll + integration.vendorsCount;
-  // }, 0);
-  $: thingsCountAll = $integrations.reduce((thingsCountAll, integration) => {
-    return thingsCountAll = thingsCountAll + integration.thingsCount;
-  }, 0);
-
-  $: console.log(searchInput);
-
-  $: categories = plugins
-    .reduce((categories, plugin) => {
-      return categories.concat(plugin.categories);
-    }, [])
-    .reduce((categoriesWithoutDuplicates, category) => {
-      if (!categoriesWithoutDuplicates.includes(category)) {
-        categoriesWithoutDuplicates.push(category);
-      }
-      return categoriesWithoutDuplicates;
-    }, [])
-    .map((category) => category.charAt(0).toUpperCase() + category.substr(1))
-    .sort();
-
-  $: filteredPlugins = plugins.filter((plugin) => {
-      console.log('plugin.categories', plugin.categories);
-      console.log('filteredPlugins', plugin.categories.includes(categoryFilter));
-      return categoryFilter === null || plugin.categories.includes(categoryFilter);
-    })
-    .sort((pluginA, pluginB) => pluginA.title.localeCompare(pluginB.title));
-
-  $: enhancedPlugins = filteredPlugins.map((plugin) => {
-    const flattenedVendors = getVendors(plugin);
-    const flattenedThings = getThings(plugin);
-    return {
-      ...plugin,
-      vendorsCount: flattenedVendors.length,
-      flattenedVendors,
-      thingsCount: flattenedThings.length,
-      flattenedThings
-    }
-  })
-  // .filter((plugin) => {
-  //   const searchTerms = searchInput.split(' ');
-  //   return searchTerms.reduce((found, searchTerm) => {
-  //     return found = found && search(plugin, searchTerm);
-  //   }, true);
-  // });
-  
-  $: offlinePlugins = filteredPlugins.filter((plugin) => plugin.offline === true);
-
-  // function search(plugin, searchTerm) {
-  //   return plugin.flattenedVendors.find((vendor) => vendor.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) !== undefined ||
-  //     plugin.flattenedThings.find((thing) => thing.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) !== undefined ||
-  //     plugin.title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1;
-  // }
+  let displayType = 'integrations';
 
   function search(input) {
-    console.log('search', input);
     searchInput.update((searchInput) => searchInput = input);
   }
 
@@ -80,12 +22,8 @@
     }
   }
 
-  function getVendors(plugin) {
-    return Object.keys(plugin.things).map((vendor) => vendor);
-  }
-
-  function getThings(plugin) {
-    return Object.keys(plugin.things).reduce((things, vendor) => { return things = things.concat(plugin.things[vendor]); }, []);
+  function show(type) {
+    displayType = type;
   }
 </script>
 
@@ -150,35 +88,6 @@
     list-style-type: none;
   }
 
-  ul.filter {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 3rem 0;
-  }
-
-  ul.filter li {
-    cursor: pointer;
-    margin-left: 0.75rem;
-  }
-
-  ul.filter li.active {
-    text-decoration: underline;
-  }
-
-  ul.filter li::before {
-    content: "\00b7";
-    display: inline-block;
-    margin-right: 0.75rem;
-  }
-
-  ul.filter li:first-child::before {
-    display: none;
-  }
-
-  ul.filter li:first-child {
-    margin-left: 0;
-  }
-
   ul.legend {
     margin: 3rem 0;
   }
@@ -218,29 +127,16 @@
     padding-top: 100%;
   }
 
-  /* .supported {
-    background: rgba(159, 200, 164, 1);
-    background: linear-gradient(135deg, rgba(159, 200, 164, 0.9) 0%, rgba(140, 193, 182, 0.9) 100%);
-    color: #fff;
-    padding: 1.5rem;
-    position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      top: 0;
-  } */
-
-  img {
+  /* img {
     height: 3rem;
     margin-bottom: 1.5rem;
-  }
+  } */
 </style>
 
 <div>
   <h1>Integrations</h1>
   <div class="search">
-    <!-- <label for="search">Search for Vendor and/or Thing</label> -->
-    <input id="search" placeholder="Bose SoundTouch" bind:value={$searchInput} on:input={(event) => search(event.target.value)} />
+    <input tabindex="0" id="search" placeholder="Bose SoundTouch" bind:value={$searchInput} on:input={(event) => search(event.target.value)} />
     {#if $searchInput === ''}
       <ion-icon name="search"></ion-icon>
     {:else}
@@ -248,13 +144,6 @@
     {/if}
   </div>
 </div>
-
-<!-- <ul class="filter">
-  <li class:active={categoryFilter === null} on:click={() =>  setCategory(null)}>All {categoryFilter === null ? '(' + plugins.length + ')' : ''}</li>
-  {#each categories as category}
-    <li class:active={categoryFilter === category.toLowerCase()} on:click={() =>  setCategory(category)}>{category} {categoryFilter === category.toLowerCase() ? '(' + filteredPlugins.length + ')' : ''}</li>
-  {/each}
-</ul> -->
 
 <ul class="legend">
   <li>
@@ -267,35 +156,74 @@
   </li>
 </ul>
 
-<p class="summary">Showing <strong>{integrationsCountAll} {integrationsCountAll === 1 ? 'integration' : 'integrations'}</strong> which {integrationsCountAll === 1 ? 'supports' : 'support'} <strong>{$vendorsCountAll} {$vendorsCountAll === 1 ? 'vendor' : 'vendors'}</strong> and <strong>{thingsCountAll} {thingsCountAll === 1 ? 'device or service' : 'devices and services'}</strong>.</p>
+<p class="summary">Showing <strong on:click={() => show('integrations')}>{$integrations.length} {$integrations.length === 1 ? 'integration' : 'integrations'}</strong> which {$integrations.length === 1 ? 'supports' : 'support'} <strong on:click={() => show('vendors')}>{$vendors.length} {$vendors.length === 1 ? 'vendor' : 'vendors'}</strong> and <strong on:click={() => show('things')}>{$things.length} {$things.length === 1 ? 'thing' : 'things'}</strong>.</p>
 
 <Tiles>
   <!-- {#each enhancedPlugins as plugin} -->
-  {#each $integrations as plugin}
-    <Tile>
-      <a href="{$page.path}/{plugin.readme.replace('.md', '')}">
-        <!-- <img src="img/integrationlogos/{plugin.icon}" alt=""> -->
-        <h2>{plugin.title}</h2>
-        <p>{plugin.tagline}</p>
-        <p class="details">{plugin.vendorsCount} {plugin.vendorsCount === 1 ? 'Vendor' : 'Vendors'}, {plugin.thingsCount} {plugin.thingsCount === 1 ? 'Thing' : 'Things'}</p>
-        <ul class="icons">
-          {#if plugin.offline === true}
-            <li>
-              <ion-icon name="cloud-offline"></ion-icon>
-            </li>
-          {/if}
-          {#if plugin.stability === 'consumer'}
-            <li>
-              <ion-icon name="shield-checkmark"></ion-icon>
-            </li>
-          {/if}
-        </ul>
-        <!-- <div class="supported">
-          {#each Object.keys(plugin.things).map((vendor) => ({ name: vendor, things: plugin.things[vendor] })) as vendor}
-            <p><strong>{vendor.name}:</strong> {vendor.things.join(', ')}</p>
-          {/each}
-        </div> -->
-      </a>
-    </Tile>
-  {/each}
+  <!-- {#if displayType === 'integrations'} -->
+    {#each $filteredIntegrations as integration}
+      <Tile>
+        <a href="{$page.path}/{integration.readme.replace('.md', '')}">
+          <!-- <img src="img/integrationlogos/{plugin.icon}" alt=""> -->
+          <h2>{integration.title}</h2>
+          <p>{integration.tagline}</p>
+          <p class="details">{integration.vendorsCount} {integration.vendorsCount === 1 ? 'Vendor' : 'Vendors'}, {integration.thingsCount} {integration.thingsCount === 1 ? 'Thing' : 'Things'}</p>
+          <ul class="icons">
+            {#if integration.offline === true}
+              <li>
+                <ion-icon name="cloud-offline"></ion-icon>
+              </li>
+            {/if}
+            {#if integration.stability === 'consumer'}
+              <li>
+                <ion-icon name="shield-checkmark"></ion-icon>
+              </li>
+            {/if}
+          </ul>
+        </a>
+      </Tile>
+    {/each}
+  <!-- {:else if displayType === 'vendors'}
+    {#each $vendors as vendor}
+      <Tile>
+        <a href="{$page.path}/{vendor.integration.readme.replace('.md', '')}">
+          <h2>{vendor.title}</h2>
+          <p>{vendor.integration.tagline}</p>
+          <ul class="icons">
+            {#if vendor.integration.offline === true}
+              <li>
+                <ion-icon name="cloud-offline"></ion-icon>
+              </li>
+            {/if}
+            {#if vendor.integration.stability === 'consumer'}
+              <li>
+                <ion-icon name="shield-checkmark"></ion-icon>
+              </li>
+            {/if}
+          </ul>
+        </a>
+      </Tile>
+    {/each}
+  {:else if displayType === 'things'}
+    {#each $things as thing}
+      <Tile>
+        <a href="{$page.path}/{thing.integration.readme.replace('.md', '')}">
+          <h2>{thing.title}</h2>
+          <p>{thing.integration.tagline}</p>
+          <ul class="icons">
+            {#if thing.integration.offline === true}
+              <li>
+                <ion-icon name="cloud-offline"></ion-icon>
+              </li>
+            {/if}
+            {#if thing.integration.stability === 'consumer'}
+              <li>
+                <ion-icon name="shield-checkmark"></ion-icon>
+              </li>
+            {/if}
+          </ul>
+        </a>
+      </Tile>
+    {/each}
+  {/if} -->
 </Tiles>

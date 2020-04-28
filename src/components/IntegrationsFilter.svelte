@@ -1,27 +1,32 @@
 <script>
-  import { categories, currentCategory, integrations, vendors, vendorsCountAll, currentVendor } from '../routes/documentation/overview/integrations/_stores.js';
+  import { categories, currentCategory, integrations, technologies, currentTechnology/*, vendors, vendorsCountAll, currentVendor*/ } from '../routes/documentation/overview/integrations/_stores.js';
 
   let integrationsCountAll = $integrations.length;
 
   function setCategory(category) {
-    console.log('setCategory', category, $currentCategory);
-    if (category === null || category.title.toLowerCase() === $currentCategory) {
-      // currentCategory = null;
-      currentCategory.update((currentCategory) => currentCategory = null);
+    if (category === null || category.title.toLowerCase().replace(' ', '-') === $currentCategory) {
+      currentCategory.reset();
     } else {
-      // currentCategory = category.toLowerCase();
-      currentCategory.update((currentCategory) => currentCategory = category.title.toLowerCase());
+      currentCategory.set(category.title);
     }
   }
 
-  function setVendor(vendor) {
-     console.log('setVendor', vendor, $currentVendor);
-    if (vendor === null || vendor === $currentVendor) {
-      currentVendor.update((currentVendor) => currentVendor = null);
+  function setTechnology(technology) {
+    if (technology === null || technology.title.toLowerCase().replace(' ', '-') === $currentTechnology) {
+      currentTechnology.reset();
     } else {
-      currentVendor.update((currentVendor) => currentVendor = vendor.title);
+      currentTechnology.set(technology.title);
     }
   }
+
+  // function setVendor(vendor) {
+  //    console.log('setVendor', vendor, $currentVendor);
+  //   if (vendor === null || vendor === $currentVendor) {
+  //     currentVendor.update((currentVendor) => currentVendor = null);
+  //   } else {
+  //     currentVendor.update((currentVendor) => currentVendor = vendor.title);
+  //   }
+  // }
 </script>
 
 <style>
@@ -91,7 +96,7 @@
     </li>
 
     {#each $categories as category}
-    <li class:active={$currentCategory === category.title.toLowerCase()}
+    <li class:active={$currentCategory === category.title.toLowerCase().replace(' ', '-')}
         on:click={() => setCategory(category)}>
       {category.title}
       <span>{category.count}</span>
@@ -99,20 +104,35 @@
     {/each}
   </ul>
 
-  <p>Vendor</p>
+  <p>Technology</p>
+  <ul>
+    <li class:active={$currentTechnology === null} 
+        on:click={() => setTechnology(null)}>
+      All
+      <span>{$technologies.length}</span>
+    </li>
+
+    {#each $technologies as technology}
+    <li class:active={$currentTechnology === technology.title.toLowerCase().replace(' ', '-')}
+        on:click={() => setTechnology(technology)}>
+      {technology.title}
+      <span>{technology.count}</span>
+    </li>
+    {/each}
+  </ul>
+
+  <!-- <p>Vendor</p>
   <ul>
     <li class:active={$currentVendor === null} 
         on:click={() => setVendor(null)}>
       All
-      <!-- <span>{vendorsCountAll}</span> -->
     </li>
 
     {#each $vendors as vendor}
     <li class:active={$currentVendor === vendor.title}
         on:click={() => setVendor(vendor)}>
       {vendor.title}
-      <!-- <span>{vendor.count}</span> -->
     </li>
     {/each}
-  </ul>
+  </ul> -->
 </div>
