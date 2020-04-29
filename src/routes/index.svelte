@@ -1,198 +1,231 @@
 <script>
-  import Wrapper from '../components/Wrapper.svelte';
-  import Row from '../components/Row.svelte';
-  import Col from '../components/Col.svelte';
+  import { stores } from '@sapper/app';
+  import Tiles from '../components/Tiles.svelte';
+  import Tile from '../components/Tile.svelte';
+  import { meta } from './integrations/_meta.js';
+  import { integrations, filteredIntegrations, searchInput, things, vendors } from './integrations/_stores.js';
+
+  const { page } = stores();
+
+  let categoryFilter = null;
+  let displayType = 'integrations';
+
+  function search(input) {
+    searchInput.update((searchInput) => searchInput = input);
+  }
+
+  function show(type) {
+    displayType = type;
+  }
 </script>
 
 <style>
-  #introduction {
-    --header-height: 7.5rem;
+  div {
     display: flex;
-    flex-direction: column;
-    /* height: calc(100vh - var(--header-height)); */
-    height: 100vh;
-    justify-content: center;
-    margin: calc(-1 * var(--header-height)) 0 4.5rem;
-    /* margin: 0 0 4.5rem; */
-    padding-top: 7.5rem;
+    flex-wrap: wrap;
+    margin: 0 0 3rem;
   }
 
-  #introduction h1 {
+  div h1 {
+    margin: 0 auto 1.5rem 0;
+  }
+
+  div.search {
+    margin: 0.5rem 0;
+    /* margin: 1.5rem 0 0.5rem auto; */
+    width: 20rem;
+    position: relative;
+    /* max-width: 40%; */
+  }
+
+  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #efefef;
+    border-radius: 1rem;
+    font-size: 1rem;
+    height: 2rem;
+    line-height: 1rem;
+    outline: none;
+    padding: 0.25rem 2.75rem 0.25rem 0.75rem;
+    width: 100%;
+  }
+
+  input::-webkit-input-placeholder { /* Edge */
     color: #676767;
-    font-size: 2.25rem;
-    line-height: 3rem;
   }
 
-  #introduction h2 {
-    font-size: 4.5rem;
-    font-weight: 500;
-    line-height: 4.5rem;
-    margin: 0  0 3rem;
+  input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #676767;
   }
 
-  #introduction ul {
+  input::placeholder {
+    color: #676767;
+  }
+
+  div.search ion-icon {
+    font-size: 1.125rem;
+    position: absolute;
+      right: 0.75rem;
+      top: 0.4375rem;
+  }
+
+  p.summary {
+    margin-bottom: 3rem;
+  }
+
+  a > h2 {
+    margin-top: 0;
+  }
+
+  ul {
     list-style-type: none;
   }
 
-  #introduction li {
-    font-size: 1.875rem;
-    font-weight: 300;
-    line-height: 3rem;
+  ul.legend {
+    margin: 3rem 0;
+  }
+
+  .details {
+    position: absolute;
+      bottom: 0;
+      left: 0;
+  }
+
+  ul.icons {
+    display: flex;
+    /* margin-top: 1.5rem; */
+    position: absolute;
+      bottom: 0;
+      right: 0;
+  }
+
+  ul.icons li {
+    margin-left: 0.75rem;
+  }
+
+  ul.icons li:first-child {
+    margin-left: 0;
+  }
+
+  a {
+    display: block;
+    height: 100%;
+    /* padding: 1.5rem 1.5rem 3rem 1.5rem; */
+    outline: none;
+    padding-bottom: 1.5rem;
+    position: relative;
     text-decoration: none;
   }
 
-  #introduction ion-icon {
-    font-size: 1.5rem;
-    margin: 0 0.75rem -0.2rem 0;
+  a::-moz-focus-inner {
+    border: 0;
   }
 
-  a.button {
-    align-self: flex-start;
-    appearance: none;
-    background: rgba(159, 200, 164, 1);
-    background: linear-gradient(135deg, rgba(159, 200, 164, 1) 0%, rgba(140, 193, 182, 1) 100%);
-    border-radius: 6px;
-    color: #fff;
-    display: block;
-    flex-basis: 1;
-    margin: 3rem 0 0;
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
+  a:before {
+    content: '';
+    float: left;
+    padding-top: 100%;
   }
 
-  #introduction a.button ion-icon {
-    font-size: 1rem;
-    margin: 0 0 -0.1rem 0.75rem;
-  }
-
-  .viewsection {
-    height: 80vh;
-  }
-
-  #for-whom ion-icon {
-    font-size: 10rem;
-    margin: 0 0.75rem -0.2rem 0;
-  }
-
-  #what-2 img {
-    display: block;
-    width: 100;
-  }
-
-  #why ion-icon {
-    display: block;
-    width: 100;
-  }
-
+  /* img {
+    height: 3rem;
+    margin-bottom: 1.5rem;
+  } */
 </style>
 
-<svelte:head>
-  <title>nymea</title>
-</svelte:head>
+<div>
+  <h1>Integrations</h1>
+  <div class="search">
+    <input tabindex="0" id="search" placeholder="Bose SoundTouch" bind:value={$searchInput} on:input={(event) => search(event.target.value)} />
+    {#if $searchInput === ''}
+      <ion-icon name="search"></ion-icon>
+    {:else}
+      <ion-icon name="close" on:click={() => search('')}></ion-icon>
+    {/if}
+  </div>
+</div>
 
-<Wrapper>
-  <section id="introduction">
-    <Row>
-      <Col offset="20" width="60">
-        <h1>nymea</h1>
-        <h2>The Open IoT Stack</h2>
-        <ul>
-          <!-- <li><ion-icon name="checkmark-circle"></ion-icon>connect</li>
-          <li><ion-icon name="checkmark-circle"></ion-icon>integrate</li>
-          <li><ion-icon name="checkmark-circle"></ion-icon>stay independent</li> -->
-          <li><ion-icon name="checkmark-circle"></ion-icon>Connect products & services</li>
-          <li><ion-icon name="checkmark-circle"></ion-icon>Integrate with platforms</li>
-          <li><ion-icon name="checkmark-circle"></ion-icon>Stay independent through "local first"</li>
-        </ul>
-        <a class="button" href="documentation/overview">Get started<ion-icon name="arrow-forward"></ion-icon></a>
-      </Col>
-    </Row>
-  </section>
-</Wrapper>
+<ul class="legend">
+  <li>
+    <ion-icon name="cloud-offline"></ion-icon>
+    No cloud connection needed.
+  </li>
+  <li>
+    <ion-icon name="shield-checkmark"></ion-icon>
+    Integration through official 3rd-party API.
+  </li>
+</ul>
 
-<Wrapper>
-  <section id="what-1" class="viewsection">
-    <Row>
-      <Col offset="20" width="60">
-        <h2>From individual features to a full blown IoT device</h2>
-        <p>Nymea is an open source IoT stack. It is used to build smart IoT devices, smart home gateways or enable individual IoT related features in connected products. We follow a "local first" approach, which means nymea will keep users data private and will still be functional even without Internet connection. Obviously, cloud integration is still available if wanted.</p>
-      </Col>
-    </Row>
-  </section>
-</Wrapper>
+<p class="summary">Showing <strong on:click={() => show('integrations')}>{$integrations.length} {$integrations.length === 1 ? 'integration' : 'integrations'}</strong> which {$integrations.length === 1 ? 'supports' : 'support'} <strong on:click={() => show('vendors')}>{$vendors.length} {$vendors.length === 1 ? 'vendor' : 'vendors'}</strong> and <strong on:click={() => show('things')}>{$things.length} {$things.length === 1 ? 'thing' : 'things'}</strong>.</p>
 
-<Wrapper>
-  <section id="for-whom" class="viewsection">
-    <Row>
-      <Col offset="20" width="20">
-        <ion-icon name="people-outline"></ion-icon>
-        <h2>For Users</h2>
-        <p>nymea gets you up and running with your smart home setup in no time. Just install nymea:core and nymea:app and you're all set with a powerful smart home solution that does not require powerful hardware or fiddling with cryptic configuration files. Using 100% free and open source software.</p>
-      </Col>
-      <Col width="20">
-        <ion-icon name="build-outline"></ion-icon>
-        <h2>For Developers</h2>
-        <p>When you're building your own IoT device, nymea will help with all the software efforts. Whether it's connecting your device to others, adding easy set-up features, creating smart hubs for for all your devices or adding control and setup frontends, nymea's got your back.</p>
-      </Col>
-      <Col width="20">
-        <ion-icon name="rocket-outline"></ion-icon>
-        <h2>For Businesses</h2>
-        <p>Building IoT enabled customer grade products can be hard. We've ramped up with all the required know-how and with the nymea stack we'll be supporting your business. Whether it's fast prototyping and consulting, providing needed components, building entire products or caring for deployments and updates. Together with our partners we offer in-field experience for all of those aspects.</p>
-      </Col>
-    </Row>
-  </section>
-</Wrapper>
-
-<Wrapper>
-  <section id="what-2" class="viewsection">
-    <Row>
-      <Col offset="20" width="30">
-        <h2>Built for connected devices</h2>
-        <p>Connect lighting, media, heating, irrigations and sprinklers, garage doors, alarm systems and many more to a centralized, local and privacy focused control center with nymea. Or build your device running nymea to connect and integrate with other solutions, such as Alexa or Google Home.</p>
-      </Col>
-      <Col width="30">
-        <img src="img/nymea-integrations.png">
-      </Col>
-    </Row>
-  </section>
-</Wrapper>
-
-<Wrapper>
-  <section id="how">
-    <Row>
-      <Col offset="20" width="30">
-        <img src="img/Software.svg">
-      </Col>
-      <Col width="30">
-        <h2>Nymea Software Stack</h2>
-        <p>Simple, yet powerful.</p>
-        <p>The nymea core stack is written in C++ and Qt. This results in low hardware requirements and high performance. To ease and speed up development time, individual integrations and automation behaviours can be added with JavaScript.</p>
-      </Col>
-    </Row>
-  </section>
-</Wrapper>
-
-<Wrapper>
-  <section id="why">
-    <Row>
-      <Col offset="20" width="30">
-        <h2>Affair of the heart</h2>
-        <p>We think that IoT devices, especially inside your home do not have to be cloud connected all the time. Privacy and reliability are our main concerns. With that in mind we build anything we do with a offline-first approach. This results in blazing fast reaction times, full control over personal data and guarantees your product won't be rendered useless if the cloud provider you've been betting on shuts down their service.
-The nymea Team</p>
-      </Col>
-      <Col width="30">
-          <ion-icon name="heart-filled"></ion-icon>
-      </Col>
-    </Row>
-  </section>
-</Wrapper>
-
-<Wrapper>
-  <section id="showcases">
-    <Row>
-      <Col offset="20" width="60">
-        <h2>Showcase</h2>
-      </Col>
-    </Row>
-  </section>
-</Wrapper>
+<Tiles>
+  <!-- {#each enhancedPlugins as plugin} -->
+  <!-- {#if displayType === 'integrations'} -->
+    {#each $filteredIntegrations as integration}
+      <Tile>
+        <a href="integrations/{integration.readme.replace('.md', '')}">
+          <!-- <img src="img/integrationlogos/{plugin.icon}" alt=""> -->
+          <h2>{integration.title}</h2>
+          <p>{integration.tagline}</p>
+          <p class="details">{integration.vendorsCount} {integration.vendorsCount === 1 ? 'Vendor' : 'Vendors'}, {integration.thingsCount} {integration.thingsCount === 1 ? 'Thing' : 'Things'}</p>
+          <ul class="icons">
+            {#if integration.offline === true}
+              <li>
+                <ion-icon name="cloud-offline"></ion-icon>
+              </li>
+            {/if}
+            {#if integration.stability === 'consumer'}
+              <li>
+                <ion-icon name="shield-checkmark"></ion-icon>
+              </li>
+            {/if}
+          </ul>
+        </a>
+      </Tile>
+    {/each}
+  <!-- {:else if displayType === 'vendors'}
+    {#each $vendors as vendor}
+      <Tile>
+        <a href="{$page.path}/{vendor.integration.readme.replace('.md', '')}">
+          <h2>{vendor.title}</h2>
+          <p>{vendor.integration.tagline}</p>
+          <ul class="icons">
+            {#if vendor.integration.offline === true}
+              <li>
+                <ion-icon name="cloud-offline"></ion-icon>
+              </li>
+            {/if}
+            {#if vendor.integration.stability === 'consumer'}
+              <li>
+                <ion-icon name="shield-checkmark"></ion-icon>
+              </li>
+            {/if}
+          </ul>
+        </a>
+      </Tile>
+    {/each}
+  {:else if displayType === 'things'}
+    {#each $things as thing}
+      <Tile>
+        <a href="{$page.path}/{thing.integration.readme.replace('.md', '')}">
+          <h2>{thing.title}</h2>
+          <p>{thing.integration.tagline}</p>
+          <ul class="icons">
+            {#if thing.integration.offline === true}
+              <li>
+                <ion-icon name="cloud-offline"></ion-icon>
+              </li>
+            {/if}
+            {#if thing.integration.stability === 'consumer'}
+              <li>
+                <ion-icon name="shield-checkmark"></ion-icon>
+              </li>
+            {/if}
+          </ul>
+        </a>
+      </Tile>
+    {/each}
+  {/if} -->
+</Tiles>

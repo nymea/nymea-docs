@@ -1,9 +1,13 @@
 <script>
-  import { categories, currentCategory, integrations, technologies, currentTechnology/*, vendors, vendorsCountAll, currentVendor*/ } from '../routes/documentation/overview/integrations/_stores.js';
+  import 'simplebar';
+  import 'simplebar/dist/simplebar.css';
+  // import { categories, currentCategory, integrations, technologies, currentTechnology/*, vendors, vendorsCountAll, currentVendor*/ } from '../routes/documentation/overview/integrations/_stores.js';
+  import { categories, currentCategory, integrations, technologies, currentTechnology/*, vendors, vendorsCountAll, currentVendor*/ } from '../routes/integrations/_stores.js';
 
   let integrationsCountAll = $integrations.length;
 
   function setCategory(category) {
+    console.log('setCategory', category, $currentCategory);
     if (category === null || category.title.toLowerCase().replace(' ', '-') === $currentCategory) {
       currentCategory.reset();
     } else {
@@ -86,7 +90,7 @@
   }
 </style>
 
-<div>
+<div data-simplebar>
   <p>Category</p>
   <ul>
     <li class:active={$currentCategory === null} 

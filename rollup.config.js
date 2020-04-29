@@ -33,7 +33,7 @@ export default {
 				extensions: ['.svelte', '.md'],
 				preprocess: mdsvex({
 					extension: '.md',
-					layout: path.join(__dirname, 'src/routes/_md-layout.svelte'),
+					// layout: path.join(__dirname, 'src/routes/_md-layout.svelte'),
 					markdownOptions: {
 						typographer: true,
 						linkify: true
@@ -370,7 +370,7 @@ export default {
 				extensions: ['.svelte', '.md'],
 				preprocess: mdsvex({
 					extension: '.md',
-					layout: path.join(__dirname, 'src/routes/_md-layout.svelte'),
+					// layout: path.join(__dirname, 'src/routes/_md-layout.svelte'),
 					markdownOptions: {
 						typographer: true,
 						linkify: true
