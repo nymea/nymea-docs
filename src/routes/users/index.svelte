@@ -69,11 +69,119 @@
 <section>
   <Grid>
     <Row>
+      <Col center>
+        <h3>Nymea is a connection talent</h3>
+      </Col>
+    </Row>
+    <Row>
+      <Col middle center>
+        <h4>Lights</h4>
+      </Col>
+      <Col middle center>
+        <h4>Sensors</h4>
+      </Col>
+      <Col middle center>
+        <h4>Access control</h4>
+      </Col>
+      <Col middle center>
+        <h4>Weather</h4>
+      </Col>
+      <Col middle center>
+        <h4>Energy meters</h4>
+      </Col>
+      <Col middle center>
+        <h4>Media</h4>
+      </Col>
+      <Col middle center>
+        <h4>Irrigation</h4>
+      </Col>
+      <Col middle center>
+        <h4>Notifications</h4>
+      </Col>
+      <Col middle center>
+        <h4>Presence awareness</h4>
+      </Col>
+      <Col middle center>
+        <h4>And many more</h4>
+      </Col>
+    </Row>
+    <Row>
       <Col>
-        <h2>Features</h2>
-        <p>Nymea is a connection talent. Connecting things to your smart home is easy and quick.</p>
-        <p>Advanced configuration. Even without the need of a smart home, nymea offers comprehensive configuration capabilities for your hardware. Headless network setup as client or access point, setting up an MQTT broker, easy remote access, running a web server, or updating your system is all right there at your fingertips when nymea is installed.</p>
-        <p>Link to feature list</p>
+        <img src="img/things/bulb-outline.svg" alt="Lights" />
+      </Col>
+      <Col center>
+        <img src="img/things/thermometer-outline.svg" alt="Sensors" />
+      </Col>
+      <Col center>
+        <img src="img/things/key-outline.svg" alt="Access control" />
+      </Col>
+      <Col center>
+        <img src="img/things/partly-sunny-outline.svg" alt="Weather" />
+      </Col>
+      <Col center>
+        <img src="img/things/speedometer-outline.svg" alt="Energy meters" />
+      </Col>
+      <Col center>
+        <img src="img/things/volume-high-outline.svg" alt="Media" />
+      </Col>
+      <Col center>
+        <img src="img/things/water-outline.svg" alt="Irrigation" />
+      </Col>
+      <Col center>
+        <img src="img/things/chatbox-ellipses-outline.svg" alt="Notifications" />
+      </Col>
+      <Col center>
+        <img src="img/things/location-outline.svg" alt="Presence" />
+      </Col>
+      <Col center>
+        <img src="img/things/more-outline.svg" alt="More" />
+      </Col>
+    </Row>
+    <Row>
+      <Col center>
+        <p>Connecting things to your smart home is easy and quick. See the list of <a href="documentation/overview/integrations">integrations</a>.</p>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<section>
+  <Grid>
+    <Row>
+      <Col center middle>
+        <h3>Hazzle-free setup</h3>
+      </Col>
+    </Row>
+    <Row>
+      <Col center middle>
+        <img src="img/touch-screen-and-pi-love.png" alt="RPi support"/>
+      </Col>
+      <Col center middle>
+        <img src="img/nymea-ubuntu.svg" alt="Linux support"/>
+      </Col>
+    </Row>
+    <Row>
+      <Col center middle>
+        <p>Ready to go Raspberry Pi images</p>
+      </Col>
+      <Col center middle>
+        <p>Prebuilt packages for Ubuntu and Debian GNU/Linux</p>
+      </Col>
+    </Row>
+    <Row>
+      <Col center middle>
+        <img src="img/mobile-app.png" alt="Mobile app"/>
+      </Col>
+      <Col center middle>
+        <img src="img/desktop-app.png" alt="Desktop app"/>
+      </Col>
+    </Row>
+    <Row>
+      <Col center middle>
+        <p>Supports all mobile...</p>
+      </Col>
+      <Col center middle>
+        <p>... and stationary devices.</p>
       </Col>
     </Row>
   </Grid>
@@ -90,11 +198,6 @@
         <p>Define smart behaviors for your environment. Using easy to setup rules allows to create all sorts of scenarios. Turning on your light when it gets dark outside and you're at home is just one example. Just a few clicks and your custom behavior is ready to go.</p>
       </Col>
     </Row>
-  </Grid>
-</section>
-
-<section>
-  <Grid>
     <Row>
       <Col middle>
         <h3>For the more advanced</h3>
@@ -102,6 +205,17 @@
       </Col>
       <Col>
         <img src="img/scripting.png" alt="Scripting support"/>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<section>
+  <Grid>
+    <Row>
+      <Col>
+        <p>Advanced configuration. Even without the need of a smart home, nymea offers comprehensive configuration capabilities for your hardware. Headless network setup as client or access point, setting up an MQTT broker, easy remote access, running a web server, or updating your system is all right there at your fingertips when nymea is installed.</p>
+        <p>Link to feature list</p>
       </Col>
     </Row>
   </Grid>

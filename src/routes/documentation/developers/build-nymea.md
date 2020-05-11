@@ -219,7 +219,7 @@ A compressed file containing the debian packages and also the source packages wi
     source_repository/nymea_0.9.0+201803271733~c348a6b~stretch_source.changes
     source_repository/nymea_0.9.0+201803271733~c348a6b~stretch.tar.xz
 
-    The content will be extracted in the source directory. If you want to see the content of the resulting packages you can use the `dpkg` command:
+The content will be extracted in the source directory. If you want to see the content of the resulting packages you can use the `dpkg` command:
 
     $ dpkg -c libnymea1_0.9.0+201803271733~c348a6b~stretch_armhf.deb
 
