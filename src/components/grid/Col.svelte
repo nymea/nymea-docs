@@ -4,7 +4,12 @@
   export let gap;
   export let offset;
   export let span;
+  export let bottom;
   export let middle;
+  export let top;
+  export let left;
+  export let center;
+  export let right;
 
   $: style = createStyle(style, {
     // '--col-gap': gap,
@@ -43,8 +48,28 @@
     flex: 0 0 calc((100% / var(--row-cols)) * var(--col-span));
   }
 
+  .col.bottom {
+    align-self: flex-end;
+  }
+
   .col.middle {
     align-self: center;
+  }
+
+  .col.top {
+    align-self: flex-start;
+  }
+
+  .col.left {
+    text-align: left;
+  }
+
+  .col.center {
+    text-align: center;
+  }
+
+  .col.right {
+    text-align: right;
   }
 
   @media only screen and (min-width: 48em) {
@@ -99,7 +124,12 @@
   class:span-md={style['--col-span-md']}
   class:span-lg={style['--col-span-lg']}
   class:span-xl={style['--col-span-xl']}
+  class:bottom
   class:middle
+  class:top
+  class:left
+  class:center
+  class:right
   {style}
 >
   <slot />
