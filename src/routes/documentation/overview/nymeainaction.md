@@ -8,6 +8,7 @@ This page lists some nymea installations out there in the wild. Are you using ny
 ## Smart home with touch screen control panel
 
 <img src="https://hackster.imgix.net/uploads/attachments/650968/main_image_mUT97rqp6F.jpg?auto=compress%2Cformat&w=900&h=675&fit=min" style="width:300px; float: left; margin-bottom: 0.5em; text-align: center; margin-right: 10px;"> 
+
 [This Hackster article](https://www.hackster.io/michael_zanetti/open-source-smart-home-with-touchscreen-control-panel-55e613) shows how to run nymea:core and nymea:app on a Raspberry Pi with 7" Touch screen panel to control a smart home. This setup features Philips Hue lights, homebrew RGB LED stripes using boblight, FlowerCare sensors to monitor plants, integrate with Kodi and Sonoff light switches.
 
 <p style="clear:both;"></p>
@@ -46,7 +47,7 @@ Nymea is helping the Raspberry Pi community to get set up without cable and term
 
 <p style="clear:both;"></p>
 
-## Physical switch for your house lights
+## Nymea and Tasmota
 
 <img src="https://hackster.imgix.net/uploads/attachments/922761/h1_rXLJCj5IXN.jpg?auto=compress%2Cformat&w=900&h=675&fit=min" style="width:300px; float: right; margin-bottom: 0.5em; text-align: center; margin-right: 10px;">
 

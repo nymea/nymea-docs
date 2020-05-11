@@ -53,8 +53,8 @@ title: Features
 ### Connection interfaces
 
 *  API available on interfaces
-        * TCP/JSONRPC
-        * WebSockets/JSONRPC
+    * TCP/JSONRPC
+    * WebSockets/JSONRPC
 * Encryption
         * Plaintext connection supported
     * SSL: Every channel supports encryption and host verification using SSL
