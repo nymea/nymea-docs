@@ -184,6 +184,31 @@
         <p>... and stationary devices.</p>
       </Col>
     </Row>
+    <Row>
+      <Col middle>
+        <img src="img/badges/appstore.png" alt=""/>
+      </Col>
+      <Col middle>
+        <img src="img/badges/playstore.png" alt=""/>
+      </Col>
+      <Col middle>
+        <img src="img/badges/open-store.svg" alt=""/>
+      </Col>
+      <Col middle>
+        <img src="img/badges/snap-store.png" alt=""/>
+      </Col>
+      <Col middle>
+        <img src="img/badges/windows.svg" alt=""/>
+      </Col>
+      <Col middle>
+        <img src="img/badges/macos.svg" alt=""/>
+      </Col>
+    </Row>
+    <Row>
+      <Col center>
+        <p>Check out all the installation options in the <a href="documentation/users/installation/gettingstarted">installation documentation</a>.</p>
+      </Col>
+    </Row>
   </Grid>
 </section>
 
@@ -213,8 +238,19 @@
 <section>
   <Grid>
     <Row>
+      <Col center>
+        <h3>Advanced configuration</h3>
+      </Col>
+    </Row>
+    <Row>
+      <Col center>
+        <img src="img/configuration.png" alt="Configuration"/>
+        <p>TODO: Make this image a bit smaller</p>
+      </Col>
+    </Row>
+    <Row>
       <Col>
-        <p>Advanced configuration. Even without the need of a smart home, nymea offers comprehensive configuration capabilities for your hardware. Headless network setup as client or access point, setting up an MQTT broker, easy remote access, running a web server, or updating your system is all right there at your fingertips when nymea is installed.</p>
+        <p>Even without the need of a smart home, nymea offers comprehensive configuration capabilities for your hardware. Headless network setup as client or access point, setting up an MQTT broker, easy remote access, running a web server, or updating your system is all right there at your fingertips when nymea is installed.</p>
         <p>Link to feature list</p>
       </Col>
     </Row>
