@@ -35,7 +35,7 @@
     --header-background-color: #fff;
     --header-height: 6rem;
     --header-padding: 0;
-    --header-width: 100%;
+    --header-width: calc(100% - 1.5rem);;
   }
 
   header {
@@ -64,8 +64,8 @@
     }
 
     header > div {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
+      /* border-top-left-radius: 0;
+      border-top-right-radius: 0; */
       width: var(--header-width);
     }
   }
