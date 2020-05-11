@@ -10,4 +10,4 @@
   }
 </style>
 
-<img src="logo.svg" alt="" style="--height: {height}; --width: {width};" />
+<img src="logo.svg" alt="" class="logo" style="--height: {height}; --width: {width};" />

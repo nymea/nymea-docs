@@ -1,7 +1,7 @@
 <script>
-  import Wrapper from '../../components/Wrapper.svelte';
-  import Row from '../../components/Row.svelte';
-  import Col from '../../components/Col.svelte';
+  import Col from '../../components/grid/Col.svelte';
+  import Grid from '../../components/grid/Grid.svelte';
+  import Row from '../../components/grid/Row.svelte';
 </script>
 
 <style></style>
@@ -10,43 +10,43 @@
 	<title>overview &middot; nymea</title>
 </svelte:head>
 
-<Wrapper>
-  <section>
+<section>
+  <Grid>
     <Row>
-      <Col offset="20" width="60">
+      <Col>
         <h1>Overview</h1>
         <a href="documentation/overview">Learn more</a>
       </Col>
     </Row>
-  </section>
-</Wrapper>
+  </Grid>
+</section>
 
-<Wrapper>
-  <section>
+<section>
+  <Grid>
     <Row>
-      <Col offset="20" width="60">
+      <Col>
         <h2>Edge</h2>
       </Col>
     </Row>
-  </section>
-</Wrapper>
+  </Grid>
+</section>
 
-<Wrapper>
-  <section>
+<section>
+  <Grid>
     <Row>
-      <Col offset="20" width="60">
+      <Col>
         <h2>App</h2>
       </Col>
     </Row>
-  </section>
-</Wrapper>
+  </Grid>
+</section>
 
-<Wrapper>
-  <section>
+<section>
+  <Grid>
     <Row>
-      <Col offset="20" width="60">
+      <Col>
         <h2>Cloud</h2>
       </Col>
     </Row>
-  </section>
-</Wrapper>
+  </Grid>
+</section>

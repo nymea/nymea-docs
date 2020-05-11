@@ -13,8 +13,10 @@
 
   $: console.log('ContentNav - $contentScrollTop', $contentScrollTop);
 
-  onMount(() => {
+  afterUpdate(() => {
     const content = document.querySelector('.content');
+    console.log('ContentNav - content', content);
+    if(!content) return;
     const header = content.querySelector('header');
     const nav = document.querySelector('.sidebar-content');
     let anchorOffsets = Array.from(document.querySelectorAll('li a')).map((anchor) => window.screenY + anchor.getBoundingClientRect().top);
@@ -116,7 +118,7 @@
 </script>
 
 <style>
-  /* :root {
+  :root {
     --nav-list-header-color: #676767;
     --nav-item-color: #202020;
   }
@@ -124,7 +126,7 @@
   div {
     height: auto;
     min-height: 100%;
-    padding: 0 0 0 3rem;
+    padding: 1.5rem;
   }
 
   p {
@@ -135,13 +137,17 @@
     text-transform: uppercase;
   }
 
+  p:first-child {
+    margin-top: 0;
+  }
+
   ul {
     list-style-type: none;
     margin: 0;
   }
 
   ul.inset {
-    margin-left: 1.5rem;
+    margin-left: 0.75rem;
   }
 
   a {
@@ -153,7 +159,7 @@
 
   a.active {
     text-decoration: underline;
-  } */
+  }
 
   /* div {
     border-left: 1px solid #efefef;

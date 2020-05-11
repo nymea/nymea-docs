@@ -8,7 +8,7 @@ module.exports = [
   {
     "id": "overview",
     "title": "Overview",
-    "link": false,
+    "link": true,
     "children": [
       {
         "id": "nymeainaction",

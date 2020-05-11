@@ -1,7 +1,7 @@
 <script>
   import { stores } from '@sapper/app';
-  import Tiles from '../../../../components/Tiles.svelte';
-  import Tile from '../../../../components/Tile.svelte';
+  import Tiles from '../../../../components/tiles/Tiles.svelte';
+  import Tile from '../../../../components/tiles/Tile.svelte';
   import { meta } from './_meta.js';
   import { integrations, filteredIntegrations, searchInput, things, vendors } from './_stores.js';
 
@@ -157,7 +157,7 @@
       <Tile>
         <a href="{$page.path}/{integration.readme.replace('.md', '')}">
           <!-- <img src="img/integrationlogos/{plugin.icon}" alt=""> -->
-          <h2>{integration.title}</h2>
+          <h3>{integration.title}</h3>
           <p>{integration.tagline}</p>
           <p class="details">{integration.vendorsCount} {integration.vendorsCount === 1 ? 'Vendor' : 'Vendors'}, {integration.thingsCount} {integration.thingsCount === 1 ? 'Thing' : 'Things'}</p>
           <ul class="icons">

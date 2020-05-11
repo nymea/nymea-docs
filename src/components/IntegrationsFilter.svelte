@@ -32,12 +32,17 @@
 <style>
   div {
     height: 100vh;
-		overflow: scroll;
-    padding: 7.5rem 3rem 3rem;
+    overflow: scroll;
+    padding: 1.5rem;
+    /* padding: 7.5rem 3rem 3rem; */
   }
 
-  div > *:last-child {
+  /* div > *:last-child {
     margin-bottom: 3rem;
+  } */
+
+  div > *:first-child {
+    margin-top: 0;
   }
 
   p {

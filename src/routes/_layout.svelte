@@ -1,56 +1,55 @@
 <script>
   import { stores } from '@sapper/app';
-  import Wrapper from '../components/Wrapper.svelte';
-  import Header from '../components/Header.svelte';
+  import items from '../routes/_menu-manual.js';
+  import Col from '../components/grid/Col.svelte';
+  import Content from '../components/layout/Content.svelte';
+  import ContentNav from '../components/ContentNav.svelte';
+  import Grid from '../components/grid/Grid.svelte';
+  import Footer from '../components/layout/Footer.svelte';
+  import Header from '../components/layout/Header.svelte';
+  import Layout from '../components/layout/Layout.svelte';
+  import Logo from '../components/Logo.svelte';
   import Nav from '../components/Nav.svelte';
+  import Row from '../components/grid/Row.svelte';
+  import Sider from '../components/layout/Sider.svelte';
+  import SubNav from '../components/SubNav.svelte';
 
   const { page } = stores();
 
   export let segment;
 
-  let styles = {
-    // '--background-color': 'white',
-    // '--background-color-left': 'red',
-    // '--background-color-right': 'green',
-  };
+  // $: currentItem = items.find((item) => item.id === segment);
+  $: base = $page.path.split('/')[0] + '/' + $page.path.split('/')[1] + '/' + $page.path.split('/')[2];
+  $: currentItem = items.find((item) => item.id === $page.path.split('/')[2]);
+	$: segmentItems = currentItem ? currentItem.children : [];
 </script>
 
 <style>
-  div {
-    min-height: 100vh;
-    /* margin-top: 7.5rem; */
-    /* margin: 0 1rem;
-    padding: 0 2rem; */
-    width: 100%;
+  :global(aside:last-of-type .content-wrapper) {
+    position: relative;
   }
 
-  /* .header {
-    background: linear-gradient(rgb(255, 255, 255, 1), rgb(255, 255, 255, 0.9));
-    backdrop-filter: blur(4px);
-    position: fixed;
-  } */
+  :global(aside:last-of-type .content-wrapper::before) {
+    /* background-color: #ddd; */
+    border-left: 1px solid #efefef;
+    content: "";
+    position: absolute;
+      bottom: 1.5rem;
+      left: 0;
+      top: 1.5rem;
+  }
 
-  /* div {
-    width: 60em;
-  } */
+  :global(aside:first-of-type) {
+    background-color: #fafafa;
+  }
+
+  :global(aside:first-of-type .content) {
+    padding: 1.5rem;
+  }
+
+  :global(footer) {
+    /* background-color: #aaa; */
+  }
 </style>
 
-<!-- <div class="header">
-  <Header>
-    <Nav {segment} />
-  </Header>
-</div>
-
-<div>
-  <slot></slot>
-</div> -->
-
-<Wrapper sticky={true} {styles}>
-  <Header border={$page.path.includes('documentation') ? true : false}>
-    <Nav {segment} />
-  </Header>
-</Wrapper>
-
-<div>
-  <slot></slot>
-</div>
+<slot />

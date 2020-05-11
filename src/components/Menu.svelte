@@ -9,11 +9,19 @@
   export let items = [];
   export let parents = [];
 
+  let host;
+
   $: items = items.map((item) => {
+    console.log(item, parents.length, parents, base);
     return {
       ...item,
-      url: `/${base}${parents.length > 0 ? '/' + parents.join('/') : ''}${item.id !== 'index' ? '/' + item.id : ''}`
+      // url: `${base}${parents.length > 0 ? '/' + parents.join('/') : ''}${item.id !== 'index' ? '/' + item.id : ''}`
+      url: `.${base}${parents.length > 0 ? '/' + parents.join('/') : ''}${item.id !== 'index' ? '/' + item.id : ''}`
     };
+  });
+
+  onMount(() => {
+    host = window.location.host;
   });
 </script>
 
@@ -54,10 +62,13 @@
   }
 </style>
 
+<!-- {base}
+{items} -->
+<!-- {$page.path} -->
 <ul class="level-{level}">
   {#each items as item}
     {#if item.link == true}
-      <li><a class:active={$page.path === item.url} href="{item.url}">{item.title}</a></li>
+      <li><a class:active={'.' + $page.path === item.url} href="{item.url}">{item.title}</a></li>
     {:else}
       <li class="group">{item.title}</li>
     {/if}

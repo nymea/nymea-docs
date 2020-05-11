@@ -1,198 +1,139 @@
 <script>
-  import Wrapper from '../components/Wrapper.svelte';
-  import Row from '../components/Row.svelte';
-  import Col from '../components/Col.svelte';
+  import Col from '../components/grid/Col.svelte';
+  import Grid from '../components/grid/Grid.svelte';
+  import MainPage from '../components/pages/MainPage.svelte';
+  import Row from '../components/grid/Row.svelte';
 </script>
 
 <style>
+  #introduction,
+  #for-whom {
+    margin-top: -9rem;
+  }
+
   #introduction {
-    --header-height: 7.5rem;
     display: flex;
     flex-direction: column;
-    /* height: calc(100vh - var(--header-height)); */
-    height: 100vh;
+    height: calc(100vh - 6rem - 1.5rem);
     justify-content: center;
-    margin: calc(-1 * var(--header-height)) 0 4.5rem;
-    /* margin: 0 0 4.5rem; */
-    padding-top: 7.5rem;
+    margin-bottom: 3rem;
+    /* height: calc(100vh - 4.5rem); */
   }
 
-  #introduction h1 {
+  #introduction header {
+    /* height: 10.5rem; */
+    /* margin: 3rem 0; */
+  }
+
+  #introduction header h1 {
     color: #676767;
-    font-size: 2.25rem;
+    font-size: 3rem;
+    font-weight: 400;
     line-height: 3rem;
+    /* margin-top: 13.5rem; */
   }
 
-  #introduction h2 {
-    font-size: 4.5rem;
+  #introduction header p {
+    color: #202020;
+    font-size: 6rem;
     font-weight: 500;
-    line-height: 4.5rem;
-    margin: 0  0 3rem;
+    line-height: 7rem;
+    margin: 0;
   }
 
-  #introduction ul {
-    list-style-type: none;
+  #for-whom .box {
+    background-color: #fafafa;
+    border-radius: 5px;
+    /* box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
+                0 2px 4px rgba(0,0,0,0.07), 
+                0 4px 8px rgba(0,0,0,0.07), 
+                0 16px 24px rgba(0,0,0,0.07); */
+    /* color: #fafafa; */
+    height: 100%;
+    padding: 3rem;
   }
 
-  #introduction li {
-    font-size: 1.875rem;
-    font-weight: 300;
+  #for-whom header {
+    /* position: relative; */
+  }
+
+  #for-whom header ion-icon {
+    /* color: rgba(0, 0, 0, 0.2); */
+    font-size: 2rem;
     line-height: 3rem;
-    text-decoration: none;
+    margin-bottom: 1.5rem;
+    /* position: absolute;
+      right: 0;
+      top: 0; */
   }
 
-  #introduction ion-icon {
-    font-size: 1.5rem;
-    margin: 0 0.75rem -0.2rem 0;
+  #for-whom header h3 {
+    margin-bottom: 0;
   }
 
-  a.button {
-    align-self: flex-start;
-    appearance: none;
-    background: rgba(159, 200, 164, 1);
-    background: linear-gradient(135deg, rgba(159, 200, 164, 1) 0%, rgba(140, 193, 182, 1) 100%);
-    border-radius: 6px;
-    color: #fff;
-    display: block;
-    flex-basis: 1;
-    margin: 3rem 0 0;
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
+  #for-whom header p {
+    color: rgba(159, 200, 164, 1);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1.5rem;
+    margin: 0 0 1.5rem;
+    text-transform: uppercase;
   }
-
-  #introduction a.button ion-icon {
-    font-size: 1rem;
-    margin: 0 0 -0.1rem 0.75rem;
-  }
-
-  .viewsection {
-    height: 80vh;
-  }
-
-  #for-whom ion-icon {
-    font-size: 10rem;
-    margin: 0 0.75rem -0.2rem 0;
-  }
-
-  #what-2 img {
-    display: block;
-    width: 100;
-  }
-
-  #why ion-icon {
-    display: block;
-    width: 100;
-  }
-
 </style>
 
 <svelte:head>
   <title>nymea</title>
 </svelte:head>
 
-<Wrapper>
+<MainPage>
   <section id="introduction">
-    <Row>
-      <Col offset="20" width="60">
-        <h1>nymea</h1>
-        <h2>The Open IoT Stack</h2>
-        <ul>
-          <!-- <li><ion-icon name="checkmark-circle"></ion-icon>connect</li>
-          <li><ion-icon name="checkmark-circle"></ion-icon>integrate</li>
-          <li><ion-icon name="checkmark-circle"></ion-icon>stay independent</li> -->
-          <li><ion-icon name="checkmark-circle"></ion-icon>Connect products & services</li>
-          <li><ion-icon name="checkmark-circle"></ion-icon>Integrate with platforms</li>
-          <li><ion-icon name="checkmark-circle"></ion-icon>Stay independent through "local first"</li>
-        </ul>
-        <a class="button" href="documentation/overview">Get started<ion-icon name="arrow-forward"></ion-icon></a>
-      </Col>
-    </Row>
+    <Grid>
+      <Row middle>
+        <Col>
+          <header>
+            <h1>nymea</h1>
+            <p>The Open Iot Stack</p>
+          </header>
+        </Col>
+      </Row>
+    </Grid>
   </section>
-</Wrapper>
 
-<Wrapper>
-  <section id="what-1" class="viewsection">
-    <Row>
-      <Col offset="20" width="60">
-        <h2>From individual features to a full blown IoT device</h2>
-        <p>Nymea is an open source IoT stack. It is used to build smart IoT devices, smart home gateways or enable individual IoT related features in connected products. We follow a "local first" approach, which means nymea will keep users data private and will still be functional even without Internet connection. Obviously, cloud integration is still available if wanted.</p>
-      </Col>
-    </Row>
+  <section id="for-whom">
+    <Grid>
+      <Row>
+        <Col>
+          <div class="box">
+            <header>
+              <ion-icon name="people-outline"></ion-icon>
+              <h3>For Users</h3>
+              <p>Play</p>
+            </header>
+            <p>Nymea gets you up and running with your smart home setup in no time. Just install nymea core and nymea:app and you're all set with a powerful smart home solution that does not require powerful hardware or fiddling with cryptic configuration files. Using 100% free and open source software.</p>
+          </div>
+        </Col>
+        <Col>
+          <div class="box">
+            <header>
+              <ion-icon name="code-slash-outline"></ion-icon>
+              <h3>For Developers</h3>
+              <p>Create</p>
+            </header>
+            <p>When you're building your own IoT device, nymea will help with all the software efforts. Whether it's connecting your device to others, adding easy set-up features, creating smart hubs for for all your devices or adding control and setup frontends, nymea's got your back.</p>
+          </div>
+        </Col>
+        <Col>
+          <div class="box">
+            <header>
+              <ion-icon name="rocket-outline"></ion-icon>
+              <h3>For Businesses</h3>
+              <p>Build</p>
+            </header>
+            <p>Building IoT enabled customer grade products can be hard. We've ramped up with all the required know-how and with the nymea stack we'll be supporting your business. Whether it's fast prototyping and consulting, providing needed components, building entire products or caring for deployments and updates. Together with our partners we offer in-field experience for all of those aspects.</p>
+          </div>
+        </Col>
+      </Row>
+    </Grid>
   </section>
-</Wrapper>
-
-<Wrapper>
-  <section id="for-whom" class="viewsection">
-    <Row>
-      <Col offset="20" width="20">
-        <ion-icon name="people-outline"></ion-icon>
-        <h2>For Users</h2>
-        <p>nymea gets you up and running with your smart home setup in no time. Just install nymea:core and nymea:app and you're all set with a powerful smart home solution that does not require powerful hardware or fiddling with cryptic configuration files. Using 100% free and open source software.</p>
-      </Col>
-      <Col width="20">
-        <ion-icon name="build-outline"></ion-icon>
-        <h2>For Developers</h2>
-        <p>When you're building your own IoT device, nymea will help with all the software efforts. Whether it's connecting your device to others, adding easy set-up features, creating smart hubs for for all your devices or adding control and setup frontends, nymea's got your back.</p>
-      </Col>
-      <Col width="20">
-        <ion-icon name="rocket-outline"></ion-icon>
-        <h2>For Businesses</h2>
-        <p>Building IoT enabled customer grade products can be hard. We've ramped up with all the required know-how and with the nymea stack we'll be supporting your business. Whether it's fast prototyping and consulting, providing needed components, building entire products or caring for deployments and updates. Together with our partners we offer in-field experience for all of those aspects.</p>
-      </Col>
-    </Row>
-  </section>
-</Wrapper>
-
-<Wrapper>
-  <section id="what-2" class="viewsection">
-    <Row>
-      <Col offset="20" width="30">
-        <h2>Built for connected devices</h2>
-        <p>Connect lighting, media, heating, irrigations and sprinklers, garage doors, alarm systems and many more to a centralized, local and privacy focused control center with nymea. Or build your device running nymea to connect and integrate with other solutions, such as Alexa or Google Home.</p>
-      </Col>
-      <Col width="30">
-        <img src="img/nymea-integrations.png">
-      </Col>
-    </Row>
-  </section>
-</Wrapper>
-
-<Wrapper>
-  <section id="how">
-    <Row>
-      <Col offset="20" width="30">
-        <img src="img/Software.svg">
-      </Col>
-      <Col width="30">
-        <h2>Nymea Software Stack</h2>
-        <p>Simple, yet powerful.</p>
-        <p>The nymea core stack is written in C++ and Qt. This results in low hardware requirements and high performance. To ease and speed up development time, individual integrations and automation behaviours can be added with JavaScript.</p>
-      </Col>
-    </Row>
-  </section>
-</Wrapper>
-
-<Wrapper>
-  <section id="why">
-    <Row>
-      <Col offset="20" width="30">
-        <h2>Affair of the heart</h2>
-        <p>We think that IoT devices, especially inside your home do not have to be cloud connected all the time. Privacy and reliability are our main concerns. With that in mind we build anything we do with a offline-first approach. This results in blazing fast reaction times, full control over personal data and guarantees your product won't be rendered useless if the cloud provider you've been betting on shuts down their service.
-The nymea Team</p>
-      </Col>
-      <Col width="30">
-          <ion-icon name="heart-filled"></ion-icon>
-      </Col>
-    </Row>
-  </section>
-</Wrapper>
-
-<Wrapper>
-  <section id="showcases">
-    <Row>
-      <Col offset="20" width="60">
-        <h2>Showcase</h2>
-      </Col>
-    </Row>
-  </section>
-</Wrapper>
+</MainPage>
