@@ -17,6 +17,9 @@
 	     lazily loaded when it precaches secondary pages -->
 	%sapper.styles%
 
+	<script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+
 	<!-- This contains the contents of the <svelte:head> component, if
 	     the current page has one -->
 	%sapper.head%
@@ -25,11 +28,11 @@
 	<!-- The application will be rendered inside this element,
 	     because `src/client.js` references it -->
 	<div id='sapper'>%sapper.html%</div>
+	<div id="shadow"></div>
 
 	<!-- Sapper creates a <script> tag containing `src/client.js`
 	     and anything else it needs to hydrate the app and
 	     initialise the router -->
 	%sapper.scripts%
-	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </body>
 </html>
