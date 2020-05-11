@@ -134,6 +134,7 @@
     }
 
     .content-wrapper :global(.content) {
+      min-width: 0;     /* Solves issue with <pre></pre> tags when there are large code blocks in there. https://weblog.west-wind.com/posts/2016/feb/15/flexbox-containers-pre-tags-and-managing-overflow */
       order: 2;
       z-index: 1;
     }
