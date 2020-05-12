@@ -4,11 +4,6 @@ title: Overview
 ---
 
 # nymea - The open IoT edge platform
-## nymea - The open IoT edge platform
-### nymea - The open IoT edge platform
-#### nymea - The open IoT edge platform
-##### nymea - The open IoT edge platform
-###### nymea - The open IoT edge platform
 
 The main purpose of nymea is to provide a collection of tools, libraries and services to connect devices and online services between each other or build connected devices.
 Nymea can be used to solve specific small problems for IoT based use cases as well as building a fully featured smart home platform. It is open source and privacy focused. Given nymea follows a local-first approach, everything can be done without cloud connection and all data is kept in the local network.
