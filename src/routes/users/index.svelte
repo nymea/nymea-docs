@@ -4,7 +4,142 @@
   import Row from '../../components/grid/Row.svelte';
 </script>
 
-<style></style>
+<style>
+  h2 + p {
+    color: #676767;
+    font-size: 1.25rem;
+  }
+
+  header p {
+    /* color: #676767; */
+    font-size: 1.875rem;
+    line-height: 3rem;
+    margin: 0 0 3rem;
+  }
+  section {
+    /* margin-bottom: 6rem; */
+    padding: 6rem 0;
+  }
+
+  section:first-child {
+    margin-top: 6rem;
+  }
+
+  #features {
+    /* background-color: #fafafa; */
+    background: linear-gradient(135deg, #fafafa, #f2f2f2);
+    border-bottom: 1px solid #efefef;
+    border-top: 1px solid #efefef;
+    /* padding: 3rem 0; */
+  }
+
+  #features ion-icon {
+    font-size: 2.25rem;
+    line-height: 3rem;
+  }
+
+  #features p {
+    color: #676767;
+  }
+
+  .integration {
+    /* border-left: 1px solid #efefef; */
+    /* align-self: stretch; */
+    display: block;
+    padding: 0.75rem;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  /* #integrations :global(.grid) {
+    position: relative;
+  } */
+
+  #integrations {
+    border-bottom: 1px solid #efefef;
+  }
+
+  #integrations :global(.row:nth-child(2)) {
+    padding: 4.5rem 0;
+  }
+
+  #integrations :global(.row:nth-child(2) .col) {
+    border-left: 1px solid #efefef;
+    /* flex: 0 0 7.875rem; */
+    /* flex: 0 0 20%; */
+    /* flex: 0 0 20%; */
+    margin: 0;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+
+  #integrations :global(.row:nth-child(2) .col:first-child) {
+    border-left: 0;
+  }
+
+  #integrations h6 {
+    margin-top: auto;
+  }
+
+  #integrations a:hover ion-icon,
+  #integrations a:hover h6 {
+    transition: transform 0.1s ease-in-out;
+  }
+
+  #integrations a:hover ion-icon {
+    transform: translateY(-0.375rem);
+  }
+
+  #integrations a:hover h6{
+    transform: translateY(0.375rem);
+  }
+
+  /* #integrations :global(.row:nth-child(2) .col::after),
+  #integrations :global(.row:nth-child(3) .col::after),
+  #integrations :global(.row:nth-child(4) .col::after) {
+    background-color: #efefef;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+      left: -0.75rem;
+      top: 0;
+    width: 1px;
+  } */
+
+  /* #integrations :global(.col:first-child:after) {
+    background-color: transparent;
+  } */
+
+  /* #integrations :global(.col:last-child) {
+    background-color: #fff;
+    position: absolute;
+      right: 0;
+      top: 0;
+    width: 20%;
+    z-index: 1;
+  } */
+
+  #integrations :global(.col h6) {
+    margin-bottom: 0;
+  }
+
+  .integration ion-icon {
+    font-size: 2.25rem;
+    line-height: 3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .platforms {
+    display: flex;
+    list-style-type: none;
+  }
+
+  .platforms ion-icon {
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+</style>
 
 <svelte:head>
 	<title>users &middot; nymea</title>
@@ -13,9 +148,12 @@
 <section>
   <Grid>
     <Row>
-      <Col middle center>
-        <h3>Nymea gets you up and running with your Smart Home setup in no time.</h3>
-        <a href="documentation/users/installation/gettingstarted">Learn more</a>
+      <Col middle>
+        <header>
+          <h1>Live smart.</h1>
+          <p>Nymea gets you up and running with your Smart Home setup in no time.</p>
+        </header>
+        <a href="documentation/users/installation/gettingstarted" class="button">Get started</a>
       </Col>
       <Col>
         <img src="img/smart-home.png" alt="Smart home"/>
@@ -24,7 +162,124 @@
   </Grid>
 </section>
 
-<section>
+<section id="features">
+  <Grid>
+    <Row>
+      <Col>
+        <ion-icon name="body"></ion-icon>
+        <h3>Easy to use, yet powerful</h3>
+        <p>Nymea does not require editing cryptic configuration files, it can be configured and controlled entirely using your Smartphone or PC.</p>
+      </Col>
+      <Col>
+        <ion-icon name="shield-checkmark"></ion-icon>
+        <h3>Local-first approach</h3>
+        <p>Nymea ensures that your data is kept where it belongs, locally in your home. Besides the privacy advantage, this also keeps you independent from cloud vendors, and doesn't require an always-on internet connection.</p>
+      </Col>
+      <Col>
+        <ion-icon src="img/open-source-initiative.svg"></ion-icon>
+        <h3>Free and Open Source</h3>
+        <p>Nymea is comitted to open source software. Anything we do can be inspected, tuned and shared by our community.</p>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<section id="integrations">
+  <Grid>
+    <Row>
+      <Col span="6" offset={{"xl": 3}} center>
+        <h2>Connection talent</h2>
+        <p>Connecting things to your smart home is easy and quick. See the list of available <a href="documentation/overview/integrations">integrations</a>.</p>
+      </Col>
+    </Row>
+    <Row wrap={false}>
+      <Col>
+        <a href="documentation/overview/integrations?category=light" class="integration">
+          <ion-icon name="bulb"></ion-icon>
+          <h6>Lights</h6>
+        </a>
+      </Col>
+      <Col>
+        <a href="documentation/overview/integrations?category=sensor" class="integration">
+          <ion-icon name="thermometer"></ion-icon>
+          <h6>Sensors</h6>
+        </a>
+      </Col>
+      <Col>
+        <a href="documentation/overview/integrations?category=lock" class="integration">
+          <ion-icon name="key"></ion-icon>
+          <h6>Access control</h6>
+        </a>
+      </Col>
+    <!-- </Row>
+    <Row> -->
+      <Col>
+        <a href="documentation/overview/integrations?category=weather" class="integration">
+          <ion-icon name="partly-sunny"></ion-icon>
+          <h6>Weather</h6>
+        </a>
+      </Col>
+      <!-- <Col>
+        <a href="." class="integration">
+          <ion-icon name="speedometer"></ion-icon>
+          <h6>Energy Meters</h6>
+        </a>
+      </Col> -->
+      <Col>
+        <a href="documentation/overview/integrations?category=multimedia" class="integration">
+          <ion-icon name="play"></ion-icon>
+          <h6>Media</h6>
+        </a>
+      </Col>
+    <!-- </Row>
+    <Row> -->
+      <Col>
+        <a href="documentation/overview/integrations?category=tool,sensor" class="integration">
+          <ion-icon name="water"></ion-icon>
+          <h6>Irrigation</h6>
+        </a>
+      </Col>
+      <Col>
+        <a href="documentation/overview/integrations?category=notification" class="integration">
+          <ion-icon name="notifications"></ion-icon>
+          <h6>Notifications</h6>
+        </a>
+      </Col>
+      <Col>
+        <a href="documentation/overview/integrations?category=online-service" class="integration">
+          <ion-icon name="location"></ion-icon>
+          <h6>Presence Awareness</h6>
+        </a>
+      </Col>
+    <!-- </Row>
+    <Row> -->
+      <Col>
+        <a href="documentation/overview/integrations" class="integration">
+          <ion-icon name="ellipsis-horizontal"></ion-icon>
+          <h6>Many More</h6>
+        </a>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<!-- <section>
+  <Grid>
+    <Row>
+      <Col>
+        <img src="img/plugnplay.svg" alt="Plug'n Play">
+      </Col>
+      <Col>
+        <h3>Easy to use, yet powerful</h3>
+        <p>Nymea does not require editing cryptic configuration files, it can be configured and controlled entirely using your smart phone or PC.</p>
+      </Col>
+      <Col></Col>
+      <Col></Col>
+    </Row>
+  </Grid>
+</section> -->
+
+<!-- <section>
   <Grid>
     <Row>
       <Col>
@@ -43,7 +298,7 @@
     <Row>
       <Col middle center>
         <h3>Local-first approach</h3>
-        <p>Nymea ensures that your data is kept where it belongs, locally in your home. Besides the privacy advantage, this also keeps users independent form cloud vendors, and doesn't require an always-on internet connection.</p>
+        <p>Nymea ensures that your data is kept where it belongs, locally in your home. Besides the privacy advantage, this also keeps you independent form cloud vendors, and doesn't require an always-on internet connection.</p>
       </Col>
       <Col>
         <img src="img/shield.svg" alt="Privacy focused">
@@ -60,13 +315,13 @@
       </Col>
       <Col middle center>
         <h3>Free and Open Source</h3>
-        <p>Nymea is comitted to open source software. Anything we do can be inspected, tuned and shared by users.</p>
+        <p>Nymea is comitted to open source software. Anything we do can be inspected, tuned and shared by our community.</p>
       </Col>
     </Row>
   </Grid>
-</section>
+</section> -->
 
-<section>
+<!-- <section>
   <Grid>
     <Row>
       <Col center>
@@ -140,6 +395,42 @@
     <Row>
       <Col center>
         <p>Connecting things to your smart home is easy and quick. See the list of <a href="documentation/overview/integrations">integrations</a>.</p>
+      </Col>
+    </Row>
+  </Grid>
+</section> -->
+
+<section>
+  <Grid>
+    <Row>
+      <Col span="6">
+        <h2>Install.</h2>
+        <p>Nymea can be installed on various platforms. Download our prebuilt packages for Ubuntu or Debian GNU/Linux. You can also try one of our ready-to-go Raspberry Pi images.</p>
+      </Col>
+      <Col>
+        <ul class="platforms">
+          <li>
+            <ion-icon src="img/ubuntu.svg"></ion-icon>
+          </li>
+          <li>
+            <ion-icon src="img/debian.svg"></ion-icon>
+          </li>
+          <li>
+            <ion-icon src="img/raspberry-pi.svg"></ion-icon>
+          </li>
+        </ul>
+      </Col>
+    </Row>
+    <Row>
+      <Col span="6">
+        <h2>Setup.</h2>
+        <p>Download our App to setup nymea. It is available for mobile and stationary devices on iOS, Android, Ubuntu Touch, MacOS, Windows and Ubuntu.</p>
+      </Col>
+    </Row>
+    <Row>
+      <Col span="6">
+        <h2>Play.</h2>
+        <p>Discover nymea. The possibilities are endless.</p>
       </Col>
     </Row>
   </Grid>

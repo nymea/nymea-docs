@@ -21,12 +21,12 @@
 <style>
   :root {
     /* --col-gap: 0; */
-    --col-offset-xs: 0;
-    --col-offset-sm: 0;
-    --col-offset-md: 0;
-    --col-offset-lg: 0;
-    --col-offset-xl: 0;
-    --col-offset: var(--col-offset-xs);
+    --col-offset: 0;
+    --col-offset-xs: var(--col-offset);
+    --col-offset-sm: var(--col-offset);
+    --col-offset-md: var(--col-offset);
+    --col-offset-lg: var(--col-offset);
+    --col-offset-xl: var(--col-offset);
     /* --col-span: 1; */
   }
 

@@ -38,8 +38,10 @@
       top: 1.5rem;
   }
 
-  :global(aside:first-of-type) {
-    background-color: #fafafa;
+  :global(aside:first-of-type > div) {
+    /* background-color: #fafafa; */
+    /* background: linear-gradient(to bottom, #fafafa, #fff); */
+    /* border-right: 1px solid #efefef; */
   }
 
   :global(aside:first-of-type .content) {
@@ -48,6 +50,23 @@
 
   :global(h2) {
     margin-top: 3rem;
+  }
+
+  :global(main) {
+    max-width: 50em;
+  }
+
+  :global(main a) {
+    background-color: rgba(159, 200, 164, 0.2);
+    border-bottom: 1px solid rgba(159, 200, 164, 0.4);
+    color: #202020;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  :global(main a:hover) {
+    background-color: rgba(159, 200, 164, 0.6);
+    border-color: rgba(159, 200, 164, 1);
   }
 </style>
 
@@ -76,10 +95,10 @@
   <Sider>
     <Layout>
       <Header width="20em"></Header>
+      <Content>
+        <SubNav base={base} {segment} items={segmentItems} />
+      </Content>
     </Layout>
-    <Content>
-      <SubNav base={base} {segment} items={segmentItems} />
-    </Content>
   </Sider>
 
   <Sider>

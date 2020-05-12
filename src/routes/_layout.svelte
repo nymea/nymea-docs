@@ -25,12 +25,12 @@
 </script>
 
 <style>
-  :global(aside:last-of-type .content-wrapper) {
+  /* :global(aside:last-of-type .content-wrapper) {
     position: relative;
   }
 
   :global(aside:last-of-type .content-wrapper::before) {
-    /* background-color: #ddd; */
+    background-color: #ddd;
     border-left: 1px solid #efefef;
     content: "";
     position: absolute;
@@ -48,8 +48,8 @@
   }
 
   :global(footer) {
-    /* background-color: #aaa; */
-  }
+    background-color: #aaa;
+  } */
 </style>
 
 <slot />

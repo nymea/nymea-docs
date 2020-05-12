@@ -4,7 +4,12 @@
   import Row from '../../components/grid/Row.svelte';
 </script>
 
-<style></style>
+<style>
+  header p {
+    font-size: 1.875rem;
+    line-height: 3rem;
+  }
+</style>
 
 <svelte:head>
 	<title>developers &middot; nymea</title>
@@ -13,6 +18,11 @@
 <section>
   <Grid>
     <Row>
+      <!-- <header>
+        <h1>Be creative.</h1>
+        <p>Nymea gets you up and running with your Smart Home setup in no time.</p>
+      </header>
+      <a href="documentation/developers">Learn more</a> -->
       <Col>
         <img src="img/bricks.png" alt="Building blocks"/>
       </Col>
@@ -20,7 +30,6 @@
         <h3>Easy, slick and flexible.</h3>
         <p>With nymea you pick what you need. Be it connecting things or adding APIs or frontends to your home brew things Be it writing low level device integrations or scripting fancy behaviors. Be it a full smart home solution just setting up an MQTT broker that can send push notifications. You imagine it, nymea helps building it.        </p>
         <p><a href="documentation/developers">Get started</a></p>
-
       </Col>
     </Row>
   </Grid>

@@ -24,6 +24,16 @@
 </script>
 
 <style>
+  :global(header) {
+    --body-border-radius: 5px;
+  }
+
+  :global(header > div) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    /* width: calc(100% - 1.5rem); */
+  }
+
   :global(aside:last-of-type .content-wrapper) {
     position: relative;
   }

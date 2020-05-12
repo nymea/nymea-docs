@@ -40,13 +40,16 @@
 
   header {
     background-color: var(--header-background-color);
+    box-sizing: content-box;
     height: var(--header-height);
     padding: var(--header-padding);
     width: calc(100% - 1.5rem);
   }
 
   header > div {
-    background-color: inherit;
+    /* background-color: inherit; */
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: saturate(50%) blur(4px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     border-top-left-radius: var(--body-border-radius);
     border-top-right-radius: var(--body-border-radius);

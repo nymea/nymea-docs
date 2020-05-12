@@ -68,11 +68,17 @@
   }
 
   a {
+    background-color: transparent;
+    border-bottom: 0;
     display: block;
     text-decoration: none;
   }
 
-  a > h2 {
+  a:hover {
+    background-color: transparent;
+  }
+
+  a > h3 {
     margin-top: 0;
   }
 

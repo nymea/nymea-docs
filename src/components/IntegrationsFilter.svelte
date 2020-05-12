@@ -1,7 +1,31 @@
 <script>
+  import { onMount } from 'svelte';
   import { categories, currentCategory, integrations, technologies, currentTechnology/*, vendors, vendorsCountAll, currentVendor*/ } from '../routes/documentation/overview/integrations/_stores.js';
 
   let integrationsCountAll = $integrations.length;
+
+  onMount(() => {
+    let category;
+    let key;
+    let value;
+
+    const params = window.location.search.substring(1).split('&');
+    
+    for(let i = 0; i < params.length; i++) {
+      [ key, value ] = params[i].split('=');
+      console.log('CATEGORY', params[i], key, value);
+      if (key === 'category') {
+        console.log('CATEGORY FOUND!', key, value);
+        category = value;
+        break;
+      }
+    }
+
+    if (category) {
+      console.log('SET CATEGORY!', category);
+      currentCategory.set(category);
+    }
+  });
 
   function setCategory(category) {
     if (category === null || category.title.toLowerCase().replace(' ', '-') === $currentCategory) {
@@ -31,8 +55,8 @@
 
 <style>
   div {
-    height: 100vh;
-    overflow: scroll;
+    /* height: 100vh;
+    overflow: scroll; */
     padding: 1.5rem;
     /* padding: 7.5rem 3rem 3rem; */
   }
