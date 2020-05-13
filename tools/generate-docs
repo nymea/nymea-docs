@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./generate-interfaces-list.py
+./generate-plugins-list.py
