@@ -4,11 +4,33 @@
   import Row from '../../components/grid/Row.svelte';
 </script>
 
-<style></style>
+<style>
+  header p {
+    font-size: 1.875rem;
+    line-height: 3rem;
+  }
+</style>
 
 <svelte:head>
 	<title>businesses &middot; nymea</title>
 </svelte:head>
+
+<section>
+  <Grid>
+    <Row>
+      <Col middle>
+        <header>
+          <h1>Be smart.</h1>
+          <p>Build IoT business, not IoT devices.</p>
+        </header>
+        <a href="documentation/developers" class="button">Get started</a>
+      </Col>
+      <Col>
+        <img src="img/smart-home.png" alt="Smart home"/>
+      </Col>
+    </Row>
+  </Grid>
+</section>
 
 <section>
   <Grid>

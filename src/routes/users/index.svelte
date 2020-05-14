@@ -424,13 +424,13 @@
     <Row>
       <Col span="6">
         <h2>Setup.</h2>
-        <p>Download our App to setup nymea. It is available for mobile and stationary devices on iOS, Android, Ubuntu Touch, MacOS, Windows and Ubuntu.</p>
+        <p>Download our App to setup nymea. It is available for mobile and stationary devices on iOS, Android, Ubuntu Touch, MacOS, Windows and Linux Desktops.</p>
       </Col>
     </Row>
     <Row>
       <Col span="6">
         <h2>Play.</h2>
-        <p>Discover nymea. The possibilities are endless.</p>
+        <p>Discover nymea. Connect things and let the magic happen. The possibilities are endless.</p>
       </Col>
     </Row>
   </Grid>

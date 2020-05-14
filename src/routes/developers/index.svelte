@@ -18,6 +18,23 @@
 <section>
   <Grid>
     <Row>
+      <Col middle>
+        <header>
+          <h1>Build smart.</h1>
+          <p>With nymea you can focus on the use case right away. The ground work is done.</p>
+        </header>
+        <a href="documentation/developers" class="button">Get started</a>
+      </Col>
+      <Col>
+        <img src="img/smart-home.png" alt="Smart home"/>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<section>
+  <Grid>
+    <Row>
       <!-- <header>
         <h1>Be creative.</h1>
         <p>Nymea gets you up and running with your Smart Home setup in no time.</p>
