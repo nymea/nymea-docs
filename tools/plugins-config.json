@@ -8,7 +8,7 @@
     "https://github.com/nymea/nymea-plugins-simulation"
   ],
   "srcdir": "src",
-  "outputdir": "../src/routes/documentation/overview/integrations",
+  "outputdir": "../src/pages/documentation/overview/integrations",
   "iconoutputdir": "../static/img/integrationlogos",
   "allowed_categories": [
     "light",
