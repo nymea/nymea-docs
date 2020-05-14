@@ -1,5 +1,5 @@
 {
   "srcdir": "src",
-  "outputdir": "../src/routes/",
+  "outputdir": "../src/pages/",
   "keyword": "@@GENERATED_INTERFACES@@"
 }
