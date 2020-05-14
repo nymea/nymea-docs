@@ -1,12 +1,9 @@
 .DS_Store
 /node_modules/
-/src/node_modules/@sapper/
-yarn-error.log
-/cypress/screenshots/
-/__sapper__/
+/dist/
 
 *_meta.js
 toos/src/
-src/routes/documentation/overview/integrations/*.md
-src/routes/documentation/developers/integrations/interfaces.md
+src/pages/documentation/overview/integrations/*.md
+src/pages/documentation/developers/integrations/interfaces.md
 static/img/integrationlogos/

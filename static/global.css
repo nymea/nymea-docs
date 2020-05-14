@@ -43,10 +43,10 @@ body {
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
-/* ul[class],
+ul[class],
 ol[class] {
   list-style: none;
-} */
+}
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
@@ -60,8 +60,10 @@ img {
 }
 
 /* Natural flow and rhythm in articles by default */
-article > * + * {
-  margin-top: 1em;
+/* article > * + * { */
+main > * + *,
+main ul > * + * {
+  margin-top: 1.5em;
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -87,31 +89,70 @@ select {
  * Styles
  */
 
-body {
-  --body-border-radius: 5px;
-  --content-padding: 0;
+:root {
+	/* Color */
+	/* https://medium.com/@marcintreder/design-system-sprint-2-one-color-palette-to-rule-them-all-d0114ed1f659 */
+  --silver-base: hsl(0, 0%, 98%);					/* #fafafa */
+  --silver-darken-10: hsl(0, 0%, 80%);
+	--silver-transparent-base: hsla(0, 0%, 98%, 0.9);					/* #fafafa */
 
-  background: linear-gradient(135deg, rgba(159, 200, 164, 1) 0%, rgba(140, 193, 182, 1) 100%);
-  /* border-radius: 6px; */
-  color: #202020;
+  --gray-base: hsl(0, 0%, 40%);						/* #676767 */
+  --gray-darken-10: hsl(0, 0%, 35%);			/* #595959 */
+  --gray-darken-20: hsl(0, 0%, 28%);			/* #474747 */
+  --gray-darken-30: hsl(0, 0%, 20%);			/* #333333 */
+	--gray-darken-40: hsl(0, 0%, 13%);			/* #202020 */
+	
+	/* --gray-base: hsl(0, 0%, 55%);						/* #8c8c8c */
+
+	--green-base: hsl(127, 27%, 70%);				/* #9fc8a4 */
+
+	/* --turquoise-base: hsl(129, 14%, 90%);		/* #e3eae4 */
+	/* --turquoise-base: hsl(151, 27%, 85%);		/* #cde2d8 */
+	/* --turquoise-base: hsl(168, 30%, 65%);		/* #8cc1b6 */
+	/* --turquoise-base: hsl(170, 21%, 56%);		/* #79a79f */
+	--turquoise-base: hsl(170, 17%, 49%);		/* #69938c */
+
+	--body-background-color: var(--silver-base);
+
+	/* Space */
+	--space-unit: 1em;
+	--space-01: calc(0.125 * var(--space-unit));
+	--space-02: calc(0.25 * var(--space-unit));
+	--space-03: calc(0.5 * var(--space-unit));
+	--space-04: calc(0.75 * var(--space-unit));
+	--space-05: calc(1 * var(--space-unit));
+	--space-06: calc(1.25 * var(--space-unit));
+	--space-07: calc(1.5 * var(--space-unit));
+	--space-08: calc(2 * var(--space-unit));
+	--space-09: calc(3.25 * var(--space-unit));
+	--space-10: calc(5.25 * var(--space-unit));
+
+  --body-border-radius: 5px;
+  
+  --text-color: var(--gray-darken-40);
+
+  --menu-group-color: var(--gray-base);
+}
+
+body {
+	background-color: var(--silver-base);
+  color: var(--text-color);
   font-family: 'Ubuntu', Roboto, -apple-system, Helvetica Neue, sans-serif;
   margin: 0.75rem;
 }
 
-#sapper {
-  background-color: #fff;
-  /* border-radius: 6px; */
-  display: flex;
-  flex-direction: column;
-  /* min-height: calc(100vh - 1.5rem - 12px); */
-  min-height: 100vh;
-  /* padding: 0 var(--body-border-radius); */
+#nymea {
+  /* background-color: var(--silver-base);
+  border-radius: var(--body-border-radius); */
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
 body::before,
 body::after,
-#sapper::before,
-#sapper::after {
+#nymea::before,
+#nymea::after {
   content: "";
   position: fixed;
   z-index: 1;
@@ -119,7 +160,6 @@ body::after,
 
 body::before,
 body::after {
-  /* height: calc(0.75rem + var(--body-border-radius)); */
   left: 0;
   right: 0;
 }
@@ -136,19 +176,19 @@ body::after {
   bottom: 0;
 }
 
-#sapper::before,
-#sapper::after {
+#nymea::before,
+#nymea::after {
   width: 0.75rem;
   bottom: 0;
   top: 0;
 }
 
-#sapper::before {
+#nymea::before {
   background: linear-gradient(to bottom, rgba(159, 200, 164, 1) 0%, rgba(140, 193, 182, 1) 100%);
   left: 0;
 }
 
-#sapper::after {
+#nymea::after {
   background: linear-gradient(to top, rgba(159, 200, 164, 1) 0%, rgba(140, 193, 182, 1) 100%);
   right: 0;
 }
@@ -169,7 +209,7 @@ body::after {
 
 #shadow::before,
 #shadow::after {
-  background-color: #fff;
+  background-color: var(--silver-base);
   content: "";
   height: var(--body-border-radius);
   position: fixed;
@@ -189,10 +229,6 @@ body::after {
   bottom: 0.75rem;
 }
 
-/* main p {
-  margin-top: 0.75rem;
-} */
-
 h1,
 h2,
 h3,
@@ -200,24 +236,20 @@ h4,
 h5,
 h6 {
   font-weight: 400;
-  margin: 0;
 }
 
 h1 {
-  /* font-size: 2.25rem; */
   font-size: 4.5rem;
   font-weight: 500;
   line-height: 6rem;
-  margin-bottom: 1.5rem;
+  /* margin-bottom: 1.5rem; */
 }
 
 h2 {
   font-size: 2.25rem;
   letter-spacing: -0.025em;
   line-height: 3rem;
-  margin: 3rem 0 1.5rem;
-  /* margin-bottom: 1.5rem; */
-  /* margin: 3rem 0 1rem; */
+  /* margin: 3rem 0 1.5rem; */
 }
 
 h3 {
@@ -225,9 +257,7 @@ h3 {
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.5rem;
-  margin: 1.5rem 0;
-  /* margin-bottom: 1.5rem; */
-  /* margin: 2rem 0 0.5rem; */
+  /* margin: 1.5rem 0; */
 }
 
 h4 {
@@ -235,409 +265,22 @@ h4 {
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.5rem;
-  margin-bottom: 1.5rem;
+  /* margin-bottom: 1.5rem; */
 }
 
 h5 {
   font-size: 1rem;
   font-weight: 700;
-  /* font-style: italic; */
   letter-spacing: -0.01em;
   line-height: 1.5rem;
-  margin-bottom: 1.5rem;
+  /* margin-bottom: 1.5rem; */
 }
 
 h6 {
-  /* font-size: 0.75rem; */
   font-size: 1rem;
   font-weight: 400;
-  /* font-weight: 700; */
   letter-spacing: 0.01em;
-  /* letter-spacing: 0.1em; */
   line-height: 1.5rem;
-  margin-bottom: 1.5rem;
+  /* margin-bottom: 1.5rem; */
   text-transform: uppercase;
 }
-
-ul,
-p {
-  margin: 0 0 1.5rem;
-}
-
-a {
-	color: #202020;
-}
-
-.button {
-  appearance: none;
-  background-color: #202020;
-  border: 0;
-  border-radius: 5px;
-  color: #fafafa;
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  text-decoration: none;
-  width: auto;
-}
-
-img {
-  width: 100%;
-}
-
-pre {
-  margin: 0 0 1.5rem;
-  padding: 0.75rem 1.5rem;
-}
-
-blockquote {
-  background-color: #fafafa;
-  border-left: 5px solid #efefef;
-  border-radius: 2px;
-  margin: 1.5rem 0;
-  padding: 1.5rem;
-}
-
-blockquote > p {
-  margin: 0;
-}
-
-/*
- * PrismJS Nord Theme
- */
-
-/**
- * Material Theme
- */
-
-code[class*="language-"],
-pre[class*="language-"] {
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  color: #90a4ae;
-  background: #fafafa;
-  font-family: Roboto Mono, monospace;
-  font-size: 1em;
-  line-height: 1.5em;
-
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-code[class*="language-"]::-moz-selection,
-pre[class*="language-"]::-moz-selection,
-code[class*="language-"] ::-moz-selection,
-pre[class*="language-"] ::-moz-selection {
-  background: #cceae7;
-  color: #263238;
-}
-
-code[class*="language-"]::selection,
-pre[class*="language-"]::selection,
-code[class*="language-"] ::selection,
-pre[class*="language-"] ::selection {
-  background: #cceae7;
-  color: #263238;
-}
-
-:not(pre) > code[class*="language-"] {
-  white-space: normal;
-  border-radius: 0.2em;
-  padding: 0.1em;
-}
-
-pre[class*="language-"] {
-  overflow: auto;
-  position: relative;
-  /* margin: 0.5em 0; */
-  /* padding: 1.25em 1em; */
-}
-
-.language-css > code,
-.language-sass > code,
-.language-scss > code {
-  color: #f76d47;
-}
-
-[class*="language-"] .namespace {
-  opacity: 0.7;
-}
-
-.token.atrule {
-  color: #7c4dff;
-}
-
-.token.attr-name {
-  color: #39adb5;
-}
-
-.token.attr-value {
-  color: #f6a434;
-}
-
-.token.attribute {
-  color: #f6a434;
-}
-
-.token.boolean {
-  color: #7c4dff;
-}
-
-.token.builtin {
-  color: #39adb5;
-}
-
-.token.cdata {
-  color: #39adb5;
-}
-
-.token.char {
-  color: #39adb5;
-}
-
-.token.class {
-  color: #39adb5;
-}
-
-.token.class-name {
-  color: #6182b8;
-}
-
-.token.comment {
-  color: #aabfc9;
-}
-
-.token.constant {
-  color: #7c4dff;
-}
-
-.token.deleted {
-  color: #e53935;
-}
-
-.token.doctype {
-  color: #aabfc9;
-}
-
-.token.entity {
-  color: #e53935;
-}
-
-.token.function {
-  color: #7c4dff;
-}
-
-.token.hexcode {
-  color: #f76d47;
-}
-
-.token.id {
-  color: #7c4dff;
-  font-weight: bold;
-}
-
-.token.important {
-  color: #7c4dff;
-  font-weight: bold;
-}
-
-.token.inserted {
-  color: #39adb5;
-}
-
-.token.keyword {
-  color: #7c4dff;
-}
-
-.token.number {
-  color: #f76d47;
-}
-
-.token.operator {
-  color: #39adb5;
-}
-
-.token.prolog {
-  color: #aabfc9;
-}
-
-.token.property {
-  color: #39adb5;
-}
-
-.token.pseudo-class {
-  color: #f6a434;
-}
-
-.token.pseudo-element {
-  color: #f6a434;
-}
-
-.token.punctuation {
-  color: #39adb5;
-}
-
-.token.regex {
-  color: #6182b8;
-}
-
-.token.selector {
-  color: #e53935;
-}
-
-.token.string {
-  color: #f6a434;
-}
-
-.token.symbol {
-  color: #7c4dff;
-}
-
-.token.tag {
-  color: #e53935;
-}
-
-.token.unit {
-  color: #f76d47;
-}
-
-.token.url {
-  color: #e53935;
-}
-
-.token.variable {
-  color: #e53935;
-}
-
-/**
- * Nord Theme Originally by Arctic Ice Studio
- * https://nordtheme.com
- *
- * Ported for PrismJS by Zane Hitchcoxc (@zwhitchcox) and Gabriel Ramos (@gabrieluizramos)
- */
-
-/* code[class*="language-"],
-pre[class*="language-"] {
-  color: #f8f8f2;
-  background: none;
-  font-family: "Fira Code", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.5;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-} */
-
-/* Code blocks */
-/* pre[class*="language-"] {
-  padding: 1em;
-  margin: .5em 0;
-  overflow: auto;
-  border-radius: 0.3em;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-  background: #2E3440;
-} */
-
-/* Inline code */
-/* :not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
-  white-space: normal;
-}
-
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: #636f88;
-}
-
-.token.punctuation {
-  color: #81A1C1;
-}
-
-.namespace {
-  opacity: .7;
-}
-
-.token.property,
-.token.tag,
-.token.constant,
-.token.symbol,
-.token.deleted {
-  color: #81A1C1;
-}
-
-.token.number {
-  color: #B48EAD;
-}
-
-.token.boolean {
-  color: #81A1C1;
-}
-
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
-  color: #A3BE8C;
-}
-
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string,
-.token.variable {
-  color: #81A1C1;
-}
-
-.token.atrule,
-.token.attr-value,
-.token.function,
-.token.class-name {
-  color: #88C0D0;
-}
-
-.token.keyword {
-  color: #81A1C1;
-}
-
-.token.regex,
-.token.important {
-  color: #EBCB8B;
-}
-
-.token.important,
-.token.bold {
-  font-weight: bold;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-.token.entity {
-  cursor: help;
-} */

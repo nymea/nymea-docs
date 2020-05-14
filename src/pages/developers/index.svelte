@@ -1,0 +1,184 @@
+<script>
+  import Col from '../../_components/grid/Col.svelte';
+  import Grid from '../../_components/grid/Grid.svelte';
+  import Row from '../../_components/grid/Row.svelte';
+</script>
+
+<style>
+  header p {
+    font-size: 1.875rem;
+    line-height: 3rem;
+  }
+</style>
+
+<svelte:head>
+	<title>developers &middot; nymea</title>
+</svelte:head>
+
+<section>
+  <Grid>
+    <Row>
+      <Col middle>
+        <header>
+          <h1>Build smart.</h1>
+          <p>With nymea you can focus on the use case right away. The ground work is done.</p>
+        </header>
+        <a href="documentation/developers" class="button">Get started</a>
+      </Col>
+      <Col>
+        <img src="img/smart-home.png" alt="Smart home"/>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<section>
+  <Grid>
+    <Row>
+      <!-- <header>
+        <h1>Be creative.</h1>
+        <p>Nymea gets you up and running with your Smart Home setup in no time.</p>
+      </header>
+      <a href="documentation/developers">Learn more</a> -->
+      <Col>
+        <img src="img/bricks.png" alt="Building blocks"/>
+      </Col>
+      <Col middle center>
+        <h3>Easy, slick and flexible.</h3>
+        <p>With nymea you pick what you need. Be it connecting things or adding APIs or frontends to your home brew things Be it writing low level device integrations or scripting fancy behaviors. Be it a full smart home solution just setting up an MQTT broker that can send push notifications. You imagine it, nymea helps building it.        </p>
+        <p><a href="documentation/developers">Get started</a></p>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<section>
+  <Grid>
+    <Row>
+      <Col center>
+        <h3>Tinkering made easy</h3>
+        <p>For home brew IoT projects, nymea offers a comprehensive set of ready-made tools. There are tons of home brew tutorials out there that transform a Rasperry Pi into a purpose made IoT "thing". Instead of hand crafting that all from scratch every time, why not just install nymea and interact with your device from a remote JSON-RPC API instead of starting to type low level C code?<br>For many use cases coding isn't required at all as nymea handles a lot out of the box already.</p>
+      </Col>
+    </Row>
+    <Row>  
+      <Col>
+      </Col>
+      <Col>
+        <img src="img/ADS1115.jpg" alt="I²C"/>
+      </Col>
+      <Col>
+      </Col>
+      <Col>
+        <img src="img/one-wire-sensor.png" alt="One Wire"/>
+      </Col>
+      <Col>
+      </Col>
+      <Col>
+        <img src="img/gpio.jpeg" alt="GPIO"/>
+      </Col>
+      <Col>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<section>
+  <Grid>
+    <Row>
+      <Col center>
+        <h3>Low level when you need it, high level when you want it</h3>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+        <img src="img/code-low.svg" alt="C++"/>
+      </Col>
+      <Col center middle>
+        <p>While still being close enough to bare metal with C++/Qt in order to run fast and consume little resources, nymea abstracts all the really low level stuff away from the developer and provides an easy to use Object-Oriented API for IoT related APIs. Integrations and automation behaviors can be created using C++ for full power and flexibility, or JavaScript for the ease of use.</p>
+      </Col>
+      <Col>
+        <img src="img/code-high.svg" alt="C++"/>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<section>
+  <Grid>
+    <Row>
+      <Col middle center>
+        <h3>Headless setups</h3>
+        <p>When building any device, there's always the one question coming up. How would the user connect it to the network? nymeas networkmanagement APIs solve that issue by providing a Bluetooth-To-WiFi setup, ready to be installed on any Linux based device and with a client already deployed on app stores.</p>
+      </Col>
+      <Col>
+        <img src="img/berrylan.gif" style="background: url(img/device-frame-iphone-6-8.svg) no-repeat top center; background-size:contain;" alt="Bt-Wireless setup"/>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<section>
+  <Grid>
+    <Row>
+      <Col>
+        <img src="img/nymea-integrations.png" alt="Integrations"/>
+      </Col>
+      <Col middle center>
+        <h3>Nymea is a communication talent</h3>
+        <p>IoT often requires to interact with low level hardware like I2C, GPIO, One-Wire or connecting to networking protocols like COAP, ZigBee, Bluetooth and more. nymea believes that none of these should be reinvented all the time and abstracts the hard and boring bits like threading, parsing and memory management away from the developer to allow focusing on the actual use case.</p>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<section>
+  <Grid>
+    <Row>
+      <Col center>
+        <h3>Servers, intergrated</h3>
+        <p>MQTT broker made easy. Take the nymea image, boot it up, and have your MQTT server running. With nymea:app ready to configure users and permissions.<br>
+        Need an on-device webserver without wanting to edit config files? Just enable it in the nymea settings and be done with it.</p>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+        <img src="img/mqtt-broker.png" alt="MQTT broker"/>
+      </Col>
+      <Col>
+        <img src="img/webserver.png" alt="Web server"/>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<section>
+  <Grid>
+    <Row>
+      <Col center>
+        <h3>Need help?</h3>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+      </Col>
+      <Col center>
+        <img src="img/community/discourse.svg" alt="Discourse"/>
+        <p><a href="https://forum.nymea.io" target="_blank">Ask for help in our forum</a></p>
+      </Col>
+      <Col>
+      </Col>
+      <Col center>
+        <img src="img/community/telegram.svg" alt="Telegram"/>
+        <p><a href="http://t.me/nymeacommunity" target="_blank">Chat with us on Telegram</a></p>
+      </Col>
+      <Col>
+      </Col>
+      <Col center>
+        <img src="img/community/github.svg" alt="Github"/>
+        <p><a href="https://github.com/nymea" target="_blank">Report bugs or fork the code on github</a></p>
+      </Col>
+      <Col>
+      </Col>
+    </Row>
+  </Grid>
+</section>
