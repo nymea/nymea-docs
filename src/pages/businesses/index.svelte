@@ -2,32 +2,60 @@
   import Col from '../../_components/grid/Col.svelte';
   import Grid from '../../_components/grid/Grid.svelte';
   import Row from '../../_components/grid/Row.svelte';
+  import Button from '../../_components/base/Button.svelte';
 </script>
 
 <style>
+  section {
+    border-bottom: 1px solid #efefef;
+    padding: var(--space-09) 0 var(--space-10);
+  }
+
+  section h2 {
+    margin-bottom: var(--space-07);
+  }
+
+  header h1 {
+    font-size: 4rem;
+    line-height: 4.5rem;
+    margin-bottom: var(--space-04);
+  }
+
   header p {
-    font-size: 1.875rem;
-    line-height: 3rem;
+    color: var(--gray-base);
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    margin-bottom: var(--space-09);
+  }
+
+  @media only screen and (min-width: 48em) {
+    header h1 {
+      font-size: 4.5rem;
+      line-height: 6rem;
+    }
+
+    header p {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
   }
 </style>
-
-<svelte:head>
-	<title>businesses &middot; nymea</title>
-</svelte:head>
 
 <section>
   <Grid>
     <Row>
-      <Col middle>
+      <Col middle span={{'xs': 12, 'md': 8}}>
         <header>
           <h1>Be smart.</h1>
           <p>Build IoT business, not IoT devices.</p>
         </header>
-        <a href="documentation/developers" class="button">Get started</a>
+        <Button text="Get started" link="documentation/businesses">
+          <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+        </Button>
       </Col>
-      <Col>
+      <!-- <Col>
         <img src="img/smart-home.png" alt="Smart home"/>
-      </Col>
+      </Col> -->
     </Row>
   </Grid>
 </section>
@@ -35,20 +63,22 @@
 <section>
   <Grid>
     <Row>
-      <Col middle center>
-        <h3>What we offer</h3>
+      <Col>
+        <h2>What we offer</h2>
         <p>Nymea GmbH is here to support development of your IoT product with our experience in all phases, from planning to rollout and maintenance. Together with our partners we offer experience in all those fields of the product lifecycle.</p>
-            <p>&middot; Consulting on Hardware/Software evaluation.</p>
-            <p>&middot; Adding individual features to your product, like easy setup, integrations to others, remote connection, Alexa/Google integration and many more.</p>
-            <p>&middot; Building entire smart home gateways.</p>
-            <p>&middot; Apps for nymea based IoT products with your company branding.</p>            
-            <p>&middot; OTA upgrades.</p>
-            <p>&middot; Industrial device monitoring.</p>
+        <ul>
+          <li>Consulting on Hardware/Software evaluation.</li>
+          <li>Adding individual features to your product, like easy setup, integrations to others, remote connection, Alexa/Google integration and many more.</li>
+          <li>Building entire smart home gateways.</li>
+          <li>Apps for nymea based IoT products with your company branding.</li>
+          <li>OTA (Over The Air) Update.</li>
+          <li>Industrial device monitoring.</li>
+        </ul>
       </Col>
     </Row>
     <Row>
-      <Col center>
-        <h4><a href="">Let's build somthing great together! TODO: Link to contact form</a></h4>
+      <Col>
+        <a href="">Let's build somthing great together! TODO: Link to contact form</a>
       </Col>
     </Row>
   </Grid>
@@ -57,13 +87,13 @@
 <section>
   <Grid>
     <Row>
+      <Col>
+        <h2>Save thousands of integration hours</h2>
+        <p>Extend connectivity of your IoT device to virtually anything with nymea. Adding new integrations is easily done via over-the-air updates.</p>
+      </Col>
       <Col>
         <img src="img/nymea-integrations.png" alt="Integrations"/>
       </Col>
-      <Col middle center>
-        <h3>Save thousands of integration hours</h3>
-        <p>Extend connectivity of your IoT device to virtually anything with nymea. Adding new integrations is easily done via over-the-air updates.</p>
-      </Col>
     </Row>
   </Grid>
 </section>
@@ -72,7 +102,7 @@
 <section>
   <Grid>
     <Row>
-      <Col middle center>
+      <Col>
         <p>Nymea is ready to be integrated on a variety of GNU/Linux based devices. Be it Yocto, Ubuntu Core, Debian or anything else, we've got the experience in delivering the nymea stack to your platform of choice.</p>
       </Col>
       <Col>
@@ -86,12 +116,12 @@
   <Grid>
     <Row>
       <Col>
-        <img src="img/nymea_vs_java_footprint.png" alt="Footprint"/>
-      </Col>
-      <Col center middle>
-        <h3>The worlds smallest footprint</h3>
+        <h2>The worlds smallest footprint</h2>
         <p>A powerful, yet lean addon for your device firmware.</p>
         <p>nymea does not require a power horse, it's perfectly fine with low cost modules as long as GNU/Linux is available for them.</p>
+      </Col>
+      <Col>
+        <img src="img/nymea_vs_java_footprint.png" alt="Footprint"/>
       </Col>
     </Row>
   </Grid>
@@ -100,11 +130,11 @@
 <section>
   <Grid>
     <Row>
-    <Col center middle>
-        <h3>Also need hardware?</h3>
+      <Col>
+        <h2>Also need hardware?</h2>
         <p>Together with our partners we have developed embedded devices ready to base your IoT product on.</p>
       </Col>
-       <Col>
+      <Col>
         <img src="img/HW-SW-modules.png" alt="HW"/>
       </Col>
     </Row>
@@ -115,7 +145,7 @@
   <Grid>
     <Row>
       <Col center>
-        <h3>Our partners</h3>
+        <h2>Our partners</h2>
       </Col>
     </Row>
     <Row>

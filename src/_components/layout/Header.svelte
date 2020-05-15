@@ -2,32 +2,17 @@
   import { afterUpdate, onMount } from 'svelte';
   import { createStyle } from '../utils/style.js';
 
-  // export let width = 'auto';
-  export let width;
+  export let height = undefined;
+  export let fixed = true;
+  export let width = undefined;
 
   let div;
   let offsetWidth;
   
   $: style = createStyle(style, {
-    // '--header-width': width === 'auto' ? offsetWidth + 'px' : width
+    '--header-height': height,
     '--header-width': width
   });
-
-  // onMount(() => {
-  //   // const div = document.querySelector('header > div');
-  //   console.log('header - mount', div);
-  //   if (div) {
-  //     console.log('header - mount', div.offsetWidth);
-  //   }
-  // });
-
-  // afterUpdate(() => {
-  //   // const div = document.querySelector('header > div');
-  //   console.log('header - after update', div);
-  //   if (div) {
-  //     console.log('header - after update', div.offsetWidth);
-  //   }
-  // });
 </script>
 
 <style>
@@ -35,7 +20,7 @@
     --header-background-color: var(--silver-base);
     --header-height: 6rem;
     --header-padding: 0;
-    --header-width: calc(100% - 1.5rem);;
+    --header-width: 100%;
   }
 
   header {
@@ -43,24 +28,35 @@
     box-sizing: content-box;
     height: var(--header-height);
     padding: var(--header-padding);
-    width: calc(100% - 1.5rem);
+    width: 100%;
   }
 
   header > div {
-    /* background-color: inherit; */
-    /* background-color: rgba(255, 255, 255, 0.9); */
     background-color: var(--silver-transparent-base);
     backdrop-filter: saturate(50%) blur(4px);
+    -webkit-backdrop-filter: saturate(50%) blur(4px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    border-top-left-radius: var(--body-border-radius);
-    border-top-right-radius: var(--body-border-radius);
     height: var(--header-height);
-    position: fixed;
-    width: inherit;
-    z-index: 2;
+    width: var(--header-width);
   }
 
-  @media only screen and (min-width: 48em) {}
+  .fixed > div {
+    position: fixed;
+      top: 0;
+    z-index: 1;
+  }
+
+  /* @media only screen and (min-width: 48em) { */
+    header {
+      /* width: calc(100% - calc(2 * var(--body-margin))); */
+    }
+
+    header,
+    header > div {
+      /* border-top-left-radius: var(--body-border-radius);
+      border-top-right-radius: var(--body-border-radius); */
+    }
+  /* } */
 
   @media only screen and (min-width: 64em) {
     header {
@@ -81,7 +77,7 @@
 
 <!-- <header bind:offsetWidth={offsetWidth} {style}>
   <div bind:this={div}> -->
-<header {style}>
+<header class:fixed {style}>
   <div>
     <slot />
   </div>

@@ -25,24 +25,28 @@
   $: orderedLinkTitlesFromPath = findOrderedLinkTitles(orderedLinkTitles, path.substr(1));
   $: console.log('orderedLinkTitlesFromPath', orderedLinkTitlesFromPath);
 
-  onMount(() => {
-    if ($route.file === 'index.md') {
-      $goto($route.api.parent.path + '/');
-    } else if ($route.api.path.slice(-1) !== '/' &&
-        $route.api.path.substring($route.api.path.lastIndexOf('/') + 1) !== 'index') {
-      $goto($route.api.path + '/');
-    }
-  });
+  // onMount(() => {
+    // if ($route.file === 'index.md') {
+    //   $goto($route.api.parent.path + '/');
+    // } else if ($route.api.path.slice(-1) !== '/' &&
+    //     $route.api.path.substring($route.api.path.lastIndexOf('/') + 1) !== 'index') {
+    //   $goto($route.api.path + '/');
+    // }
+  // console.log($route, $route.regex.slice(-3) === '/?$', $route.api.path)
+  //   if ($route.regex.slice(-1) === '/?$') {
+  //     $goto($route.api.path);
+  //   }
+  // });
 
-  $beforeUrlChange((event, store) => {
-    if (event.url &&
-        event.url.slice(-1) !== '/' &&
-        event.url.substring(event.url.lastIndexOf('/') + 1) !== 'index') {
-      $goto(event.url + '/');
-      return false;
-    }
-    return true;
-  });
+  // $beforeUrlChange((event, store) => {
+  //   if (event.url &&
+  //       event.url.slice(-1) !== '/' &&
+  //       event.url.substring(event.url.lastIndexOf('/') + 1) !== 'index') {
+  //     $goto(event.url + '/');
+  //     return false;
+  //   }
+  //   return true;
+  // });
 
   function findOrderedLinkTitles(orderedLinkTitles, path) {
     const pathSegments = path.split('/');

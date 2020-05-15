@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import { isActive, url, layout, route, routes } from '@sveltech/routify';
 
   import Content from '../_components/layout/Content.svelte';
@@ -15,6 +16,22 @@
 </script>
 
 <style>
+  :global(body) {
+    --grid-width-xs: 100%;
+    --grid-width-sm: 100%;
+    --grid-width-md: 100%;
+    --grid-width-lg: calc(100% - 40em);
+    --grid-width-xl: calc(100% - 40em);
+    /* --grid-width-md: 48em;
+    --grid-width-lg: 64em;
+    --grid-width-xl: 75em; */
+  }
+
+  div :global(.col > .logo) {
+    display: block;
+    padding: 1.5rem 0;
+  }
+
   /* div,
   div > :global(.container) {
     border-radius: var(--body-border-radius);

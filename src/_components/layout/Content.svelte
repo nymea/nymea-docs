@@ -17,7 +17,7 @@
   }
 
   main {
-    padding: var(--space-07);
+    /* padding: var(--space-07); */
     /* padding: var(--content-padding); */
     /* background-color: var(--content-background-color); */
     /* border-top-left-radius: var(--layout-border-radius);

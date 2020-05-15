@@ -13,9 +13,9 @@
   :root {
     --grid-width-xs: 100%;
     --grid-width-sm: 100%;
-    --grid-width-md: 48em;
-    --grid-width-lg: 64em;
-    --grid-width-xl: 75em;
+    --grid-width-md: 100%;
+    --grid-width-lg: 100%;
+    --grid-width-xl: 100%;
     --grid-width: var(--grid-width-xs);
   }
 
@@ -23,7 +23,7 @@
     box-sizing: border-box;
     /* display: flex; */
     overflow: auto;
-    padding: 0 calc(var(--row-gap) / 2);
+    /* padding: 0 calc(var(--row-gap) / 2); */
     /* padding: 1.5rem; */
     width: var(--grid-width-xs);
   }
