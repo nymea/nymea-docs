@@ -3,6 +3,15 @@
 </script>
 
 <style>
+	nav {
+		display: none;
+	}
+
+	@media only screen and (min-width: 48em) {
+		nav {
+			display: block;
+		}
+	}
 	ul {
 		display: flex;
 		height: 6rem;
