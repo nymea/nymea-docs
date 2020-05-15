@@ -1,33 +1,43 @@
 <script>
   import { createStyle } from '../utils/style.js';
 
-  export let gap;
-  export let offset;
-  export let span;
-  export let bottom;
-  export let middle;
-  export let top;
-  export let left;
-  export let center;
-  export let right;
+  export let offset = undefined;
+  export let span = undefined;
+  export let order = undefined;
+  export let bottom = false;
+  export let middle = false;
+  export let top = false;
+  export let left = false;
+  export let center = false;
+  export let right = false;
 
   $: style = createStyle(style, {
     // '--col-gap': gap,
+    '--col-order': order,
     '--col-offset': offset,
     '--col-span': span
   });
+
+  console.log('span', span);
 </script>
 
 <style>
   :root {
-    /* --col-gap: 0; */
     --col-offset: 0;
     --col-offset-xs: var(--col-offset);
     --col-offset-sm: var(--col-offset);
     --col-offset-md: var(--col-offset);
     --col-offset-lg: var(--col-offset);
     --col-offset-xl: var(--col-offset);
-    /* --col-span: 1; */
+
+    --col-span: 12;
+    --col-span-xs: var(--col-span);
+    --col-span-sm: var(--col-span);
+    --col-span-md: var(--col-span);
+    --col-span-lg: var(--col-span);
+    --col-span-xl: var(--col-span);
+
+    --col-order: 0;
   }
 
   .col {
@@ -45,7 +55,11 @@
   }
 
   .col.span {
-    flex: 0 0 calc((100% / var(--row-cols)) * var(--col-span));
+    flex: 0 0 calc((100% / var(--row-cols)) * var(--col-span) - var(--row-gap));
+  }
+
+  .col.order {
+    order: var(--col-order);
   }
 
   .col.bottom {
@@ -72,6 +86,21 @@
     text-align: right;
   }
 
+  @media only screen and (min-width: 30em) {
+    .col {
+      /* margin-left: calc((100% / var(--row-cols-sm)) * var(--col-offset-sm)); */
+      margin-left: calc((100% / var(--row-cols-xs) * var(--col-offset-xs)) + calc(var(--row-gap) / 2));
+    }
+
+    .col.span-xs {
+      flex: 0 0 calc((100% / var(--row-cols-xs)) * var(--col-span-xs) - var(--row-gap));
+    }
+
+    .col.order {
+      order: var(--col-order-xs);
+    }
+  }
+
   @media only screen and (min-width: 48em) {
     .col {
       /* margin-left: calc((100% / var(--row-cols-sm)) * var(--col-offset-sm)); */
@@ -79,7 +108,11 @@
     }
 
     .col.span-sm {
-      flex: 0 0 calc((100% / var(--row-cols-sm)) * var(--col-span-sm));
+      flex: 0 0 calc((100% / var(--row-cols-sm)) * var(--col-span-sm) - var(--row-gap));
+    }
+
+    .col.order {
+      order: var(--col-order-sm);
     }
   }
 
@@ -90,7 +123,11 @@
     }
 
     .col.span-md {
-      flex: 0 0 calc((100% / var(--row-cols-md)) * var(--col-span-md));
+      flex: 0 0 calc((100% / var(--row-cols-md)) * var(--col-span-md) - var(--row-gap));
+    }
+
+    .col.order {
+      order: var(--col-order-md);
     }
   }
 
@@ -101,7 +138,11 @@
     }
 
     .col.span-lg {
-      flex: 0 0 calc((100% / var(--row-cols-lg)) * var(--col-span-lg));
+      flex: 0 0 calc((100% / var(--row-cols-lg)) * var(--col-span-lg) - var(--row-gap));
+    }
+
+    .col.order {
+      order: var(--col-order-lg);
     }
   }
 
@@ -112,18 +153,24 @@
     }
 
     .col.span-xl {
-      flex: 0 0 calc((100% / var(--row-cols-xl)) * var(--col-span-xl));
+      flex: 0 0 calc((100% / var(--row-cols-xl)) * var(--col-span-xl) - var(--row-gap));
+    }
+
+    .col.order {
+      order: var(--col-order-xl);
     }
   }
 </style>
 
 <div
   class="col"
-  class:span
-  class:span-sm={style['--col-span-sm']}
-  class:span-md={style['--col-span-md']}
-  class:span-lg={style['--col-span-lg']}
-  class:span-xl={style['--col-span-xl']}
+  class:span={span && span['xs']}
+  class:span-xs={span && span['xs']}
+  class:span-sm={span && span['sm']}
+  class:span-md={span && span['md']}
+  class:span-lg={span && span['lg']}
+  class:span-xl={span && span['xl']}
+  class:order={order}
   class:bottom
   class:middle
   class:top
