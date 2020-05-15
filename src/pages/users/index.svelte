@@ -2,72 +2,138 @@
   import Col from '../../_components/grid/Col.svelte';
   import Grid from '../../_components/grid/Grid.svelte';
   import Row from '../../_components/grid/Row.svelte';
+  import Button from '../../_components/base/Button.svelte';
 </script>
 
 <style>
-  h2 + p {
-    color: #676767;
-    font-size: 1.25rem;
+  .box {
+    margin-bottom: 3rem;
   }
 
-  header p {
-    /* color: #676767; */
+  .box header {
+    margin-bottom: 1.5rem;
+  }
+
+  .box header ion-icon {
     font-size: 1.875rem;
+    /* letter-spacing: 0.01em; */
     line-height: 3rem;
-    margin: 0 0 3rem;
-  }
-  section {
-    /* margin-bottom: 6rem; */
-    padding: 6rem 0;
+    margin-bottom: 1.25rem;
   }
 
-  section:first-child {
-    margin-top: 6rem;
+  .box header h3 {
+    margin-bottom: 0.25rem;
   }
 
-  #features {
-    /* background-color: #fafafa; */
-    background: linear-gradient(135deg, #fafafa, #f2f2f2);
-    border-bottom: 1px solid #efefef;
-    border-top: 1px solid #efefef;
-    /* padding: 3rem 0; */
+  .box header p {
+    color: var(--turquoise-base);
+    font-size: 0.8rem;
+    text-transform: uppercase;
   }
 
-  #features ion-icon {
-    font-size: 2.25rem;
-    line-height: 3rem;
-  }
-
-  #features p {
-    color: #676767;
+  @media only screen and (min-width: 48em) {
+    .box {
+      margin-bottom: 0;
+    }
   }
 
   .integration {
-    /* border-left: 1px solid #efefef; */
-    /* align-self: stretch; */
+    color: var(--text-color);
     display: block;
     padding: 0.75rem;
     text-align: center;
     text-decoration: none;
   }
 
-  /* #integrations :global(.grid) {
-    position: relative;
-  } */
+  .integration ion-icon {
+    font-size: 2.25rem;
+    line-height: 3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .platforms {
+    display: flex;
+    margin-top: var(--space-07);
+  }
+
+  .platforms li {
+    margin: 0;
+  }
+
+  .platforms ion-icon {
+    font-size: 1.875rem;
+    line-height: 3rem;
+  }
+
+  .step {
+    margin-bottom: var(--space-09);
+  }
+
+  @media only screen and (min-width: 48em) {
+    .step {
+      margin-bottom: 0;
+    }
+  }
+
+  section {
+    border-bottom: 1px solid #efefef;
+    padding: var(--space-09) 0 var(--space-10);
+  }
+
+  section h2,
+  section h3 {
+    margin-bottom: var(--space-07);
+  }
+
+  header h1 {
+    font-size: 4rem;
+    line-height: 4.5rem;
+    margin-bottom: var(--space-04);
+  }
+
+  header p {
+    color: var(--gray-base);
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    margin-bottom: var(--space-09);
+  }
+
+  @media only screen and (min-width: 48em) {
+    header h1 {
+      font-size: 4.5rem;
+      line-height: 6rem;
+    }
+
+    header p {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
 
   #integrations {
     border-bottom: 1px solid #efefef;
   }
 
   #integrations :global(.row:nth-child(2)) {
-    padding: 4.5rem 0;
+    /* padding: 4.5rem 0; */
+    padding: var(--space-07) 0;
+    /* position: relative;
+    z-index: 0; */
   }
+
+  /* #integrations :global(.row:nth-child(2)::after) {
+    background-color: red;
+    content: "";
+    height: var(--space-07);
+    position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    z-index: 1;
+  } */
 
   #integrations :global(.row:nth-child(2) .col) {
     border-left: 1px solid #efefef;
-    /* flex: 0 0 7.875rem; */
-    /* flex: 0 0 20%; */
-    /* flex: 0 0 20%; */
     margin: 0;
     -webkit-overflow-scrolling: touch;
     position: relative;
@@ -94,70 +160,26 @@
     transform: translateY(0.375rem);
   }
 
-  /* #integrations :global(.row:nth-child(2) .col::after),
-  #integrations :global(.row:nth-child(3) .col::after),
-  #integrations :global(.row:nth-child(4) .col::after) {
-    background-color: #efefef;
-    content: "";
-    display: block;
-    height: 100%;
-    position: absolute;
-      left: -0.75rem;
-      top: 0;
-    width: 1px;
-  } */
-
-  /* #integrations :global(.col:first-child:after) {
-    background-color: transparent;
-  } */
-
-  /* #integrations :global(.col:last-child) {
-    background-color: #fff;
-    position: absolute;
-      right: 0;
-      top: 0;
-    width: 20%;
-    z-index: 1;
-  } */
-
   #integrations :global(.col h6) {
     margin-bottom: 0;
   }
-
-  .integration ion-icon {
-    font-size: 2.25rem;
-    line-height: 3rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .platforms {
-    display: flex;
-    list-style-type: none;
-  }
-
-  .platforms ion-icon {
-    font-size: 3rem;
-    line-height: 3rem;
-  }
 </style>
 
-<svelte:head>
-	<title>users &middot; nymea</title>
-</svelte:head>
-
-<section>
+<section id="introduction">
   <Grid>
     <Row>
-      <Col middle>
+      <Col middle span={{'xs': 12, 'md': 8}} order={{'xs': 2, 'sm': 0}}>
         <header>
           <h1>Live smart.</h1>
           <p>Nymea gets you up and running with your Smart Home setup in no time.</p>
         </header>
-        <a href="documentation/users/installation/gettingstarted" class="button">Get started</a>
+        <Button text="Get started" link="documentation/users/installation/gettingstarted">
+          <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+        </Button>
       </Col>
-      <Col>
+      <!-- <Col span={{'xs': 12, 'md': 6}} order={{'xs': 1, 'sm': 0}}>
         <img src="img/smart-home.png" alt="Smart home"/>
-      </Col>
+      </Col> -->
     </Row>
   </Grid>
 </section>
@@ -165,20 +187,35 @@
 <section id="features">
   <Grid>
     <Row>
-      <Col>
-        <ion-icon name="body"></ion-icon>
-        <h3>Easy to use, yet powerful</h3>
-        <p>Nymea does not require editing cryptic configuration files, it can be configured and controlled entirely using your Smartphone or PC.</p>
+      <Col span={{'xs': 12, 'sm': 4}}>
+        <div class="box">
+          <header>
+            <ion-icon name="body"></ion-icon>
+            <h3>Easy but powerful</h3>
+            <p>...</p>
+          </header>
+          <p>Nymea does not require editing cryptic configuration files, it can be configured and controlled entirely using your Smartphone or PC.</p>
+        </div>
       </Col>
-      <Col>
-        <ion-icon name="shield-checkmark"></ion-icon>
-        <h3>Local-first approach</h3>
-        <p>Nymea ensures that your data is kept where it belongs, locally in your home. Besides the privacy advantage, this also keeps you independent from cloud vendors, and doesn't require an always-on internet connection.</p>
+      <Col span={{'xs': 12, 'sm': 4}}>
+        <div class="box">
+          <header>
+            <ion-icon name="shield-checkmark"></ion-icon>
+            <h3>Local-first approach</h3>
+            <p>...</p>
+          </header>
+          <p>Nymea ensures that your data is kept where it belongs, locally in your home. Besides the privacy advantage, this also keeps you independent from cloud vendors, and doesn't require an always-on internet connection.</p>
+        </div>
       </Col>
-      <Col>
-        <ion-icon src="img/open-source-initiative.svg"></ion-icon>
-        <h3>Free and Open Source</h3>
-        <p>Nymea is comitted to open source software. Anything we do can be inspected, tuned and shared by our community.</p>
+      <Col span={{'xs': 12, 'sm': 4}}>
+        <div class="box">
+          <header>
+            <ion-icon src="img/open-source-initiative.svg"></ion-icon>
+            <h3>Free and Open Source</h3>
+            <p>...</p>
+          </header>
+          <p>Nymea is comitted to open source software. Anything we do can be inspected, tuned and shared by our community.</p>
+        </div>
       </Col>
     </Row>
   </Grid>
@@ -187,7 +224,7 @@
 <section id="integrations">
   <Grid>
     <Row>
-      <Col span="6" offset={{"xl": 3}} center>
+      <Col span={{'xs': 12, 'md': 8}}>
         <h2>Connection talent</h2>
         <p>Connecting things to your smart home is easy and quick. See the list of available <a href="documentation/overview/integrations">integrations</a>.</p>
       </Col>
@@ -263,184 +300,53 @@
   </Grid>
 </section>
 
-<!-- <section>
+<section>
   <Grid>
     <Row>
-      <Col>
-        <img src="img/plugnplay.svg" alt="Plug'n Play">
-      </Col>
-      <Col>
-        <h3>Easy to use, yet powerful</h3>
-        <p>Nymea does not require editing cryptic configuration files, it can be configured and controlled entirely using your smart phone or PC.</p>
-      </Col>
-      <Col></Col>
-      <Col></Col>
-    </Row>
-  </Grid>
-</section> -->
-
-<!-- <section>
-  <Grid>
-    <Row>
-      <Col>
-        <img src="img/plugnplay.svg" alt="Plug'n Play">
-      </Col>
-      <Col middle center>
-        <h3>Easy to use, yet powerful</h3>
-        <p>Nymea does not require editing cryptic configuration files, it can be configured and controlled entirely using your smart phone or PC.</p>
-      </Col>
-    </Row>
-  </Grid>
-</section>
+      <Col span={{'xs': 12, 'md': 4}}>
+        <div class="step">
+          <h2>Install.</h2>
+          <p>Nymea can be installed on various platforms. Download our prebuilt packages for Ubuntu or Debian GNU/Linux. You can also try one of our ready-to-go Raspberry Pi images.</p>
         
-<section>
-  <Grid>
-    <Row>
-      <Col middle center>
-        <h3>Local-first approach</h3>
-        <p>Nymea ensures that your data is kept where it belongs, locally in your home. Besides the privacy advantage, this also keeps you independent form cloud vendors, and doesn't require an always-on internet connection.</p>
+          <ul class="platforms">
+            <li>
+              <ion-icon src="img/ubuntu.svg"></ion-icon>
+            </li>
+            <li>
+              <ion-icon src="img/debian.svg"></ion-icon>
+            </li>
+            <li>
+              <ion-icon src="img/raspberry-pi.svg"></ion-icon>
+            </li>
+          </ul>
+        </div>
       </Col>
-      <Col>
-        <img src="img/shield.svg" alt="Privacy focused">
+      <Col span={{'xs': 12, 'md': 4}}>
+        <div class="step">
+          <h2>Setup.</h2>
+          <p>Download our App to setup nymea. It is available for mobile and stationary devices on iOS, Android, Ubuntu Touch, MacOS, Windows and Linux Desktops.</p>
+        </div>
+      </Col>
+      <Col span={{'xs': 12, 'md': 4}}>
+        <div class="step">
+          <h2>Play.</h2>
+          <p>Discover nymea. Connect things and let the magic happen. The possibilities are endless.</p>
+        </div>
+      </Col>
+    </Row>
+    <Row>
+      <Col center>
+        <p>Check out all the installation options in the <a href="documentation/users/installation/gettingstarted">installation documentation</a>.</p>
       </Col>
     </Row>
   </Grid>
 </section>
-
-<section>
-  <Grid>
-    <Row>
-      <Col>
-        <img src="img/open-source.svg" alt="Open Source"/>
-      </Col>
-      <Col middle center>
-        <h3>Free and Open Source</h3>
-        <p>Nymea is comitted to open source software. Anything we do can be inspected, tuned and shared by our community.</p>
-      </Col>
-    </Row>
-  </Grid>
-</section> -->
 
 <!-- <section>
   <Grid>
     <Row>
-      <Col center>
-        <h3>Nymea is a connection talent</h3>
-      </Col>
-    </Row>
-    <Row>
-      <Col middle center>
-        <h4>Lights</h4>
-      </Col>
-      <Col middle center>
-        <h4>Sensors</h4>
-      </Col>
-      <Col middle center>
-        <h4>Access control</h4>
-      </Col>
-      <Col middle center>
-        <h4>Weather</h4>
-      </Col>
-      <Col middle center>
-        <h4>Energy meters</h4>
-      </Col>
-      <Col middle center>
-        <h4>Media</h4>
-      </Col>
-      <Col middle center>
-        <h4>Irrigation</h4>
-      </Col>
-      <Col middle center>
-        <h4>Notifications</h4>
-      </Col>
-      <Col middle center>
-        <h4>Presence awareness</h4>
-      </Col>
-      <Col middle center>
-        <h4>And many more</h4>
-      </Col>
-    </Row>
-    <Row>
       <Col>
-        <img src="img/things/bulb-outline.svg" alt="Lights" />
-      </Col>
-      <Col center>
-        <img src="img/things/thermometer-outline.svg" alt="Sensors" />
-      </Col>
-      <Col center>
-        <img src="img/things/key-outline.svg" alt="Access control" />
-      </Col>
-      <Col center>
-        <img src="img/things/partly-sunny-outline.svg" alt="Weather" />
-      </Col>
-      <Col center>
-        <img src="img/things/speedometer-outline.svg" alt="Energy meters" />
-      </Col>
-      <Col center>
-        <img src="img/things/volume-high-outline.svg" alt="Media" />
-      </Col>
-      <Col center>
-        <img src="img/things/water-outline.svg" alt="Irrigation" />
-      </Col>
-      <Col center>
-        <img src="img/things/chatbox-ellipses-outline.svg" alt="Notifications" />
-      </Col>
-      <Col center>
-        <img src="img/things/location-outline.svg" alt="Presence" />
-      </Col>
-      <Col center>
-        <img src="img/things/more-outline.svg" alt="More" />
-      </Col>
-    </Row>
-    <Row>
-      <Col center>
-        <p>Connecting things to your smart home is easy and quick. See the list of <a href="documentation/overview/integrations">integrations</a>.</p>
-      </Col>
-    </Row>
-  </Grid>
-</section> -->
-
-<section>
-  <Grid>
-    <Row>
-      <Col span="6">
-        <h2>Install.</h2>
-        <p>Nymea can be installed on various platforms. Download our prebuilt packages for Ubuntu or Debian GNU/Linux. You can also try one of our ready-to-go Raspberry Pi images.</p>
-      </Col>
-      <Col>
-        <ul class="platforms">
-          <li>
-            <ion-icon src="img/ubuntu.svg"></ion-icon>
-          </li>
-          <li>
-            <ion-icon src="img/debian.svg"></ion-icon>
-          </li>
-          <li>
-            <ion-icon src="img/raspberry-pi.svg"></ion-icon>
-          </li>
-        </ul>
-      </Col>
-    </Row>
-    <Row>
-      <Col span="6">
-        <h2>Setup.</h2>
-        <p>Download our App to setup nymea. It is available for mobile and stationary devices on iOS, Android, Ubuntu Touch, MacOS, Windows and Linux Desktops.</p>
-      </Col>
-    </Row>
-    <Row>
-      <Col span="6">
-        <h2>Play.</h2>
-        <p>Discover nymea. Connect things and let the magic happen. The possibilities are endless.</p>
-      </Col>
-    </Row>
-  </Grid>
-</section>
-
-<section>
-  <Grid>
-    <Row>
-      <Col center middle>
-        <h3>Hazzle-free setup</h3>
+        <h2>Hazzle-free setup</h2>
       </Col>
     </Row>
     <Row>
@@ -501,7 +407,7 @@
       </Col>
     </Row>
   </Grid>
-</section>
+</section> -->
 
 <section>
   <Grid>
