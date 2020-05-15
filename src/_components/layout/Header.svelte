@@ -43,7 +43,7 @@
   .fixed > div {
     position: fixed;
       top: 0;
-    z-index: 1;
+    z-index: 2;
   }
 
   /* @media only screen and (min-width: 48em) { */

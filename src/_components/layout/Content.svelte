@@ -3,7 +3,7 @@
 
   export let scroll = false;
   export let main = false;
-  export let padding;
+  export let padding = undefined;
 
   $: style = createStyle(style, {
     '--content-padding': padding
@@ -14,6 +14,10 @@
   :root {
     --content-background-color: #fafafa;
     --content-padding: 0;
+  }
+
+  .content {
+    padding: var(--content-padding);
   }
 
   main {

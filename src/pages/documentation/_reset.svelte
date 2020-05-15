@@ -67,6 +67,10 @@
 </script>
 
 <style>
+  .main-layout {
+    --content-padding: var(--space-07);
+  }
+
   /* div,
   div > :global(.container) {
     border-radius: var(--body-border-radius);
@@ -86,26 +90,28 @@
   } */
 </style>
 
-<div>
+<!-- <div> -->
   <Layout>
     <Content>
-      <Layout>
-        <Header width="calc(100% - 40em - 1.5rem)">
-          <Grid height="100%" width={{'xs': '100%', 'sm': '100%', 'md': '100%', 'lg': '100%', 'xl': '100%'}}>
-            <Row>
-              <Col middle>
-                <a href={$url('/')} class="logo"><Logo height="3rem" /></a>
-              </Col>
-              <Col>
-                <Nav />
-              </Col>
-            </Row>
-          </Grid>
-        </Header>
-      </Layout>
-      <Content main>
-        <slot />
-      </Content>
+      <div class="main-layout">
+        <Layout>
+          <Header width="calc(100% - 40em)">
+            <Grid height="100%" width={{'xs': '100%', 'sm': '100%', 'md': '100%', 'lg': '100%', 'xl': '100%'}}>
+              <Row>
+                <Col middle>
+                  <a href={$url('/')} class="logo"><Logo height="3rem" /></a>
+                </Col>
+                <Col>
+                  <Nav />
+                </Col>
+              </Row>
+            </Grid>
+          </Header>
+          <Content main>
+            <slot />
+          </Content>
+        </Layout>
+      </div>
     </Content>
     <Sider>
       <Layout>
@@ -127,4 +133,4 @@
       </Layout>
     </Sider>
   </Layout>
-</div>
+<!-- </div> -->
