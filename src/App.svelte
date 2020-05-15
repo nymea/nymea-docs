@@ -10,18 +10,26 @@
   });
 
   $beforeUrlChange((event, store) => {
-    setTitle(event.url);
+    if (event.url) {
+      setTitle(event.url);
+    } else if (event.currentTarget) {
+      setTitle(event.currentTarget.location.pathname);
+    }
     return true;
   });
 
   function setTitle(path) {
-    const segments = path[0] === '/' ? path.slice(1, path.length).split('/') : path.split('/');
-    if (segments.length === 0 || (segments.length === 1 && segments[0] === '')) {
+    if (path) {
+      const segments = path[0] === '/' ? path.slice(1, path.length).split('/') : path.split('/');
+      if (segments.length === 0 || (segments.length === 1 && segments[0] === '')) {
+        title = 'nymea';
+      } else if (segments.length === 1) {
+        title = segments[0] + ' · nymea';
+      } else if (segments.length > 1) {
+        title = segments[segments.length - 1] + ' · ' + segments[0];
+      }
+    } else {
       title = 'nymea';
-    } else if (segments.length === 1) {
-      title = segments[0] + ' · nymea';
-    } else if (segments.length > 1) {
-      title = segments[segments.length - 1] + ' · ' + segments[0];
     }
   }
 </script>
