@@ -499,4 +499,4 @@ If the user does not press the push button on within the timeout, the `PushButto
 
 ## The complete API
 
-@@GENERATED@@
+@@GENERATED_JSONRPC@@

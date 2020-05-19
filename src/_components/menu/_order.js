@@ -10,6 +10,10 @@ export const orderedLinkTitles = [
     },
     [
       {
+        filename: 'overview',
+        title: 'About nymea'
+      },
+      {
         filename: 'nymeainaction',
         title: 'Nymea in action'
       },
@@ -165,9 +169,17 @@ export const orderedLinkTitles = [
       ],
       {
         filename: 'clients',
-        title: 'Introduction'
+        title: 'Client development'
       },
       [
+        {
+          filename: 'clientdevelopment',
+          title: 'Introduction'
+        },
+        {
+          filename: 'raw-api',
+          title: 'JSONRPC API'
+        },
         {
           filename: 'nymea-app-lib',
           title: 'C++/Qt/QML'
