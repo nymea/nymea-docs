@@ -55,7 +55,13 @@ def find_targets(keyword, dir):
       targets.append(subtarget)
   return targets
 
-def generate_output(targets, keyword, markdown):
+def build_codeblock(text):
+  ret = ""
+  for line in text.split("\n"):
+    ret += "    %s\n" % line
+  return ret
+
+def generate_output_md(targets, keyword, markdown):
   for target in targets:
     fileName = os.path.basename(target)
     fileName = re.sub(r"^_", "", fileName)

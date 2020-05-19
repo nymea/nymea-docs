@@ -17,12 +17,6 @@ def load_interfaces(sourcedir):
     interfaces[ifaceName] = interface
   return interfaces
 
-def build_codeblock(text):
-  ret = ""
-  for line in text.split("\n"):
-    ret += "    %s\n" % line
-  return ret
-
 def build_links(interface):
   ret = ""
   if "extends" in interface:
@@ -43,7 +37,7 @@ def build_markdown(interfaces):
     if "description" in interface:
       ret += "%s\n\n" % interface["description"]
       del interface["description"]
-    ret += build_codeblock(json.dumps(interface, indent=4))
+    ret += Utils.build_codeblock(json.dumps(interface, indent=4))
     ret += "\n\n"
     links = build_links(interface)
     if links != "":
@@ -58,4 +52,4 @@ targets = Utils.find_targets(config["keyword"], config["outputdir"])
 print("Files to replace: %s" % targets)
 interfaces = load_interfaces(os.path.join(config["srcdir"], "nymea/libnymea/interfaces"))
 markdown = build_markdown(interfaces)
-Utils.generate_output(targets, config["keyword"], markdown)
+Utils.generate_output_md(targets, config["keyword"], markdown)

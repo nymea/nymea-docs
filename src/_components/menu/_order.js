@@ -177,8 +177,8 @@ export const orderedLinkTitles = [
           title: 'Introduction'
         },
         {
-          filename: 'raw-api',
-          title: 'JSONRPC API'
+          filename: 'jsonrpc',
+          title: 'JSONRPC'
         },
         {
           filename: 'nymea-app-lib',
@@ -187,6 +187,10 @@ export const orderedLinkTitles = [
         {
           filename: 'nymea-cli-dev',
           title: 'Python'
+        },
+        {
+          filename: 'raw-api',
+          title: 'API'
         }
       ]
     ],
