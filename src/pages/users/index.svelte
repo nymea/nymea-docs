@@ -92,7 +92,7 @@
   }
 
   header p {
-    color: var(--gray-base);
+    color: var(--grey-base);
     font-size: 1.25rem;
     line-height: 1.5rem;
     margin-bottom: var(--space-09);

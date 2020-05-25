@@ -31,6 +31,7 @@
     "@sveltech/routify": "^1.5.9",
     "markdown-it-replace-link": "^1.0.1",
     "mdsvex": "^0.4.0",
+    "prismjs": "^1.20.0",
     "svelte": "^3.20.1"
   }
 }

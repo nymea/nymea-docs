@@ -2,9 +2,14 @@
   import Col from '../_components/grid/Col.svelte';
   import Grid from '../_components/grid/Grid.svelte';
   import Row from '../_components/grid/Row.svelte';
+  import Button from '../_components/base/Button.svelte';
 </script>
 
 <style>
+  #introduction header p {
+    margin-bottom: var(--space-09);
+  }
+
   /* .box {
     padding: 0.75rem;
     position: relative;
@@ -97,7 +102,7 @@
   }
 
   #introduction h1 {
-    color: var(--gray-base);
+    color: var(--grey-base);
     font-size: 2.25rem;
     font-weight: 400;
     letter-spacing: -0.025em;
@@ -112,7 +117,7 @@
   }
 
   #what-2 h6 {
-    color: var(--gray-base);
+    color: var(--grey-base);
     font-weight: 700;
     margin-bottom: 0;
     overflow: hidden;
@@ -212,6 +217,9 @@
           <h1>nymea</h1>
           <p>The Open Iot Stack</p>
         </header>
+        <Button text="Get started" link="documentation/overview">
+          <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+        </Button>
       </Col>
     </Row>
   </Grid>

@@ -1,84 +1,59 @@
 <script>
-  import { afterUpdate, onMount } from 'svelte';
-  import { createStyle } from '../utils/style.js';
-
-  export let height = undefined;
-  export let fixed = true;
-  export let width = undefined;
-
-  let div;
-  let offsetWidth;
-  
-  $: style = createStyle(style, {
-    '--header-height': height,
-    '--header-width': width
-  });
+  import Col from '../grid/Col.svelte';
+  import Grid from '../grid/Grid.svelte';
+  import Row from '../grid/Row.svelte';
 </script>
 
 <style>
   :root {
-    --header-background-color: var(--silver-base);
-    --header-height: 6rem;
-    --header-padding: 0;
-    --header-width: 100%;
+    --header-height: 4.5rem;
+    --header-border-color: var(--silver-darken-10);
   }
 
-  header {
-    background-color: var(--header-background-color);
-    box-sizing: content-box;
-    height: var(--header-height);
-    padding: var(--header-padding);
-    width: 100%;
-  }
-
-  header > div {
+  .header {
     background-color: var(--silver-transparent-base);
+    background-color: rgba(255, 255, 255, 0.9);
     backdrop-filter: saturate(50%) blur(4px);
     -webkit-backdrop-filter: saturate(50%) blur(4px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    height: var(--header-height);
-    width: var(--header-width);
-  }
-
-  .fixed > div {
+    border-bottom: 1px solid var(--header-border-color);
     position: fixed;
-      top: 0;
+    width: var(--layout-width);
     z-index: 2;
   }
 
-  /* @media only screen and (min-width: 48em) { */
-    header {
-      /* width: calc(100% - calc(2 * var(--body-margin))); */
-    }
-
-    header,
-    header > div {
-      /* border-top-left-radius: var(--body-border-radius);
-      border-top-right-radius: var(--body-border-radius); */
-    }
-  /* } */
-
-  @media only screen and (min-width: 64em) {
-    header {
-      width: 100%;
-    }
-
-    header > div {
-      /* border-top-left-radius: 0;
-      border-top-right-radius: 0; */
-      width: var(--header-width);
-    }
+  div,
+  .header,
+  .header > :global(.row > .col > [slot="branding"]),
+  .header > :global(.row > .col > [slot="navigation"]),
+  .header > :global(.row > .col > [slot="actions"]) {
+    height: var(--header-height);
   }
 
-  @media only screen and (min-width: 75em) {}
+  .header > :global(.row > .col > [slot="actions"]) {
+    display: hidden;
+  }
 
-  @media only screen and (min-width: 105em) {}
+  @media only screen and (min-width: 48em) {
+    .header > :global(.row > .col > [slot="actions"]) {
+      display: block;
+    }
+  }
 </style>
 
-<!-- <header bind:offsetWidth={offsetWidth} {style}>
-  <div bind:this={div}> -->
-<header class:fixed {style}>
-  <div>
-    <slot />
-  </div>
-</header>
+<div>
+  <header class="layout header">
+    <Grid width={{'xs': '100%', 'sm': '100%', 'md': '80%', 'lg': '80%', 'xl': '80%'}}>
+      <Row>
+        <Col span={{'xs': 1, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
+          <slot name="branding" />
+        </Col>
+        <Col span={{'xs': 11, 'sm': 7, 'md': 7, 'lg': 7, 'xl': 7}}>
+          <slot name="navigation" />
+        </Col>
+        <Col span={{'xs': 0, 'sm': 4, 'md': 4, 'lg': 4, 'xl': 4}}>
+          <slot name="actions" />
+        </Col>
+      </Row>
+    </Grid>
+  </header>
+</div>

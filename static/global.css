@@ -61,8 +61,7 @@ img {
 
 /* Natural flow and rhythm in articles by default */
 /* article > * + * { */
-main > * + *,
-main ul > * + * {
+main > * + * {
   margin-top: 1.5em;
 }
 
@@ -84,42 +83,26 @@ select {
   }
 }
 
-
 /*
  * Styles
  */
 
 :root {
-	/* Color */
-	/* https://medium.com/@marcintreder/design-system-sprint-2-one-color-palette-to-rule-them-all-d0114ed1f659 */
-  --silver-base: hsl(0, 0%, 98%);					/* #fafafa */
+  --white: hsl(0, 0%, 100%);
+
+  --silver-base: hsl(0, 0%, 98%);
+  --silver-transparent-base: hsla(0, 0%, 98%, 0.9);
   --silver-darken-10: hsl(0, 0%, 94%);
-  --silver-darken-20: hsl(0, 0%, 90%);
-  --silver-darken-30: hsl(0, 0%, 80%);
-  --silver-darken-40: hsl(0, 0%, 70%);
-	--silver-transparent-base: hsla(0, 0%, 98%, 0.9);					/* #fafafa */
 
-  --gray-base: hsl(0, 0%, 40%);						/* #676767 */
-  --gray-darken-10: hsl(0, 0%, 35%);			/* #595959 */
-  --gray-darken-20: hsl(0, 0%, 28%);			/* #474747 */
-  --gray-darken-30: hsl(0, 0%, 20%);			/* #333333 */
-	--gray-darken-40: hsl(0, 0%, 13%);			/* #202020 */
-	
-	/* --gray-base: hsl(0, 0%, 55%);						/* #8c8c8c */
+  --grey-base: hsl(0, 0%, 40%);
+  --grey-darken-10: hsl(0, 0%, 30%);
+  --grey-darken-20: hsl(0, 0%, 20%);
+  --grey-darken-30: hsl(0, 0%, 15%);
+  --grey-darken-40: hsl(0, 0%, 10%);
 
-	--green-base: hsl(127, 27%, 70%);				/* #9fc8a4 */
+  --text-color: var(--grey-darken-40);
 
-  --turquoise-base: hsl(170, 17%, 49%);		/* #69938c */
-  --turquoise-lighten-10: hsl(170, 21%, 56%);		/* #79a79f */
-  --turquoise-lighten-20: hsl(168, 30%, 65%);		/* #8cc1b6 */
-  --turquoise-lighten-30: hsl(151, 27%, 85%);		/* #cde2d8 */
-  --turquoise-lighten-40: hsl(129, 14%, 90%);		/* #e3eae4 */
-	
-	
-
-	--body-background-color: var(--silver-base);
-
-	/* Space */
+  /* Space */
 	--space-unit: 1rem;
 	--space-01: calc(0.125 * var(--space-unit));
 	--space-02: calc(0.25 * var(--space-unit));
@@ -131,43 +114,11 @@ select {
   --space-08: calc(2 * var(--space-unit));
   --space-09: calc(3 * var(--space-unit));
 	--space-10: calc(6 * var(--space-unit));
-	/* --space-09: calc(3.25 * var(--space-unit));
-	--space-10: calc(5.25 * var(--space-unit)); */
-
-  --body-border-radius: 5px;
-  
-  --text-color: var(--gray-darken-40);
-
-  --menu-group-color: var(--gray-base);
-
-  --body-margin: 0.75rem;
 }
 
 body {
-  /* background: linear-gradient(to right, rgba(159, 200, 164, 1) 0%, rgba(140, 193, 182, 1) 100%); */
-  border-radius: var(--body-border-radius);
-  color: var(--text-color);
   font-family: 'Ubuntu', Roboto, -apple-system, Helvetica Neue, sans-serif;
-  /* padding: var(--body-margin); */
 }
-
-#nymea {
-  background-color: var(--silver-base);
-  min-height: 100vh;
-}
-
-/* @media only screen and (min-width: 48em) {
-  :root {
-    --body-margin: 0.75rem;
-  }
-
-  body::after {
-    background: linear-gradient(to right, rgba(159, 200, 164, 1) 0%, rgba(140, 193, 182, 1) 100%);
-    bottom: 0;
-    height: calc(var(--body-margin) + var(--body-border-radius));
-    z-index: -1;
-  }
-} */
 
 h1,
 h2,
@@ -182,14 +133,12 @@ h1 {
   font-size: 4.5rem;
   font-weight: 500;
   line-height: 6rem;
-  /* margin-bottom: 1.5rem; */
 }
 
 h2 {
   font-size: 2.25rem;
   letter-spacing: -0.025em;
   line-height: 3rem;
-  /* margin: 3rem 0 1.5rem; */
 }
 
 h3 {
@@ -197,7 +146,6 @@ h3 {
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.5rem;
-  /* margin: 1.5rem 0; */
 }
 
 h4 {
@@ -205,7 +153,6 @@ h4 {
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.5rem;
-  /* margin-bottom: 1.5rem; */
 }
 
 h5 {
@@ -213,7 +160,6 @@ h5 {
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.5rem;
-  /* margin-bottom: 1.5rem; */
 }
 
 h6 {
@@ -221,11 +167,133 @@ h6 {
   font-weight: 400;
   letter-spacing: 0.01em;
   line-height: 1.5rem;
-  /* margin-bottom: 1.5rem; */
   text-transform: uppercase;
 }
 
-a:not([class]) {
-  background-color: var(--turquoise-lighten-40);
-  color: var(--turquoise-base);
+pre {
+  margin: 0 0 1.5rem;
+  padding: 0.75rem 1.5rem;
+}
+
+blockquote {
+  background-color: #fafafa;
+  border-left: 5px solid #efefef;
+  border-radius: 5px;
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+}
+
+blockquote > p {
+  margin: 0;
+}
+
+
+/**
+ * Nord Theme Originally by Arctic Ice Studio
+ * https://nordtheme.com
+ *
+ * Ported for PrismJS by Zane Hitchcoxc (@zwhitchcox) and Gabriel Ramos (@gabrieluizramos)
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #f8f8f2;
+  background: none;
+  font-family: "Fira Code", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: 5px;
+}
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #2E3440;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+}
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #636f88;
+}
+.token.punctuation {
+  color: #81A1C1;
+}
+.namespace {
+  opacity: .7;
+}
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #81A1C1;
+}
+.token.number {
+  color: #B48EAD;
+}
+.token.boolean {
+  color: #81A1C1;
+}
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #A3BE8C;
+}
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  color: #81A1C1;
+}
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+  color: #88C0D0;
+}
+.token.keyword {
+  color: #81A1C1;
+}
+.token.regex,
+.token.important {
+  color: #EBCB8B;
+}
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+.token.entity {
+  cursor: help;
 }

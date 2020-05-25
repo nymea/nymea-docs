@@ -1,67 +1,65 @@
 <script>
-  // import Logo from '../Logo.svelte';
+  import { url } from '@sveltech/routify';
+  import Col from '../grid/Col.svelte';
+  import Grid from '../grid/Grid.svelte';
+  import Row from '../grid/Row.svelte';
 </script>
 
 <style>
-  :root {
-    --footer-background-color: #fafafa;
-    --footer-height: 6rem;
-    --footer-padding: 0;
-  }
-
   footer {
-    /* background-color: var(--footer-background-color); */
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    height: var(--footer-height);
+    background-color: var(--white);
+    border-top: 1px solid var(--silver-darken-10);
+    padding: 3rem;
+    position: relative;
+    z-index: 4;
   }
 
-  /* :root {
-    --footer-background-color: #fafafa; */
-    /* --footer-height: 4.5rem; */
-    /* --footer-padding: 1.5rem;
+  nav {
+    /* background-color: var(--silver-base); */
+    /* padding: 1.5rem; */
   }
 
-  footer { */
-    /* background-color: var(--footer-background-color); */
-    /* height: var(--footer-height); */
-    /* padding: var(--footer-padding); */
-    /* margin: 6rem 0 0; */
-    /* padding: 0 0 1.5rem;
+  ul > li > ul > li {
 
   }
-
-  footer > div { */
-    /* background-color: var(--footer-background-color); */
-    /* border-radius: 3px; */
-    /* margin-bottom: 1.5rem;
-  }
-
-  footer :global(.logo) {
-    margin: 0 auto;
-  }
-
-  @media only screen and (min-width: 48em) {
-    footer {
-      padding: 0 6rem 1.5rem;
-    }
-  }
-
-  @media only screen and (min-width: 64em) {
-
-  }
-
-  @media only screen and (min-width: 75em) {
-
-  }
-
-  @media only screen and (min-width: 105em) {
-
-  } */
 </style>
 
 <footer>
-  <!-- <div> -->
-    <slot />
-  <!-- </div>
-  <Logo height="3rem" /> -->
+  <!-- <Grid>
+    <Row>
+      <Col span={{'xs': 8, 'sm': 8, 'md': 8, 'lg': 8, 'xl': 8}}> -->
+        <nav>
+          <ul class="menu">
+            <li>
+              <a href={$url('/users')}>Users</a>
+            </li>
+            <li>
+              <a href={$url('/developers')}>Developers</a>
+            </li>
+            <li>
+              <a href={$url('/businesses')}>Businesses</a>
+            </li>
+            <li>
+              <a href={$url('/documentation/overview')}>Documentation</a>
+              <ul class="menu">
+                <li>
+                  <a href={$url('/documentation/overview')}>Overview</a>
+                </li>
+                <li>
+                  <a href={$url('/documentation/users/installation/app')}>Users</a>
+                </li>
+                <li>
+                  <a href={$url('/documentation/developers')}>Developers</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href={$url('/imprint')}>Imprint</a>
+            </li>
+          </ul>
+        </nav>
+      <!-- </Col>
+    </Row>
+  </Grid> -->
+  <!-- <slot /> -->
 </footer>

@@ -1,6 +1,6 @@
 <script>
-  import { onMount } from 'svelte';
-  import { isActive, url, layout, route } from "@sveltech/routify";
+  import { onMount } from 'svelte';
+  import { isActive, url, layout, route, routes } from '@sveltech/routify';
 
   import Content from '../../_components/layout/Content.svelte';
   import Footer from '../../_components/layout/Footer.svelte';
@@ -13,124 +13,101 @@
   import Row from '../../_components/grid/Row.svelte';
 
   import Logo from '../../_components/Logo.svelte';
-  import Nav from '../../_components/Nav.svelte';
-
-  import { orderedLinkTitles } from '../../_components/menu/_order.js';
   import Menu from '../../_components/menu/Menu.svelte';
+  import Nav from '../../_components/Nav.svelte';
+  import ExternalNav from '../../_components/ExternalNav.svelte';
 
-  import { beforeUrlChange, goto } from '@sveltech/routify';
+  console.log('$layout', $layout);
+  console.log('$route', $route);
+  console.log('$routes', $routes);
 
-  $: path = $route.path.split('/').slice(0, 3).join('/');
-  $: links = $layout.children.find((child) => child.path === path) ? $layout.children.find((child) => child.path === path).children : [];
-  $: orderedLinkTitlesFromPath = findOrderedLinkTitles(orderedLinkTitles, path.substr(1));
-  $: console.log('orderedLinkTitlesFromPath', orderedLinkTitlesFromPath);
+  $: current = $route;
+  let documentationRoute = getDocumentationRoute($route);
+  // $: children = $route.parent !== undefined ? $route.parent.children : [];
+  let children = documentationRoute ? documentationRoute.children : [];
+  $: console.log('dirs', $routes.filter((route) => !route.isPage));
 
-  // onMount(() => {
-    // if ($route.file === 'index.md') {
-    //   $goto($route.api.parent.path + '/');
-    // } else if ($route.api.path.slice(-1) !== '/' &&
-    //     $route.api.path.substring($route.api.path.lastIndexOf('/') + 1) !== 'index') {
-    //   $goto($route.api.path + '/');
-    // }
-  // console.log($route, $route.regex.slice(-3) === '/?$', $route.api.path)
-  //   if ($route.regex.slice(-1) === '/?$') {
-  //     $goto($route.api.path);
-  //   }
-  // });
+  onMount(() => {
+    documentationRoute = getDocumentationRoute($route);
+    children = documentationRoute ? documentationRoute.children : [];
+  });
 
-  // $beforeUrlChange((event, store) => {
-  //   if (event.url &&
-  //       event.url.slice(-1) !== '/' &&
-  //       event.url.substring(event.url.lastIndexOf('/') + 1) !== 'index') {
-  //     $goto(event.url + '/');
-  //     return false;
-  //   }
-  //   return true;
-  // });
-
-  function findOrderedLinkTitles(orderedLinkTitles, path) {
-    const pathSegments = path.split('/');
-    const title = pathSegments.shift();
-    const index = orderedLinkTitles.findIndex((link) => link.filename === title);
-
-    console.log('title', title, title === undefined, path, index, pathSegments);
-    console.log('orderedLinkTitles[index + 1]', orderedLinkTitles[index + 1]);
-
-    if (pathSegments.length === 1) {
-      return orderedLinkTitles[index + 1];
+  function getDocumentationRoute(route) {
+    console.log('getDocumentationRoute', route, route.parent, route.filepath, route.path);
+    if (route.parent !== undefined) {
+      if (route.parent.isDir && route.parent.path === '/documentation' && route.parent.children !== undefined) {
+        console.log('getDocumentationRoute - 1');
+        return route.parent;
+      }
+      console.log('getDocumentationRoute - 2');
+      return getDocumentationRoute(route.parent);
     }
-
-    if (Array.isArray(orderedLinkTitles[index + 1])) {
-      return findOrderedLinkTitles(orderedLinkTitles[index + 1], pathSegments.join('/'));
-    }
+    console.log('getDocumentationRoute - 3');
+    return null;
   }
+
+  // getDocumentationRoute($route);
 </script>
 
 <style>
-  .main-layout {
-    --content-padding: var(--space-07);
+  :root {
+    --header-height: 4.5rem;
+    --sider-height: calc(100vh - var(--header-height));
   }
 
-  /* div,
-  div > :global(.container) {
-    border-radius: var(--body-border-radius);
+  .branding {
+    display: flex;
+    height: var(--header-height);
   }
 
-  div > :global(.container > header),
-  div > :global(.container > header > div) {
-    border-top-left-radius: var(--body-border-radius);
-    border-top-right-radius: var(--body-border-radius);
+  .branding > :global(a) {
+    align-self: center;
   }
 
-  div > :global(.container > .content-wrapper),
-  div > :global(.container > .content-wrapper > main),
-  div > :global(.container > .content-wrapper > .content) {
-    border-bottom-left-radius: var(--body-border-radius);
-    border-bottom-right-radius: var(--body-border-radius);
-  } */
+  .sider {
+    display: none;
+    padding-bottom: 3rem;
+  }
+
+  @media only screen and (min-width: 48em) {
+    .sider {
+      display: block;
+    }
+  }
 </style>
 
-<!-- <div> -->
-  <Layout>
-    <Content>
-      <div class="main-layout">
-        <Layout>
-          <Header width="calc(100% - 40em)">
-            <Grid height="100%" width={{'xs': '100%', 'sm': '100%', 'md': '100%', 'lg': '100%', 'xl': '100%'}}>
-              <Row>
-                <Col middle>
-                  <a href={$url('/')} class="logo"><Logo height="3rem" /></a>
-                </Col>
-                <Col>
-                  <Nav />
-                </Col>
-              </Row>
-            </Grid>
-          </Header>
-          <Content main>
-            <slot />
-          </Content>
-        </Layout>
+<Layout
+  width={{'xs': '80%', 'sm': '80%', 'md': '80%', 'lg': '80%', 'xl': '80%'}}
+  contentSpan={{'xs': 8, 'sm': 8, 'md': 8, 'lg': 8, 'xl': 8}}
+  siderSpan={{'xs': 4, 'sm': 4, 'md': 4, 'lg': 4, 'xl': 4}}
+  contentWrapperMargin="1.5rem"
+  rightBackground="linear-gradient(to bottom, var(--silver-base), var(--white))"
+>
+  <div slot="header" class="slot header">
+    <Header >
+      <div slot="branding" class="branding">
+        <Logo height="3rem" />
       </div>
+      <div slot="navigation">
+        <Nav />
+      </div>
+      <div slot="actions">
+        <ExternalNav />
+      </div>
+    </Header>
+  </div>
+  <div slot="content" class="slot">
+    <Content main padding="3rem 1.5rem 3rem 0">
+      <slot />
     </Content>
+  </div>
+  <div slot="sider" class="slot sider">
     <Sider>
-      <Layout>
-        <Header width="20em"></Header>
-        <Content>
-          {#if path === '/documentation/overview'}
-            <Menu {links} orderedLinkTitles={orderedLinkTitlesFromPath} {path} />
-          {:else if path === '/documentation/users'}
-            <Menu {links} orderedLinkTitles={orderedLinkTitlesFromPath} {path} />
-          {:else if path === '/documentation/developers'}
-            <Menu {links} orderedLinkTitles={orderedLinkTitlesFromPath} {path} />
-          {/if}
-        </Content>
-      </Layout>
+      <!-- <Menu items={$layout.children} /> -->
+      <Menu {current} {children} />
     </Sider>
-    <Sider>
-      <Layout>
-        <Header width="20em"></Header>
-      </Layout>
-    </Sider>
-  </Layout>
-<!-- </div> -->
+  </div>
+  <div slot="footer" class="slot">
+    <Footer></Footer>
+  </div>
+</Layout>

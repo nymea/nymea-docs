@@ -5,7 +5,7 @@
 
 <style>
   .button {
-    background-color: var(--gray-darken-40);
+    background-color: var(--grey-darken-40);
     color: var(--silver-base);
     border-radius: 3px;
     display: inline-block;

@@ -1,169 +1,135 @@
 <script>
-  import { onMount } from 'svelte';
-  import { isActive, url, layout, route, routes } from '@sveltech/routify';
-
-  export let links = [];
-  export let orderedLinkTitles = [];
-  export let path = undefined;
-  export let level = 0;
-
-  let orderedLinks = [];
+  import { onMount } from 'svelte';
+  import { isActive, url } from '@sveltech/routify';
   
+  export let level = 0;
+  export let current = undefined;
+  export let children = [];
+
+  let pages = [];
+
   onMount(() => {
-    let orderedChildren = [];
-    let orderedLinkChildren = [];
+    pages = children.filter((child) => isRoutable(children, child)).map((page) => {
+      let item = {
+        name: page.name.split('-').map((word) => word.substring(0, 1).toUpperCase() + word.substring(1, word.length)).join(' '),
+        page
+      };
 
-    console.log(links, orderedLinkTitles, path)
-
-    if (path) {
-      const orderedLink = path.substring(path.lastIndexOf('/') + 1);
-      console.log('orderedLink', orderedLink);
-      const index = orderedLinkTitles.findIndex((link) => link.filename === orderedLink);
-      orderedChildren = Array.isArray(orderedLinkTitles[index + 1]) ? orderedLinkTitles[index + 1] : [];
-      orderedLinkChildren = orderedChildren.filter(isLink);
-    } else {
-      orderedChildren = orderedLinkTitles;
-      orderedLinkChildren = orderedChildren.filter(isLink);
-    }
-
-    orderedLinkChildren.forEach((currentOrderedLink) => {
-      let link = links.find((link) => link.path === path + '/' + currentOrderedLink.filename);
-
-      if (link) {
-        link.title = currentOrderedLink.title;
-        link.orderedLinkTitles = orderedChildren;
-        orderedLinks = [ ...orderedLinks, link ];
+      if (!page.isPage) {
+        if ($isActive(page.path)) {
+          item.open = true;
+        } else {
+          item.open = false;
+        }
       }
-    });
 
-    console.log('orderedLinks', orderedLinks);
+      return item;
+    });
   });
 
-  function isLink(link) {
-    return !Array.isArray(link);
+  function isRoutable(children, child) {
+    return (child.isPage && !children.some((currentChild) => currentChild.path === child.path && currentChild.isDir)) || child.isDir;
+  }
+
+  function isCurrentRoute(child) {
+    return child.isPage && child.path == current.path;
+  }
+
+
+  function toggleGroup(index) {
+    pages[index].open = !pages[index].open;
   }
 </script>
 
 <style>
+  .level-0 {
+    border-left: 0;
+    margin-left: 0; 
+    padding: 3rem 3rem 3rem 1.25rem;
+  }
+
   ul {
     border-left: 1px solid var(--silver-darken-10);
-    margin-bottom: 1.5rem;
-    margin-left: var(--space-03);
-    padding-left: var(--space-05);
+    margin-left: 0.5rem;
+    padding-left: 0.75rem;
   }
 
-  .menu-1 li:last-child a,
-  .menu-1 li:last-child span {
-    margin-bottom: 0;
+  li {
+    color: var(--grey-base);
   }
 
-  /* .menu-0,
-  .group-heading + ul { */
-  .menu-0 {
-    border-left: 0;
-    padding-left: 0;
-  }
-
-  .menu-0 {
-    margin-bottom: 0;
-    padding: var(--space-07);
-  }
-
-  .menu-1 {
-    /* margin-bottom: 3rem; */
-  }
-
-  .group-heading {
-    font-weight: 500;
-    /* color: var(--menu-group-color);
-    font-size: 0.8rem;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-    line-height: 1.5rem; */
-    /* margin-bottom: 1.5rem; */
-    /* text-transform: uppercase; */
-  }
-
-  /* li {
-    padding-left: 1.5rem;
-    position: relative;
-  } */
-
-  /* li::before {
-    content: "\2022";
-    font-size: 1.5rem;
-    position: absolute;
-      left: 0.75rem;
-  }
-
-  .group::before {
-    content: "\203A";
-  } */
-
-  /* li {
-    padding: var(--space-04) 0;
-  } */
-
-  a,
-  span {
-    color: var(--gray-darken-10);
+  li > a,
+  li > span {
     display: inline-block;
-    margin-bottom: 1.5rem;
   }
 
-  a {
+  li > a {
+    /* color: var(--text-color); */
+    color: var(--grey-base);
+    /* display: inline-block; */
+    padding-left: 1.75rem;
     text-decoration: none;
   }
 
-  a + ul {
-    display: none;
+  li > span {
+    margin-left: 0.5rem;
   }
 
-  a.active + ul {
-    display: block;
-  }
-
-  .active {
+  li a[aria-current="true"],
+  li span[aria-current="true"] {
     color: var(--text-color);
-    /* text-decoration: underline; */
     font-weight: 700;
   }
 
-  ion-icon {
-    /* display: inline-block; */
-    transform: translateX(-0.1rem) translateY(0.1rem) rotate(0deg);
-    transform-origin: calc(50% - 0.1rem) calc(50% + 0.1rem);
+  li ion-icon {
+    color: var(--grey-base);
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+    transform: translateY(0.1em) rotate(-90deg);
   }
 
-  ion-icon.open {
-    color: var(--gray-base);
-    transform: rotate(90deg);
+  li.group {
+    cursor: default;
+  }
+
+  li.group > div > :global(ul > li > a) {
+    /* padding-left: 0.5rem; */
+  }
+
+  li.group > div {
+    display: none;
+  }
+
+  li.group.open > div {
+    display: block;
+  }
+
+  li.group.open > ion-icon {
+    transform: translateY(0.1em) rotate(0deg);
+  }
+
+  li {
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
   }
 </style>
 
-<ul class="menu menu-{level}">
-  {#each orderedLinks as { path, title, children, parent, orderedLinkTitles }}
-    {#if path !== parent.path + '/index'}
-      {#if children.length === 0}
-        <li>
-          <a class:active={$isActive(path)} href={$url(path)}>{title}</a>
-        </li>
-      {:else}
-        {#if children.some((child) => child.path === path + '/index')}
-          <li>
-            <ion-icon name="chevron-forward" class:open={$isActive(path)}></ion-icon>
-            <a class:active={$isActive(path)} href={$url(path)}>{title}</a>
-            <svelte:self links={children} {orderedLinkTitles} {path} level={level + 1} />
-          </li>
-        {:else}
-          <li class="group">
-            <ion-icon class="open" name="chevron-forward"></ion-icon>
-            <span class="group-heading" class:active={$isActive(path)}>{title}</span>
-            <svelte:self links={children} {orderedLinkTitles} {path} level={level + 1} />
-          </li>
-        {/if}
-        <!-- <svelte:self links={children} {orderedLinkTitles} {path} level={level + 1} /> -->
-      {/if}
+<ul class={'level-' + level}>
+  {#each pages as item, index}
+    {#if item.page.isPage || item.page.path === '/documentation/overview/integrations'}
+      <li>
+        <a href={$url(item.page.path)} aria-current={$isActive(item.page.path)}>{item.name}</a>
+      </li>
+    {:else}
+      <li class="group" class:open={item.open}>
+        <ion-icon name="chevron-down"></ion-icon>
+        <span aria-current={$isActive(item.page.path)} on:click={() => toggleGroup(index)}>{item.name}</span>
+        <div>
+          <svelte:self level={level + 1} current={item.page} children={item.page.children} />
+        </div>
+      </li>
     {/if}
   {/each}
 </ul>

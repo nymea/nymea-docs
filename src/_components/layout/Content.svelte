@@ -1,49 +1,35 @@
 <script>
   import { createStyle } from '../utils/style.js';
 
-  export let scroll = false;
   export let main = false;
   export let padding = undefined;
 
   $: style = createStyle(style, {
-    '--content-padding': padding
+    '--content-padding': padding,
   });
 </script>
 
 <style>
   :root {
-    --content-background-color: #fafafa;
     --content-padding: 0;
+    --content-padding-xs: var(--content-padding);
+    --content-padding-sm: var(--content-padding);
+    --content-padding-md: var(--content-padding);
+    --content-padding-lg: var(--content-padding);
+    --content-padding-xl: var(--content-padding);
   }
-
   .content {
+    /* padding: 3rem 1.5rem 3rem 0; */
     padding: var(--content-padding);
   }
-
-  main {
-    /* padding: var(--space-07); */
-    /* padding: var(--content-padding); */
-    /* background-color: var(--content-background-color); */
-    /* border-top-left-radius: var(--layout-border-radius);
-    border-top-right-radius: var(--layout-border-radius); */
-  }
-
-  /* .content {
-    padding: var(--content-padding);
-  }
-
-  .scroll {
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-  } */
 </style>
 
 {#if main === true}
-  <main class="content" class:scroll {style}>
+  <main class="layout content" {style}>
     <slot />
   </main>
 {:else}
-  <div class="content" class:scroll {style}>
+  <div class="layout content" {style}>
     <slot />
   </div>
 {/if}
