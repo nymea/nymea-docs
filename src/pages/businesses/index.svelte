@@ -49,9 +49,9 @@
           <h1>Be smart.</h1>
           <p>Build IoT business, not IoT devices.</p>
         </header>
-        <Button text="Get started" link="documentation/businesses">
+        <!-- <Button text="Get started" link="documentation/businesses">
           <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
-        </Button>
+        </Button> -->
       </Col>
       <!-- <Col>
         <img src="img/smart-home.png" alt="Smart home"/>
