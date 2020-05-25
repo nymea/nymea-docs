@@ -5,8 +5,7 @@ title: Python
 
 
 
-## *nymea-cli*
---------------------------------------------
+## nymea-cli
 
 The *nymea-cli* command-line interface is an admin tool written in Python to communicate with the [*nymea*](https://github.com/nymea/nymea) [JSONRPC API](raw-api) and test functionality of *nymea*.
 
