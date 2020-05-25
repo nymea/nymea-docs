@@ -34,6 +34,7 @@
 	a {
 		color: #676767;
 		display: block;
+		height: 4.5rem;
 		padding: 1.5rem 0;
 		text-decoration: none;
 	}
