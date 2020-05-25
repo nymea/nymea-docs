@@ -11,9 +11,8 @@
   window.Prism = window.Prism || {};
   window.Prism.manual = true;
 
-  let title = $route.name.split('-').map((word) => word.charAt(0).toUpperCase() + word.replace('-', ' ').slice(1)).join(' ');
-
   console.log('$route', $route);
+  let title = $route.api.title.split('-').map((word) => word.charAt(0).toUpperCase() + word.replace('-', ' ').slice(1)).join(' ');
   
   onMount(() => {
     const codeBlocks = document.querySelectorAll('pre > code');
