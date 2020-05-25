@@ -39,11 +39,11 @@ The `type` field defines the actual data type to be used. The value for this fie
 
 ### Unit
 
-@@UNITS@@
+@@GENERATED_UNITS@@
 
 ### Input type
 
-@@INPUTTYPE@@
+@@GENERATED_INPUTTYPES@@
 
 ## Parameters
 

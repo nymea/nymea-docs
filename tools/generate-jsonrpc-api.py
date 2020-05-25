@@ -93,12 +93,33 @@ def generate_markdown(version, api):
 
   return ret
 
-#def generate_js(version, api)
+
+def generate_markdown_list(list):
+  ret = "\n"
+  for entry in list:
+    ret += "* %s\n" % entry
+  ret += "\n"
+  return ret
 
 config = Utils.read_json("jsonrpc-api-config.json")
 Utils.clone_repo(config["srcdir"])
 targets = Utils.find_targets(config["keyword"], config["outputdir"])
-print("Files to replacee: %s" % targets)
+targets.extend(Utils.find_targets(config["inputtypes_keyword"], config["outputdir"]))
+targets.extend(Utils.find_targets(config["units_keyword"], config["outputdir"]))
+print("Files to modify: %s" % targets)
 version, api = load_api(os.path.join(config["srcdir"], "nymea"))
-markdown = generate_markdown(version, api)
-Utils.generate_output_md(targets, config["keyword"], markdown)
+markdown_api = generate_markdown(version, api)
+
+inputtypes = api["enums"]["InputType"]
+markdown_inputtypes = generate_markdown_list(inputtypes)
+
+units = api["enums"]["Unit"]
+markdown_units = generate_markdown_list(units)
+
+
+replacements = {}
+replacements[config["keyword"]] = markdown_api
+replacements[config["inputtypes_keyword"]] = markdown_inputtypes
+replacements[config["units_keyword"]] = markdown_units
+
+Utils.generate_output_md(targets, replacements)
