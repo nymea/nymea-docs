@@ -3,8 +3,6 @@ id: nymea-app-lib
 title: C++/Qt/QML
 ---
 
-[TEST](/documentation/developers/clients)
-
 ## nymea:app
 
 nymea:app, while being a client implementation, is structured in a way that it provides a Qt library that wraps the 
