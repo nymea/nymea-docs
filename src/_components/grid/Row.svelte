@@ -35,7 +35,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     margin: 0 calc(var(--row-gap) / 2);
-    overflow-x: scroll;
+    
     /* justify-content: space-between; */
     /* margin-left: calc((var(--row-gap) / 2) * -1); */
   }
