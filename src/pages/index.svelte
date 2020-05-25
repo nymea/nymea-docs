@@ -67,7 +67,7 @@
   .carousel ul {
     display: flex;
     list-style-type: none;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
