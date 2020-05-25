@@ -5,6 +5,8 @@
   import 'prismjs/components/prism-qml';
   // import 'prismjs/plugins/command-line';
 
+    // QML, C++ (Qt), JSON, Python, 
+
   window.Prism = window.Prism || {};
   window.Prism.manual = true;
   

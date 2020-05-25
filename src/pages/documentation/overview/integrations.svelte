@@ -1,11 +1,12 @@
 <script>
-  import { stores } from '@sapper/app';
-  import Tiles from '../../../../components/tiles/Tiles.svelte';
-  import Tile from '../../../../components/tiles/Tile.svelte';
-  import { meta } from './_meta.js';
-  import { integrations, filteredIntegrations, searchInput, things, vendors } from './_stores.js';
+  // import { stores } from '@sapper/app';
+  import { url } from '@sveltech/routify';
+  import Tiles from '../../../_components/tiles/Tiles.svelte';
+  import Tile from '../../../_components/tiles/Tile.svelte';
+  import { meta } from './integrations/_meta.js';
+  import { integrations, filteredIntegrations, searchInput, things, vendors } from './integrations/_stores.js';
 
-  const { page } = stores();
+  // const { page } = stores();
 
   let categoryFilter = null;
   let displayType = 'integrations';
@@ -70,6 +71,7 @@
   a {
     background-color: transparent;
     border-bottom: 0;
+    color: var(--text-color);
     display: block;
     text-decoration: none;
   }
@@ -143,6 +145,9 @@
   </div>
 </div>
 
+<p>nymea integrations are extensions to nymea that add functionality to connect to a specific device or service. By default nymea ships a list of most commonly used integration but there a large list of supported integrations which can be installed depending on the needs of a certain nymea setup.</p>
+<p>This section shows a list of currently supported integrations. If support for a certain device or online service is not in this list, nymea can still be extended for it by developing such an integration. Please see the developers section and don't hesitate to join [our forum](https://forum.nymea.io) to meet other users and developers and help creating new integrations.</p>
+
 <ul class="legend">
   <li>
     <ion-icon name="cloud-offline"></ion-icon>
@@ -161,7 +166,8 @@
   <!-- {#if displayType === 'integrations'} -->
     {#each $filteredIntegrations as integration}
       <Tile>
-        <a href="{$page.path}/{integration.readme.replace('.md', '')}">
+        <!-- <a href="{integration.readme.replace('.md', '')}"> -->
+        <a href={$url('../' + integration.readme.replace('.md', ''))}>
           <!-- <img src="img/integrationlogos/{plugin.icon}" alt=""> -->
           <h3>{integration.title}</h3>
           <p>{integration.tagline}</p>
