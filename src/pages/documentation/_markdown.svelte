@@ -1,14 +1,19 @@
 <script>
   import { onMount } from 'svelte';
+  import { route } from '@sveltech/routify'
   import Prism from 'prismjs';
   import 'prismjs/components/prism-bash';
   import 'prismjs/components/prism-qml';
   // import 'prismjs/plugins/command-line';
 
-    // QML, C++ (Qt), JSON, Python, 
+  // QML, C++ (Qt), JSON, Python, 
 
   window.Prism = window.Prism || {};
   window.Prism.manual = true;
+
+  let title = $route.name.split('-').map((word) => word.charAt(0).toUpperCase() + word.replace('-', ' ').slice(1)).join(' ');
+
+  console.log('$route', $route);
   
   onMount(() => {
     const codeBlocks = document.querySelectorAll('pre > code');
@@ -34,4 +39,13 @@
   });
 </script>
 
+<style>
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 500;
+    line-height: 4.5rem;
+  }
+</style>
+
+<h1>{title}</h1>
 <slot />
