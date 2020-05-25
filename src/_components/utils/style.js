@@ -1,13 +1,12 @@
 import { isNumber, isObject, isString } from './property';
 import { availableBreakpoints } from './breakpoints';
 
-export function createStyle(style, propertyValueMap) {
+export function createStyle(style = '', propertyValueMap) {
   let currentValue;
-
-  style = '';
   
   Object.keys(propertyValueMap).forEach((property) => {
     currentValue = propertyValueMap[property];
+    console.log('createStyle', property, currentValue, isNumber(currentValue), isString(currentValue), isObject(currentValue));
     if (isNumber(currentValue) || isString(currentValue)) {
       style = createStyleFromString(style, property, currentValue);
     } else if (isObject(currentValue)) {
