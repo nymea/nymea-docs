@@ -130,7 +130,7 @@
 			<a class:active={$isActive('/businesses')} href={$url('/businesses')}>Businesses</a>
 		</li>
 		<li>
-			<a class:active={$route.path.includes('/documentation')} href={$url('/documentation/overview')}>Documentation</a>
+			<a class:active={$route.path.includes('/documentation')} href={$url('/documentation/overview/about-nymea')}>Documentation</a>
 		</li>
 	</ul>
 	<!-- {#if $route.path.includes('/documentation')}
