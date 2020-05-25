@@ -124,7 +124,7 @@
       </li>
     {:else}
       <li class="group" class:open={item.open}>
-        <ion-icon name="chevron-down"></ion-icon>
+        <ion-icon name="chevron-down" on:click={() => toggleGroup(index)}></ion-icon>
         <span aria-current={$isActive(item.page.path)} on:click={() => toggleGroup(index)}>{item.name}</span>
         <div>
           <svelte:self level={level + 1} current={item.page} children={item.page.children} />
