@@ -41,15 +41,17 @@ When the wizard exits, we'll be left with the branch new project. There is one m
 
 Now the project is ready to be built. Click the build button in QtCreator. After a short while, the build process should finish successfully and the plugin binary file will be placed in the build directory. By default, the build directory can be found next to the source directory. For example, if you started the plugin in `/home/user/develop/acme`, the build output can be found in `/home/user/develop/build-acme-Desktop-Debug` or similar. The plugin binary file is called `libnymea_deviceplugin<name>.so`. In this example, the plugin name being `acme`, the file name is `libnymea_devicepluginacme.so`.
 
-    user@hostname:~/develop/build-acme-Desktop-Debug$ ls -l
-    total 2376
-    -rw-rw-r-- 1 user user 816408 Feb 14 12:59 devicepluginacme.o
-    -rwxrwxr-x 1 user user 742208 Feb 14 12:59 libnymea_devicepluginacme.so
-    -rw-rw-r-- 1 user user  31607 Feb 14 12:59 Makefile
-    -rw-rw-r-- 1 user user  14476 Feb 14 12:59 moc_devicepluginacme.cpp
-    -rw-rw-r-- 1 user user 797480 Feb 14 12:59 moc_devicepluginacme.o
-    -rw-rw-r-- 1 user user  13604 Feb 14 12:59 moc_predefs.h
-    -rw-rw-r-- 1 user user   1095 Feb 14 12:59 plugininfo.h
+```bash
+user@hostname:~/develop/build-acme-Desktop-Debug$ ls -l
+total 2376
+-rw-rw-r-- 1 user user 816408 Feb 14 12:59 devicepluginacme.o
+-rwxrwxr-x 1 user user 742208 Feb 14 12:59 libnymea_devicepluginacme.so
+-rw-rw-r-- 1 user user  31607 Feb 14 12:59 Makefile
+-rw-rw-r-- 1 user user  14476 Feb 14 12:59 moc_devicepluginacme.cpp
+-rw-rw-r-- 1 user user 797480 Feb 14 12:59 moc_devicepluginacme.o
+-rw-rw-r-- 1 user user  13604 Feb 14 12:59 moc_predefs.h
+-rw-rw-r-- 1 user user   1095 Feb 14 12:59 plugininfo.h
+```
 
 
 ## Testing the plugin
@@ -60,16 +62,21 @@ Now that we have built the plugin, we want to start up nymea and make it load th
 
 In order to stop any nymea instance running as a system service, run this command:
 
-    sudo systemctl stop nymead
-    
+```bash
+sudo systemctl stop nymead
+``` 
 
 nymead can be sttarted from the command line using this command
 
-    nymead -n
+```bash
+nymead -n
+```
     
 The `-n` parameter is important to make nymea run in foreground, as opposed to a background service. We want that in order to see the logs. This will make nymea start up, but it won't load your freshly built plugin yet. For that, we need to let it know where the plugin can be found. We can export `NYMEA_PLUGINS_PATH` in the environment to do so:
 
-    NYMEA_PLUGINS_PATH=/home/user/develop/build-acme-Desktop-Debug nymead -n
+```bash
+NYMEA_PLUGINS_PATH=/home/user/develop/build-acme-Desktop-Debug nymead -n
+```
     
 > **Note:** Make sure to change the actual path to where your plugin's .so file is.
 
@@ -81,7 +88,9 @@ Now nymea is started, including your plugin. Use a client (e.g. nymea:app) to co
 
 If something goes wrong, check the output that nymead prints for an error related to your plugin. Especially the lines starting with `DeviceManager` are of interest here. If nymea fails to load the plugin for some reason, a line similar to this would be printed:
 
-    W: DeviceManager: Libnymea API mismatch for libnymea_devicepluginacme.so. Core API: 4.1, Plugin API: 3.4
+```bash
+W: DeviceManager: Libnymea API mismatch for libnymea_devicepluginacme.so. Core API: 4.1, Plugin API: 3.4
+```
     
 This message should give you more information. In the above example, it would indicate that the libnymea used to compile the plugin is not the same as the one used to start up nymea. The resolution would be to make sure that the plugin is compiled with the same libnymea as the one used to run it now.
 
@@ -90,15 +99,21 @@ This message should give you more information. In the above example, it would in
 
 If no error related to the plugin loading is to be seen but the plugin would still not appear in the app, the issue might be that nymea could not find the plugin. The way to track down such an issue would be to enable more debug output. Nymea can be started with more debug output using the `-d` passing the debug categories if interest. When debugging issues in regard to plugin loading, the `DeviceManager` category is the one of interest. The startup command would look like this:
 
-    NYMEA_PLUGINS_PATH=/home/user/develop/build-acme-Desktop-Debug nymead -n -d DeviceManager
+```bash
+NYMEA_PLUGINS_PATH=/home/user/develop/build-acme-Desktop-Debug nymead -n -d DeviceManager
+```
     
 After starting this, nymea will print much more than in the previous run. Watch out for such messages:
 
-    Loading plugins from: ...
+```bash
+Loading plugins from: ...
+```
     
 This line will be printed for each directory that nymea scans for plugins. In this example we want to make sure that it does print a line containing our path of `/home/user/develop/build-acme-Desktop-Debug`. So the exact debug line to look for would be:
 
-    Loading plugins from: /home/user/develop/build-acme-Desktop-Debug
+```bash
+Loading plugins from: /home/user/develop/build-acme-Desktop-Debug
+```
     
 If this line can't be found in the output, verify that there isn't a typo in `NYMEA_PLUGINS_PATH`. If this line is found, but the plugin is still not loaded, verify that the passed path is actually correct.
 
@@ -106,5 +121,6 @@ If this line can't be found in the output, verify that there isn't a typo in `NY
 
 At this point the DeviceManager did already do its job and an error might be in the plugin itself. In order to get more debug output from the plugin itself, nymea should be started with an additional `-d` parameter, passing the plugin name. In this example, the plugin name is `acme`. The matching debug category would be `Acme`. Thus, a useful startup command for this would be
 
-    NYMEA_PLUGINS_PATH=/home/user/develop/build-acme-Desktop-Debug nymead -n -d DeviceManager -d Acme
-    
+```bash
+NYMEA_PLUGINS_PATH=/home/user/develop/build-acme-Desktop-Debug nymead -n -d DeviceManager -d Acme
+``` 

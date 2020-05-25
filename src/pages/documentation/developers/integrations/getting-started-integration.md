@@ -29,7 +29,9 @@ See the [integration plugin tutorial](tutorial-integration) for a more complete 
 
 The shortest path to create new C++/Qt plugin without using QtCreator is to clone the examples repository.
 
-    git clone https://github.com/nymea/nymea-plugin-examples.git
+```bash
+git clone https://github.com/nymea/nymea-plugin-examples.git
+```
     
 The repository contains a folder named template with a subdirectory named cpp. Copy the entire folder contents and start by renaming the files to the desired name. The terms "template" and "example" should be renamed to the plugins name.
 
@@ -37,7 +39,9 @@ The repository contains a folder named template with a subdirectory named cpp. C
 
 The shortest path to create new JavaScript plugin is to clone the examples repository.
 
-    git clone https://github.com/nymea/nymea-plugin-examples.git
+```bash
+git clone https://github.com/nymea/nymea-plugin-examples.git
+```
     
 The repository contains a folder named template with a subdirectory named js. Copy the entire folder contents and start by renaming the files to the desired name. The terms "template" and "example" should be renamed to the plugins name.
 

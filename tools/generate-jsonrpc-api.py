@@ -36,13 +36,13 @@ def generate_markdown(version, api):
   ret += "### Enums\n"
   for enum in api["enums"].keys():
     ret += "#### %s\n\n" % enum
-    ret += Utils.build_codeblock(json.dumps(api["enums"][enum], indent=2))
+    ret += Utils.build_codeblock(json.dumps(api["enums"][enum], indent=2), "json")
     ret += "\n"
 
   ret += "### Flags\n"
   for flag in api["flags"].keys():
     ret += "#### %s\n\n" % flag
-    ret += Utils.build_codeblock(json.dumps(api["flags"][flag], indent=2))
+    ret += Utils.build_codeblock(json.dumps(api["flags"][flag], indent=2), "json")
     ret += "\n"
 
   ret += "### Methods\n"
@@ -59,7 +59,7 @@ def generate_markdown(version, api):
       ret += "> Note: This method is deprecated. %s\n\n" % deprecation_warning
     method_dict.pop("description", None)
     method_dict.pop("deprecated", None)
-    ret += Utils.build_codeblock(json.dumps(method_dict, indent=2))
+    ret += Utils.build_codeblock(json.dumps(method_dict, indent=2), "json")
     refs = extract_refs(method_dict)
     if len(refs) > 0:
       ret += "\n\nSee also: "
@@ -81,14 +81,14 @@ def generate_markdown(version, api):
       ret += "> Note: This notification is deprecated. %s\n\n" % deprecation_warning
     method_dict.pop("description", None)
     method_dict.pop("deprecated", None)
-    ret += Utils.build_codeblock(json.dumps(method_dict, indent=2))
+    ret += Utils.build_codeblock(json.dumps(method_dict, indent=2), "json")
     refs = extract_refs(method_dict)
-    if len(refs) > 0:
-      ret += "\n\nSee also: "
-      reflist = []
-      for ref in refs:
-        reflist.append("[%s](#%s)" % (ref, ref))
-      ret += ", ".join(reflist)
+    # if len(refs) > 0:
+    #   ret += "\n\nSee also: "
+    #   reflist = []
+    #   for ref in refs:
+    #     reflist.append("[%s](#%s)" % (ref, ref))
+    #   ret += ", ".join(reflist)
     ret += "\n\n"
 
   return ret

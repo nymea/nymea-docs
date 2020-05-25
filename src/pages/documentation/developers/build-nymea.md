@@ -28,7 +28,7 @@ example: `qmake .. PREFIX=/usr CONFIG+=release`.
 
 ### nymea-gpio
 
-```
+```bash
 git clone https://github.com/nymea/nymea-gpio
 mkdir nymea-gpio/builddir
 cd nymea-gpio/builddir
@@ -44,7 +44,7 @@ This module supports the following build configurations:
 
 ### libnymea-networkmanager
 
-```
+```bash
 git clone https://github.com/nymea/libnymea-networkmanager
 mkdir libnymea-networkmanager/builddir
 cd libnymea-networkmanager/builddir
@@ -60,7 +60,7 @@ This module supports the following build configurations:
 
 ### nymea-networkmanager
 
-```
+```bash
 git clone https://github.com/nymea/nymea-networkmanager
 mkdir nymea-networkmanager/builddir
 cd nymea-networkmanager/builddir
@@ -76,7 +76,7 @@ This module supports the following build configurations:
 
 ### nymea-remoteproxyclient
 
-```
+```bash
 git clone https://github.com/nymea/nymea-remoteproxyclient
 mkdir nymea-remoteproxyclient/builddir
 cd nymea-remoteproxyclient/builddir
@@ -92,7 +92,7 @@ This module supports the following build configurations:
 
 ### nymea-mqtt
 
-```
+```bash
 git clone https://github.com/nymea/nymea-mqtt
 mkdir nymea-mqtt/builddir
 cd nymea-mqtt/builddir
@@ -108,7 +108,7 @@ This module supports the following build configurations:
 
 ### nymea
 
-```
+```bash
 git clone https://github.com/nymea/nymea
 mkdir nymea/builddir
 cd nymea/builddir
@@ -126,7 +126,7 @@ This module supports the following build configurations:
 
 ### nymea-plugins
 
-```
+```bash
 git clone https://github.com/nymea/nymea-plugins
 mkdir nymea-plugins/builddir
 cd nymea-plugins/builddir
@@ -154,15 +154,17 @@ The `crossbuilder` tool can be started within a git source code repository and g
 ### Installation
 
 Install the crossbuilder package from the nymea repositoy (see install section):
-
-    $ sudo apt-get install crossbuilder
+```bash
+$ sudo apt-get install crossbuilder
+```
 
 
 ### Setup
 
 In order to set up the crossbuilder lxd environment you can run following command and follow the setup instructions:
-
-    $ crossbuilder setup-lxd
+```bash
+$ crossbuilder setup-lxd
+```
 
 
 ### Building
@@ -170,107 +172,119 @@ In order to set up the crossbuilder lxd environment you can run following comman
 Assuming you are running crossbuilder on a `amd64` Ubuntu machine, and you want to build a project for `armhf` debian `stretch` you can do following steps.
 
 You clone a project repository (in this example the `nymea` project) and change to the project directory:
-
-    $ git clone https://github.com/nymea/nymea.git
-    $ cd nymea
+```bash
+$ git clone https://github.com/nymea/nymea.git
+$ cd nymea
+```
     
 If you run the crossbuilder the first time, we need to specify the architecture and the distribution we want to build packages for:
-
-    $ crossbuilder -a armhf -u stretch
+```bash
+$ crossbuilder -a armhf -u stretch
+```
     
 Crossbuilder will now contact the nymea lxc host server (https://jenkins.nymea.io:8443) and check if the available image for crosscompilation exists for the target achitecture and distribution (`stretch armhf`). If the image was found, a new local lxc container will be created for exactly this repository.
 
 The next step for crossbuilder is mounting the current source directory into the new created container and will start building the packages (containing build dependencies installing). If you change the source code and want to run the build process again, crossbuilder will reuse this container and also the already created build outputs. If you change the build dependencies of the package you don't need to rebuild the container, you just need to run following command in order to install the missing build dependencies inside the container:
-
-    $ crossbuilder dependencies
+```bash
+$ crossbuilder dependencies
+```
 
 You can check any time which containers you already have and which are running on your local build machine:
+```bash
+$ lxc list
 
-    $ lxc list
-    
-    +--------------------------------------------------------+---------+-------------------+------+------------+-----------+
-    |                          NAME                          |  STATE  |       IPV4        | IPV6 |    TYPE    | SNAPSHOTS |
-    +--------------------------------------------------------+---------+-------------------+------+------------+-----------+
-    | nymea-nymea-builder-stretch-amd64-armhf                | RUNNING | 10.0.1.106 (eth0) |      | PERSISTENT | 0         |
-    +--------------------------------------------------------+---------+-------------------+------+------------+-----------+
++--------------------------------------------------------+---------+-------------------+------+------------+-----------+
+|                          NAME                          |  STATE  |       IPV4        | IPV6 |    TYPE    | SNAPSHOTS |
++--------------------------------------------------------+---------+-------------------+------+------------+-----------+
+| nymea-nymea-builder-stretch-amd64-armhf                | RUNNING | 10.0.1.106 (eth0) |      | PERSISTENT | 0         |
++--------------------------------------------------------+---------+-------------------+------+------------+-----------+
+```
 
 Her you can see the created container for building nymea. The naming of the container is `<project>-nymea-builder-<distribution>-<host-architecture>-<target-architecture>`.
 
 ### Cleaning the build
 
 Once the crossbuilder has finished, you can find all build results in the source tree (since the packages where created in the mounted source tree). If you want to clean up the source directory again you can run:
-
-    $ crossbuilder clean
+```bash
+$ crossbuilder clean
+```
 
 ### Build output
 
 A compressed file containing the debian packages and also the source packages will be the output of script. You can take a look at the built packages by extracting the file and check the content:
+```bash
+$ tar xfv debs_*
 
-    $ tar xfv debs_*
-    
-    libnymea1_0.9.0+201803271733~c348a6b~stretch_armhf.deb
-    libnymea1-dev_0.9.0+201803271733~c348a6b~stretch_armhf.deb
-    nymea_0.9.0+201803271733~c348a6b~stretch_armhf.deb
-    nymead_0.9.0+201803271733~c348a6b~stretch_armhf.deb
-    nymea-dbg_0.9.0+201803271733~c348a6b~stretch_armhf.deb
-    nymea-tests_0.9.0+201803271733~c348a6b~stretch_armhf.deb
-    nymea-translations_0.9.0+201803271733~c348a6b~stretch_all.deb
-    source_repository/nymea_0.9.0+201803271733~c348a6b~stretch.dsc
-    source_repository/nymea_0.9.0+201803271733~c348a6b~stretch_source.changes
-    source_repository/nymea_0.9.0+201803271733~c348a6b~stretch.tar.xz
+libnymea1_0.9.0+201803271733~c348a6b~stretch_armhf.deb
+libnymea1-dev_0.9.0+201803271733~c348a6b~stretch_armhf.deb
+nymea_0.9.0+201803271733~c348a6b~stretch_armhf.deb
+nymead_0.9.0+201803271733~c348a6b~stretch_armhf.deb
+nymea-dbg_0.9.0+201803271733~c348a6b~stretch_armhf.deb
+nymea-tests_0.9.0+201803271733~c348a6b~stretch_armhf.deb
+nymea-translations_0.9.0+201803271733~c348a6b~stretch_all.deb
+source_repository/nymea_0.9.0+201803271733~c348a6b~stretch.dsc
+source_repository/nymea_0.9.0+201803271733~c348a6b~stretch_source.changes
+source_repository/nymea_0.9.0+201803271733~c348a6b~stretch.tar.xz
+```
 
 The content will be extracted in the source directory. If you want to see the content of the resulting packages you can use the `dpkg` command:
+```bash
+$ dpkg -c libnymea1_0.9.0+201803271733~c348a6b~stretch_armhf.deb
 
-    $ dpkg -c libnymea1_0.9.0+201803271733~c348a6b~stretch_armhf.deb
-
-    drwxr-xr-x root/root         0 2018-03-27 17:36 ./
-    drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/
-    drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/lib/
-    drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/lib/arm-linux-gnueabihf/
-    -rw-r--r-- root/root    539272 2018-03-27 17:36 ./usr/lib/arm-linux-gnueabihf/libnymea.so.1.0.0
-    drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/share/
-    drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/share/doc/
-    drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/share/doc/libnymea1/
-    -rw-r--r-- root/root      1436 2018-03-27 17:36 ./usr/share/doc/libnymea1/changelog.gz
-    -rw-r--r-- root/root      1942 2018-03-27 17:30 ./usr/share/doc/libnymea1/copyright
-    lrwxrwxrwx root/root         0 2018-03-27 17:36 ./usr/lib/arm-linux-gnueabihf/libnymea.so.1 -> libnymea.so.1.0.0
-    lrwxrwxrwx root/root         0 2018-03-27 17:36 ./usr/lib/arm-linux-gnueabihf/libnymea.so.1.0 -> libnymea.so.1.0.0
+drwxr-xr-x root/root         0 2018-03-27 17:36 ./
+drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/
+drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/lib/
+drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/lib/arm-linux-gnueabihf/
+-rw-r--r-- root/root    539272 2018-03-27 17:36 ./usr/lib/arm-linux-gnueabihf/libnymea.so.1.0.0
+drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/share/
+drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/share/doc/
+drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/share/doc/libnymea1/
+-rw-r--r-- root/root      1436 2018-03-27 17:36 ./usr/share/doc/libnymea1/changelog.gz
+-rw-r--r-- root/root      1942 2018-03-27 17:30 ./usr/share/doc/libnymea1/copyright
+lrwxrwxrwx root/root         0 2018-03-27 17:36 ./usr/lib/arm-linux-gnueabihf/libnymea.so.1 -> libnymea.so.1.0.0
+lrwxrwxrwx root/root         0 2018-03-27 17:36 ./usr/lib/arm-linux-gnueabihf/libnymea.so.1.0 -> libnymea.so.1.0.0
+```
 
 
 ### Login into container
 
 If you want to login into the build container you can simply run:
-
-    $ crossbuilder shell
+```bash
+$ crossbuilder shell
+```
 
 ### Cache
 
 If you run the crossbuilder a second time, you just need to run `crossbuilder`, since the first time a configuration file for the container has been created. Crossbuilder will also make use of the host `ccache` independent form the architecture and distribution. In this example you can find the `crossbuilder` cached information here:
+```bash
+$ cat .crossbuilder/cache.conf
 
-    $ cat .crossbuilder/cache.conf
-    
-    TARGET_ARCH=armhf
-    TARGET_UBUNTU=stretch
+TARGET_ARCH=armhf
+TARGET_UBUNTU=stretch
+```
 
 ### Delete the container
 
 If you are finished and the container will not be needed any more you can delete the container by running:
-
-    $ crossbuilder delete
+```bash
+$ crossbuilder delete
+```
 
 ### Deploy on target machine
 
 If you want crossbuilder to deploy the packages to a remote machine and install them, you can create following configuration file:
-
-    $ nano .crossbuilder/deploy.conf
+```bash
+$ nano .crossbuilder/deploy.conf
+```
 
 Here you can add the remote information of the target machine (in this example an `armhf stretch` machine running on `10.10.10.10` where you want to install the debian packages built with the `crosscompiler`.
 
 > Note: the packages need to be already installed once on the target machine, since crossbuilder is just updating them, not installing them from scretch. If that is not the case, you can install them manually after crossbuilder copied them to the target and created the local repository: on the target `sudo dpkg -i /tmp/repo/*.deb`.
-
-    DEPLOY_IP=10.10.10.10
-    DEPLOY_USER=nymea
-    DEPLOY_KEY=~/.ssh/id_rsa
+```bash
+DEPLOY_IP=10.10.10.10
+DEPLOY_USER=nymea
+DEPLOY_KEY=~/.ssh/id_rsa
+```
 
 Each new build will from now on be installed automatically on the target machine until you delete the configuration file.
 
@@ -279,16 +293,17 @@ Each new build will from now on be installed automatically on the target machine
 Remove a container if the source repositoy does not exist any more:
 
 > Note: the `--force` is only needed if the container is still running.
+```bash
+$ lxc list
 
-    $ lxc list
-    
-    +--------------------------------------------------------+---------+-------------------+------+------------+-----------+
-    |                          NAME                          |  STATE  |       IPV4        | IPV6 |    TYPE    | SNAPSHOTS |
-    +--------------------------------------------------------+---------+-------------------+------+------------+-----------+
-    | nymea-nymea-builder-stretch-amd64-armhf                | RUNNING | 10.0.1.106 (eth0) |      | PERSISTENT | 0         |
-    +--------------------------------------------------------+---------+-------------------+------+------------+-----------+
++--------------------------------------------------------+---------+-------------------+------+------------+-----------+
+|                          NAME                          |  STATE  |       IPV4        | IPV6 |    TYPE    | SNAPSHOTS |
++--------------------------------------------------------+---------+-------------------+------+------------+-----------+
+| nymea-nymea-builder-stretch-amd64-armhf                | RUNNING | 10.0.1.106 (eth0) |      | PERSISTENT | 0         |
++--------------------------------------------------------+---------+-------------------+------+------------+-----------+
 
-    $ lxc delete nymea-nymea-builder-stretch-amd64-armhf --force
+$ lxc delete nymea-nymea-builder-stretch-amd64-armhf --force
+```
 
     
 ## Building with Yocto

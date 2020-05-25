@@ -37,7 +37,7 @@ def build_markdown(interfaces):
     if "description" in interface:
       ret += "%s\n\n" % interface["description"]
       del interface["description"]
-    ret += Utils.build_codeblock(json.dumps(interface, indent=4))
+    ret += Utils.build_codeblock(json.dumps(interface, indent=2), "json")
     ret += "\n\n"
     links = build_links(interface)
     if links != "":

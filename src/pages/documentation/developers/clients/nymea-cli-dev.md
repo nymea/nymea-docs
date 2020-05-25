@@ -16,6 +16,6 @@ If you're a python developer, we'd happily accept any patches that transform nym
 
 The code can be obtained from [github](https://github.com/nymea/nymea-cli).
 
-```
+```bash
 git clone https://github.com/nymea/nymea-cli
 ```

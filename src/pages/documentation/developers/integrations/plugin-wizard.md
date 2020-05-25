@@ -10,25 +10,25 @@ The plug-in wizard is a tool for the QtCreator to generate the required file str
 First you need to setup the [build envionment](/docs/plugins/plugin-build-environment).
 Afterwards install the wizard:
 
-```
+```bash
  $ sudo apt update
  $ sudo apt install nymea-qtcreator-wizards
 ```
 After the sucessfull installation start the  Qt Creator
 
-```
+```bash
  $ qtcreator
 ```
 
 Start the wizard inside the Qt Creator by: File -> New File or Project ... 
 
-![wizard plugin template](/img/wizard_1.png)
+![wizard plugin template](/img/wizard1.png)
 
 ## Project location
 
 Choose the project name and the path where the project should be located. As in this example the name is template and will be used within the source code as refference. A good practice is to pick a general describing name like a vendor or product/project name.
 
-![wizard plugin template](/img/wizard_2.png)
+![wizard plugin template](/img/wizard2.png)
 
 ## Plugin details
 
@@ -44,13 +44,13 @@ In this section, the plugin details can be defined.
 
 **Create method:** Pick the desired create method for the default device which will be created as template. You can change this any time in the json file.
 
-![wizard plugin template](/img/wizard_3.png)
+![wizard plugin template](/img/wizard3.png)
 
 ## Developer information
 
 Enter the developers name and email. These information will be used in the copyright sections of the plugin. The copyright information are placed in the debian/copyright file and in each source code license header.
 
-![wizard plugin template](/img/wizard_4.png)
+![wizard plugin template](/img/wizard4.png)
 
 ## Kit selection
 
@@ -58,13 +58,13 @@ Pick the build kit for this project. The kit must match the version of the nymea
 
 > **Note:** You have to make sure you are using the same kit as the nymea daemon and libraries use. If you have installed the nymea library and Qt libraries from you default system package manager, you should probably go with the default kit of your distribution.
 
-![wizard plugin template](/img/wizard_5.png)
+![wizard plugin template](/img/wizard5.png)
 
 ## Project Management
 
 Here you can select your preferred project management tool. If you choose git, the default .gitignore file will be added to the project.
 
-![wizard plugin template](/img/wizard_6.png)
+![wizard plugin template](/img/wizard6.png)
 
 ## Project tree
 

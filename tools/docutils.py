@@ -55,10 +55,11 @@ def find_targets(keyword, dir):
       targets.append(subtarget)
   return targets
 
-def build_codeblock(text):
-  ret = ""
+def build_codeblock(text, language=""):
+  ret = "```%s\n" % language
   for line in text.split("\n"):
-    ret += "    %s\n" % line
+    ret += "%s\n" % line
+  ret += "```"
   return ret
 
 def generate_output_md(targets, keyword, markdown):

@@ -60,7 +60,7 @@ Also on iOS nymea:app uses the Firebase SDK for push notifications. This can be 
 
 The first step is to obtain the code:
 
-```
+```bash
 git clone https://github.com/nymea/nymea-app.git
 cd nymea-app
 git submodule update --init
@@ -71,7 +71,7 @@ without QtCreator using the usual build steps.
 
 This requires to have Qt installed and added to the PATH variable.
 
-```
+```bash
 qmake /path/to/nymea-app/
 make
 ```
@@ -91,19 +91,19 @@ Depending on the build system used this might differ.
 
 For example, using it in a qmake project would require something like this:
 
-```
+```bash
 INCLUDEPATH += /path/to/nymea-app/libnymea-app
 LIBS += -L/path/to/nymea-app-build/libnymea-app -lnymea-app
 ```
 
 Please refer to your build system's documentation on how to add include paths and libraries. In the end, the added flags must be
 
-```
+```bash
 -I/path/to/nymea-app/libnymea-app
 ```
 for the compiler, and
 
-```
+```bash
 -L/path/to/nymea-app-build/libnymea-app -lnymea-app
 ```
 
@@ -113,7 +113,7 @@ for the linker.
 
 In order to register all the types in QML, include the libnymea-app-core.h file in your c++ application loader and call `registerQmlTypes()`. 
 
-```
+```cpp
 #include <libnymea-app-core.h>
 
 ...

@@ -38,17 +38,19 @@ If the nymea Raspberry Pi image is not used, nymea:core can also be installed on
 
 Create a file named `/etc/apt/sources.list.d/nymea.list` with this content:
 
-```
+```bash
 deb http://repository.nymea.io buster rpi
 ```
 
 Add the repository signing key by running
-```
+
+```bash
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key A1A19ED6
 ```
 
 Once done so, nymea:core can be installed using apt-get:
-```
+
+```bash
 sudo apt-get update
 sudo apt-get install nymea nymea-plugins
 ```
@@ -87,18 +89,19 @@ To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.lis
 
 > Note: Replace `<distro>` with the codename of the distro, e.g. `buster` for Debian 10 or `bionic` for Ubuntu 18.4
 
-```
+```bash
 deb http://repository.nymea.io <distro> main
 ```
 
 Add the repository signing key by running:
 
-```
+```bash
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key A1A19ED6
 ```
 
 Once done so, nymea:core can be installed using apt-get:
-```
+
+```bash
 sudo apt-get update
 sudo apt-get install nymea nymea-plugins
 ```
@@ -120,7 +123,7 @@ provides amd64 and armhf packages.
 
 It can be installed using the app store application of the used distribution, or via this command:
 
-```
+```bash
 sudo snap install nymea
 ```
 

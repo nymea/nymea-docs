@@ -14,20 +14,24 @@ A restart of nymead is required in order to reload the configuration file.
 
 ### Section [BluetoothServer]
 
-    [BluetoothServer]
-    enabled=false
+```bash
+[BluetoothServer]
+enabled=false
+```
 
 Offers the nymea API through a Bluetooth RFCOMM service. Requires Bluetooth hardware and Bluez installed. Enabling this option will expose the nymea API over Bluetooth. This way a nymea setup can be used without TCP/IP networking at all.
 
 ### Section [Logs]
 
-    [Logs]
-    logDBDriver=QSQLITE
-    logDBHost=
-    logDBMaxEntries=200000
-    logDBName=/var/log/nymead.sqlite
-    logDBPassword=
-    logDBUser=
+```bash
+[Logs]
+logDBDriver=QSQLITE
+logDBHost=
+logDBMaxEntries=200000
+logDBName=/var/log/nymead.sqlite
+logDBPassword=
+logDBUser=
+```
 
 This section configures where the log database is stored. By default, this is SQLite but it can also be configured to log to other databases such as MySQL/MariaDB, PostgreSQL, OracleDB etc.
 
@@ -35,13 +39,15 @@ Note that this requires the according Qt database backend plugin to be installed
 
 An example to configure nymea to log into MySQL instead of SQLite:
 
-    [Logs]
-    logDBDriver=QMYSQL
-    logDBHost=127.0.0.1
-    logDBMaxEntries=200000
-    logDBName=nymea
-    logDBPassword=nymea
-    logDBUser=nymea
+```bash
+[Logs]
+logDBDriver=QMYSQL
+logDBHost=127.0.0.1
+logDBMaxEntries=200000
+logDBName=nymea
+logDBPassword=nymea
+logDBUser=nymea
+```
 
 #### logDBDriver
 
@@ -69,10 +75,11 @@ Password for the log database. For SQLite, this value is not used.
 
 ### Section [SSL]
 
-    [SSL]
-    certificate=
-    certificate-key=
-
+```bash
+[SSL]
+certificate=
+certificate-key=
+```
 
 The SSL section allows to provide an SSL certificate which will be used for all serverfaces, such as API interfaces, the web server and the MQTT server. If nymea is started for the first time without any SSL certification configured, a new self-signed certificate will be generated.
 
@@ -80,10 +87,13 @@ The SSL section allows to provide an SSL certificate which will be used for all 
 
 This section allows to configure debug output of nymead. It can be used to filter debug output in a more customized way.
 
-    [Rules]
-    *.debug=false
+```bash
+[Rules]
+*.debug=false
+```
 
 This example would disable all debug output and only keep warnings and errors. Individual debug categories can be enabled by adding e.g.
 
-    Bluetooth.debug=true
-
+```bash
+Bluetooth.debug=true
+```
