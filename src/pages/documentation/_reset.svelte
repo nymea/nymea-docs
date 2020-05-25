@@ -69,7 +69,7 @@
     padding-bottom: 3rem;
   }
 
-  @media only screen and (min-width: 48em) {
+  @media only screen and (min-width: 64em) {
     .sider {
       display: block;
     }
@@ -77,9 +77,9 @@
 </style>
 
 <Layout
-  width={{'xs': '80%', 'sm': '80%', 'md': '80%', 'lg': '80%', 'xl': '80%'}}
-  contentSpan={{'xs': 8, 'sm': 8, 'md': 8, 'lg': 8, 'xl': 8}}
-  siderSpan={{'xs': 4, 'sm': 4, 'md': 4, 'lg': 4, 'xl': 4}}
+  width={{'xs': '100%', 'sm': '100%', 'md': '80%', 'lg': '80%', 'xl': '80%'}}
+  contentSpan={{'xs': 12, 'sm': 12, 'md': 8, 'lg': 8, 'xl': 8}}
+  siderSpan={{'xs': 0, 'sm': 0, 'md': 4, 'lg': 4, 'xl': 4}}
   contentWrapperMargin="1.5rem"
   rightBackground="linear-gradient(to bottom, var(--silver-base), var(--white))"
 >

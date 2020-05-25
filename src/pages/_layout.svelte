@@ -35,7 +35,7 @@
 
 <!-- <Layout width="80%"> -->
 <Layout
-  width={{'xs': '80%', 'sm': '80%', 'md': '80%', 'lg': '80%', 'xl': '80%'}}
+  width={{'xs': '100%', 'sm': '100%', 'md': '80%', 'lg': '80%', 'xl': '80%'}}
   contentSpan={{'xs': 12, 'sm': 12, 'md': 12, 'lg': 12, 'xl': 12}}
 >
   <div slot="header" class="slot header">

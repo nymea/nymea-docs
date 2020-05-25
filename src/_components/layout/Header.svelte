@@ -33,7 +33,7 @@
     display: hidden;
   }
 
-  @media only screen and (min-width: 48em) {
+  @media only screen and (min-width: 64em) {
     .header > :global(.row > .col > [slot="actions"]) {
       display: block;
     }
