@@ -173,7 +173,7 @@
           <h1>Live smart.</h1>
           <p>Nymea gets you up and running with your Smart Home setup in no time.</p>
         </header>
-        <Button text="Get started" link="documentation/users/installation/gettingstarted">
+        <Button text="Get started" link="documentation/users/installation/getting-started">
           <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
         </Button>
       </Col>
