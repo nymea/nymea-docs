@@ -1,6 +1,6 @@
 ---
 id: overview
-title: Overview
+title: About nymea
 ---
 
 The main purpose of nymea is to provide a collection of tools, libraries and services to connect devices and online services between each other or build connected devices.

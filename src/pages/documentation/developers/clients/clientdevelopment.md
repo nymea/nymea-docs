@@ -1,6 +1,6 @@
 ---
-id: index
-title: Introduction
+id: clientdevelopment
+title: Client development
 ---
 
 ## Introduction

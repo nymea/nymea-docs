@@ -1,0 +1,5 @@
+{
+  "srcdir": "src",
+  "outputdir": "../src/pages/",
+  "keyword": "@@GENERATED_JSONRPC@@"
+}
