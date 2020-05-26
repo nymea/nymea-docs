@@ -405,7 +405,7 @@
   The nymea Team</p>
       </Col>
       <Col>
-          <ion-icon name="heart-filled"></ion-icon>
+          <ion-icon name="heart"></ion-icon>
       </Col>
     </Row>
   </Grid>
