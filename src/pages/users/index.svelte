@@ -166,7 +166,7 @@
 </style>
 
 <section id="introduction">
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col middle span={{'xs': 12, 'md': 8}} order={{'xs': 2, 'sm': 0}}>
         <header>
@@ -185,7 +185,7 @@
 </section>
 
 <section id="features">
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col span={{'xs': 12, 'sm': 4}}>
         <div class="box">
@@ -222,7 +222,7 @@
 </section>
 
 <section id="integrations">
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col span={{'xs': 12, 'md': 8}}>
         <h2>Connection talent</h2>
@@ -301,7 +301,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col span={{'xs': 12, 'md': 4}}>
         <div class="step">
@@ -410,7 +410,7 @@
 </section> -->
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <img src="img/magic.png" alt="It's magic"/>
@@ -433,7 +433,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col center>
         <h3>Advanced configuration</h3>
@@ -455,7 +455,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <img src="img/sensors.png" alt="Sensors"/>
@@ -469,7 +469,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
       <Col center middle>
         <h3>Media, integrated</h3>
         <p>Media playback and browsing integrated. Setting alarms with music playback, automatic ambiance lighting for movie time...</p>
@@ -486,7 +486,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col center>
         <h3>Join our community</h3>

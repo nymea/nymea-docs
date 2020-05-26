@@ -42,7 +42,7 @@
 </style>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col middle span={{'xs': 12, 'md': 8}}>
         <header>
@@ -61,7 +61,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <h2>What we offer</h2>
@@ -85,7 +85,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <h2>Save thousands of integration hours</h2>
@@ -100,7 +100,7 @@
 
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <p>Nymea is ready to be integrated on a variety of GNU/Linux based devices. Be it Yocto, Ubuntu Core, Debian or anything else, we've got the experience in delivering the nymea stack to your platform of choice.</p>
@@ -113,7 +113,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <h2>The worlds smallest footprint</h2>
@@ -128,7 +128,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <h2>Also need hardware?</h2>
@@ -142,7 +142,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col center>
         <h2>Our partners</h2>

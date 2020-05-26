@@ -138,7 +138,8 @@
   .content-wrapper > :global([slot="content"]) {
     /* margin-left: var(--layout-content-offset); */
     /* margin-left: calc((100% / var(--row-cols)) * var(--layout-content-offset) + calc(var(--row-gap) / 2));; */
-    margin-left: calc((100% / var(--row-cols)) * var(--layout-content-offset));
+    margin-left: calc((100% / var(--row-cols)) * var(--layout-content-offset) + (var(--row-gap) / 2));
+    margin-right: calc(var(--row-gap) / 2);
     min-width: 0;     /* Solves issue with <pre></pre> tags when there are large code blocks in there. https://weblog.west-wind.com/posts/2016/feb/15/flexbox-containers-pre-tags-and-managing-overflow */
     /* flex-basis: var(--content-width); */
     flex-basis: calc((100% / var(--row-cols)) * var(--layout-content-span) - var(--row-gap));
@@ -164,7 +165,8 @@
 
     .content-wrapper > :global([slot="content"]) {
       /* margin-left: calc((100% / var(--row-cols-xs)) * var(--layout-content-offset-xs) + calc(var(--row-gap-xs) / 2));; */
-      margin-left: calc((100% / var(--row-cols-xs)) * var(--layout-content-offset-xs));
+      margin-left: calc((100% / var(--row-cols-xs)) * var(--layout-content-offset-xs) + (var(--row-gap-xs) / 2));
+      margin-right: calc(var(--row-gap-xs) / 2);
       flex-basis: calc((100% / var(--row-cols-xs)) * var(--layout-content-span-xs) - var(--row-gap-xs));
     }
 
@@ -186,7 +188,8 @@
 
     .content-wrapper > :global([slot="content"]) {
       /* margin-left: calc((100% / var(--row-cols-sm)) * var(--layout-content-offset-sm) + calc(var(--row-gap-sm) / 2)); */
-      margin-left: calc((100% / var(--row-cols-sm)) * var(--layout-content-offset-sm));
+      margin-left: calc((100% / var(--row-cols-sm)) * var(--layout-content-offset-sm) + (var(--row-gap-sm) / 2));
+      margin-right: calc(var(--row-gap-sm) / 2);
       flex-basis: calc((100% / var(--row-cols-sm)) * var(--layout-content-span-sm) - var(--row-gap-sm));
     }
 
@@ -209,7 +212,8 @@
 
     .content-wrapper > :global([slot="content"]) {
       /* margin-left: calc((100% / var(--row-cols-md)) * var(--layout-content-offset-md) + calc(var(--row-gap-md) / 2)); */
-      margin-left: calc((100% / var(--row-cols-md)) * var(--layout-content-offset-md));
+      margin-left: calc((100% / var(--row-cols-md)) * var(--layout-content-offset-md) + (var(--row-gap-md) / 2));
+      margin-right: calc(var(--row-gap-md) / 2);
       flex-basis: calc((100% / var(--row-cols-md)) * var(--layout-content-span-md) - var(--row-gap-md));
     }
 
@@ -232,7 +236,8 @@
 
     .content-wrapper > :global([slot="content"]) {
       /* margin-left: calc((100% / var(--row-cols-lg)) * var(--layout-content-offset-lg) + calc(var(--row-gap-lg) / 2)); */
-      margin-left: calc((100% / var(--row-cols-lg)) * var(--layout-content-offset-lg));
+      margin-left: calc((100% / var(--row-cols-lg)) * var(--layout-content-offset-lg) + (var(--row-gap-lg) / 2));
+      margin-right: calc(var(--row-gap-lg) / 2);
       flex-basis: calc((100% / var(--row-cols-lg)) * var(--layout-content-span-lg) - var(--row-gap-lg));
     }
 
@@ -254,8 +259,10 @@
 
     .content-wrapper > :global([slot="content"]) {
       /* margin-left: calc((100% / var(--row-cols-xl)) * var(--layout-content-offset-xl) + calc(var(--row-gap-xl) / 2)); */
-      margin-left: calc((100% / var(--row-cols-xl)) * var(--layout-content-offset-xl));
-      flex-basis: calc((100% / var(--row-cols-xl)) * var(--layout-content-span-xl) - var(--row-gap-xl));
+      margin-left: calc((100% / var(--row-cols-xl)) * var(--layout-content-offset-xl) + (var(--row-gap-xl) / 2));
+      margin-right: calc(var(--row-gap-xl) / 2);
+      /* flex-basis: calc((100% / var(--row-cols-xl)) * var(--layout-content-span-xl) - var(--row-gap-xl)); */
+      flex-basis: calc((100% / var(--row-cols-xl)) * var(--layout-content-span-xl));
     }
 
     .content-wrapper > :global([slot="sider"]) {

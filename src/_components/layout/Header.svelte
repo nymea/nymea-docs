@@ -33,6 +33,12 @@
     display: hidden;
   }
 
+  /* .header > :global(.grid > .row > .col > [slot="branding"]),
+  .header > :global(.grid > .row > .col > [slot="navigation"]),
+  .header > :global(.grid > .row > .col > [slot="actions"]) {
+    background-color: rgba(0, 0, 0, 0.3);
+  } */
+
   @media only screen and (min-width: 64em) {
     .header > :global(.row > .col > [slot="actions"]) {
       display: block;
@@ -42,15 +48,15 @@
 
 <div>
   <header class="layout header">
-    <Grid width={{'xs': '100%', 'sm': '100%', 'md': '80%', 'lg': '80%', 'xl': '80%'}}>
+    <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
       <Row>
-        <Col span={{'xs': 1, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
+        <Col span={{'xs': 2, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
           <slot name="branding" />
         </Col>
-        <Col span={{'xs': 11, 'sm': 7, 'md': 7, 'lg': 7, 'xl': 7}}>
+        <Col span={{'xs': 10, 'sm': 8, 'md': 8, 'lg': 8, 'xl': 8}}>
           <slot name="navigation" />
         </Col>
-        <Col span={{'xs': 0, 'sm': 4, 'md': 4, 'lg': 4, 'xl': 4}}>
+        <Col span={{'xs': 0, 'sm': 3, 'md': 3, 'lg': 3, 'xl': 3}}>
           <slot name="actions" />
         </Col>
       </Row>

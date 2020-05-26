@@ -210,7 +210,7 @@
 </style>
 
 <section id="introduction">
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row middle>
       <Col span={{'xs': 10, 'md': 12}}>
         <header>
@@ -226,7 +226,7 @@
 </section>
 
 <section id="for-whom">
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col span={{'xs': 12, 'sm': 4}}>
         <div class="box">
@@ -263,7 +263,7 @@
 </section>
 
 <section id="what-2" class="viewsection">
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col span={{'xs': 12, 'sm': 8}}>
         <h2>Built for connected devices</h2>
@@ -321,7 +321,7 @@
 </section>
 
 <section id="how">
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col span={{'xs': 12, 'sm': 8}}>
         <h2>Nymea Software Stack</h2>
@@ -397,7 +397,7 @@
 </section>
 
 <section id="why">
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col span={{'xs': 12, 'sm': 8}}>
         <h2>Affair of the heart</h2>
@@ -412,7 +412,7 @@
 </section>
 
 <section id="showcases">
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <h2>Showcases</h2>

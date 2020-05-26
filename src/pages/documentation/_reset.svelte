@@ -77,10 +77,10 @@
 </style>
 
 <Layout
-  width={{'xs': '100%', 'sm': '100%', 'md': '80%', 'lg': '80%', 'xl': '80%'}}
-  contentSpan={{'xs': 12, 'sm': 12, 'md': 8, 'lg': 8, 'xl': 8}}
-  siderSpan={{'xs': 0, 'sm': 0, 'md': 4, 'lg': 4, 'xl': 4}}
-  contentWrapperMargin="1.5rem"
+  width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}
+  contentSpan={{'xs': 12, 'sm': 12, 'md': 8, 'lg': 9, 'xl': 9}}
+  siderSpan={{'xs': 0, 'sm': 0, 'md': 4, 'lg': 3, 'xl': 3}}
+  contentWrapperMargin="0.75rem"
   rightBackground="linear-gradient(to bottom, var(--silver-base), var(--white))"
 >
   <div slot="header" class="slot header">
@@ -97,7 +97,7 @@
     </Header>
   </div>
   <div slot="content" class="slot">
-    <Content main padding="3rem 1.5rem 3rem 0">
+    <Content main padding="3rem 0">
       <slot />
     </Content>
   </div>

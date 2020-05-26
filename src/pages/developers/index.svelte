@@ -42,7 +42,7 @@
 </style>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col middle span={{'xs': 12, 'md': 8}}>
         <header>
@@ -61,7 +61,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col middle>
         <h2>Easy, slick and flexible.</h2>
@@ -75,7 +75,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <h2>Tinkering made easy</h2>
@@ -105,7 +105,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <h2>Low level when you need it, high level when you want it</h2>
@@ -124,7 +124,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <h2>Headless setups</h2>
@@ -138,7 +138,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <h2>Nymea is a communication talent</h2>
@@ -152,7 +152,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <h2>Servers, intergrated</h2>
@@ -172,7 +172,7 @@
 </section>
 
 <section>
-  <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
         <h2>Need help?</h2>

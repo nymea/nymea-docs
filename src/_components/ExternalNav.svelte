@@ -18,12 +18,17 @@
 		height: var(--header-height);
 		justify-content: flex-end;
 		list-style-type: none;
-    padding-right: 1.5rem;
-    padding-left: 3rem;
+    /* padding-right: 1.5rem;
+		padding-left: 3rem; */
+		padding: 0 1.5rem 0 0;
 	}
 
 	li {
 		margin-left: 1.5rem;
+	}
+
+	li:first-child {
+		margin-left: 0;
 	}
 
 	/* li:first-child {
