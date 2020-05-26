@@ -52,4 +52,6 @@ targets = Utils.find_targets(config["keyword"], config["outputdir"])
 print("Files to replace: %s" % targets)
 interfaces = load_interfaces(os.path.join(config["srcdir"], "nymea/libnymea/interfaces"))
 markdown = build_markdown(interfaces)
-Utils.generate_output_md(targets, config["keyword"], markdown)
+replacements = {}
+replacements[config["keyword"]] = markdown
+Utils.generate_output_md(targets, replacements)

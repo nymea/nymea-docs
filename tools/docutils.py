@@ -62,12 +62,17 @@ def build_codeblock(text, language=""):
   ret += "```"
   return ret
 
-def generate_output_md(targets, keyword, markdown):
+
+# replacements is a map of <keyword, content> pairs
+def generate_output_md(targets, replacements):
   for target in targets:
+    print("working on %s" % target)
     fileName = os.path.basename(target)
     fileName = re.sub(r"^_", "", fileName)
     fileName = re.sub(".in$", "", fileName)
-    input = read_text(target)
-    output = re.sub(keyword, markdown, input)
-    write_text(os.path.join(os.path.dirname(target), fileName), output)
+    content = read_text(target)
+    for keyword in replacements.keys():
+#      print("replacing %s with %s" % (keyword, replacements[keyword]))
+      content = re.sub(keyword, replacements[keyword], content)
+    write_text(os.path.join(os.path.dirname(target), fileName), content)
 
