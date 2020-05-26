@@ -2,9 +2,9 @@
   import { onMount } from 'svelte';
   import { route } from '@sveltech/routify';
   import hljs from 'highlight.js/lib/core';
+  import asciidoc from 'highlight.js/lib/languages/asciidoc';
   import bash from 'highlight.js/lib/languages/bash';
   import cLike from 'highlight.js/lib/languages/c-like';
-  import cpp from 'highlight.js/lib/languages/cpp';
   import javascript from 'highlight.js/lib/languages/javascript';
   import json from 'highlight.js/lib/languages/json';
   import python from 'highlight.js/lib/languages/python';
@@ -14,9 +14,9 @@
   let title = $route.api.title.split('-').map((word) => word.charAt(0).toUpperCase() + word.replace('-', ' ').slice(1)).join(' ');
   
   onMount(() => {
+    hljs.registerLanguage('asciidoc', asciidoc);
     hljs.registerLanguage('bash', bash);
     hljs.registerLanguage('cLike', cLike);
-    hljs.registerLanguage('c++', cpp);
     hljs.registerLanguage('javascript', javascript);
     hljs.registerLanguage('json', json);
     hljs.registerLanguage('python', python);

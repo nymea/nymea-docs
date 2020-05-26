@@ -6,7 +6,7 @@ title: Changelog
 ## nymea Changelog
 
 ### V 0.20.0
-```text
+```adoc
 nymea:app
     Rework grouping behavior a bit
     Support “Thing” instead of “Device” in script editor
@@ -79,7 +79,7 @@ nymea-plugin-ekey (0.0.3)
 ```
 
 ### V 0.19.0
-```text
+```adoc
 nymea:app (1.0.187)
     Fix shadows when using multiple tabs
     Hide delete option for child things
@@ -130,7 +130,7 @@ nymea-qtcreator-wizards (0.0.6)
 ```
 
 ### V 0.18.0
-```text
+```adoc
 nymea-zigbee (0.0.4)
    Add assign operator for zigbee security configuration
 nymea-mqtt (0.1.3)
@@ -188,7 +188,7 @@ nymea-plugin-unipi (0.1.2)
 ```
 
 ### V 0.17.0
-```text
+```adoc
 nymea-remoteproxy (0.1.7)
    Add option to disable tests during builds
 libnymea-networkmanager (0.2.1)
@@ -226,7 +226,7 @@ nymea-qtcreator-wizards (0.0.5)
 ```
 
 ### V 0.16.0
-```text
+```adoc
 nymea-mqtt (0.1.2)
     Fix a crash in topic matching.
 
@@ -263,7 +263,7 @@ nymea-plugins (0.16.0)
 
 ### V 0.15.1
 
-```text
+```adoc
 libnymea-networkmanager (0.1.1)
     Add access point functionality
     Update pkgconfig and include dir path
@@ -294,7 +294,7 @@ nymea (0.15.1)
 ```
 ### V 0.14.0
 
-```text
+```adoc
 nymea (0.14.0)
     Bump minimum required TLS version to 1.2
     Add support for device settings
@@ -323,7 +323,7 @@ nymea-qtcreator-wizards (0.0.4)
 
 ### V 0.13.0
 
-```text
+```adoc
 nymea (0.13.0)
     Add navigation pad interfaces
     Fix make lupdate
@@ -367,7 +367,7 @@ nymea-zeroconf-plugin-avahi
 
 ### V 0.12.0
 
-```text
+```adoc
 nymea (0.12.0)
     New Release Mechanism
     Presence Interface
@@ -400,7 +400,7 @@ Documentation
 
 ### V 0.8.0
 
-```text
+```adoc
 nymea (0.8.0)
     Tag system
     User authentication
@@ -411,7 +411,7 @@ nymea (0.8.0)
 
 ### V 0.7.0
 
-```text
+```adoc
 Add OAuth 2.0
 Add parent/child device relation
 Add "possible values" for stateType
@@ -424,7 +424,7 @@ CoAP Support
 
 ### V 0.6.0
 
-```text
+```adoc
 Add web socket server
 Add UPnP discovery
 Add more tests
@@ -438,7 +438,7 @@ Many small bug fixes
 ```
 
 ### V 0.5.0
-```text
+```adoc
     Update documentation style
     Add Webserver
     Add REST-API
@@ -453,7 +453,7 @@ Many small bug fixes
 ```
 
 ### V 0.4.0
-```text
+```adoc
     Add "Edit" devices method
     Add "Edit" rules method
     Add LogEngine
@@ -467,7 +467,7 @@ Many small bug fixes
 ```
 
 ### V 0.3.0
-```text
+```adoc
     Add UPnP resource
     Add NetworkAccessManager resource
     Add more plugins
@@ -479,7 +479,7 @@ Many small bug fixes
 ```
 
 ### V 0.2.0
-```text
+```adoc
     Load plugins dynamic
     Add more tests
     Add Brennenstuhl support
@@ -496,7 +496,7 @@ Many small bug fixes
 ```
 
 ### V 0.1.0
-```text
+```adoc
     Create project structure
     Add debian scripts
     Add server structure
