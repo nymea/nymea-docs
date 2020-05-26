@@ -9,7 +9,7 @@ Once a [plugin JSON](plugin-json) file is created, the according logic is to be 
 
 The plugin codes main entry point is defined by subclassing the [IntegrationPlugin](broken) class. The header file accordingly looks similar to this:
 
-```cpp
+```c++
 #ifndef INTEGRATIONPLUGINEXAMPLE_H
 #define INTEGRATiONPLUGINEXAMPLE_H
 
@@ -39,7 +39,7 @@ public:
 
 The according .cpp file would look similar to this:
 
-```cpp
+```c++
 #include "integrationpluginexample.h"
 #include "plugininfo.h"
 
@@ -81,7 +81,7 @@ This is a minimalistic example for a plugin. While there are lots of other metho
 
 The most important method is probably `setupThing()`. This is called when a new thing is configured in the system, as well as on system startup. This method should do all the required stuff to connect to the thing. The `info` parameter will contain all the information for the newly set up thing. Once the connection to the device or online service has been established, the plugin code must call the `finish()` method on the info object. Please note, that there is a timeout in place which will cause the setup to time out eventually if `finish()` is not called. A plugin implementation can react on this by connecting to the `ThingSetupInfo::aborted()` signal. A more complete example for a setup implementation might look like this:
 
-```cpp
+```c++
 void  IntegrationPluginExample::setupThing(ThingSetupInfo *info)
 {
     QString deviceIp = info->thing()->paramValue(exampleThingIpParamTypeId).toString();
@@ -114,7 +114,7 @@ In this example a http GET call to a REST API on a device would be made. The IP 
 
 Whenever the user (or some automatism) executes an action in th system, the plugin will get `executeAction` called. The `info` parameter will contain all the required information to process the request. That contains information about the thing as well as the action. Let's have a look at an example switching on/off a device using a REST API.
 
-```cpp
+```c++
 void IntegrationPluginExample::executeAction(ThingActionInfo *info)
 {
     QString deviceIp = info->thing()->paramValue(exampleThingIpParamTypeId).toString();
@@ -152,7 +152,7 @@ Again, we're obtaining the device's IP using the thing parameters, just like in 
 
 Whenever a thing is triggering an event, for instance a button on a device is pressed, or a trigger is happening on an online service, the plugin implementation should call `emitEvent` passing the information about the event. Let's look at an example that would poll an online service for such triggers.
 
-```cpp
+```c++
 void IntegrationPluginExample::setupDevice(ThingSetupInfo *info) {
 
     // Doing the regular setup first...
@@ -195,7 +195,7 @@ One more thing to notice here is that the registering of a timer will require th
 
 States are handled very similar to events. But instead of creating an Event object, the plugin would call `thing->setStateValue()`. Let's look at an example that would poll the current temperature from some online API.
 
-```cpp
+```c++
 void IntegrationPluginExample::setupDevice(ThingSetupInfo *info) {
 
     // Doing the regular setup first...
@@ -237,7 +237,7 @@ A plugin can use arbitrary code to discover devices or services. However, nymea 
 
 In this example we'd be looking for devices in the local network via ZeroConf:
 
-```cpp
+```c++
 void IntegrationPluginExample::discoverThings(ThingDiscoveryInfo *info)
 {
     ZeroConfServiceBrowser *zeroconfBrowser = hardwareManager()->zeroConfController()->createServiceBrowser("_http._tcp");
@@ -290,7 +290,7 @@ Let's look at the simplest form of it which is username and password authenticat
 
 The `startThing()` call is pretty much a no-operation in this case. The only thing a plugin implementation can do here is to provide an informational text to the client.
 
-```cpp
+```c++
 void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 {
     info->finish(Thing::ThingErrorNoError, QT_TR_NOOP("Please enter the login credentials for your device."));
@@ -301,7 +301,7 @@ This will advance the pairing process to the next step immediately, presenting t
 
 Once the user has inserted the credentials, nymea will pass them on to the plugin like here:
 
-```cpp
+```c++
 void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QString &username, const QString &password)
 {
     // Get the things connection parameters from the thing params.
@@ -339,7 +339,7 @@ void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QStr
 
 This example would pair a device that uses push button authentication:
 
-```cpp
+```c++
 void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 {
     info->finish(Thing::ThingErrorNoError, QT_TR_NOOP("Please press the push button on the device and then continue this setup."));
@@ -350,7 +350,7 @@ Again, the `startPairing` call is mostly informative to the user. It tells the u
 
 Once done, nymea will call `confirmPairing` again. In this case neither the `username` nor the `password` arguements will contain meaningful data. Instead, the pairing key (normally a token) can be obtained directly from the device.
 
-```cpp
+```c++
 void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QString &username, const QString &secret)
 {
     Q_UNUSED(username)
@@ -394,7 +394,7 @@ OAuth is a little more complex than the previous examples, however, the basic fl
 
 This example shows the OAuth procedure for the google OAuth service. The plugin developer must obtain the clientId and clientSecret from the remote service, usually by signing up for a developer account. When registering for such a developer account, a callback URL must be provided. Nymea requires this callback url to start with "https://127.0.0.1". The rest of the callback URL is not relevant to nymea.
 
-```cpp
+```c++
 void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 {
     // Those credentials need to be obtained from the service provider
@@ -421,7 +421,7 @@ void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 
 When the client app completed the OAuth login the procedure continues with `confirmPairing()`
 
-```cpp
+```c++
 void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QString &username, const QString &secret)
 {
     Q_UNUSED(username)
@@ -477,7 +477,7 @@ void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QStr
 
 Some devices are capable of displaying a PIN code. For example smart TVs. Those devices can be handled as following:
 
-```cpp
+```c++
 void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 {
     // Compose a network request that would trigger displayig the PIN on the remote device
@@ -503,7 +503,7 @@ void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 
 The user is then asked to enter the PIN on the client app. Once that is completed, the plugin's `completePairing()` will be called. The PIN is provided in the `secret` parameter.
 
-```cpp
+```c++
 void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QString &username, const QString &secret)
 {
     Q_UNUSED(username)
@@ -551,7 +551,7 @@ Things that can be browsed, for example media players, need to have `browsable` 
 
 `browseThing()` will be used to actually browse the device or service, while `browserItem()` is used to retrieve a single item from the browser. The browsed items can be flat (i.e. just a list of items) or structured in a tree (i.e. a file system with folders and subfolders). Every item returned in `browseThing()` must be uniquely identifiable so that it can be retrieved at any time in `browserItem()`. This following example would return results from a an object tree:
 
-```cpp
+```c++
 void IntegrationPluginMock::browseThing(BrowseResult *result)
 {
     VirtualFsNode *node = m_virtualFs->findNode(result->itemId());
@@ -573,7 +573,7 @@ The plugin calls the `finish()` method as usual to indicate when it's done.
 
 At a later point, nymea might retrieve info for a particular item again. This is done by calling `browserItem()` on the plugin:
 
-```cpp
+```c++
 void IntegrationPluginExample::browserItem(BrowserItemResult *result)
 {
     VirtualFsNode *node = m_virtualFs->findNode(result->itemId());
@@ -593,7 +593,7 @@ Things can have settings. For instance, a bluetooth device with a small battery 
 
 Thing settings are very similar to the params used during setup, however, they can be changed at runtime, without having to reconfigure a thing. Like params, also settings need to be defined in the plugin's JSON file. For that, the plugin should connect to the things `settingChanged(const ParamTypeId &paramTypeId, const QVariant &value)` signal and handle it accordingly.
 
-```cpp 
+```c++
 void IntegrationPluginExample::setupDevice(ThingSetupInfo *info) {
 
     // Do thing setup

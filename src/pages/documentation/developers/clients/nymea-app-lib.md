@@ -113,7 +113,7 @@ for the linker.
 
 In order to register all the types in QML, include the libnymea-app-core.h file in your c++ application loader and call `registerQmlTypes()`. 
 
-```cpp
+```c++
 #include <libnymea-app-core.h>
 
 ...

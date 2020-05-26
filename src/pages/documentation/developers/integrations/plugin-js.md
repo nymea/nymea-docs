@@ -10,7 +10,7 @@ Once a [plugin JSON](plugin-json) file is created, the according logic is to be 
 
 The plugin codes main entry point is a file named `integrationplugin<name>.js`. The file name must match the plugin's JSON file name with the exception of the file name extension. So the very minimum required are two files, `integrationplugin<name>.json` and `integrationplugin<name>.js`.
 
-```cpp
+```c++
 export function setupThing(info) {
     console.log("Setup called");
     ...
@@ -31,7 +31,7 @@ This is a minimalistic example for a plugin. The functions called by nymea must 
 
 ECMA compliant modules can be used. Those must be provided as `.mjs` files and can export functions to be used in the main plugin's file. For instance a `worker.mjs` module might look like this:
 
-```cpp
+```c++
 export function doStuff(someValue) {
     console.log("module function called!");
     return someValue;
@@ -40,7 +40,7 @@ export function doStuff(someValue) {
 
 and can be imported in the main plugin by using:
 
-```cpp
+```c++
 import { doStuff } from "./worker.mjs";
 
 ...
@@ -55,7 +55,7 @@ export function init() {
 
 The most important method is probably `setupThing()`. This is called when a new thing is configured in the system, as well as on system startup. This method should do all the required stuff to connect to the thing. The `info` parameter will contain all the information for the newly set up thing. Once the connection to the device or online service has been established, the plugin code must call the `finish()` method on the info object. Please note, that there is a timeout in place which will cause the setup to time out eventually if `finish()` is not called. A plugin implementation can react on this by connecting to the `aborted()` signal. A more complete example for a setup implementation might look like this:
 
-```cpp
+```c++
 export function setupThing(info) {
     
     var deviceIp = info.device.paramValue("1d10b8e2-aea4-495c-8b1f-f44ef088f667");
@@ -76,7 +76,7 @@ export function setupThing(info) {
     
 In this example a http GET call to a REST API on a device would be made. The IP adress is obtained from the thing parameters (NOTE: those must be defined in the plugin's JSON file). For the request, an `XMLHttpRequest` is created and sent to the network with `send()`. The response is parsed and if everything is as expected, the plugin will call `info.finish(Thing.ThingErrorNoError)`. If something has gone wrong, it'll call `info.finish(Thing.ThingErrorHarwareFailure)` instead to indicate the failure to the system. If the setup times out before the GET call returns, the `info` object will be destroyed and the the execution will stop processing. If the code should be made more robust against this behavior, a plugin developer may connect to the info's aborted signal in such a manner:
 
-```cpp
+```c++
 info.aborted.connect(function() {
     console.warn("setup timed out and aborted.");
     // error handling here...
@@ -87,7 +87,7 @@ info.aborted.connect(function() {
 
 Whenever the user (or some automatism) executes an action in th system, the plugin will get `executeAction` called. The `info` parameter will contain all the required information to process the request. That contains information about the thing as well as the action. Let's have a look at an example switching on/off a device using a REST API.
 
-```cpp
+```c++
 export function executeAction(info) {
     var deviceIp = info.thing.paramValue("1d10b8e2-aea4-495c-8b1f-f44ef088f667");
 
@@ -118,7 +118,7 @@ Again, we're obtaining the device's IP using the thing parameters, just like in 
 
 Whenever a thing is triggering an event, for instance a button on a device is pressed, or a trigger is happening on an online service, the plugin implementation should call `emitEvent` passing the information about the event. Let's look at an example that would poll an online service for such triggers.
 
-```cpp
+```c++
 var pluginTimer;
 
 export function setupDevice(info) {
@@ -155,7 +155,7 @@ One more thing to notice here is that the registering of a timer will require th
 
 States are handled very similar to events. But instead of creating an Event object, the plugin would call `thing->setStateValue()`. Let's look at an example that would poll the current temperature from some online API.
 
-```cpp
+```c++
 void IntegrationPluginExample::setupDevice(ThingSetupInfo *info) {
 
     // Doing the regular setup first...

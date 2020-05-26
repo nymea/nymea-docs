@@ -95,7 +95,7 @@ In the first section you can find the plugin specific properties. The id will be
 ### File _deviceplugintemplate.h_
 
 The main header file shows you the basic structure of your DevicePlugin template. The header file start with the license header containing the copyright information passed during the wizard.
-```cpp
+```c++
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                                   
  *  Copyright (C) 2020 Developer Name <developer.name@example.com> 
@@ -121,7 +121,7 @@ The main header file shows you the basic structure of your DevicePlugin template
 
 The main class has the name DevicePluginExample. The device plugin class inherts from the DevicePlugin class and must implement the pure virtual methods in order build correctly.
 
-```cpp
+```c++
 class DevicePluginTemplate: public DevicePlugin
 {
     Q_OBJECT
@@ -153,26 +153,26 @@ private slots:
 The implementation of each method can be found in the corresponding cpp file.
 
 As you can see, the plugin includes in the _.cpp_ file the plugininfo.h file, which will be generated during build time from the nymea-plugininfocompiler tool. This tool translates the deviceplugintemplate.json into a C++ header file containing all UUID definitions, translations strings and the debug catergory definition.
-```cpp
+```c++
 #include "plugininfo.h"
 ```
 The main entry point of the plugin is the **init()** method. This method will be called from the DeviceManager once all plugins are loaded and the initialization phase starts for you all plugins. Here you can start creating your objects in initialize whatever you need. This method can be seen like a constructor.
 
-```cpp
+```c++
 void DevicePluginExample::init()
 {
     // Initialize/create objects
 }
 ```
 The **startMonitoringAutoDevices** method will be called from the DeviceManager once all devices are set up and the plugin can start for searching device which appear automatically if your plugin supports such device types.
-```cpp
+```c++
 void DevicePluginExample::startMonitoringAutoDevices()
 {
     // Start seaching for devices which can be discovered and added automatically
 }
 ```
 The **postSetupDevice** method will be called from the DeviceManager once the setup of a device has finished successfully. Here is a good point to initialize the states of the device.
-```cpp
+```c++
 void DevicePluginExample::postSetupDevice(Device *device)
 {
     qCDebug(dcTemplate()) << "Post setup device" << device->name() << device->params();
@@ -182,7 +182,7 @@ void DevicePluginExample::postSetupDevice(Device *device)
 ```
 The **deviceRemoved** method will be called from the DeviceManager once a device is about to be removed from the system. Here is a good place to clean up everything related to the device which will be removed.
 
-```cpp
+```c++
 void DevicePluginExample::deviceRemoved(Device *device)
 {
     qCDebug(dcTemplate()) << "Remove device" << device->name() << device->params();
@@ -193,7 +193,7 @@ void DevicePluginExample::deviceRemoved(Device *device)
 
 When the user wants to add a new device from this plugin, the **setupDevice** method will be called. Here you can initialize Objects and set up everything you need for your device.
 
-```cpp
+```c++
 void DevicePluginTemplate::setupDevice(DeviceSetupInfo *info)
 {
     qCDebug(dcTemplate()) << "Setup device" << info->device();
@@ -204,7 +204,7 @@ void DevicePluginTemplate::setupDevice(DeviceSetupInfo *info)
 
 When the user wants to execute an Action of a Device from this DevicePlugin, the **executeAction** method will be called. Here you can perform the actual execution of the custom call for your Device.
 
-```cpp
+```c++
 void DevicePluginTemplate::executeAction(DeviceActionInfo *info)
 {
     qCDebug(dcTemplate()) << "Executing action for device" << info->device() << info->action().actionTypeId().toString() << info->action().params();
