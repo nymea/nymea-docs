@@ -191,8 +191,8 @@
         <div class="box">
           <header>
             <ion-icon name="body"></ion-icon>
-            <h3>Easy but powerful</h3>
-            <p>...</p>
+            <h3>Focused on usability</h3>
+            <p>Never touch a console again</p>
           </header>
           <p>Nymea does not require editing cryptic configuration files, it can be configured and controlled entirely using your Smartphone or PC.</p>
         </div>
@@ -201,8 +201,8 @@
         <div class="box">
           <header>
             <ion-icon name="shield-checkmark"></ion-icon>
-            <h3>Local-first approach</h3>
-            <p>...</p>
+            <h3>Local-first</h3>
+            <p>Keep in control of your data</p>
           </header>
           <p>Nymea ensures that your data is kept where it belongs, locally in your home. Besides the privacy advantage, this also keeps you independent from cloud vendors, and doesn't require an always-on internet connection.</p>
         </div>
@@ -212,7 +212,7 @@
           <header>
             <ion-icon src="img/open-source-initiative.svg"></ion-icon>
             <h3>Free and Open Source</h3>
-            <p>...</p>
+            <p>Transparent functionality</p>
           </header>
           <p>Nymea is comitted to open source software. Anything we do can be inspected, tuned and shared by our community.</p>
         </div>
@@ -336,7 +336,7 @@
     </Row>
     <Row>
       <Col center>
-        <p>Check out all the installation options in the <a href="documentation/users/installation/gettingstarted">installation documentation</a>.</p>
+        <p>Check out all the installation options in the <a href="documentation/users/installation/core">installation documentation</a>.</p>
       </Col>
     </Row>
   </Grid>
