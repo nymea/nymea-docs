@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { isActive, url, layout, route, routes } from '@sveltech/routify';
+  import { beforeUrlChange, isActive, url, layout, route, routes } from '@sveltech/routify';
 
   import Content from '../../_components/layout/Content.svelte';
   import Footer from '../../_components/layout/Footer.svelte';
@@ -14,22 +14,116 @@
 
   import Logo from '../../_components/Logo.svelte';
   import Menu from '../../_components/menu/Menu.svelte';
+  import { menuOrder } from '../../_components/menu/_order.js';
   import Nav from '../../_components/Nav.svelte';
   import ExternalNav from '../../_components/ExternalNav.svelte';
 
-  console.log('$layout', $layout);
-  console.log('$route', $route);
-  console.log('$routes', $routes);
-
   $: current = $route;
   let documentationRoute = getDocumentationRoute($route);
-  // $: children = $route.parent !== undefined ? $route.parent.children : [];
+  let orderedLinks = [];
   let children = documentationRoute ? documentationRoute.children : [];
-  $: console.log('dirs', $routes.filter((route) => !route.isPage));
+  let oldPath = document.location.pathname;
+  let newPath = '';
+  let oldHash = document.location.hash;
+  let newHash = '';
 
   onMount(() => {
     documentationRoute = getDocumentationRoute($route);
     children = documentationRoute ? documentationRoute.children : [];
+    
+    const index = menuOrder.findIndex((orderedLink) => orderedLink.filename === documentationRoute.file.replace('.' + documentationRoute.ext, ''));
+    if (index !== -1 && Array.isArray(menuOrder[index + 1])) {
+      orderedLinks = menuOrder[index + 1];
+    }
+  });
+
+  window.onload = function() {
+    if (window.location.hash) {
+      scrollTo(window.location.hash.replace('#', ''));
+    }
+  }
+
+  function scrollTo(id) {
+    // // const id = element.id;
+    // element.id = id + '-tmp';
+    // window.scrollTo({top: y, behavior: 'smooth'});
+    // setTimeout(() => {
+      const element = document.getElementById(id);
+      
+      if (element) {
+        const style = window.getComputedStyle(element);
+        const headerHeight = parseFloat(style.getPropertyValue('--header-height').replace('rem', ''));
+        const yOffset = (headerHeight + 1.5) * parseFloat(getComputedStyle(document.documentElement).fontSize);
+        const y = element.getBoundingClientRect().top + window.pageYOffset - yOffset;
+
+        // setTimeout(() => {
+        //   // window.location.hash = selector;
+        //   window.history.pushState({ scroll: true }, null, '#' + id);
+        //   element.id = id;
+        // }, 300);
+        // setTimeout(() => {
+          // window.scrollTo({top: y});
+        // }, 0);
+
+        // Change hash without scrolling the page
+        element.id = id + '-tmp';
+        window.scrollTo({top: y, behavior: 'smooth'});
+        // window.location.hash = '#' + id;
+        // window.history.pushState({ scroll: true }, null, '#' + id);
+
+        setTimeout(() => {
+          element.id = id;
+        }, 100);
+      }
+    // }, 0);
+
+    // setTimeout(() => {
+    //   // window.location.hash = selector;
+    //   window.history.pushState({ scroll: true }, null, '#' + id);
+    //   element.id = id;
+    // }, 300);
+  }
+
+  $beforeUrlChange((event, store) => {
+    console.log('beforeUrlChange', event, store, event.state);
+
+    // if (!event.state.scroll && event.url && event.url.charAt(0) === '#') {
+    if (event.url && event.url.charAt(0) === '#') {
+      oldHash = document.location.hash;
+      scrollTo(event.url.replace(/[^a-zA-Z0-9\- ]/g, ''));
+
+      // setTimeout(() => {
+      //   console.log('TIMEOUT!!!');
+      //   if(window.history.pushState) {
+      //     window.history.pushState(null, null, event.url);
+      //   } else {
+      //     window.location.hash = event.url;
+      //   }
+      // }, 300);
+
+      return false;
+    }/* else if (event.state && event.state.scroll) {
+      return false;
+    }*/
+    // else if (event.type && event.type === 'popstate') {
+    //   // path changed => return true
+    //   // hash changed => scrollTo & return false
+    //   newPath = document.location.pathname;
+    //   newHash = document.location.hash;
+    //   console.log('oldPath, newPath', oldPath, newPath);
+    //   console.log('oldHash, newHash', oldHash, newHash);
+    //   if (newPath !== oldPath) {
+    //     console.log('path changed');
+    //     return true;
+    //   } else if (newHash !== oldHash) {
+    //     console.log('hash changed');
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
+
+    return true;
   });
 
   function getDocumentationRoute(route) {
@@ -104,10 +198,12 @@
   <div slot="sider" class="slot sider">
     <Sider>
       <!-- <Menu items={$layout.children} /> -->
-      <Menu {current} {children} />
+      <Menu {current} {children} {orderedLinks} />
     </Sider>
   </div>
-  <div slot="footer" class="slot">
+  <!-- <div slot="footer" class="slot">
     <Footer></Footer>
-  </div>
+  </div> -->
 </Layout>
+
+<Footer></Footer>
