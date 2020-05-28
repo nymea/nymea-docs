@@ -9,7 +9,7 @@
   footer {
     background-color: var(--white);
     border-top: 1px solid var(--silver-darken-10);
-    padding: 3rem;
+    padding: 6rem 0;
     position: relative;
     z-index: 4;
   }
@@ -25,10 +25,10 @@
 </style>
 
 <footer>
-  <!-- <Grid>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
-      <Col span={{'xs': 8, 'sm': 8, 'md': 8, 'lg': 8, 'xl': 8}}> -->
-        <nav>
+      <Col span={{'xs': 8, 'sm': 8, 'md': 8, 'lg': 8, 'xl': 8}}>
+        <!-- <nav> -->
           <ul class="menu">
             <li>
               <a href={$url('/users')}>Users</a>
@@ -57,9 +57,9 @@
               <a href={$url('/imprint')}>Imprint</a>
             </li>
           </ul>
-        </nav>
-      <!-- </Col>
+        <!-- </nav> -->
+      </Col>
     </Row>
-  </Grid> -->
+  </Grid>
   <!-- <slot /> -->
 </footer>
