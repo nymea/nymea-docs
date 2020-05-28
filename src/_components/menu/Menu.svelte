@@ -28,15 +28,15 @@
       });
   $: pages = items
     .map((item) => {
-      const index = orderedLinks.findIndex((link) => link.filename === item.page.file.replace('.' + item.page.ext, ''));
+      const index = orderedLinks.findIndex((link) => link.filename === item.page.api.path.substring(item.page.api.path.lastIndexOf('/') + 1));
       if (index !== -1) {
         item.name = orderedLinks[index].title;
       }
       return item;
     })
     .sort((itemA, itemB) => {
-      const indexA = orderedLinks.findIndex((link) => link.filename === itemA.page.file.replace('.' + itemA.page.ext, ''));
-      const indexB = orderedLinks.findIndex((link) => link.filename === itemB.page.file.replace('.' + itemB.page.ext, ''));
+      const indexA = orderedLinks.findIndex((link) => link.filename === itemA.page.api.path.substring(itemA.page.api.path.lastIndexOf('/') + 1));
+      const indexB = orderedLinks.findIndex((link) => link.filename === itemB.page.api.path.substring(itemB.page.api.path.lastIndexOf('/') + 1));
       return indexA - indexB;
     });
 
@@ -53,7 +53,7 @@
   }
 
   function getOrderedLinksForPage(page, orderedLinks) {
-    const index = orderedLinks.findIndex((orderedLink) => orderedLink.filename === page.file.replace('.' + page.ext, ''));
+    const index = orderedLinks.findIndex((orderedLink) => orderedLink.filename === page.api.path.substring(page.api.path.lastIndexOf('/') + 1));
     if (index !== -1 && Array.isArray(orderedLinks[index + 1])) {
       return orderedLinks[index + 1];
     }

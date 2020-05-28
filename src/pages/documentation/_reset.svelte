@@ -30,8 +30,8 @@
   onMount(() => {
     documentationRoute = getDocumentationRoute($route);
     children = documentationRoute ? documentationRoute.children : [];
-    
-    const index = menuOrder.findIndex((orderedLink) => orderedLink.filename === documentationRoute.file.replace('.' + documentationRoute.ext, ''));
+
+    const index = menuOrder.findIndex((orderedLink) => orderedLink.filename === documentationRoute.api.path.substring(documentationRoute.api.path.lastIndexOf('/') + 1));
     if (index !== -1 && Array.isArray(menuOrder[index + 1])) {
       orderedLinks = menuOrder[index + 1];
     }
