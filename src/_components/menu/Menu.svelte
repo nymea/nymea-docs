@@ -1,31 +1,44 @@
 <script>
-  import { onMount } from 'svelte';
   import { isActive, url } from '@sveltech/routify';
   
   export let level = 0;
   export let current = undefined;
+  export let orderedLinks = [];
   export let children = [];
 
   let pages = [];
 
-  onMount(() => {
-    pages = children.filter((child) => isRoutable(children, child)).map((page) => {
-      let item = {
-        name: page.api.title.split('-').map((word) => word.substring(0, 1).toUpperCase() + word.substring(1, word.length)).join(' '),
-        page
-      };
+  $: items = children
+      .filter((child) => isRoutable(children, child)).map((page) => {
+        let item = {
+          name: page.api.title.split('-').map((word) => word.substring(0, 1).toUpperCase() + word.substring(1, word.length)).join(' '),
+          page,
+          orderedLinks: getOrderedLinksForPage(page, [...orderedLinks])
+        };
 
-      if (!page.isPage) {
-        if ($isActive(page.path)) {
-          item.open = true;
-        } else {
-          item.open = false;
+        if (!page.isPage) {
+          if ($isActive(page.path)) {
+            item.open = true;
+          } else {
+            item.open = false;
+          }
         }
-      }
 
+        return item;
+      });
+  $: pages = items
+    .map((item) => {
+      const index = orderedLinks.findIndex((link) => link.filename === item.page.file.replace('.' + item.page.ext, ''));
+      if (index !== -1) {
+        item.name = orderedLinks[index].title;
+      }
       return item;
+    })
+    .sort((itemA, itemB) => {
+      const indexA = orderedLinks.findIndex((link) => link.filename === itemA.page.file.replace('.' + itemA.page.ext, ''));
+      const indexB = orderedLinks.findIndex((link) => link.filename === itemB.page.file.replace('.' + itemB.page.ext, ''));
+      return indexA - indexB;
     });
-  });
 
   function isRoutable(children, child) {
     return (child.isPage && !children.some((currentChild) => currentChild.path === child.path && currentChild.isDir)) || child.isDir;
@@ -35,9 +48,16 @@
     return child.isPage && child.path == current.path;
   }
 
-
   function toggleGroup(index) {
     pages[index].open = !pages[index].open;
+  }
+
+  function getOrderedLinksForPage(page, orderedLinks) {
+    const index = orderedLinks.findIndex((orderedLink) => orderedLink.filename === page.file.replace('.' + page.ext, ''));
+    if (index !== -1 && Array.isArray(orderedLinks[index + 1])) {
+      return orderedLinks[index + 1];
+    }
+    return [];
   }
 </script>
 
@@ -93,10 +113,6 @@
     cursor: default;
   }
 
-  li.group > div > :global(ul > li > a) {
-    /* padding-left: 0.5rem; */
-  }
-
   li.group > div {
     display: none;
   }
@@ -127,7 +143,7 @@
         <ion-icon name="chevron-down" on:click={() => toggleGroup(index)}></ion-icon>
         <span aria-current={$isActive(item.page.path)} on:click={() => toggleGroup(index)}>{item.name}</span>
         <div>
-          <svelte:self level={level + 1} current={item.page} children={item.page.children} />
+          <svelte:self level={level + 1} current={item.page} children={item.page.children} orderedLinks={item.orderedLinks} />
         </div>
       </li>
     {/if}

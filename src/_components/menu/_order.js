@@ -1,4 +1,4 @@
-export const orderedLinkTitles = [
+export const menuOrder = [
   {
     filename: 'documentation',
     title: 'Documentation'
@@ -10,11 +10,11 @@ export const orderedLinkTitles = [
     },
     [
       {
-        filename: 'overview',
+        filename: 'about-nymea',
         title: 'About nymea'
       },
       {
-        filename: 'nymeainaction',
+        filename: 'nymea-in-action',
         title: 'Nymea in action'
       },
       {
@@ -32,6 +32,10 @@ export const orderedLinkTitles = [
       {
         filename: 'roadmap',
         title: 'Roadmap'
+      },
+      {
+        filename: 'changelog',
+        title: 'Changelog'
       },
       {
         filename: 'faq',
@@ -58,11 +62,11 @@ export const orderedLinkTitles = [
         },
         {
           filename: 'core',
-          title: 'Nymea Core'
+          title: 'nymea:core'
         },
         {
           filename: 'app',
-          title: 'Nymea App'
+          title: 'nymea:app'
         }
       ],
       {
@@ -110,7 +114,7 @@ export const orderedLinkTitles = [
         title: 'Building nymea'
       },
       {
-        filename: 'qtcreator',
+        filename: 'developing-with-qt-creator',
         title: 'Developing with QtCreator'
       },
       {
@@ -125,6 +129,10 @@ export const orderedLinkTitles = [
         {
           filename: 'getting-started-integration',
           title: 'Getting started'
+        },
+        {
+          filename: 'plugin-wizard',
+          title: 'Plugin wizard'
         },
         {
           filename: 'thing-setup',
@@ -173,12 +181,12 @@ export const orderedLinkTitles = [
       },
       [
         {
-          filename: 'clientdevelopment',
+          filename: 'client-development',
           title: 'Introduction'
         },
         {
-          filename: 'jsonrpc',
-          title: 'JSONRPC'
+          filename: 'json-rpc',
+          title: 'JSON-RPC'
         },
         {
           filename: 'nymea-app-lib',
