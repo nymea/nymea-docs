@@ -94,12 +94,15 @@ select {
   --silver-base: hsl(0, 0%, 98%);
   --silver-transparent-base: hsla(0, 0%, 98%, 0.9);
   --silver-darken-10: hsl(0, 0%, 94%);
+  --silver-darken-20: hsl(0, 0%, 88%);
 
   --grey-base: hsl(0, 0%, 40%);
   --grey-darken-10: hsl(0, 0%, 30%);
   --grey-darken-20: hsl(0, 0%, 20%);
   --grey-darken-30: hsl(0, 0%, 15%);
   --grey-darken-40: hsl(0, 0%, 10%);
+
+  --green-base: hsl(127, 27%, 70%);
 
   --text-color: var(--grey-darken-40);
 

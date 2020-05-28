@@ -6,8 +6,19 @@
 </script>
 
 <style>
+  #introduction {
+    background-color: var(--silver-base);
+    /* background: linear-gradient(to bottom, var(--silver-base), var(--silver-base) 60%, var(--white)); */
+    /* height: calc(100vh - var(--header-height)); */
+  }
+
   #introduction header p {
     margin-bottom: var(--space-09);
+  }
+
+  #for-whom {
+    /* background: linear-gradient(170deg, var(--silver-base), var(--white)); */
+    margin-top: 0;
   }
 
   /* .box {
@@ -30,7 +41,13 @@
   } */
 
   .box {
+    /* box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
+                0 2px 4px rgba(0,0,0,0.07), 
+                0 4px 8px rgba(0,0,0,0.07);
+    border-radius: 5px;
+    height: 100%; */
     margin-bottom: 3rem;
+    /* padding: 3rem; */
   }
 
   .box header {
@@ -93,7 +110,13 @@
 
   section {
     border-bottom: 1px solid #efefef;
-    padding: var(--space-09) 0 var(--space-10);
+    /* padding: var(--space-09) 0 var(--space-10); */
+    /* padding: var(--space-10) 0; */
+    padding: 6rem 0 7.5rem;
+  }
+
+  section:last-child {
+    border-bottom: 0;
   }
 
   section h2,
@@ -103,7 +126,7 @@
 
   #introduction h1 {
     color: var(--grey-base);
-    font-size: 2.25rem;
+    font-size: 3rem;
     font-weight: 400;
     letter-spacing: -0.025em;
     line-height: 5rem;
@@ -115,6 +138,12 @@
     line-height: 5rem;
     overflow: hidden;
   }
+
+  /* #for-whom ion-icon {
+    font-size: 2rem;
+    line-height: 3rem;
+    margin-bottom: 1.5rem;
+  } */
 
   #what-2 h6 {
     color: var(--grey-base);
@@ -228,6 +257,11 @@
 <section id="for-whom">
   <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
+      <!-- <Col span={{'xs': 1}} right>
+        <ion-icon name="people"></ion-icon>
+      </Col>
+      <Col span={{'xs': 11, 'sm': 3}}> -->
+      <!-- <Col span={{'xs': 12, 'sm': 3}}> -->
       <Col span={{'xs': 12, 'sm': 4}}>
         <div class="box">
           <header>
@@ -238,6 +272,11 @@
           <p>Nymea gets you up and running with your smart home setup in no time. Just install nymea core and nymea:app and you're all set with a powerful smart home solution that does not require powerful hardware or fiddling with cryptic configuration files. Using 100% free and open source software.</p>
         </div>
       </Col>
+      <!-- <Col span={{'xs': 1}} right>
+        <ion-icon name="code-slash"></ion-icon>
+      </Col>
+      <Col span={{'xs': 11, 'sm': 3}}> -->
+      <!-- <Col offset={{'xs': 0, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1.5}} span={{'xs': 12, 'sm': 3, 'md': 3, 'lg': 3, 'xl': 3}}> -->
       <Col span={{'xs': 12, 'sm': 4}}>
         <div class="box">
           <header>
@@ -248,6 +287,11 @@
           <p>When you're building your own IoT device, nymea will help with all the software efforts. Whether it's connecting your device to others, adding easy set-up features, creating smart hubs for for all your devices or adding control and setup frontends, nymea's got your back.</p>
         </div>
       </Col>
+      <!-- <Col span={{'xs': 1}} right>
+        <ion-icon name="rocket"></ion-icon>
+      </Col>
+      <Col span={{'xs': 11, 'sm': 3}}> -->
+      <!-- <Col offset={{'xs': 0, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1.5}} span={{'xs': 12, 'sm': 3, 'md': 3, 'lg': 3, 'xl': 3}}> -->
       <Col span={{'xs': 12, 'sm': 4}}>
         <div class="box">
           <header>
@@ -262,17 +306,17 @@
   </Grid>
 </section>
 
-<section id="what-2" class="viewsection">
+<!-- <section id="what-2" class="viewsection">
   <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col span={{'xs': 12, 'sm': 8}}>
         <h2>Built for connected devices</h2>
         <p>Connect lighting, media, heating, irrigations and sprinklers, garage doors, alarm systems and many more to a centralized, local and privacy focused control center with nymea. Or build your device running nymea to connect and integrate with other solutions, such as Alexa or Google Home.</p>
-      </Col>
+      </Col> -->
       <!-- <Col>
         <img src="img/nymea-integrations.png">
       </Col> -->
-    </Row>
+    <!-- </Row>
     <Row>
       <Col>
         <h6>Edge</h6>
@@ -318,20 +362,20 @@
       </Col>
     </Row>
   </Grid>
-</section>
+</section> -->
 
-<section id="how">
+<!-- <section id="how">
   <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col span={{'xs': 12, 'sm': 8}}>
         <h2>Nymea Software Stack</h2>
         <p>Simple, yet powerful.</p>
         <p>The nymea core stack is written in C++ and Qt. This results in low hardware requirements and high performance. To ease and speed up development time, individual integrations and automation behaviours can be added with JavaScript.</p>
-      </Col>
+      </Col> -->
       <!-- <Col>
         <img src="img/Software.svg">
       </Col> -->
-    </Row>
+    <!-- </Row>
     <Row>
       <Col>
         <div>
@@ -394,7 +438,7 @@
       </Col>
     </Row>
   </Grid>
-</section>
+</section> -->
 
 <section id="why">
   <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
@@ -411,7 +455,7 @@
   </Grid>
 </section>
 
-<section id="showcases">
+<!-- <section id="showcases">
   <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
@@ -419,4 +463,4 @@
       </Col>
     </Row>
   </Grid>
-</section>
+</section> -->

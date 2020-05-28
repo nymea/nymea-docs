@@ -8,7 +8,7 @@
 <style>
   section {
     border-bottom: 1px solid #efefef;
-    padding: var(--space-09) 0 var(--space-10);
+    padding: var(--space-10) 0;
   }
 
   section h2 {
@@ -39,9 +39,13 @@
       line-height: 2rem;
     }
   }
+
+  #introduction {
+    background-color: var(--silver-base);
+  }
 </style>
 
-<section>
+<section id="introduction">
   <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col middle span={{'xs': 12, 'md': 8}}>

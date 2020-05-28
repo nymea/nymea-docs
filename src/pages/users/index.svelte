@@ -77,7 +77,8 @@
 
   section {
     border-bottom: 1px solid #efefef;
-    padding: var(--space-09) 0 var(--space-10);
+    /* padding: var(--space-09) 0 var(--space-10); */
+    padding: var(--space-10) 0;
   }
 
   section h2,
@@ -108,6 +109,10 @@
       font-size: 1.5rem;
       line-height: 2rem;
     }
+  }
+
+  #introduction {
+    background-color: var(--silver-base);
   }
 
   #integrations {
