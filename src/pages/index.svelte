@@ -235,7 +235,7 @@
             <h3>For Users</h3>
             <p>Play</p>
           </header>
-          <p>Nymea gets you up and running with your smart home setup in no time. Just install nymea core and nymea:app and you're all set with a powerful smart home solution that does not require powerful hardware or fiddling with cryptic configuration files. Using 100% free and open source software.</p>
+          <p>nymea gets you up and running with your smart home setup in no time. Just install nymea:core and nymea:app and you're all set with a powerful smart home solution that does not require powerful hardware or fiddling with cryptic configuration files. Using 100% free and open source software.</p>
         </div>
       </Col>
       <Col span={{'xs': 12, 'sm': 4}}>
@@ -326,7 +326,7 @@
       <Col span={{'xs': 12, 'sm': 8}}>
         <h2>Nymea Software Stack</h2>
         <p>Simple, yet powerful.</p>
-        <p>The nymea core stack is written in C++ and Qt. This results in low hardware requirements and high performance. To ease and speed up development time, individual integrations and automation behaviours can be added with JavaScript.</p>
+        <p>The nymea:core stack is written in C++ and Qt. This results in low hardware requirements and high performance. To ease and speed up development time, individual integrations and automation behaviours can be added with JavaScript and Python.</p>
       </Col>
       <!-- <Col>
         <img src="img/Software.svg">
@@ -401,8 +401,7 @@
     <Row>
       <Col span={{'xs': 12, 'sm': 8}}>
         <h2>Affair of the heart</h2>
-        <p>We think that IoT devices, especially inside your home do not have to be cloud connected all the time. Privacy and reliability are our main concerns. With that in mind we build anything we do with a offline-first approach. This results in blazing fast reaction times, full control over personal data and guarantees your product won't be rendered useless if the cloud provider you've been betting on shuts down their service.
-  The nymea Team</p>
+        <p>We think that IoT devices, especially inside your home do not have to be cloud connected all the time. Privacy and reliability are our main concerns. With that in mind we build anything we do with a offline-first approach. This results in blazing fast reaction times, full control over personal data and guarantees your product won't be rendered useless if the cloud provider you've been betting on shuts down their service.</p>
       </Col>
       <Col>
           <ion-icon name="heart"></ion-icon>
