@@ -215,7 +215,7 @@
       <Col span={{'xs': 10, 'md': 12}}>
         <header>
           <h1>nymea</h1>
-          <p>The Open Iot Stack</p>
+          <p>The Open IoT Stack</p>
         </header>
         <Button text="Get started" link="documentation/overview">
           <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
