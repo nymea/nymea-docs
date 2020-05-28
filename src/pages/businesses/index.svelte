@@ -50,8 +50,8 @@
     <Row>
       <Col middle span={{'xs': 12, 'md': 8}}>
         <header>
-          <h1>Be smart.</h1>
-          <p>Build IoT business, not IoT devices.</p>
+          <h1>'Works with'</h1>
+          <p>Interoperability is the key success factor.</p>
         </header>
         <!-- <Button text="Get started" link="documentation/businesses">
           <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
@@ -68,49 +68,11 @@
   <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
-        <h2>What we offer</h2>
-        <p>Nymea GmbH is here to support development of your IoT product with our experience in all phases, from planning to rollout and maintenance. Together with our partners we offer experience in all those fields of the product lifecycle.</p>
-        <ul>
-          <li>Consulting on Hardware/Software evaluation.</li>
-          <li>Adding individual features to your product, like easy setup, integrations to others, remote connection, Alexa/Google integration and many more.</li>
-          <li>Building entire smart home gateways.</li>
-          <li>Apps for nymea based IoT products with your company branding.</li>
-          <li>OTA (Over The Air) Update.</li>
-          <li>Industrial device monitoring.</li>
-        </ul>
-      </Col>
-    </Row>
-    <Row>
-      <Col>
-        <a href="">Let's build somthing great together! TODO: Link to contact form</a>
-      </Col>
-    </Row>
-  </Grid>
-</section>
-
-<section>
-  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
-    <Row>
-      <Col>
         <h2>Save thousands of integration hours</h2>
-        <p>Extend connectivity of your IoT device to virtually anything with nymea. Adding new integrations is easily done via over-the-air updates.</p>
+        <p>Extend connectivity of your IoT device. By installing nymea you make your device compatible to virtually anything.</p>
       </Col>
       <Col>
         <img src="img/nymea-integrations.png" alt="Integrations"/>
-      </Col>
-    </Row>
-  </Grid>
-</section>
-
-
-<section>
-  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
-    <Row>
-      <Col>
-        <p>Nymea is ready to be integrated on a variety of GNU/Linux based devices. Be it Yocto, Ubuntu Core, Debian or anything else, we've got the experience in delivering the nymea stack to your platform of choice.</p>
-      </Col>
-      <Col>
-        <img src="img/distributions.svg" alt="Distributions"/>
       </Col>
     </Row>
   </Grid>
@@ -135,8 +97,45 @@
   <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
+        <h2>What we offer</h2>
+        <p>Nymea GmbH is here to support development of your IoT product with our experience in all phases, from planning to rollout and maintenance. Together with our partners we offer experience in all those fields of the product lifecycle.</p>
+        <ul>
+          <li>Adding individual features to your product, like easy setup, platform integrations, 3rd party interoperability, remote connection, Alexa/Google integration and many more.</li>
+          <li>Embedding an entire smart home gateway into your product.</li>
+          <li>Hardware/Software evaluation.</li>
+          <li>Apps for nymea based IoT products with your company branding.</li>
+          <li>OTA (Over The Air) Updates.</li>
+          <li>Added value services.</li>
+        </ul>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+        <a href="">Let's build somthing great together! TODO: Link to contact form</a>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<section>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
+    <Row>
+      <Col>
+        <p>Nymea is ready to be integrated on a variety of GNU/Linux based devices. Be it Yocto, Ubuntu Core, Debian or anything else, we've got the experience in delivering the nymea stack to the OS of your choice.</p>
+      </Col>
+      <Col>
+        <img src="img/distributions.svg" alt="Distributions"/>
+      </Col>
+    </Row>
+  </Grid>
+</section>
+
+<section>
+  <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
+    <Row>
+      <Col>
         <h2>Also need hardware?</h2>
-        <p>Together with our partners we have developed embedded devices ready to base your IoT product on.</p>
+        <p>Together with our partners we can deliver well maintained plug-n-play modules that basically eliminate all the development risks.</p>
       </Col>
       <Col>
         <img src="img/HW-SW-modules.png" alt="HW"/>

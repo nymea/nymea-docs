@@ -244,7 +244,7 @@
       <Col span={{'xs': 10, 'md': 12}}>
         <header>
           <h1>nymea</h1>
-          <p>The Open Iot Stack</p>
+          <p>The Open IoT Stack</p>
         </header>
         <Button text="Get started" link="documentation/overview">
           <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
@@ -269,7 +269,7 @@
             <h3>For Users</h3>
             <p>Play</p>
           </header>
-          <p>Nymea gets you up and running with your smart home setup in no time. Just install nymea core and nymea:app and you're all set with a powerful smart home solution that does not require powerful hardware or fiddling with cryptic configuration files. Using 100% free and open source software.</p>
+          <p>nymea gets you up and running with your smart home setup in no time. Just install nymea:core and nymea:app and you're all set with a powerful smart home solution that does not require powerful hardware or fiddling with cryptic configuration files. Using 100% free and open source software.</p>
         </div>
       </Col>
       <!-- <Col span={{'xs': 1}} right>
@@ -445,8 +445,7 @@
     <Row>
       <Col span={{'xs': 12, 'sm': 8}}>
         <h2>Affair of the heart</h2>
-        <p>We think that IoT devices, especially inside your home do not have to be cloud connected all the time. Privacy and reliability are our main concerns. With that in mind we build anything we do with a offline-first approach. This results in blazing fast reaction times, full control over personal data and guarantees your product won't be rendered useless if the cloud provider you've been betting on shuts down their service.
-  The nymea Team</p>
+        <p>We think that IoT devices, especially inside your home do not have to be cloud connected all the time. Privacy and reliability are our main concerns. With that in mind we build anything we do with a offline-first approach. This results in blazing fast reaction times, full control over personal data and guarantees your product won't be rendered useless if the cloud provider you've been betting on shuts down their service.</p>
       </Col>
       <Col>
           <ion-icon name="heart"></ion-icon>

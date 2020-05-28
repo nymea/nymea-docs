@@ -86,13 +86,13 @@
     margin-bottom: var(--space-07);
   }
 
-  header h1 {
+  #introduction header h1 {
     font-size: 4rem;
     line-height: 4.5rem;
     margin-bottom: var(--space-04);
   }
 
-  header p {
+  #introduction header p {
     color: var(--grey-base);
     font-size: 1.25rem;
     line-height: 1.5rem;
@@ -100,12 +100,12 @@
   }
 
   @media only screen and (min-width: 48em) {
-    header h1 {
+    #introduction header h1 {
       font-size: 4.5rem;
       line-height: 6rem;
     }
 
-    header p {
+    #introduction header p {
       font-size: 1.5rem;
       line-height: 2rem;
     }
@@ -196,8 +196,8 @@
         <div class="box">
           <header>
             <ion-icon name="body"></ion-icon>
-            <h3>Easy but powerful</h3>
-            <p>...</p>
+            <h3>Focused on usability</h3>
+            <p>Never touch a console again</p>
           </header>
           <p>Nymea does not require editing cryptic configuration files, it can be configured and controlled entirely using your Smartphone or PC.</p>
         </div>
@@ -206,8 +206,8 @@
         <div class="box">
           <header>
             <ion-icon name="shield-checkmark"></ion-icon>
-            <h3>Local-first approach</h3>
-            <p>...</p>
+            <h3>Local-first</h3>
+            <p>Keep in control of your data</p>
           </header>
           <p>Nymea ensures that your data is kept where it belongs, locally in your home. Besides the privacy advantage, this also keeps you independent from cloud vendors, and doesn't require an always-on internet connection.</p>
         </div>
@@ -217,7 +217,7 @@
           <header>
             <ion-icon src="img/open-source-initiative.svg"></ion-icon>
             <h3>Free and Open Source</h3>
-            <p>...</p>
+            <p>Transparent functionality</p>
           </header>
           <p>Nymea is comitted to open source software. Anything we do can be inspected, tuned and shared by our community.</p>
         </div>
@@ -341,7 +341,7 @@
     </Row>
     <Row>
       <Col center>
-        <p>Check out all the installation options in the <a href="documentation/users/installation/gettingstarted">installation documentation</a>.</p>
+        <p>Check out all the installation options in the <a href="documentation/users/installation/core">installation documentation</a>.</p>
       </Col>
     </Row>
   </Grid>

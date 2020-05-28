@@ -69,7 +69,7 @@
     <Row>
       <Col middle>
         <h2>Easy, slick and flexible.</h2>
-        <p>With nymea you pick what you need. Be it connecting things or adding APIs or frontends to your home brew things Be it writing low level device integrations or scripting fancy behaviors. Be it a full smart home solution just setting up an MQTT broker that can send push notifications. You imagine it, nymea helps building it.</p>
+        <p>With nymea you pick what you need. Be it connecting things, APIs or frontends to your home brew things. Be it writing low level device integrations or scripting fancy behaviors. Be it a full smart home solution or just setting up an MQTT broker that can send push notifications. You imagine it, nymea helps building it.</p>
       </Col>
       <Col>
         <img src="img/bricks.png" alt="Building blocks"/>
