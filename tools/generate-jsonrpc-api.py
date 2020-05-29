@@ -105,6 +105,13 @@ def generate_markdown_list(list):
 def generate_js(version, api):
   ret = api
   ret["version"] = version
+  # Need to escape newlines in descriptions
+  for method in api["methods"].keys():
+    description = api["methods"][method]["description"]
+    ret["methods"][method]["description"] = description.replace("\n", "\\n")
+  for notification in api["notifications"].keys():
+    description = api["notifications"][notification]["description"]
+    ret["notifications"][notification]["description"] = description.replace("\n", "\\n")
   return ret
 
 config = Utils.read_json("jsonrpc-api-config.json")

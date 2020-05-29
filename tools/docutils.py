@@ -17,8 +17,8 @@ def clone_repo(target):
 
 
 def read_json(file):
-  with open(file) as configFile:
-    data = json.load(configFile)
+  with open(file) as jsonFile:
+    data = json.load(jsonFile)
     return data
 
 def read_text(file):
