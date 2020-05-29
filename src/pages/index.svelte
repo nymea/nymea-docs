@@ -3,6 +3,7 @@
   import Grid from '../_components/grid/Grid.svelte';
   import Row from '../_components/grid/Row.svelte';
   import Button from '../_components/base/Button.svelte';
+  import Logo from '../_components/Logo.svelte';
 </script>
 
 <style>
@@ -10,6 +11,10 @@
     background-color: var(--silver-base);
     /* background: linear-gradient(to bottom, var(--silver-base), var(--silver-base) 60%, var(--white)); */
     /* height: calc(100vh - var(--header-height)); */
+  }
+
+  #introduction header > :global(a) {
+    margin: 1.5rem 0 1rem;
   }
 
   #introduction header p {
@@ -244,6 +249,7 @@
       <Col span={{'xs': 10, 'md': 12}}>
         <header>
           <h1>nymea</h1>
+          <!-- <Logo height="2rem" text="true" /> -->
           <p>The Open IoT Stack</p>
         </header>
         <Button text="Get started" link="documentation/overview">
