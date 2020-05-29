@@ -284,7 +284,7 @@
             <h3>For Developers</h3>
             <p>Create</p>
           </header>
-          <p>When you're building your own IoT device, nymea will help with all the software efforts. Whether it's connecting your device to others, adding easy set-up features, creating smart hubs for for all your devices or adding control and setup frontends, nymea's got your back.</p>
+          <p>When you're building your own IoT device, nymea will help with all the software efforts. Whether it's connecting your device to others, adding easy set-up features, creating smart hubs for all your devices or adding control and setup frontends, nymea's got your back.</p>
         </div>
       </Col>
       <!-- <Col span={{'xs': 1}} right>
@@ -299,7 +299,7 @@
             <h3>For Businesses</h3>
             <p>Build</p>
           </header>
-          <p>Building IoT enabled customer grade products can be hard. We've ramped up with all the required know-how and with the nymea stack we'll be supporting your business. Whether it's fast prototyping and consulting, providing needed components, building entire products or caring for deployments and updates.<!-- Together with our partners we offer in-field experience for all of those aspects. --></p>
+          <p>Building IoT enabled customer grade products can be hard. We've ramped up with all the required know-how and with the nymea stack we'll be supporting your business. Whether it's fast prototyping and consulting, providing necessary components, building entire products or caring for deployments and updates.<!-- Together with our partners we offer in-field experience for all of those aspects. --></p>
         </div>
       </Col>
     </Row>
@@ -445,7 +445,7 @@
     <Row>
       <Col span={{'xs': 12, 'sm': 8}}>
         <h2>Affair of the heart</h2>
-        <p>We think that IoT devices, especially inside your home do not have to be cloud connected all the time. Privacy and reliability are our main concerns. With that in mind we build anything we do with a offline-first approach. This results in blazing fast reaction times, full control over personal data and guarantees your product won't be rendered useless if the cloud provider you've been betting on shuts down their service.</p>
+        <p>We think that IoT devices, especially inside your home, do not have to be cloud connected all the time. Privacy and reliability are our main concerns. With that in mind we build everything with an offline-first approach. This results in blazing fast reaction times, full control over personal data and guarantees your product won't be rendered useless if the cloud provider you've been betting on shuts down their service.</p>
       </Col>
       <Col>
           <ion-icon name="heart"></ion-icon>
