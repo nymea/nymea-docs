@@ -69,7 +69,7 @@
     <Row>
       <Col middle>
         <h2>Easy, slick and flexible.</h2>
-        <p>With nymea you pick what you need. Be it connecting things, APIs or frontends to your home brew things. Be it writing low level device integrations or scripting fancy behaviors. Be it a full smart home solution or just setting up an MQTT broker that can send push notifications. You imagine it, nymea helps building it.</p>
+        <p>With nymea you pick what you need. Be it connecting things, APIs or frontends to your home-brew things. Be it writing low level device integrations or scripting fancy behaviors. Be it a full smart home solution or just setting up an MQTT broker that can send push notifications. You imagine it, nymea helps building it.</p>
       </Col>
       <Col>
         <img src="img/bricks.png" alt="Building blocks"/>
@@ -132,7 +132,7 @@
     <Row>
       <Col>
         <h2>Headless setups</h2>
-        <p>When building any device, there's always the one question coming up. How would the user connect it to the network? nymeas networkmanagement APIs solve that issue by providing a Bluetooth-To-WiFi setup, ready to be installed on any Linux based device and with a client already deployed on app stores.</p>
+        <p>When building any device, there's always the one question coming up. How would the user connect it to the network? nymeas network management APIs solve that issue by providing a Bluetooth-To-WiFi setup, ready to be installed on any Linux based device and with a client already deployed on app stores.</p>
       </Col>
       <Col>
         <img src="img/berrylan.gif" style="background: url(img/device-frame-iphone-6-8.svg) no-repeat top center; background-size:contain;" alt="Bt-Wireless setup"/>
@@ -146,7 +146,7 @@
     <Row>
       <Col>
         <h2>Nymea is a communication talent</h2>
-        <p>IoT often requires to interact with low level hardware like I2C, GPIO, One-Wire or connecting to networking protocols like COAP, ZigBee, Bluetooth and more. nymea believes that none of these should be reinvented all the time and abstracts the hard and boring bits like threading, parsing and memory management away from the developer to allow focusing on the actual use case.</p>
+        <p>IoT often requires to interact with low level hardware like I2C, GPIO, One-Wire or connecting to networking protocols like COAP, ZigBee, Bluetooth and more. nymea believes that none of these should be reinvented all the time and abstracts the hard and boring bits like threading, parsing and memory management away from the developer allowing them to focusing on the actual use case.</p>
       </Col>
       <Col>
         <img src="img/nymea-integrations.png" alt="Integrations"/>
@@ -160,7 +160,7 @@
     <Row>
       <Col>
         <h2>Servers, intergrated</h2>
-        <p>MQTT broker made easy. Take the nymea image, boot it up, and have your MQTT server running. With nymea:app ready to configure users and permissions.<br>
+        <p>MQTT broker made easy. Take the nymea image, boot it up, and have your MQTT server running. With nymea:app it is ready to configure users and permissions.<br>
         Need an on-device webserver without wanting to edit config files? Just enable it in the nymea settings and be done with it.</p>
       </Col>
     </Row>

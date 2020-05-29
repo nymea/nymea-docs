@@ -117,7 +117,7 @@
       <Col middle center>
         <h2>The worlds smallest footprint</h2>
         <p>A powerful, yet lean addon for your device firmware.</p>
-        <p>nymea does not require a power horse, it's perfectly fine with low cost modules as long as GNU/Linux is available for them.</p>
+        <p>nymea does not require a power house, it's perfectly fine with low cost modules as long as GNU/Linux is available for them.</p>
       </Col>
       <Col>
         <img src="img/nymea_vs_java_footprint.png" alt="Footprint"/>
