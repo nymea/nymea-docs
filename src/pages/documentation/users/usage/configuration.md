@@ -37,7 +37,7 @@ Tapping the "Change password" field allows to change the current password.
 
 #### Devices/Apps accessing nymea:core
 
-This list holds all the clients that have successfully authenticated to this nymea system. If a device has ben stolen or lost, the authentication token can be removed here and with that this particular device will be locked out of the system and needs to authenticate again before accessing the system. Swipe of longpress an entry to reveal the delete button.
+This list holds all the clients that have successfully authenticated to this nymea system. If a device has been stolen or lost, the authentication token can be removed here and with that this particular device will be locked out of the system and needs to authenticate again before accessing the system. Swipe or longpress an entry to reveal the delete button.
 
 ### Network settings
 
@@ -45,9 +45,7 @@ The networking section allows to configure network connectivity of the nymea:cor
 
 > Warning: Using wrong configuration settings might prevent clients to connect to the nymea:core system
 
-For advance nymea setups with lots of connected things, it is recommended to use a wired network for performance reasons. However, for the most common use cases, using a wireless connection works fine as well.
-
-When using hardware with wired and wireless network available, such as a Raspberry Pi 3 or 4, a good choice is to connect nymea to the local network using a cable and at the same time use the wireless interface to host an access point which can be used to directly connect wireless IoT devices to the nymea system without.
+When using hardware with wired and wireless network available, such as a Raspberry Pi 3 or 4, a good choice is to connect nymea to the local network using a cable and at the same time use the wireless interface to host an access point which can be used to directly connect wireless IoT devices to the nymea system without having them part of your private network.
 
 ![](/img/configuration/system-settings-networking.png)
 
@@ -71,7 +69,7 @@ Using the cloud connection, a user can connect from anywhere to the nymea:core w
 
 ![](/img/configuration/system-settings-cloud.png)
 
-Note that in order to access a nymea:core system through the cloud, nymea:app needds to be signed into nymea:cloud too and the box needs to be paired with a cloud username. If nymea:core and nymea:app are connected to nymea:cloud the pairing will happen automatically when the two are connected locally in the same network first. Once this happened, the remote connection for this user and core system will be activated.
+Note that in order to access a nymea:core system through the cloud, nymea:app needs to be signed into nymea:cloud too and the box needs to be paired with a cloud username. If nymea:core and nymea:app are connected to nymea:cloud the pairing will happen automatically when the two are connected locally in the same network first. Once this happens, the remote connection for this user and core system will be activated.
 
 ### Connection interfaces
 
@@ -81,7 +79,7 @@ The connection interfaces section allows to configure on which ports the clients
 
 By default, a nymea:core system can be connected to via a TCP socket on port 2222 and a WebSocket on port 4444. For usage with nymea:app, any of them work equally. Due to the overhead that comes with WebSocket compared to a TCP socket, the TCP socket would perform slightly better. When using different clients than nymea:app, for example a self made script, it might be easier to connect using a WebSocket as that is a well supported technology in web browsers.
 
-This section also allows to configure the usage of SSL encryption per connection interface. It is strongly adviced to keep both, SSL encryption and authentication enabled. However, when using clients that do not support SSL encryption it can be disabled here. Each interface can be configured to listen to only localhost connections (useful for e.g. scripts or nymea-cli on the nymea:core system), to any network interface or only to a particular network interface.
+This section also allows to configure the usage of SSL encryption per connection interface. It is strongly advised to keep both, SSL encryption and authentication enabled. However, when using clients that do not support SSL encryption it can be disabled here. Each interface can be configured to listen to only localhost connections (useful for e.g. scripts or nymea-cli on the nymea:core system), to any network interface or only to a particular network interface.
 
 Swipe an entry to the left or longpress on it to revleal the remove button and disable it.
 

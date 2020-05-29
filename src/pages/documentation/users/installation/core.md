@@ -9,7 +9,7 @@ packaged builds for Ubuntu and Debian, as well as a distribution independent sna
 
 ## Raspberry Pi
 
-The recommended way to install nymea on a Raspberry Pi is to use nymea's prebuild images for the Raspberry Pi. However, if you already have
+The recommended way to install nymea on a Raspberry Pi is to use nymea's prebuilt images for the Raspberry Pi. However, if you already have
 a Raspberry Pi set up, nymea can be installed on top of that without the need of reflashing the entire SD Card.
 
 ![](/img/touch-screen-and-pi-love.png)

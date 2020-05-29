@@ -54,7 +54,7 @@ nymea is developed on GitHub. For code contributions, please file a pull request
 Please understand that in order to accept your contribution, we’re legally required to have a signed 
 agreement with everyone who puts effort in the development. It’s the easiest way for you to give us permission 
 to use your contributions. Technically, with this agreement, you’re giving us a licence, but you still own 
-the copyright — so you still have the right to reiuse your code for any other purpose you want.
+the copyright — so you still have the right to reuse your code for any other purpose you want.
 
 
 All nymea code repositories can be found on [github](https://github.com/nymea).
