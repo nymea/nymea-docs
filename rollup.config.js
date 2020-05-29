@@ -33,6 +33,7 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
         targets: [
           { src: staticDir + '/**/!(__index.html)', dest: distDir },
           { src: `${staticDir}/__index.html`, dest: distDir, rename: '__app.html', transform },
+          { src: '.htaccess', dest: distDir },
         ], copyOnce: true
       }),
       svelte({
