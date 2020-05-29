@@ -54,4 +54,4 @@ interfaces = load_interfaces(os.path.join(config["srcdir"], "nymea/libnymea/inte
 markdown = build_markdown(interfaces)
 replacements = {}
 replacements[config["keyword"]] = markdown
-Utils.generate_output_md(targets, replacements)
+Utils.generate_output_file(targets, replacements)

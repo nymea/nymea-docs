@@ -2,3 +2,4 @@
 
 ./generate-interfaces-list.py
 ./generate-plugins-list.py
+./generate-jsonrpc-api.py

@@ -101,14 +101,26 @@ def generate_markdown_list(list):
   ret += "\n"
   return ret
 
+
+def generate_js(version, api):
+  ret = api
+  ret["version"] = version
+  return ret
+
 config = Utils.read_json("jsonrpc-api-config.json")
 Utils.clone_repo(config["srcdir"])
-targets = Utils.find_targets(config["keyword"], config["outputdir"])
-targets.extend(Utils.find_targets(config["inputtypes_keyword"], config["outputdir"]))
-targets.extend(Utils.find_targets(config["units_keyword"], config["outputdir"]))
+
+targets = []
+
+# Generate md stuff
+targets.extend(Utils.find_targets(config["inputtypes_md_keyword"], config["outputdir"]))
+targets.extend(Utils.find_targets(config["units_md_keyword"], config["outputdir"]))
 print("Files to modify: %s" % targets)
+
 version, api = load_api(os.path.join(config["srcdir"], "nymea"))
-markdown_api = generate_markdown(version, api)
+
+# Not used atm... if we ever want to generate the API in markdown again...
+#markdown_api = generate_markdown(version, api)
 
 inputtypes = api["enums"]["InputType"]
 markdown_inputtypes = generate_markdown_list(inputtypes)
@@ -118,8 +130,19 @@ markdown_units = generate_markdown_list(units)
 
 
 replacements = {}
-replacements[config["keyword"]] = markdown_api
-replacements[config["inputtypes_keyword"]] = markdown_inputtypes
-replacements[config["units_keyword"]] = markdown_units
+#replacements[config["keyword"]] = markdown_api
+replacements[config["inputtypes_md_keyword"]] = markdown_inputtypes
+replacements[config["units_md_keyword"]] = markdown_units
 
-Utils.generate_output_md(targets, replacements)
+Utils.generate_output_file(targets, replacements)
+
+
+# Generate js stuff
+targets = Utils.find_targets(config["api_js_keyword"], config["outputdir"])
+js = generate_js(version, api)
+
+replacements = {}
+replacements[config["api_js_keyword"]] = json.dumps(js, indent=2)
+
+Utils.generate_output_file(targets, replacements)
+
