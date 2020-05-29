@@ -3,23 +3,23 @@ id: overview
 title: About nymea
 ---
 
-The main purpose of nymea is to provide a collection of tools, libraries and services to connect devices and online services between each other or build connected devices.
-Nymea can be used to solve specific small problems for IoT based use cases as well as building a fully featured smart home platform. It is open source and privacy focused. Given nymea follows a local-first approach, everything can be done without cloud connection and all data is kept in the local network.
+The main purpose of nymea is to provide a collection of tools, libraries and services to build fully connected devices. Nymea provides solutions that scale from highly specific IoT use cases to fully featured smart home platforms, including cloud connectivity.
+
+Given nymea follows a local-first approach, everything can be done without cloud connection and all data is kept in the local network.
 
 ## nymea structure
 
-nymea consists of three parts: nymea:core, nymea:ux and nymea:cloud.
+Nymea consists of three parts: nymea:core, nymea:app and nymea:cloud.
 
 
 ![](/img/nymea-overview.svg)
 
 ### nymea:core
 
-nymea:core is the core piece of the platform. It refers to the services and libraries used to build the edge device where the main software is the nymea daemon or nymead. It can run on Linux powered 
-devices like on a Raspberry Pi:
+nymea:core is the core piece of the platform. It refers to the services and libraries used to build the edge or bridge device where the main software is the nymea daemon or nymead. It can run on any Linux powered device:
 
   * A typical smart home setup for instance would run a nymea:core on a Raspberry Pi in a home network and talk to IoT devices in the home via WiFi, Bluetooth, ZigBee etc.
-  * A smart hot tub for instance would run nymea:core in a embedded device in the Hot Tub (e.g. a Beaglebone Black, or a Raspberry Pi) and control the hot tup through GPIOs.
+  * A smart hot tub for instance would run nymea:core in a embedded device in the Hot Tub (e.g. a Beaglebone Black, a Raspberry Pi or any other SoC running Linux) and control the hot tup through GPIOs.
 
 ### nymea:ux
 
