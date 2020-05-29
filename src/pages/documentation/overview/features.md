@@ -7,12 +7,15 @@ title: Features
 
 ### nymea:core platform support
 
-* Ubuntu Core (Snappy)
-    * Vendor can control updates to the users for improved reliability and predictability
-* Debian/Ubuntu based systems (e.g. Raspberry Pi, BeagleBone black)
+* Prebuild repositories for classic Debian/Ubuntu based systems (e.g. Raspberry Pi, BeagleBone black, PC)
     * Recommended for community edition (tinkerers) and developer workstations
-* Yocto
+* Ubuntu Core (Snappy)
+* Mender.io distribution server
     * Recommended for products
+* Yocto meta layers
+    * Recommended for products
+* Source buildable on any linux based system
+    
 
 ### nymea:app platform support
 
@@ -23,7 +26,7 @@ title: Features
       *   Windows
       *   macOS
       *   Linux Desktop
-      *   Ubuntu Phone
+      *   Ubuntu Phone (UBPorts)
 *   Other proven setups (experimental/tech previews)
       *   Kiosk: Native application suited for wall-mounted panels, kiosks and similar.
 
@@ -31,7 +34,7 @@ title: Features
 
 * Remote connection
 * Push-notifications
-    * Available on Android and iOS
+    * Available on Android, iOS and UBPorts
 * Alexa, Google Assistant, IFTTT coming soon ...
 * IoT device services
     * Integrated webserver
@@ -55,20 +58,20 @@ title: Features
 *  API available on interfaces
     * TCP/JSONRPC
     * WebSockets/JSONRPC
-* Encryption
-        * Plaintext connection supported
+* Encryption modes
     * SSL: Every channel supports encryption and host verification using SSL
+    * Unencrypted: Encryption can be disabled if desired, not recommended
 * Authentication modes
     * No authentication: nymea can be configured to be openly available in the local network
     * User/Password: Username and password authentication can be enabled
     * Push-Button: For better user experience clients can authenticate via PushButton (Hardware support required)
 * Remote connection
-    * nymea:core accessible from anywhere with end-user friendly setup powered by nymea:cloud.
-    * No Port forwarding setup in firewall required.
+    * nymea:core accessible from anywhere with end-user friendly setup powered by nymea:cloud
+    * No Port forwarding setup in firewall required
 
-### Supported device categories
+### Supported device/service categories
 
-* Extended support for known device classes
+* Extended support for known device/service classes
     * Access control (fingerprint readers, keycards etc)
     * Awnings, blinds, shutters
     * Battery powered devices (support for battery alert states)
@@ -82,6 +85,7 @@ title: Features
     * Alerts/notifications (send alerts e.g. low battery, intruder detection)
     * Weather services
     * Operating system (allows nymea controlling the system it runs on e.g. trigger updates)
+    * many more...
     * Any other device/service can be integrated with flexible and generic states/events/actions
 
 ### Rules

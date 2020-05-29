@@ -5,21 +5,19 @@ title: Smart rules
 
 ## Rule engine
 
-Rules can be used to add smart behavior to a nymea setup by simply composing the behavior in the app. Basically, rules are definitions of what should happen
-when a condition is met or when an event happens in the system. Whenever a condition described in the rule is met, a set of actions are executed.
+Rules can be used to add smart behavior to a nymea setup by simply composing the behavior in the app. Basically, rules are definitions of what should happen when a condition is met or when an event happens in the system. Whenever a condition described in the rule is met, a set of actions are executed.
 
 In order to add rules, enter the "Magic" page in nymea:app and and press the `+` button on the upper right.
 
 ## Event based rules
 
-Event based rules contain either one or more event descriptions. They are evaluated every time one of the contained event descriptions match an event happening
-in the system. Such rules may still evaluate other states in the system before executing any actions.
+Event based rules contain either one or more event descriptions. They are evaluated every time one of the contained event descriptions match an event happening in the system. Such rules may still evaluate other states in the system before executing any actions.
 
 ### Examples
 
 * Turning on a light when a button is pressed
   
-  This the simplest form of a rule. It rule will be avaluated every time when the Hue smart button is pressed. Given it does not have any conditions defined, it will immediately advance to the actions to be executed. In this example that would turn on the living room light.
+  This the simplest form of a rule. The rule will be evaluated every time the Hue smart button is pressed. Given it does not have any conditions defined, it will immediately advance to the actions to be executed. In this example that would turn on the living room light.
   
   ![](/img/rules/rules1.png)
   
@@ -31,9 +29,7 @@ in the system. Such rules may still evaluate other states in the system before e
   
   ![](/img/rules/rules2.png)
   
-  This rule would be evaluated whenever the Hue smart button is pressed. The evaluation would check whether the living room light is off (Power = False). If so, it would trigger
-  the action that would turn the living room light on. If the condition evaluates is not met (e.g. living room power is True), it would instead execute the alternative action
-  set which would turn the light off.
+  This rule would be evaluated whenever the Hue smart button is pressed. The evaluation would check whether the living room light is off (Power = False). If so, it would trigger the action that would turn the living room light on. If the condition evaluates is not met (e.g. living room power is True), it would instead execute the alternative action set which would turn the light off.
   
 
 ## State based rules

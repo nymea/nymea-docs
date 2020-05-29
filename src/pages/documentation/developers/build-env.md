@@ -3,7 +3,7 @@ id: build-env
 title: Build environment
 ---
 
-This page assumes you are working on a Debian or Ubuntu system. The recommended IDE to use is QtCreator. 
+This page assumes you are working on one of the supported Debian or Ubuntu versions. The recommended IDE to use is QtCreator. 
 Other Linux distributions should work too, however installation of the build dependencies may vary.
 
 The first step is to install the compiler and Qt libraries.
