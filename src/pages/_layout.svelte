@@ -23,14 +23,46 @@
     --sider-height: calc(100vh - var(--header-height));
   }
 
-  .branding {
+  .header .branding {
     display: flex;
     height: var(--header-height);
   }
 
-  .branding > :global(a) {
+  .header .branding > :global(a) {
     align-self: center;
   }
+
+  /* .footer > :global(footer > .grid > .row:first-child > .col:first-child) {
+    position: relative;
+  }
+  
+  .footer .branding {
+    position: absolute;
+      bottom: -2.2rem;
+      left: 0;
+    transform: rotate(270deg);
+    transform-origin: left top;
+  } */
+
+  /* .sitemap {
+    position: relative;
+  }
+
+  .sitemap::before {
+    background-color: var(--silver-darken-20);
+    content: "";
+    display: block;
+    height: calc(100% + 3rem);
+    position: absolute;
+      bottom: -1.5rem;
+      left: -4.5rem;
+    width: 1px;
+  } */
+
+  /* .sitemap nav > .menu > li > .menu {
+    border-left: 1px solid var(--silver-darken-20);
+    padding-left: 1.5rem;
+  } */
 </style>
 
 <!-- <Layout width="80%"> -->
@@ -56,9 +88,8 @@
       <slot />
     </Content>
   </div>
-  <div slot="footer" class="slot">
-    <Footer>
-    </Footer>
+  <div slot="footer" class="slot footer">
+    <Footer />
   </div>
 </Layout>
 
