@@ -42,7 +42,7 @@ Minimum system requirements:
 * macOS 10.13 or greater
 * Ubuntu Core 18.04 or greater
 
-> Please note that installing the app from the downloads section will require to manually redownload and update to newer versions. At this point we do not providing a package for the Windows app store.
+> Please note that installing the app from the downloads section will require to manually redownload to update to newer versions. At this point we are not providing a package for the Windows app store.
 
 > Alternatively, on Ubuntu and Debian GNU/Linux, the repository version can be used too. See below for details.
 
@@ -54,16 +54,16 @@ Currently, these versions are officially supported:
 
 * Debian 10 ("buster")
 * Ubuntu 18.04 ("bionic")
-* Ubuntu 19.10 ("eoan")
+* Ubuntu 20.04 ("focal")
 
-For each of the repositories four architectures are provided:
+For each of the repositories the following architectures are provided:
 
 * amd64
 * armhf
 
 To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.list` with the following content:
 
-> Note: Replace `<distro>` with the codename of the distro, e.g. `buster` for Debian 10 or `bionic` for Ubuntu 18.4
+> Note: Replace `<distro>` with the codename of the distro, e.g. `buster` for Debian 10 or `focal` for Ubuntu 20.04
 
 ```bash
 deb http://repository.nymea.io <distro> main
@@ -75,7 +75,7 @@ Add the repository signing key by running:
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key A1A19ED6
 ```
 
-Once done so, nymea:core can be installed using apt-get:
+Once done so, nymea:app can be installed using apt-get:
 
 ```bash
 sudo apt-get update
