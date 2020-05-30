@@ -1,8 +1,8 @@
 <script>
-  import Col from '../../_components/grid/Col.svelte';
-  import Grid from '../../_components/grid/Grid.svelte';
-  import Row from '../../_components/grid/Row.svelte';
-  import Button from '../../_components/base/Button.svelte';
+  import Col from '../_components/grid/Col.svelte';
+  import Grid from '../_components/grid/Grid.svelte';
+  import Row from '../_components/grid/Row.svelte';
+  import Button from '../_components/base/Button.svelte';
 </script>
 
 <style>
@@ -79,6 +79,10 @@
     border-bottom: 1px solid #efefef;
     /* padding: var(--space-09) 0 var(--space-10); */
     padding: var(--space-10) 0;
+  }
+
+  section:last-child {
+    border-bottom: 0;
   }
 
   section h2,

@@ -44,7 +44,7 @@
   }
 </style>
 
-<Grid>
+<Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
   <Row>
     <Col middle span={{'xs': 12, 'md': 5}}>
       <header>
