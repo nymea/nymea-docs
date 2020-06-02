@@ -58,7 +58,7 @@
     {#if !Array.isArray(item)}
       <li>
         <!-- <a href={"#" + $url(item.link)} on:click|preventDefault={() => scrollTo(item.link)}>{item.text}</a> -->
-        <a href={"#" + $url(item.link)}>{item.text}</a>
+        <a href={$url("#" + item.link)}>{item.text}</a>
         {#if index + 1 < items.length && Array.isArray(items[index + 1])}
           <svelte:self items={items[index + 1]} />
         {/if}
