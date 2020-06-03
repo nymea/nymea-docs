@@ -8,17 +8,39 @@ import del from 'del';
 import * as path from 'path';
 import { mdsvex } from 'mdsvex';
 
+import hljs from 'highlight.js/lib/core';
+import asciidoc from 'highlight.js/lib/languages/asciidoc';
+import bash from 'highlight.js/lib/languages/bash';
+import cLike from 'highlight.js/lib/languages/c-like';
+import javascript from 'highlight.js/lib/languages/javascript';
+import json from 'highlight.js/lib/languages/json';
+import python from 'highlight.js/lib/languages/python';
+import qml from 'highlight.js/lib/languages/qml';
+import xml from 'highlight.js/lib/languages/xml';
+
 const staticDir = 'static'
 const distDir = 'dist'
 const buildDir = `${distDir}/build`
 const production = !process.env.ROLLUP_WATCH;
-const bundling = process.env.BUNDLING || production ? 'dynamic' : 'bundle'
-const shouldPrerender = (typeof process.env.PRERENDER !== 'undefined') ? process.env.PRERENDER : !!production
+const bundling = process.env.BUNDLING || production ? 'dynamic' : 'bundle';
+const shouldPrerender = (typeof process.env.PRERENDER !== 'undefined') ? process.env.PRERENDER : !!production;
 
-del.sync(distDir + '/**')
+del.sync(distDir + '/**');
+
+const escape_curlies = (str) => str.replace(/[{}]/g, c => ({ '{': '&#123;', '}': '&#125;' }[c]));
 
 function createConfig({ output, inlineDynamicImports, plugins = [] }) {
-  const transform = inlineDynamicImports ? bundledTransform : dynamicTransform
+  hljs.debugMode();
+  hljs.registerLanguage('asciidoc', asciidoc);
+  hljs.registerLanguage('bash', bash);
+  hljs.registerLanguage('cLike', cLike);
+  hljs.registerLanguage('javascript', javascript);
+  hljs.registerLanguage('json', json);
+  hljs.registerLanguage('python', python);
+  hljs.registerLanguage('qml', qml);
+  hljs.registerLanguage('xml', xml);
+
+  const transform = inlineDynamicImports ? bundledTransform : dynamicTransform;
 
   return {
     inlineDynamicImports,
@@ -40,14 +62,15 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
         extensions: ['.svelte', '.md'],
         preprocess: mdsvex({
           extension: '.md',
-          layout: path.join(__dirname, './src/pages/documentation/_markdown.svelte'),
-          // parser: md => md.use(SomePlugin), // you can add markdown-it plugins if the feeling takes you
-          // you can add markdown-it options here, html is always true
-          markdownOptions: {
-            typographer: true,
-            linkify: true,
-            // highlight: (str, lang) => whatever(str, lang), // this should be a real function if you want to highlight
+          highlight: {
+            highlighter: (code, language) => {
+              const codeBlock = language
+                ? hljs.highlight(language, code, true).value
+                : hljs.highlightAuto(code, ['asciidoc', 'bash', 'cLike', 'javascript', 'json', 'python', 'qml', 'xml']).value;
+              return `<pre><code class="language-${language} hljs">${escape_curlies(codeBlock)}</code></pre>`;
+            },
           },
+          layout: path.join(__dirname, './src/pages/documentation/_markdown.svelte'),
         }),
         // enable run-time checks when not in production
         dev: !production,

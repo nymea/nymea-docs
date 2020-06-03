@@ -305,7 +305,7 @@ $ lxc list
 $ lxc delete nymea-nymea-builder-stretch-amd64-armhf --force
 ```
 
-    
+
 ## Building with Yocto
 
 nymea can be built with yocto. For that, we offer a meta layer which can be found on [GitHub](https://github.com/nymea/meta-nymea).
@@ -318,4 +318,3 @@ This meta layer can be added to a yocto image and offers the following packages:
 * nymea-gpio
 * nymead
 * nymea-plugins
-
