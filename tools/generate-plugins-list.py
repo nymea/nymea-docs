@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import sys
 import os
 import json
 from urllib.request import urlopen, Request
@@ -16,7 +17,7 @@ def parse_repo_url(repository):
   repo_name = repository.split("/")[4]
   return repo_name
 
-def clone_repos(repos, target):
+def clone_repos(repos, target, branch="master"):
   for repo in repos:
     repo_name = parse_repo_url(repo)
     try:
@@ -26,7 +27,8 @@ def clone_repos(repos, target):
     except:
       print("Cloning repo: %s" % repo_name)
       g = git.Repo.clone_from(repo, "%s/%s" % (target, repo_name))
-    g.git.checkout('rework-readmes')
+    print("checking out branch %s" % branch)
+    g.git.checkout(branch)
 
 def has_plugin_meta(path):
   found_meta = False
@@ -146,8 +148,12 @@ def compose_meta(plugins, outputpath, iconoutputpath, categories, technologies):
 
 
 ### Main
+branch = "master"
+
+if len(sys.argv) > 1:
+  branch = sys.argv[1]
 
 config = read_config()
-clone_repos(config["plugins"], config["srcdir"])
+clone_repos(config["plugins"], config["srcdir"], branch)
 plugins = find_plugins(config["srcdir"])
 compose_meta(plugins, config["outputdir"], config["iconoutputdir"], config["allowed_categories"], config["allowed_technologies"])

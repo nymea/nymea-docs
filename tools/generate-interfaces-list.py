@@ -46,8 +46,12 @@ def build_markdown(interfaces):
 
 ### Main
 
+branch = "master"
+if len(sys.argv) > 1:
+  branch = sys.argv[1]
+
 config = Utils.read_json("interfaces-config.json")
-Utils.clone_repo(config["srcdir"])
+Utils.clone_repo(config["srcdir"], branch)
 targets = Utils.find_targets(config["keyword"], config["outputdir"])
 print("Files to replace: %s" % targets)
 interfaces = load_interfaces(os.path.join(config["srcdir"], "nymea/libnymea/interfaces"))
