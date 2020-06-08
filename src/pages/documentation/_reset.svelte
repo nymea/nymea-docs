@@ -245,4 +245,4 @@
   </div> -->
 </Layout>
 
-<Footer></Footer>
+<Footer />
