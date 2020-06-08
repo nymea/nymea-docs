@@ -3,7 +3,7 @@ import json
 import os
 import re
 
-def clone_repo(target):
+def clone_repo(target, branch="master"):
   repo = "https://github.com/nymea/nymea"
   repo_name = "nymea"
   try:
@@ -13,7 +13,7 @@ def clone_repo(target):
   except:
     print("Cloning repo: %s" % repo_name)
     g = git.Repo.clone_from(repo, "%s/%s" % (target, repo_name))
-  g.git.checkout('master')
+  g.git.checkout(branch)
 
 
 def read_json(file):

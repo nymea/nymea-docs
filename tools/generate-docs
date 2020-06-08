@@ -1,5 +1,12 @@
 #!/bin/bash
 
-./generate-interfaces-list.py
-./generate-plugins-list.py
-./generate-jsonrpc-api.py
+branch="master"
+if [ -n $1 ]; then
+  branch=$1
+fi
+
+echo "Building docs from branches $branch"
+
+./generate-interfaces-list.py $branch
+./generate-plugins-list.py $branch
+./generate-jsonrpc-api.py $branch
