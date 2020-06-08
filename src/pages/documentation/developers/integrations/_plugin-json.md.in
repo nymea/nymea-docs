@@ -22,11 +22,13 @@ Throughout the plugin JSON file, most entities will contain some properties whic
 
 As the plugin JSON file defines how the system will interact with a thing, it often will need to define data types to be used when exchanging data. Like identification properties, those type properties can appear at various places in the file but they will always follow the same structure:
 
-    {
-        ...
-        "type": <string>,
-        ...
-    }
+```json
+{
+  ...
+  "type": <string>,
+  ...
+}
+```
     
 The `type` field defines the actual data type to be used. The value for this field can be one of: 
 * `bool`: For boolean (true/false) data types.
@@ -49,21 +51,23 @@ The `type` field defines the actual data type to be used. The value for this fie
 
 Many entities can have parameters. Parameters are options that can be modified by the user and change the behavior of a certain entity. Those parameters are defined in the JSON file by adding `paramTypes` definitions. Those definitions look like this:
 
-    "paramTypes: [
-        {
-            "id": <uuid>,
-            "name": <string>,
-            "displayName": <string>,
-            "type": <type>,
-            "unit": <string>,
-            "inputType": <string>,
-            "defaultValue": <value>,
-            "minValue": <value>,
-            "maxValue": <value>,
-            "allowedValues": <list of values>
-        },
-        ...
-    ]
+```json
+"paramTypes: [
+  {
+    "id": <uuid>,
+    "name": <string>,
+    "displayName": <string>,
+    "type": <type>,
+    "unit": <string>,
+    "inputType": <string>,
+    "defaultValue": <value>,
+    "minValue": <value>,
+    "maxValue": <value>,
+    "allowedValues": <list of values>
+  },
+  ...
+]
+```
 
 Required properties:
 
@@ -83,61 +87,71 @@ Optional properties:
 
 The contents of the plugin JSON file is a json object. This JSON object contains some information about the plugin itself.
 
-    {
-        "id": <uuid>,
-        "name: <string>
-        "displayName": <string>,
-        "vendors": [...]
-    }
+```json
+{
+  "id": <uuid>,
+  "name: <string>
+  "displayName": <string>,
+  "vendors": [...]
+}
+```
     
 The information about a plugin consists of an `id`, a `name` and a `displayName`. Those should be filled in by the plugin developer as described above. For instance, an integration plugin that adds support for various online services might use something like this:
 
-    {
-        "id": "35fb22d3-e4f0-4bbf-85d1-d7531111cacd",
-        "name: "onlineServices",
-        "displayName": "Online services,
-        "vendors": [...]
-    }
+```json
+{
+  "id": "35fb22d3-e4f0-4bbf-85d1-d7531111cacd",
+  "name: "onlineServices",
+  "displayName": "Online services,
+  "vendors": [...]
+}
+```
 
 ## Vendor information
 
 Each integration plugin defines a list of vendors it supports. A vendor describes the manufacturer of things. The vendor definition follows this strucuture:
 
-    {
-        "id": <uuid>,
-        "name": <string>,
-        "displayName": <string>,
-        "thingClasses": [...]
-    }
+```json
+{
+  "id": <uuid>,
+  "name": <string>,
+  "displayName": <string>,
+  "thingClasses": [...]
+}
+```
     
 As usual, `id`, `name` and `displayName` are to be filled in as described in [Identification properties](#identification-properties). A single vendor can then define multiple thing classes, that is, devices or services made by this venddor. For example, a fictional company named "ACME Inc." would be defined like this:
 
-    {
-        "id": "b7e96b02-1a69-43a3-ae24-cde4bb48e821",
-        "name": "acme",
-        "displayName": "ACME Inc.",
-        "thingClasses": [...]
-    }
+```json
+{
+  "id": "b7e96b02-1a69-43a3-ae24-cde4bb48e821",
+  "name": "acme",
+  "displayName": "ACME Inc.",
+  "thingClasses": [...]
+}
+```
 
 ## Thing classes
 
-    {
-        "id": <uuid>,
-        "name": <string>,
-        "displayName": <string>,
-        "paramTypes": <list of param types>
-        "settingsTypes": <list of param types>
-        "createMethods": <list of strings>,
-        "setupMethod": <string>,
-        "discoveryParamTypes": <list of param types>,
-        "interfaces": <list of string>,
-        "browsable": <bool>,
-        "eventTypes": <list of event types>,
-        "stateTypes": <list of state types>,
-        "actionTypes": <list of action types>,
-        "browsable": <bool>,
-        "browserItemActionTypes>: <list of action types>
-    }
+```json
+{
+  "id": <uuid>,
+  "name": <string>,
+  "displayName": <string>,
+  "paramTypes": <list of param types>
+  "settingsTypes": <list of param types>
+  "createMethods": <list of strings>,
+  "setupMethod": <string>,
+  "discoveryParamTypes": <list of param types>,
+  "interfaces": <list of string>,
+  "browsable": <bool>,
+  "eventTypes": <list of event types>,
+  "stateTypes": <list of state types>,
+  "actionTypes": <list of action types>,
+  "browsable": <bool>,
+  "browserItemActionTypes>: <list of action types>
+}
+```
 
 Required:
 
@@ -169,11 +183,15 @@ The create methods define how things of this thing class are created in nymea. T
 
 For example, for a device that can be discovered in the local network the plugin would use this:
 
-    "createMethods": ["CreateMethodDiscovery"]
+```json
+"createMethods": ["CreateMethodDiscovery"]
+```
     
 If the plugin developer would like to allow the user to also manually enter the device's IP address in case the discovery fails to detect the device, additionally the manual creation method can be added.
 
-    "createMethods": ["CreateMethodUser", "CreateMethodDiscovery"]
+```json
+"createMethods": ["CreateMethodUser", "CreateMethodDiscovery"]
+```
 
 See [things setup](thing-setup#thing-creation) for more details on create methods.
 
@@ -190,7 +208,9 @@ The setup method defines how the thing is set up. The possible values are:
 
 For example, a device with a push button would use:
 
-    "setupMethod": "PushButton"
+```json
+"setupMethod": "PushButton"
+```
     
 See [things setup](thing-setup#thing-setup) for more details on setup methods.
 
@@ -200,12 +220,14 @@ Each thing can have events. For more details on how events work, see [this page]
 
 Events are defined as `eventTypes` and follow this structure:
 
-    {
-        "id": <uuid>,
-        "name": <string>,
-        "displayName": <string>,
-        "paramTypes": [...]
-    }
+```json
+{
+  "id": <uuid>,
+  "name": <string>,
+  "displayName": <string>,
+  "paramTypes": [...]
+}
+```
     
 The properties `id`, `name` and `displayName` are required and are to be filled in as described in [Identification properties](#identification-properties). Additionally, any event can optionally contain parameter defintions, so called `paramTypes`, as described in [Parameters](#parameters)
 
@@ -215,12 +237,14 @@ Optionally, a thing can have actions defined as `actionTypes`. For more details 
 
 Actions are defined as `actionTypes` and follow this structure:
 
-    {
-        "id": <uuid>
-        "name": <string>
-        "displayName": <string>,
-        "paramTypes": [...]
-    }
+```json
+{
+  "id": <uuid>
+  "name": <string>
+  "displayName": <string>,
+  "paramTypes": [...]
+}
+```
     
     
 As usual, `id`, `name` and `displayName` are required and follow the definition in [Identification properties](#identification-properties). Additionally, optional parameters can be defined for actions in the `paramTypes` property as described in [Parameters](#parameters).
@@ -231,21 +255,23 @@ A thing may have states defined in the `stateTypes` property. For more details o
 
 The defintion follows this this structure:
 
-    {
-        "id": <uuid>,
-        "name": <string>,
-        "displayName": <string>,
-        "displayNameEvent": <string>,
-        "displayNameAction": <string>,
-        "writable": <bool>,
-        "type": <type>,
-        "unit": <string>,
-        "inputType": <string>,
-        "defaultValue": <value>,
-        "minValue": <value>,
-        "maxValue": <value>,
-        "possibleValues": <list of values>
-    }
+```json
+{
+  "id": <uuid>,
+  "name": <string>,
+  "displayName": <string>,
+  "displayNameEvent": <string>,
+  "displayNameAction": <string>,
+  "writable": <bool>,
+  "type": <type>,
+  "unit": <string>,
+  "inputType": <string>,
+  "defaultValue": <value>,
+  "minValue": <value>,
+  "maxValue": <value>,
+  "possibleValues": <list of values>
+}
+```
 
 States have, as all other entities the required [Identification properties](#identification-properties) of `id`, `name` and `displayName`. In addition to those, `displayNameEvent` must be provided for the autogenerated event that is emitted when this state changes.
 

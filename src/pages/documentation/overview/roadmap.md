@@ -8,7 +8,7 @@ title: Roadmap
 
 ## V 0.21.0
 
-```text
+```
 nymea 
     Load/Unload Plug-Ins during run time
     Password recovery
@@ -26,7 +26,7 @@ nymea plug-ins
 ```    
 
 ### V 0.22.0
-```text
+```
 nymea 
     Github JS Plug-In installer
  

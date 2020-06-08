@@ -41,12 +41,14 @@ The nymea:app script editor will report console output for the script as well as
 ### Basic structure
 The most basic structure of a nymea script looks like this
 
-    import QtQuick 2.0
-    import nymea 1.0
+```qml
+import QtQuick 2.0
+import nymea 1.0
 
-    Item {
+Item {
 
-    }
+}
+```
 
 This example script will be functional, but it doesn't actually do anything. Depending on the 
 purpose of the script, different content may be added inside the `Item {}` structure. Every script 
@@ -55,18 +57,20 @@ child items.
 
 For example, in order to act on a motion sensor detecting presence, such a block can be added:
 
-    import QtQuick 2.0
-    import nymea 1.0
+```qml
+import QtQuick 2.0
+import nymea 1.0
 
-    Item {
-        ThingState {
-            thingId: "123456-1234-1234-123456"
-            stateName: "isPresent"
-            onValueChanged: {
-                console.log("Presence detected:", value);
-            }
+Item {
+    ThingState {
+        thingId: "123456-1234-1234-123456"
+        stateName: "isPresent"
+        onValueChanged: {
+            console.log("Presence detected:", value);
         }
     }
+}
+```
 
 This script will log the text "Presence detected: true" into the script's console when the 
 motion sensor detects a person and "Presence detected: false" when the person leaves again.
@@ -135,19 +139,21 @@ In order to react on state changes, the `onValueChanged` signal handler can be i
 
 Example:
 
-    ThingState {
-        thingId: "<thingId>"    // ID for the lightbulb
-        stateName: "power"      // The name for the state we're interested in
-        value: true             // This would initialize the value to `true`, turning the light on when nymea starts
+```qml
+ThingState {
+    thingId: "<thingId>"    // ID for the lightbulb
+    stateName: "power"      // The name for the state we're interested in
+    value: true             // This would initialize the value to `true`, turning the light on when nymea starts
 
-        onValueChanged: {
-            if (value == true) {
-                console.log("the light has been switched on");
-            } else {
-                console.log("the light has been switched off");
-            }
+    onValueChanged: {
+        if (value == true) {
+            console.log("the light has been switched on");
+        } else {
+            console.log("the light has been switched off");
         }
     }
+}
+```
     
 
 ### ThingEvent
@@ -162,14 +168,16 @@ A `ThingEvent` has a signal named `triggered` which is fired whenever the event 
 
 The following example script would write a log warning whenever the switch is pressed.
 
-    ThingEvent {
-        thingId: "<thingId>"     // The id of the wall switch
-        eventName: "pressed"     // The name of the event we're watching
+```qml
+ThingEvent {
+    thingId: "<thingId>"     // The id of the wall switch
+    eventName: "pressed"     // The name of the event we're watching
 
-        onTriggered: {
-            console.log("Wall switch has been pressed!")
-        }
+    onTriggered: {
+        console.log("Wall switch has been pressed!")
     }
+}
+```
 
     
 ### ThingAction
@@ -182,13 +190,15 @@ A `ThingAction` has a function named `execute(params)` which can be called to ac
 
 For instance, a thing capable to send push notifications could to be used this way:
 
-    DeviceAction {
-        id: notificationAction   // Giving it an id so we can call its execute() function
-        deviceId: "<deviceId>"   // The id of the notification thing
-        actionName: "notify"     // Selecting the "notify" action
-    }
-    ...
-    notificationAction.execute({"title": "Hello", "body": "nymea rocks!"})
+```qml
+DeviceAction {
+    id: notificationAction   // Giving it an id so we can call its execute() function
+    deviceId: "<deviceId>"   // The id of the notification thing
+    actionName: "notify"     // Selecting the "notify" action
+}
+...
+notificationAction.execute({"title": "Hello", "body": "nymea rocks!"})
+```
     
 ### Alarm
 
@@ -202,71 +212,77 @@ Whenever the `Alarm` triggers it will emit the `triggered` signal. The `onTrigge
 
 For instance, an alarm that triggers Monday to Friday at 7:00 in the morning can be set up with this example:
 
-    Alarm {
-        time: "07:00"
-        endTime: "08:00"
-        weekDays: Alarm.Monday | Alarm.Tuesday | Alarm.Wednesday | Alarm.Thursday | Alarm.Friday
+```qml
+Alarm {
+    time: "07:00"
+    endTime: "08:00"
+    weekDays: Alarm.Monday | Alarm.Tuesday | Alarm.Wednesday | Alarm.Thursday | Alarm.Friday
 
-        onTriggered: {
-            console.log("Alarm triggered!")
-        }
+    onTriggered: {
+        console.log("Alarm triggered!")
+    }
 
-        onActiveChanged: {
-            if (active) {
-                console.log("Alarm active now!")
-            } else {
-                console.log("Alarm ended")
-            }
+    onActiveChanged: {
+        if (active) {
+            console.log("Alarm active now!")
+        } else {
+            console.log("Alarm ended")
         }
     }
+}
+```
     
 ## Adding more JavaScript
 Anywhere in the script, standard JavaScript can be added. For instance we can count the number
 of button presses. To execute an action when a button is pressed 5 times within 5 seconds, we can 
 use such an example:
 
-    Item {
-        id: root
-        
-        property int counter: 0
-        
-        Timer {
-            id: timer
-            interval: 5000
-            repeat: false
-            running: root.counter > 0 // The timer only runs when the counter is > 0
-            onTriggered: {
-                root.counter = 0; // Reset the counter after 5 secs
-            }
+```qml
+Item {
+    id: root
+    
+    property int counter: 0
+    
+    Timer {
+        id: timer
+        interval: 5000
+        repeat: false
+        running: root.counter > 0 // The timer only runs when the counter is > 0
+        onTriggered: {
+            root.counter = 0; // Reset the counter after 5 secs
         }
-        
-        ThingEvent {
-            thingId: "<thingId>" // id of button
-            eventName: "pressed"
-            onTriggered: {
-                root.counter = root.counter + 1;
-                if (root.counter >= 5) {
-                    console.log("Button pressed 5 times within 5 seconds!")
-                }
+    }
+    
+    ThingEvent {
+        thingId: "<thingId>" // id of button
+        eventName: "pressed"
+        onTriggered: {
+            root.counter = root.counter + 1;
+            if (root.counter >= 5) {
+                console.log("Button pressed 5 times within 5 seconds!")
             }
         }
     }
+}
+```
     
 ## Putting things together
 ### Binding states
 `ThingState`s can be linked using a property binding. For instance, to turn on a light while a presence 
 sensor reports presence, set the light's power state value to the sensor's presence state:
 
-    ThingState {
-        id: presenseState
-        thingId: "<thingId>" // id of presence sensor
-        stateName: "isPresent"
-    }
-    ThingState {
-        thingId: "<thingId>" // id of light
-        stateName: "power
-        value: presenseState.value
-    }
+```qml
+ThingState {
+    id: presenseState
+    thingId: "<thingId>" // id of presence sensor
+    stateName: "isPresent"
+}
+ThingState {
+    thingId: "<thingId>" // id of light
+    stateName: "power
+    value: presenseState.value
+}
+```
     
 In this example, the light's power state value is set to the presence sensor's `isPresent` state's value. 
 This way, whenever the value for `isPresent` changes, it will automatically be synced to the `power` state.
@@ -275,24 +291,24 @@ This way, whenever the value for `isPresent` changes, it will automatically be s
 Things that have events, e.g. a power wall switch that has a "pressed" event, can be used to execute 
 an action in the system. Let's turn on a light when a button is pressed, but only if it's dark outside:
 
-    ThingEvent {
-        thingId: "<thingId>" // id of button
-        eventName: "pressed"
-        onTriggered: {
-            if (daylightState.value == false) {
-                lightPowerState.value = true;
-            }
+```qml
+ThingEvent {
+    thingId: "<thingId>" // id of button
+    eventName: "pressed"
+    onTriggered: {
+        if (daylightState.value == false) {
+            lightPowerState.value = true;
         }
     }
-    ThingState {
-        id: daylightState
-        thingId: "<dthingId>" // id of daylight sensor
-        stateName: "daylight"
-    }
-    ThingState {
-        id: lightPowerState
-        thingId: "<thingId>" // id of light
-        stateName: "power"
-    }
-    
-
+}
+ThingState {
+    id: daylightState
+    thingId: "<dthingId>" // id of daylight sensor
+    stateName: "daylight"
+}
+ThingState {
+    id: lightPowerState
+    thingId: "<thingId>" // id of light
+    stateName: "power"
+}
+```

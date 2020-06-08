@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "Patching svelte compiler..."
+cp tools/patch-compiler.js node_modules/svelte/
+cd node_modules/svelte
+mv compiler.js compiler.js.orig
+ln -s compiler.js.new compiler.js
+node patch-compiler.js
+echo "Patch applied successfully."
