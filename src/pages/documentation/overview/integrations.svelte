@@ -167,7 +167,7 @@
     {#each $filteredIntegrations as integration}
       <Tile>
         <!-- <a href="{integration.readme.replace('.md', '')}"> -->
-        <a href={$url('../' + integration.readme.replace('.md', ''))}>
+        <a href={$url('./' + integration.readme.replace('.md', ''))}>
           <!-- <img src="img/integrationlogos/{plugin.icon}" alt=""> -->
           <h3>{integration.title}</h3>
           <p>{integration.tagline}</p>

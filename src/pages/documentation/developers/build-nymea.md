@@ -280,6 +280,7 @@ $ nano .crossbuilder/deploy.conf
 Here you can add the remote information of the target machine (in this example an `armhf stretch` machine running on `10.10.10.10` where you want to install the debian packages built with the `crosscompiler`.
 
 > Note: the packages need to be already installed once on the target machine, since crossbuilder is just updating them, not installing them from scretch. If that is not the case, you can install them manually after crossbuilder copied them to the target and created the local repository: on the target `sudo dpkg -i /tmp/repo/*.deb`.
+
 ```bash
 DEPLOY_IP=10.10.10.10
 DEPLOY_USER=nymea
@@ -293,6 +294,7 @@ Each new build will from now on be installed automatically on the target machine
 Remove a container if the source repositoy does not exist any more:
 
 > Note: the `--force` is only needed if the container is still running.
+
 ```bash
 $ lxc list
 
@@ -305,7 +307,7 @@ $ lxc list
 $ lxc delete nymea-nymea-builder-stretch-amd64-armhf --force
 ```
 
-    
+
 ## Building with Yocto
 
 nymea can be built with yocto. For that, we offer a meta layer which can be found on [GitHub](https://github.com/nymea/meta-nymea).
@@ -318,4 +320,3 @@ This meta layer can be added to a yocto image and offers the following packages:
 * nymea-gpio
 * nymead
 * nymea-plugins
-
