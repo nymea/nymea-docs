@@ -3,8 +3,10 @@ id: qtcreator
 title: Developing with QtCreator
 ---
 
-In order to develop with nymea and modify its code, it is advised to open the code using QtCreator. For 
-that, select the repository to be modified and follow those steps:
+QtCreator is the recommended IDE to build nymea projects. If you haven't done so, make sure the build environment is set up
+property by following the guide in [Build environment](build-env).
+
+### General steps for all nymea projects
 
 1. Open QtCreator and click on *File* -> *Open file or project*
 
@@ -12,28 +14,41 @@ that, select the repository to be modified and follow those steps:
 
 3. In the next step, choose the wanted build kit. Unless you have special requirements, the default *Desktop* kit will do.
 
-4. Press the *Build* button on the bottom left of the QtCreator window (<kbd>Ctrl</kbd> + <kbd>b</kbd>) and follow the build process in the *Compile output* section (<kbd>Alt</kbd> + <kbd>4</kbd>).
+### Project specific options
 
-5. Before you can run the fresh compiled *nymea* binary, you need to export the library path to the libnymea and libnymea-core, otherwise you will get following message:
-    ```bash
-    $ nymead: error while loading shared libraries: libnymea.so.1: cannot open shared object file: No such file or directory
-    ```
+The following options differ between the various projects. If the project you are looking for is not in here, no special options
+are required. You should now be able to run the project using the build/play buttons.
 
-    In order to export the lib path, you can run following command in the terminal:
-    > **Note:** customize the path `PATH_TO_NYMEA` to your nymea folder!
+#### Nymea
 
-    ```bash
-    $ export LD_LIBRARY_PATH=LD_LIBRARY_PATH:/PATH_TO_NYMEA/build-nymea-Desktop-Debug/libnymea/:PATH_TO_NYMEA/build-nymea-Desktop-Debug/libnymea-core/
-    ```
+> **Note:** It is advised to uninstall libnymea1 to run a self built nymea instance to avoid confusion when libraries are loaded.
 
-    To make it permanent, you can add this line to the `/etc/bash.bashrc` file.
+In order to run nymea from QtCreator, the library path needs to be set accordingly or starting nymead will fail with this message:
 
-6. Now you should be able to run *nymead* by pressing the *Play* button in the QtCreator (or you can press <kbd>Ctrl</kbd> + <kbd>r</kbd>). You can follow the stdout in the *Application Output* section (<kbd>Alt</kbd> + <kbd>3</kbd>).
+```bash
+$ nymead: error while loading shared libraries: libnymea.so.1: cannot open shared object file: No such file or directory
+```
 
-    If you want to run the application in the terminal you can start *nymead* with following command:
-    ```bash
-    $ cd build-nymea-Desktop-Debug/server/
-    $ ./nymead -n
-    ```
+Go to the Project settings on the left hand pane in QtCreator, select the "Run" configuration for your kit on the left and add
+`LD_LIBRARY_PATH` to the environment, pointing to the libnymea and libnymea-core folders.
 
+LD_LIBRARY_PATH: /PATH_TO_NYMEA/build-nymea-Desktop-Debug/libnymea/:PATH_TO_NYMEA/build-nymea-Desktop-Debug/libnymea-core/
 
+Now you should be able to run *nymead* by pressing the *Play* button in the QtCreator (or you can press <kbd>Ctrl</kbd> + <kbd>r</kbd>). You can follow the stdout in the *Application Output* section (<kbd>Alt</kbd> + <kbd>3</kbd>).
+
+If you want to run the application in the terminal you can start *nymead* with following command:
+
+```bash
+$ cd build-nymea-Desktop-Debug/server/
+$ LD_LIBRARY_PATH=../libnymea:../libnymea-core ./nymead -n
+```
+
+In order to load custom plugins with this self built nymea instance, also set `NYMEA_PLUGINS_PATH` pointing to the build directory of
+the plugin.
+
+#### Nymea integration plugins
+
+When developing plugins, nymea needs to be installed on the system. A run configuration for the plugin can be created by entering the
+project configuration on the left hand side in QtCreator, then selecting the "Run" configuration for your kit and the left and creating
+a run configuration with a "Custom executable". The executable shold be `nymead` and the command line arguments should at least include `-n`.
+In the environment, export a variable named `NYMEA_PLUGINS_PATH` making it point to the build directory of the plugin.
