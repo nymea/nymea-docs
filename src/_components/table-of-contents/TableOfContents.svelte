@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  // import { beforeUrlChange } from '@sveltech/routify'
+  import { beforeUrlChange, url } from '@sveltech/routify'
   import TableOfContentsItems from './TableOfContentsItems.svelte';
   
   let items = [];
@@ -46,7 +46,8 @@
       const heading = headings[index];
       heading.id = heading.textContent.toLowerCase().replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s/g, '-');
       const originalElement = heading.innerHTML;
-      const newElement = `<a class="toc-link" href="#${heading.id}">${originalElement}</a>`;
+      // const newElement = `<a class="toc-link" href="#${heading.id}">${originalElement}</a>`;
+      const newElement = `<a class="toc-link" href="${$url('#' + heading.id)}">${originalElement}</a>`;
       heading.innerHTML = newElement;
 
       const currentLevel = parseInt(heading.tagName.replace('H', ''), 10);

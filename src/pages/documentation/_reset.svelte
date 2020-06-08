@@ -2,6 +2,16 @@
   import { onMount } from 'svelte';
   import { beforeUrlChange, isActive, url, layout, route, routes } from '@sveltech/routify';
 
+  import hljs from 'highlight.js/lib/core';
+  import asciidoc from 'highlight.js/lib/languages/asciidoc';
+  import bash from 'highlight.js/lib/languages/bash';
+  import cLike from 'highlight.js/lib/languages/c-like';
+  import javascript from 'highlight.js/lib/languages/javascript';
+  import json from 'highlight.js/lib/languages/json';
+  import python from 'highlight.js/lib/languages/python';
+  import qml from 'highlight.js/lib/languages/qml';
+  import xml from 'highlight.js/lib/languages/xml';
+
   import Content from '../../_components/layout/Content.svelte';
   import Footer from '../../_components/layout/Footer.svelte';
   import Header from '../../_components/layout/Header.svelte';
@@ -37,10 +47,33 @@
     }
   });
 
-  window.onload = function() {
+  // window.onload = function() {
+  // $beforeUrlChange(() => {
+    onMount(() => {
+    console.log('initCodeBlocks');
+
+    initCodeBlocks();
+    
     if (window.location.hash) {
       scrollTo(window.location.hash.replace('#', ''));
     }
+  });
+
+  function initCodeBlocks() {
+    hljs.registerLanguage('asciidoc', asciidoc);
+    hljs.registerLanguage('bash', bash);
+    hljs.registerLanguage('cLike', cLike);
+    hljs.registerLanguage('javascript', javascript);
+    hljs.registerLanguage('json', json);
+    hljs.registerLanguage('python', python);
+    hljs.registerLanguage('qml', qml);
+    hljs.registerLanguage('xml', xml);
+
+    const codeBlocks = document.querySelectorAll('pre > code');
+
+    codeBlocks.forEach((codeBlock) => {
+      hljs.highlightBlock(codeBlock);
+    });
   }
 
   function scrollTo(id) {
@@ -147,6 +180,12 @@
   :root {
     --header-height: 4.5rem;
     --sider-height: calc(100vh - var(--header-height));
+  }
+
+  :global(h1) {
+    font-size: 3.5rem;
+    font-weight: 500;
+    line-height: 4.5rem;
   }
 
   .branding {

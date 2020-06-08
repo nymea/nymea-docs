@@ -17,8 +17,8 @@ def clone_repo(target):
 
 
 def read_json(file):
-  with open(file) as configFile:
-    data = json.load(configFile)
+  with open(file) as jsonFile:
+    data = json.load(jsonFile)
     return data
 
 def read_text(file):
@@ -40,7 +40,7 @@ def list_subdirs(path):
   return subdirs
 
 def find_targets(keyword, dir):
-  fileNames = list_files(dir, ".md.in")
+  fileNames = list_files(dir, ".in")
   targets = []
   for fileName in fileNames:
     file = open(os.path.join(dir, fileName), "r")
@@ -64,7 +64,7 @@ def build_codeblock(text, language=""):
 
 
 # replacements is a map of <keyword, content> pairs
-def generate_output_md(targets, replacements):
+def generate_output_file(targets, replacements):
   for target in targets:
     print("working on %s" % target)
     fileName = os.path.basename(target)
@@ -75,4 +75,3 @@ def generate_output_md(targets, replacements):
 #      print("replacing %s with %s" % (keyword, replacements[keyword]))
       content = re.sub(keyword, replacements[keyword], content)
     write_text(os.path.join(os.path.dirname(target), fileName), content)
-

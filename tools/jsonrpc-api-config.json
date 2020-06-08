@@ -1,7 +1,7 @@
 {
   "srcdir": "src",
   "outputdir": "../src/pages/",
-  "keyword": "@@GENERATED_JSONRPC@@",
-  "inputtypes_keyword": "@@GENERATED_INPUTTYPES@@",
-  "units_keyword": "@@GENERATED_UNITS@@"
+  "api_js_keyword": "@@GENERATED_JSONRPC@@",
+  "inputtypes_md_keyword": "@@GENERATED_INPUTTYPES@@",
+  "units_md_keyword": "@@GENERATED_UNITS@@"
 }
