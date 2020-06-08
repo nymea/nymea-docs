@@ -114,8 +114,16 @@ def generate_js(version, api):
     ret["notifications"][notification]["description"] = description.replace("\n", "\\n")
   return ret
 
+
+
+
+branch = "master"
+if len(sys.argv) > 1:
+  branch = sys.argv[1]
+
+
 config = Utils.read_json("jsonrpc-api-config.json")
-Utils.clone_repo(config["srcdir"])
+Utils.clone_repo(config["srcdir"], branch)
 
 targets = []
 
