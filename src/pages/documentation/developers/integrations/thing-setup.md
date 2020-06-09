@@ -19,11 +19,37 @@ There are different ways how things can be created in nymea:
 
 This is used if a thing needs to be configured manually by the user. For example by entering an IP address to connect to it.
 
+<!-- sequencediagram.org
+
+title Manually creating things
+user->nymea:Add Thing
+nymea->plugin:setupThing(setupInfo)
+nymea<-plugin:setupInfo->finish()
+nymea->user:Thing added
+nymea->plugin:postSetupThing(thing)
+-->
+![Manual setup](/developers/manual-setup.svg)
+
 ### Discovery
 
 This is used if a thing can be discovered. For example things that can be found via ZeroConf in the local network. The user can perform a discovery for such things and pick which ones should be added to the system.
 
 Plugins supporting discovery must implement the `discoverThings` method.
+
+<!-- sequencediagram.org
+
+title Creating things via discovery
+user->nymea:Discover things
+nymea->plugin: discoverThings(discoveryInfo)
+plugin->nymea: discoveryInfo->finish()
+nymea->user: Discovery results
+user->nymea: Add thing
+nymea->plugin:setupThing(setupInfo)
+nymea<-plugin:setupInfo->finish()
+nymea->user:Thing added
+nymea->plugin:postSetupThing(thing)
+-->
+![Discovery setup](/developers/discovery-setup.svg)
 
 ### Automatic
 
@@ -31,13 +57,54 @@ This is used if a device should be added to the system without the user having t
 
 Plugins supporting automatic thing creation must emit the `autoThingsAppeared` signal to indicate the appearance of such things. Also, such plugins plugins may implement `startMonitoringAutoDevices` if an entry point for watching things is required.
 
+<!-- sequencediagram.org
+
+title Automatically creating things
+plugin->nymea:autoThingAppeared(thingDescriptor)
+nymea->plugin:setupThing(setupInfo)
+nymea<-plugin:setupInfo->finish()
+nymea->user:Thing added
+nymea->plugin:postSetupThing(thing)
+-->
+![Auto setup](/developers/auto-setup.svg)
+
 ## Thing setup
 
-Once it is known how a thing can be created in the system, it needs to be set up. Also this offers various options:
+Once it is known how a thing can be created in the system, it needs to be set up. Also this offers various options. The simplest form is when a thing does not require any authentication. In this case, the setup flow is as simple as just adding the thing:
+
+<!-- sequencediagram.org
+
+title No authentication
+user->nymea: Add thing
+nymea->plugin:setupThing(setupInfo)
+nymea<-plugin:setupInfo->finish()
+nymea->user:Thing added
+-->
+![JustAdd](/developers/justadd.svg)
+
+In all the other cases, where a thing requires authentication of some sort, the flow will require a challenge response with the user.
+
+<!-- sequencediagram.org
+
+title  With authentication
+user->nymea: Add thing
+nymea->plugin:startPairing(pairingInfo)
+plugin->nymea:pairingInfo->finish()
+nymea->user:Challenge request
+user->nymea:Challenge response
+nymea->plugin:confirmPairing(pairingInfo)
+plugin->nymea:pairingInfo->finish()
+nymea->plugin:setupThing(setupInfo)
+nymea<-plugin:setupInfo->finish()
+nymea->user:Thing added
+-->
+![Pairing](/developers/pairing.svg)
+
 
 ### JustAdd
 
 This is used for things that do not require any sort of authentication. A user can, after having discovered or manually entered connection parameters for such a thing, just add it to the system and it will be functional.
+
 
 ### Username and passwort
 
@@ -128,4 +195,71 @@ Some example flows:
 
 Configured things in the system may have parent-child relationships. This is expressed by some things having a parent thing. If a thing does not have any parents it either is a standalone thing or it may be a parent to other things. If a thing does have a parent id set, it is a child of the given parent. One thing can be a parent to many others.
 
+A common case for this is for example a connection to another bridge or an login to an online account. While the bridge or online service represents the parent thing (typically by implementing the `gateway` of `account` interface), the other devices connected to that gateway
+will be represented as childs. Such a flow would typically look similar this:
+
+<!--- sequencediagram.org
+
+user->nymea: Add thing
+nymea->plugin:setupThing(setupInfo)
+note over plugin: Fetch connected devices from gateway
+nymea<-plugin:setupInfo->finish()
+nymea->user:Thing added
+note over plugin:Generate descriptors for childs on gateway
+plugin->nymea:autoThingsAppeared(childs)
+nymea->plugin:setupThing(setupInfo) child 1
+nymea->plugin:setupThing(setupInfo) child 2
+nymea->plugin:...
+plugin->nymea:setupInfo->finish() child 1
+nymea->user: Thing added
+plugin->nymea:setupInfo->finish() child 2
+nymea->user: Thing added
+plugin->nymea:...
+nymea->user: ...
+-->
+![Automatic childs of a gateway](/developers/autochilds.svg)
+
 This parent-child relationship mostly has effect when managing things. If a parent is removed from the system, all its childs will be removed too.
+
+<!-- sequencediagram.org
+
+user->nymea: Remove thing (parent)
+nymea->plugin:thingRemoved(thing) child 1
+nymea->user: Thing removed (child 1)
+nymea->plugin:thingRemoved(thing) child 2
+nymea->user: Thing removed (child 2)
+nymea->plugin:thingRemoved(thing) ...
+nymea->user: Thing removed (...)
+nymea->plugin:thingRemoved(thing) parent
+nymea->user: Thing removed (parent)
+-->
+![Removing a parent](/developers/removeparent.svg)
+
+## System restarts
+
+Al the above explains how things are created when the user interacts with the system. However, when nymea is restarted, the setup needs to be performed as well. There is one major difference in that any pairing cannot happen at this point, given there is no user interaction. This means any login information required to re-setup a thing needs to be stored by the plugin.
+
+When starting up, nymea all the previously set up things will be restored like this:
+
+<!-- sequencediagram.org
+
+note over nymea: Load all configured things from storage
+note over nymea: Initialize all thing states witch cached values
+nymea->plugin: setupThing()
+nymea->plugin: setupThing() (parent)
+nymea->plugin: setupThing() (child1)
+nymea->plugin: setupThing() (child2)
+nymea->plugin: setupThing() (child3)
+nymea->plugin: setupThing()
+plugin->nymea: setup->finish() (parent)
+nymea->plugin: postSetupThing() (parent)
+plugin->nymea: setup->finish() (child 1)
+nymea->plugin: postSetupThing() (child1)
+plugin->nymea: setup->finish() (...)
+nymea->plugin: postSetupThing() (...)
+-->
+![System startup](/developers/startup.svg)
+
+Note that at the point where the first setupThing() for a plugin is called, all the known plugins things will already be loaded. It is safe to check `myThings()` in the first `setupThing()` call for other things of this plugin.
+
+The `setupThing()` method will be called for all the plugins things sequentially. Things without a parent will be set up in no particular order. Things having a parent will always be set up *after* their parent.
