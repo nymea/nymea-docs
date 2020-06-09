@@ -260,7 +260,7 @@
           <!-- <Logo height="2rem" text="true" /> -->
           <p>The Open IoT Stack</p>
         </header>
-        <Button text="Get started" link="documentation/overview">
+        <Button text="Get started" link="documentation/overview/about-nymea">
           <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
         </Button>
       </Col>
