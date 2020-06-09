@@ -34,7 +34,7 @@
     flex: 0 0 100%;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin: 0 calc(var(--row-gap) / 2);
+    margin: 0 calc(var(--row-gap-xs) / 2);
     
     /* justify-content: space-between; */
     /* margin-left: calc((var(--row-gap) / 2) * -1); */

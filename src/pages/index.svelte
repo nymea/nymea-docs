@@ -7,6 +7,18 @@
 </script>
 
 <style>
+  section {
+    background-color: var(--silver-base);
+    border-bottom: 1px solid var(--silver-darken-10);
+    border-top: 1px solid var(--silver-darken-10);
+    margin: 0 0 var(--space-04);
+    padding: calc(var(--space-10) + var(--space-07)) 0 calc(var(--space-10) + var(--space-09));
+  }
+
+  section:first-child {
+    border-top: 0;
+  }
+
   #introduction {
     background-color: var(--silver-base);
     /* background: linear-gradient(to bottom, var(--silver-base), var(--silver-base) 60%, var(--white)); */
@@ -113,17 +125,6 @@
     text-align: center;
   }
 
-  section {
-    border-bottom: 1px solid #efefef;
-    /* padding: var(--space-09) 0 var(--space-10); */
-    /* padding: var(--space-10) 0; */
-    padding: 6rem 0 7.5rem;
-  }
-
-  section:last-child {
-    border-bottom: 0;
-  }
-
   section h2,
   section h3 {
     margin-bottom: var(--space-07);
@@ -185,6 +186,13 @@
 
   #what-2 h6 + div {
     /* background-color: var(--silver-darken-10); */
+  }
+
+  #why ion-icon {
+    color: var(--grey-base);
+    height: var(--space-09);
+    margin-top: var(--space-09);
+    width: var(--space-09);
   }
 
   /* #introduction,
@@ -449,12 +457,10 @@
 <section id="why">
   <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
-      <Col span={{'xs': 12, 'sm': 8}}>
+      <Col center span={{'xs': 10, 'sm': 8, 'md': 8, 'lg': 8, 'xl': 8}} offset={{'xs': 1, 'sm': 2, 'md': 2, 'lg': 2, 'xl': 2}}>
         <h2>Affair of the heart</h2>
         <p>We think that IoT devices, especially inside your home, do not have to be cloud connected all the time. Privacy and reliability are our main concerns. With that in mind we build everything with an offline-first approach. This results in blazing fast reaction times, full control over personal data and guarantees your product won't be rendered useless if the cloud provider you've been betting on shuts down their service.</p>
-      </Col>
-      <Col>
-          <ion-icon name="heart"></ion-icon>
+        <ion-icon name="heart"></ion-icon>
       </Col>
     </Row>
   </Grid>

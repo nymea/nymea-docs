@@ -6,7 +6,6 @@ export function createStyle(style = '', propertyValueMap) {
   
   Object.keys(propertyValueMap).forEach((property) => {
     currentValue = propertyValueMap[property];
-    console.log('createStyle', property, currentValue, isNumber(currentValue), isString(currentValue), isObject(currentValue));
     if (isNumber(currentValue) || isString(currentValue)) {
       style = createStyleFromString(style, property, currentValue);
     } else if (isObject(currentValue)) {

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;fill:url(#SVGID_1_);}
+	.st1{display:none;fill:#C8DAEA;}
+	.st2{display:none;fill:#A9C9DD;}
+	.st3{display:none;fill:url(#SVGID_2_);}
+	.st4{fill:#666666;}
+</style>
+<title>ionicons-v5-a</title>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-715.6556" y1="279.0202" x2="-716.1223" y2="277.9319" gradientTransform="matrix(240 0 0 -240 172080 67066.7266)">
+	<stop  offset="0" style="stop-color:#37AEE2"/>
+	<stop  offset="1" style="stop-color:#1E96C8"/>
+</linearGradient>
+<circle class="st0" cx="257" cy="255" r="224"/>
+<path class="st1" d="M215.9,357.7c-7.3,0-6-2.7-8.5-9.7l-21.3-70.2l164.3-97.5"/>
+<path class="st2" d="M215.9,357.7c5.6,0,8.1-2.6,11.2-5.6l29.9-29l-37.3-22.5"/>
+<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="-712.7673" y1="281.2137" x2="-712.4108" y2="280.5321" gradientTransform="matrix(130.4927 0 0 -109.4498 93283.6641 31039.2148)">
+	<stop  offset="0" style="stop-color:#EFF7FC"/>
+	<stop  offset="1" style="stop-color:#FFFFFF"/>
+</linearGradient>
+<path class="st3" d="M219.7,300.6l90.3,66.7c10.3,5.7,17.7,2.7,20.3-9.6L367,184.5c3.8-15.1-5.7-21.9-15.6-17.5l-215.8,83.2
+	c-14.7,5.9-14.6,14.1-2.7,17.8l55.4,17.3l128.2-80.9c6.1-3.7,11.6-1.7,7,2.3"/>
+<path class="st4" d="M257,31C133.3,31,33,131.3,33,255s100.3,224,224,224s224-100.3,224-224S380.7,31,257,31z M367,184.5
+	l-36.7,173.2c-2.6,12.3-10,15.3-20.3,9.6l-90.3-66.7l103.8-93.9c4.6-4-0.9-6-7-2.3l-128.2,80.9L132.9,268
+	c-11.9-3.7-12-11.9,2.7-17.8L351.4,167C361.3,162.6,370.8,169.4,367,184.5z"/>
+</svg>

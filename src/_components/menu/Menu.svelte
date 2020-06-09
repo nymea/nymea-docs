@@ -65,7 +65,13 @@
   .level-0 {
     border-left: 0;
     margin-left: 0; 
-    padding: 3rem 3rem 3rem 1.25rem;
+    padding: 0 0 0.75rem 0;
+  }
+
+  @media only screen and (min-width: 48em) {
+    .level-0 {
+      padding: 3rem 3rem 3rem 1.25rem;
+    }
   }
 
   ul {
