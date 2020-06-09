@@ -131,6 +131,7 @@ interfaces = load_interfaces(os.path.join(config["srcdir"], "nymea/libnymea/inte
 tree = build_tree(interfaces)
 markdown = print_tree(tree)
 
+interfaces = load_interfaces(os.path.join(config["srcdir"], "nymea/libnymea/interfaces"))
 markdown += build_markdown(interfaces)
 replacements = {}
 replacements[config["keyword"]] = markdown
