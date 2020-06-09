@@ -67,6 +67,11 @@
 			</a>
 		</li>
 		<li>
+			<a href="https://t.me/nymeacommunity">
+				<ion-icon src="/img/telegram-bw.svg" class="telegram"></ion-icon>
+			</a>
+		</li>
+		<li>
 			<a href="https://twitter.com/nymea_io">
         <ion-icon name="logo-twitter" class="twitter"></ion-icon>
       </a>

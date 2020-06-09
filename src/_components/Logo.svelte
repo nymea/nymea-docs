@@ -21,7 +21,8 @@
 
 <a href={$url('/')} class="logo">
   {#if text}
-    <img src="/img/logo-text.svg" alt="" style="--height: {height}; --width: {width};" />
+    <!-- <img src="/img/logo-text.svg" alt="" style="--height: {height}; --width: {width};" /> -->
+    <img src="/img/logo-text-white.svg" alt="" style="--height: {height}; --width: {width};" />
   {:else}
     <img src="/img/logo.svg" alt="" style="--height: {height}; --width: {width};" />
   {/if}

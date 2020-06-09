@@ -89,7 +89,7 @@ select {
  */
 
 :root {
-  --white: hsl(0, 0%, 100%);
+  --white: hsl(0, 0%, 99%);
 
   --silver-base: hsl(0, 0%, 98%);
   --silver-transparent-base: hsla(0, 0%, 98%, 0.9);
@@ -103,8 +103,17 @@ select {
   --grey-darken-40: hsl(0, 0%, 10%);
 
   --green-base: hsl(127, 27%, 70%);
+  --green-transparent-darken-20: hsla(127, 17%, 50%, 0.1);
+
+  --turquoise-base: hsl(168, 30%, 65%);
+  --turquoise-transparent-darken-20: hsla(168, 20%, 50%, 80%);
+  --turquoise-darken-20: hsl(170, 17%, 49%);
+  --turquoise-darken-30: hsl(168, 20%, 30%);
 
   --text-color: var(--grey-darken-40);
+  --text-color-inverse: var(--white);
+
+  --nymea-gradient: linear-gradient(135deg, var(--green-base), var(--turquoise-base));
 
   /* Space */
 	--space-unit: 1rem;
@@ -122,6 +131,10 @@ select {
 
 body {
   font-family: 'Ubuntu', Roboto, -apple-system, Helvetica Neue, sans-serif;
+}
+
+body.noscroll {
+  overflow: hidden;
 }
 
 h1,
@@ -172,6 +185,10 @@ h6 {
   letter-spacing: 0.01em;
   line-height: 1.5rem;
   text-transform: uppercase;
+}
+
+ul {
+  margin: 1.5rem 0;
 }
 
 pre {

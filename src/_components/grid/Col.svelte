@@ -47,7 +47,7 @@
     flex: 1;
     /* flex: 1 1 100%; */
     /* flex: 0 1 auto; */
-    margin-left: calc((100% / var(--row-cols) * var(--col-offset)) + calc(var(--row-gap) / 2));
+    margin-left: calc((100% / var(--row-cols-xs) * var(--col-offset-xs)) + calc(var(--row-gap-xs) / 2));
     margin-right: calc(var(--row-gap) / 2);
     /* overflow: scroll; */
     /* min-width: 30em;
@@ -56,11 +56,11 @@
   }
 
   .col.span {
-    flex: 0 0 calc((100% / var(--row-cols)) * var(--col-span) - var(--row-gap));
+    flex: 0 0 calc((100% / var(--row-cols-xs)) * var(--col-span-xs) - var(--row-gap-xs));
   }
 
   .col.order {
-    order: var(--col-order);
+    order: var(--col-order-xs);
   }
 
   .col.bottom {

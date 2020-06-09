@@ -39,6 +39,13 @@
     background-color: rgba(0, 0, 0, 0.3);
   } */
 
+  @media only screen and (min-width: 48em) {
+    /* Fixes issue on iPads where actions go to next row */
+    .header > :global(.grid > .row > .col) {
+      margin-right: calc(var(--row-gap-sm) / 2 - 2);
+    }
+  }
+
   @media only screen and (min-width: 64em) {
     .header > :global(.row > .col > [slot="actions"]) {
       display: block;

@@ -8,9 +8,11 @@
 
 <style>
   footer {
-    background-color: var(--white);
-    border-top: 1px solid var(--silver-darken-10);
-    padding: 3rem 0;
+    /* background-color: var(--white); */
+    background: var(--nymea-gradient);
+    /* border-top: 1px solid var(--silver-darken-10); */
+    border-top: 1px solid var(--green-base);
+    padding: var(--space-10) 0;
     position: relative;
     z-index: 4;
   }
@@ -25,9 +27,13 @@
     margin-bottom: 1.5rem;
   }
 
-  @media only screen and (min-width: 48em) {
+  @media only screen and (min-width: 64em) {
+    /* footer > :global(.grid .row:first-child) {
+      height: calc(2 * var(--space-10));
+    } */
+
     footer > :global(.grid .row:first-child) {
-      height: 12rem;
+      height: calc(2 * var(--space-10));
     }
 
     footer > :global(.grid .row:first-child > .col:first-child) {
@@ -44,12 +50,24 @@
     }
   }
 
+  /* @media only screen and (min-width: 64em) {
+    footer > :global(.grid .row:first-child) {
+      height: calc(2 * var(--space-10));
+    }
+  } */
+
+  /* .sitemap :global(.logo svg) {
+    fill: var(--white);
+  } */
+
   .sitemap .menu {
     margin-left: 0;
   }
 
   .sitemap span {
-    color: var(--grey-base);
+    /* color: var(--grey-base); */
+    /* color: var(--turquoise-darken-30); */
+    color: var(--text-color-inverse);
     display: block;
     font-size: 0.8rem;
     letter-spacing: 0.01em;
@@ -62,31 +80,62 @@
   }
 
   @media only screen and (min-width: 48em) {
+
+    /* footer > :global(.grid .row:first-child > .col:first-child .logo) {
+      text-align: right;
+    } */
+
     .sitemap span + ul:last-child {
       margin-bottom: 0;
     }
   }
 
   .sitemap a {
-    color: var(--text-color);
+    /* color: var(--text-color); */
+    /* color: var(--text-color-inverse); */
+    color: var(--turquoise-darken-30);
     text-decoration: none;
   }
 
+  footer > :global(.grid .row:first-child > .col:nth-child(2)) {
+    display: flex;
+    flex-direction: column;
+  }
+
   .mission {
-    color: var(--grey-darken-10);
+    /* color: var(--grey-darken-10); */
+    /* color: var(--text-color-inverse); */
+    color: var(--turquoise-darken-30);
   }
 
   .copyright {
-    color: var(--grey-base);
+    /* color: var(--grey-base); */
+    /* color: var(--turquoise-darken-30); */
+    /* border-bottom: 1px solid var(--turquoise-transparent-darken-20); */
+    color: var(--text-color-inverse);
     font-size: 0.8rem;
     letter-spacing: 0.01em;
-    margin: 1.5rem 0 3rem;
+    /* margin: var(--space-09) 0; */
+    margin: var(--space-07) 0 var(--space-09);
+    /* padding-bottom: var(--space-09); */
     text-transform: uppercase;
   }
 
   @media only screen and (min-width: 48em) {
     .copyright {
-      margin: 3rem 0 0;
+      margin: var(--space-07) 0 var(--space-09);
+      /* border-bottom: 0; */
+      /* margin: var(--space-09) 0 0; */
+      /* padding-bottom: 0; */
+    }
+  }
+
+  @media only screen and (min-width: 64em) {
+    .copyright {
+      border-bottom: 0;
+      margin: auto 0 0;
+      /* margin: calc(var(--space-07) + var(--space-09)) 0 0; */
+      padding-bottom: 0;
     }
   }
 </style>
@@ -95,17 +144,22 @@
   <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <nav class="sitemap">
       <Row>
-        <Col span={{'xs': 12, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
+        <!-- <Col span={{'xs': 12, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}> -->
+        <Col span={{'xs': 12, 'sm': 5, 'md': 1, 'lg': 1, 'xl': 1}}>
           <Logo text="true" width="11.5rem" />
         </Col>
         <!-- <Col span={{'xs': 8, 'sm': 8, 'md': 8, 'lg': 8, 'xl': 8}} offset={{'xs': 1, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}> -->
-        <Col span={{'xs': 12, 'sm': 4, 'md': 4, 'lg': 4, 'xl': 4}}>
-          <p class="mission">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.</p>
+        <!-- <Col span={{'xs': 12, 'sm': 5, 'md': 4, 'lg': 4, 'xl': 4}}> -->
+        <Col span={{'xs': 12, 'sm': 6, 'md': 4, 'lg': 4, 'xl': 4}}>
+          <!-- <p class="mission">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p> -->
+          <p class="mission">Nymea works to enhance the standard for connected products. Didicated to open-source we believe that outstanding services is a better way to bind customers than to lock them in.</p>
+          <!-- <p class="mission"></p> -->
           <div class="copyright">
             <p>&copy; 2020 nymea GmbH &middot; All rights reserved.</p>
           </div>
         </Col>
-        <Col span={{'xs': 12, 'sm': 2, 'md': 2, 'lg': 2, 'xl': 2}} offset={{'xs': 0, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
+        <Col span={{'xs': 12, 'sm': 2, 'md': 2, 'lg': 2, 'xl': 2}} offset={{'xs': 0, 'sm': 5, 'md': 1, 'lg': 1, 'xl': 1}}>
+        <!-- <Col span={{'xs': 12, 'sm': 2, 'md': 2, 'lg': 2, 'xl': 2}}> -->
           <span>Products</span>
           <ul class="menu">
             <li>
@@ -126,6 +180,9 @@
             </li> -->
             <li>
               <a href={$url('/imprint')}>Imprint</a>
+            </li>
+            <li>
+              <a href={$url('/contact')}>Contact</a>
             </li>
           </ul>
         </Col>
@@ -162,7 +219,7 @@
           <ul class="menu">
             <li>
               <!-- <a href={$url('/documentation/overview')}>Documentation</a> -->
-              <span>Join the community</span>
+              <span>Community</span>
               <ul>
                 <li>
                   <a href="https://forum.nymea.io/">Forum</a>
