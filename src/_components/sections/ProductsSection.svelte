@@ -1,4 +1,5 @@
 <script>
+  import { url } from '@sveltech/routify';
   import Col from '../grid/Col.svelte';
   import Grid from '../grid/Grid.svelte';
   import Row from '../grid/Row.svelte';
@@ -25,10 +26,12 @@
       0 3px 3px rgba(0, 0, 0, 0.02),
       0 7.2px 7.2px rgba(0, 0, 0, 0.026),
       0 24px 24px rgba(0, 0, 0, 0.04);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     height: 100%;
     padding: var(--space-07);
+    text-decoration: none;
   }
 
   @media only screen and (min-width: 30em) {
@@ -94,7 +97,7 @@
   <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col>
-        <div class="product">
+        <a href={$url('/documentation/users/installation/core')} class="product">
           <h2>nymea:core</h2>
           <p>The heart of your Smart Home is nymea:core. Normally it runs on a low powered device such as a Raspberry Pi that is permanentely connected to your network. You can also install nymea:core on any standard computer hardware running GNU/Linux.</p>
           <div class="platforms">
@@ -109,19 +112,19 @@
                 <ion-icon src="/img/logos/logo-yocto.svg"></ion-icon>
               </li>
               <li>
-                <span>Ubuntu</span>
+                <span>Debian</span>
                 <ion-icon src="/img/logos/logo-debian.svg"></ion-icon>
               </li>
               <li>
-                <span>Debian</span>
+                <span>Ubuntu</span>
                 <ion-icon src="/img/logos/logo-ubuntu.svg"></ion-icon>
               </li>
             </ul>
           </div>
-        </div>
+        </a>
       </Col>
       <Col>
-        <div class="product">
+        <a href={$url('/documentation/users/installation/app')} class="product">
           <h2>nymea:app</h2>
           <p>Setup, configure and control your Smart Home with nymea:app. Available for Phones, Tablets and Desktop Computer it lets you interact with your devices from everywhere.</p>
           <div class="platforms">
@@ -136,8 +139,8 @@
                 <ion-icon name="logo-apple"></ion-icon>
               </li>
               <li>
-                <span>Ubuntu (Touch)</span>
-                <ion-icon src="/img/logos/logo-ubuntu.svg"></ion-icon>
+                <span>Linux</span>
+                <ion-icon name="logo-tux"></ion-icon>
               </li>
               <li>
                 <span>Windows</span>
@@ -145,7 +148,7 @@
               </li>
             </ul>
           </div>
-        </div>
+        </a>
       </Col>
     </Row>
   </Grid>
