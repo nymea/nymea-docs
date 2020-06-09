@@ -5,6 +5,9 @@
 
   const FORM_URL = 'https://sendmail.nymea.io/send.php';
 
+  let name;
+  let email;
+  let message;
   let response;
 
   async function validateAndSend() {
@@ -39,7 +42,7 @@
       method: 'POST', 
       body: formData
     });
-    return await response.text();
+    return await response.json();
   }
 </script>
 
@@ -91,6 +94,16 @@
     width: 100%;
   }
 
+  input.error,
+  textarea.error {
+    border-color: #d15656;
+    border-width: 2px;
+  }
+
+  p.error {
+    color: #d15656;
+  }
+
   textarea {
     height: 9rem;
   }
@@ -118,27 +131,36 @@
   <Grid width={{'xs': '100%', 'sm': '100%', 'md': '64em', 'lg': '75em', 'xl': '75em'}}>
     <Row>
       <Col span={{'xs': 12, 'sm': 6, 'md': 6, 'lg': 6, 'xl': 6}} offset={{'xs': 0, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
+        <h1>Get in touch</h1>
         <form name="contact-form" id="contact-form" action={FORM_URL} method="post">
-          <h1>Get in touch</h1>
           <!-- <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p> -->
           <div>
             <label>
               <span>Name</span>
-              <input name="name" placeholder="Please enter your name" type="text" required />
+              <input name="name" placeholder="Please enter your name" type="text" required bind:value={name} class:error={name === undefined && response && response.error !== "0"} />
             </label>
           </div>
           <div>
             <label>
-              <span>Email</span>
-              <input name="email" placeholder="Please enter your email address" type="email" required />
+              <span>Email {email}, {email === ""}</span>
+              <input name="email" placeholder="Please enter your email address" type="email" required bind:value={email} class:error={email === undefined && response && response.error !== "0"} />
             </label>
           </div>
           <div>
             <label>
               <span>Message</span>
-              <textarea name="message" placeholder="Include all the details you can" required></textarea>
+              <textarea name="message" placeholder="Include all the details you can" required bind:value={message} class:error={message === undefined && response && response.error !== "0"}></textarea>
             </label>
           </div>
+          {#if response}
+            {#if response.error === "0"}
+              <p class="success">The message was sent successfully!</p>
+            {:else if response.error === "1"}
+              <p class="error">Message could not be sent. All fields are required.</p>
+            {:else}
+              <p class="error">Message could not be sent. Please try again later.</p>
+            {/if}
+          {/if}
           <div>
             <!-- {#await } -->
             <button name="submit" type="submit" id="contact-submit" on:click|preventDefault={validateAndSend}>
