@@ -9,7 +9,7 @@ Once a [plugin JSON](plugin-json) file is created, the according logic is to be 
 
 The plugin codes main entry point is defined by subclassing the [IntegrationPlugin](broken) class. The header file accordingly looks similar to this:
 
-```c++
+```C++
 #ifndef INTEGRATIONPLUGINEXAMPLE_H
 #define INTEGRATiONPLUGINEXAMPLE_H
 
@@ -24,7 +24,7 @@ class IntegrationPluginExample: public IntegrationPlugin
 
 
 public:
-    explicit DevicePluginExample();
+    explicit ThingPluginExample();
 
     void setupThing(ThingSetupInfo *info) override;
 
@@ -112,7 +112,7 @@ In this example a http GET call to a REST API on a device would be made. The IP 
 
 ## Actions
 
-Whenever the user (or some automatism) executes an action in th system, the plugin will get `executeAction` called. The `info` parameter will contain all the required information to process the request. That contains information about the thing as well as the action. Let's have a look at an example switching on/off a device using a REST API.
+Whenever the user (or some automatism) executes an action in the system, the plugin will get `executeAction` called. The `info` parameter will contain all the required information to process the request. That contains information about the thing as well as the action. Let's have a look at an example switching on/off a device using a REST API.
 
 ```c++
 void IntegrationPluginExample::executeAction(ThingActionInfo *info)
@@ -146,14 +146,14 @@ void IntegrationPluginExample::executeAction(ThingActionInfo *info)
 }
 ```
 
-Again, we're obtaining the device's IP using the thing parameters, just like in `setupThing`. In addition, we're checking out which action it is. The action types are defined in the plugin's JSON file. Once we know which action it is (in this case the "power" action) we can obtain the parameters for it by accessing `info->action().params()`. Again, the actual parameter values can be obtained by using the name for the paramType defined in the plugin's JSON file. Like in the setupThing example we're constructing a HTTP call, in this case a POST one and using the `networkAccessManager` to send it to the network and waiting on the `QNetworkReply` to return to `finish` the action.
+Again, we're obtaining the devices IP using the thing parameters, just like in `setupThing`. In addition, we're checking out which action it is. The action types are defined in the plugin's JSON file. Once we know which action it is (in this case the "power" action) we can obtain the parameters for it by accessing `info->action().params()`. Again, the actual parameter values can be obtained by using the name for the paramType defined in the plugin's JSON file. Like in the setupThing example we're constructing a HTTP call, in this case a POST one and using the `networkAccessManager` to send it to the network and waiting on the `QNetworkReply` to return to `finish` the action.
 
 ## Events
 
 Whenever a thing is triggering an event, for instance a button on a device is pressed, or a trigger is happening on an online service, the plugin implementation should call `emitEvent` passing the information about the event. Let's look at an example that would poll an online service for such triggers.
 
 ```c++
-void IntegrationPluginExample::setupDevice(ThingSetupInfo *info) {
+void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
 
     // Doing the regular setup first...
     ...
@@ -196,7 +196,7 @@ One more thing to notice here is that the registering of a timer will require th
 States are handled very similar to events. But instead of creating an Event object, the plugin would call `thing->setStateValue()`. Let's look at an example that would poll the current temperature from some online API.
 
 ```c++
-void IntegrationPluginExample::setupDevice(ThingSetupInfo *info) {
+void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
 
     // Doing the regular setup first...
     ...
@@ -288,7 +288,7 @@ The plugin should store the credentials in the plugin storage.
 
 Let's look at the simplest form of it which is username and password authentication.
 
-The `startThing()` call is pretty much a no-operation in this case. The only thing a plugin implementation can do here is to provide an informational text to the client.
+The `startPairing()` call is pretty much a no-operation in this case. The only thing a plugin implementation can do here is to provide an informational text to the client.
 
 ```c++
 void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
@@ -594,7 +594,7 @@ Things can have settings. For instance, a bluetooth device with a small battery 
 Thing settings are very similar to the params used during setup, however, they can be changed at runtime, without having to reconfigure a thing. Like params, also settings need to be defined in the plugin's JSON file. For that, the plugin should connect to the things `settingChanged(const ParamTypeId &paramTypeId, const QVariant &value)` signal and handle it accordingly.
 
 ```c++
-void IntegrationPluginExample::setupDevice(ThingSetupInfo *info) {
+void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
 
     // Do thing setup
     ...

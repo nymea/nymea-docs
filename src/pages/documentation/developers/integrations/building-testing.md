@@ -11,7 +11,7 @@ Once the code for the plugin has been created, the next step is to build the plu
 
 If a plugin is created using QtCreator, clicking the build button in QtCreator should be all that's needed. QtCreator will typically create a build directory next to the project directory named `build-<project>-Desktop-Debug` (Note: the actual name might differ depending on the QtCreator setup and the selected build type).
 
-Once the build succeeded, the build directory will contain the plugin file named `libnymea_thingplugin<name>.so`. Unless the actual implementation requires any additional resources is all that's needed to load the plugin in nymea.
+Once the build succeeded, the build directory will contain the plugin file named `libnymea_inteagrationplugin<name>.so`. Unless the actual implementation requires any additional resources is all that's needed to load the plugin in nymea.
 
 ### Manual compilation
 
@@ -25,14 +25,14 @@ $ qmake ..
 $ make
 ```
     
-Once the build succeeded, the build directory will contain the plugin file named `libnymea_thingplugin<name>.so`. Unless the actual implementation requires any additional resources is all that's needed to load the plugin in nymea.
+Once the build succeeded, the build directory will contain the plugin file named `libnymea_integrationplugin<name>.so`. Unless the actual implementation requires any additional resources is all that's needed to load the plugin in nymea.
 
 ## Building JS plugins
 
 JavaScript plugins do not require to be compiled. However, `nymea-plugininfocompiler` can be used to validate the [JSON file](plugin-json). Run `nymea-plugincompiler` on the plugins `.json` file.
 
 ```bash
-$ nymea-plugininfocompiler deviceplugintemplate.json
+$ nymea-plugininfocompiler integrationplugintemplate.json
 ```
     
 If the command exits without any output, all went fine. If the JSON file contains any errors they will be printed out.
