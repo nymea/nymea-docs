@@ -142,7 +142,7 @@
           </div>
           <div>
             <label>
-              <span>Email {email}, {email === ""}</span>
+              <span>Email</span>
               <input name="email" placeholder="Please enter your email address" type="email" required bind:value={email} class:error={email === undefined && response && response.error !== "0"} />
             </label>
           </div>
