@@ -134,7 +134,11 @@
 			/* justify-content: flex-end; */
 			list-style-type: none;
 			padding: 0;
-			padding-right: 1.5rem;
+			padding-right: 1.5rem;	
+		}
+
+		.menu > :global(li > .level-0) {
+			display: none;
 		}
 
 		li {
