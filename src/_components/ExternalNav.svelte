@@ -62,22 +62,22 @@
 	<ul class="menu">
 		<li>
 			<!-- <a href="https://forum.nymea.io/">Forum</a> -->
-			<a href="https://forum.nymea.io/">
+			<a href="https://forum.nymea.io/" target="_blank">
 				<ion-icon src="/img/discourse-bw.svg" class="discourse"></ion-icon>
 			</a>
 		</li>
 		<li>
-			<a href="https://t.me/nymeacommunity">
+			<a href="https://t.me/nymeacommunity" target="_blank">
 				<ion-icon src="/img/telegram-bw.svg" class="telegram"></ion-icon>
 			</a>
 		</li>
 		<li>
-			<a href="https://twitter.com/nymea_io">
+			<a href="https://twitter.com/nymea_io" target="_blank">
         <ion-icon name="logo-twitter" class="twitter"></ion-icon>
       </a>
 		</li>
 		<li>
-			<a href="https://github.com/nymea">
+			<a href="https://github.com/nymea" target="_blank">
         <ion-icon name="logo-github" class="github"></ion-icon>
       </a>
 		</li>
