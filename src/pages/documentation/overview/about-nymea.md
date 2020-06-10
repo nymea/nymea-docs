@@ -21,13 +21,15 @@ nymea:core is the core piece of the platform. It refers to the services and libr
   * A typical smart home setup for instance would run a nymea:core on a Raspberry Pi in a home network and talk to IoT devices in the home via WiFi, Bluetooth, ZigBee etc.
   * A smart hot tub for instance would run nymea:core in a embedded device in the Hot Tub (e.g. a Beaglebone Black, a Raspberry Pi or any other SoC running Linux) and control the hot tup through GPIOs.
 
-### nymea:ux
+See [nymea:core](/documentation/users/installation/core) for more details.
 
-nymea:ux refers to the user facing frontend of a nymea system. This can be a client app running on a phone, a frontend app running on the IoT edge device too (in case it has a display) or a command line interface. Please refer to the [Clients](https://nymea.io/en/wiki/nymea/master/clients) page for available frontends.
+### nymea:app
+
+nymea:app is the user facing frontend of a nymea system. It is a client app running on a phone, on the IoT edge device (in case it has a display) or a Laptop/PC. Please refer to the [nymea:app](/documentation/users/installation/app) page for more details.
 
 ### nymea:cloud
 
-nymea:cloud is optional and extends nymea with cloud centric features such as delivering push notifications to client devices or enabling remote connections from nymea:ux to nymea:core in an easy to setup and secure manner.
+nymea:cloud is optional and extends nymea with cloud centric features such as delivering push notifications to client devices or enabling remote connections from nymea:app to nymea:core in an easy to setup and secure manner.
 
 ## Plug-in based and extensible
 
