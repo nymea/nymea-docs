@@ -61,7 +61,6 @@
 <nav>
 	<ul class="menu">
 		<li>
-			<!-- <a href="https://forum.nymea.io/">Forum</a> -->
 			<a href="https://forum.nymea.io/" target="_blank">
 				<ion-icon src="/img/discourse-bw.svg" class="discourse"></ion-icon>
 			</a>
