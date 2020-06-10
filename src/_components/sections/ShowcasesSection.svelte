@@ -41,7 +41,7 @@
     <Row>
       <Col middle span={{'xs': 8, 'sm': 4, 'md': 4, 'lg': 4, 'xl': 4}} offset={{'xs': 0, 'sm': 2, 'md': 2, 'lg': 2, 'xl': 2}}>
         <div class="showcase">
-          <h3>Collecing sensor data</h3>
+          <h3>Collecting sensor data</h3>
           <p>Connecting sensors to nymea allows for monitoring plants, energy consumption, air quality, weather data and many more. In combination with smart rules heating, irrigation, ventilation and such can be controlled magically.</p>
         </div>
       </Col>
