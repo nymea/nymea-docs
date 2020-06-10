@@ -10,7 +10,13 @@
     border-bottom: 1px solid var(--silver-darken-10);
     border-top: 1px solid var(--silver-darken-10);
     margin: 0 0 var(--space-04);
-    padding: calc(var(--space-10) + var(--space-07)) 0 calc(var(--space-10) + var(--space-09));
+    padding: calc(var(--space-09) + var(--space-07)) 0 var(--space-10);
+  }
+
+  @media only screen and (min-width: 64em) {
+    .offers {
+      padding: calc(var(--space-10) + var(--space-07)) 0 calc(var(--space-10) + var(--space-09));
+    }
   }
 
   h2 {
@@ -24,7 +30,7 @@
   }
 
   .offer {
-    margin-top: var(--space-10);
+    margin-top: var(--space-09);
     padding-right: var(--space-07);
   }
 

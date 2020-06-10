@@ -11,12 +11,18 @@
     border-bottom: 1px solid var(--silver-darken-10);
     border-top: 1px solid var(--silver-darken-10);
     margin: 0 0 var(--space-04);
-    padding: calc(var(--space-10) + var(--space-07)) 0 calc(var(--space-10) + var(--space-09));
+    padding: calc(var(--space-09) + var(--space-07)) 0 var(--space-09);
+  }
+
+  @media only screen and (min-width: 64em) {
+    .showcases {
+      padding: calc(var(--space-10) + var(--space-07)) 0 calc(var(--space-10) + var(--space-09));
+    }
   }
 
   .showcase,
   .phone-frame {
-    margin-bottom: var(--space-07);
+    margin-bottom: var(--space-09);
   }
 
   .showcases:nth-child(2) .showcase {

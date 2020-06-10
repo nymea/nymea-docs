@@ -6,15 +6,17 @@
 
 <style>
   .partners {
-    /* background: linear-gradient(180deg, var(--white), var(--silver-base)); */
     background: linear-gradient(135deg, var(--grey-darken-30), var(--grey-darken-40));
-    /* border-bottom: 1px solid var(--silver-darken-10);
-    border-top: 1px solid var(--silver-darken-10); */
     border-bottom: 1px solid var(--grey-darken-40);
     border-top: 1px solid var(--grey-darken-40);
     margin: 0 0 var(--space-04);
-    padding: calc(var(--space-10) + var(--space-07)) 0 calc(var(--space-10) + var(--space-09));
-    /* padding: var(--space-07) 0; */
+    padding: calc(var(--space-09) + var(--space-07)) 0 var(--space-10);
+  }
+
+  @media only screen and (min-width: 64em) {
+    .partners {
+      padding: calc(var(--space-10) + var(--space-07)) 0 calc(var(--space-10) + var(--space-09));
+    }
   }
 
   .partners :global(.row:nth-child(2)) {
@@ -29,7 +31,7 @@
   h2 {
   /* h6 { */
     color: var(--grey-base);
-    margin-bottom: var(--space-09);
+    margin-bottom: var(--space-07);
     margin-top: var(--space-07);
   }
 
@@ -37,6 +39,7 @@
     display: flex;
     height: 100%;
     justify-content: center;
+    padding-top: var(--space-07);
   }
 
   @media only screen and (min-width: 30em)  {

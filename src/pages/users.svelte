@@ -2,7 +2,6 @@
   import Col from '../_components/grid/Col.svelte';
   import Row from '../_components/grid/Row.svelte';
   import FeaturesSection from '../_components/sections/FeaturesSection.svelte';
-  import HighlightSection from '../_components/sections/HighlightSection.svelte';
   import IntegrationsSection from '../_components/sections/IntegrationsSection.svelte';
   import IntroductionSection from '../_components/sections/IntroductionSection.svelte';
   import LogosSection from '../_components/sections/LogosSection.svelte';

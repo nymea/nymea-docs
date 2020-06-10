@@ -12,7 +12,13 @@
     border-bottom: var(--border-bottom);
     border-top: var(--border-top);
     margin: 0 0 var(--space-04);
-    padding: calc(var(--space-10) + var(--space-07)) 0 calc(var(--space-10) + var(--space-09));
+    padding: calc(var(--space-09) + var(--space-07)) 0 var(--space-10);
+  }
+
+  @media only screen and (min-width: 64em) {
+    section {
+      padding: calc(var(--space-10) + var(--space-07)) 0 calc(var(--space-10) + var(--space-09));
+    }
   }
 </style>
 

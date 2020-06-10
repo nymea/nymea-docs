@@ -9,11 +9,17 @@
     border-top: 1px solid var(--silver-darken-10);
     margin: 0 0 var(--space-04);
     padding: 0 var(--space-07);
-    padding: calc(var(--space-10) + var(--space-07)) 0 calc(var(--space-10) + var(--space-09));
+    padding: calc(var(--space-09) + var(--space-07)) 0 var(--space-10);
   }
 
   .highlight > :global(.grid) {
     overflow: visible;
+  }
+
+  @media only screen and (min-width: 64em) {
+    .highlight {
+      padding: calc(var(--space-10) + var(--space-07)) 0 calc(var(--space-10) + var(--space-09));
+    }
   }
 
   .highlight-wrapper {

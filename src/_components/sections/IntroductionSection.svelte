@@ -6,6 +6,7 @@
 
   export let title = 'Title';
   export let subTitle = 'Subtitle';
+  export let subTitleSlot = 'bottom';
   export let buttonIconName = 'arrow-forward';
   export let buttonIconSrc = '';
   export let buttonText = 'More';
@@ -17,9 +18,8 @@
   .introduction {
     background-color: var(--silver-base);
     border-bottom: 1px solid var(--silver-darken-10);
-    /* border-top: 1px solid var(--silver-darken-10); */
     margin: 0 0 var(--space-04);
-    padding: calc(var(--space-10) + var(--space-09)) 0;
+    padding: calc(var(--space-09) + var(--space-07)) 0 var(--space-10);
   }
 
   .introduction header h1 {
@@ -33,10 +33,18 @@
     font-size: 1.25rem;
     line-height: 1.5rem;
     font-weight: 400;
+    margin-bottom: 0;
+  }
+
+  .introduction header p.showButton {
     margin-bottom: var(--space-09);
   }
 
   @media only screen and (min-width: 64em) {
+    .introduction {
+      padding: calc(var(--space-10) + var(--space-07)) 0 calc(var(--space-10) + var(--space-09));
+    }
+
     .introduction header h1 {
       font-size: 4.5rem;
       line-height: 4.5rem;
@@ -55,8 +63,13 @@
     <Row>
       <Col middle span={{'xs': 8, 'sm': 8, 'md': 8, 'lg': 8, 'xl': 8}} order={{'xs': 2, 'sm': 0, 'md': 0, 'lg': 0, 'xl': 0}}>
         <header>
+          {#if subTitleSlot === 'top'}
+            <p class:showButton>{subTitle}</p>
+          {/if}
           <h1>{title}</h1>
-          <p>{subTitle}</p>
+          {#if subTitleSlot === 'bottom'}
+            <p class:showButton>{subTitle}</p>
+          {/if}
         </header>
 
         {#if showButton === true}

@@ -24,7 +24,7 @@
   subTitle="Build IoT business, not IoT devices."
   buttonText="Get started",
   buttonLink="./documentation/developers"
-  showButton="false" />
+  showButton={false} />
 
 <OffersSection />
 
