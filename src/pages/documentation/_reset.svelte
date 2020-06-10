@@ -197,6 +197,10 @@
     align-self: center;
   }
 
+  .content {
+    margin: 0 calc(var(--row-gap) / 2 );
+  }
+
   .sider {
     display: none;
     padding-bottom: 3rem;
@@ -229,7 +233,7 @@
       </div>
     </Header>
   </div>
-  <div slot="content" class="slot">
+  <div slot="content" class="slot content">
     <Content main padding="3rem 0">
       <slot />
     </Content>
