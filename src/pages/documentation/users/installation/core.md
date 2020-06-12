@@ -116,7 +116,7 @@ The nymea:core snap can be found in the [snap app store](https://snapcraft.io/ny
 provides amd64 and armhf packages.
 
 <dl>
-<a href="http://snapcraft.io/nymea" style="display:inline-block;overflow:hidden;background:url(https://snapcraft.io/static/images/badges/en/snap-store-black.svg) no-repeat;width:182px;height:56px;background-size:contain;"></a>
+<a href="http://snapcraft.io/nymea" target="_blank" rel="noopener" style="display:inline-block;overflow:hidden;background:url(https://snapcraft.io/static/images/badges/en/snap-store-black.svg) no-repeat;width:182px;height:56px;background-size:contain;"></a>
 </dl>
 <br />
 

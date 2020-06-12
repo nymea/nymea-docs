@@ -164,25 +164,25 @@
               <span>Community</span>
               <ul>
                 <li>
-                  <a href="https://forum.nymea.io/">Forum</a>
+                  <a href="https://forum.nymea.io/" target="_blank" rel="noopener">Forum</a>
                 </li>
                 <li>
-                  <a href="https://github.com/nymea">Github</a>
+                  <a href="https://github.com/nymea" target="_blank" rel="noopener">Github</a>
                 </li>
                 <li>
-                  <a href="https://t.me/nymeacommunity">Telegram</a>
+                  <a href="https://t.me/nymeacommunity" target="_blank" rel="noopener">Telegram</a>
                 </li>
                 <li>
-                  <a href="https://discordapp.com/channels/652494572298960926/652494572298960929">Discord</a>
+                  <a href="https://discordapp.com/channels/652494572298960926/652494572298960929" target="_blank" rel="noopener">Discord</a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/nymea_io">Twitter</a>
+                  <a href="https://twitter.com/nymea_io" target="_blank" rel="noopener">Twitter</a>
                 </li>
                 <li>
-                  <a href="https://www.facebook.com/nymea.io">Facebook</a>
+                  <a href="https://www.facebook.com/nymea.io" target="_blank" rel="noopener">Facebook</a>
                 </li>
                 <li>
-                  <a href="https://www.youtube.com/user/gearupyourhome">YouTube</a>
+                  <a href="https://www.youtube.com/user/gearupyourhome" target="_blank" rel="noopener">YouTube</a>
                 </li>
               </ul>
             </li>

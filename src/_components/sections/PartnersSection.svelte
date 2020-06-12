@@ -70,27 +70,27 @@
     </Row>
     <Row wrap>
       <Col>
-        <a href="https://www.marantec-group.com/" class="partner">
+        <a href="https://www.marantec-group.com/" target="_blank" rel="noopener" class="partner">
           <img src="/img/partners/marantec-group.svg" alt="marantec group" />
         </a>
       </Col>
       <Col>
-        <a href="https://www.streamunlimited.com/" class="partner">
+        <a href="https://www.streamunlimited.com/" target="_blank" rel="noopener" class="partner">
           <img src="/img/partners/stream-unlimited.svg" alt="Stream Unlimited" />
         </a>
       </Col>
       <Col>
-        <a href="https://www.qt.io/" class="partner">
+        <a href="https://www.qt.io/" target="_blank" rel="noopener" class="partner">
           <img src="/img/partners/qt-company.svg" alt="The Qt Company" />
         </a>
       </Col>
       <Col>
-        <a href="https://ubuntu.com/" class="partner">
+        <a href="https://ubuntu.com/" target="_blank" rel="noopener" class="partner">
           <img src="/img/partners/ubuntu.svg" alt="ubuntu" />
         </a>
       </Col>
       <Col>
-        <a href="https://www.dh-electronics.com/" class="partner">
+        <a href="https://www.dh-electronics.com/" target="_blank" rel="noopener" class="partner">
           <img src="/img/partners/dh-electronics.svg" alt="DH electronics" />
         </a>
       </Col>

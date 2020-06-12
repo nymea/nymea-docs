@@ -12,9 +12,9 @@ nymea:app can be found in the Google Play store for Android, on the iTunes store
 ![](/img/mobile-app.png)
 
 <div align="center">
-<a href="https://itunes.apple.com/us/app/nymea-app/id1400810250?mt=8"><img src="/img/badges/appstore.png" height="50px"></a>
-<a href="https://open-store.io/app/io.guh.nymeaapp"><img src="/img/badges/open-store.svg" height="50px"/></a>
-<a href="https://play.google.com/store/apps/details?id=io.guh.nymeaapp"><img src="/img/badges/playstore.png" height="50px"></a>
+<a href="https://itunes.apple.com/us/app/nymea-app/id1400810250?mt=8" target="_blank" rel="noopener"><img src="/img/badges/appstore.png" height="50px"></a>
+<a href="https://open-store.io/app/io.guh.nymeaapp" target="_blank" rel="noopener"><img src="/img/badges/open-store.svg" height="50px"/></a>
+<a href="https://play.google.com/store/apps/details?id=io.guh.nymeaapp" target="_blank" rel="noopener"><img src="/img/badges/playstore.png" height="50px"></a>
 </div>
 
 
@@ -31,8 +31,8 @@ nymea:app can be found in the macOS app store and the Ubuntu Core Snap store. Fo
 
 
 <div align="center">
-<a href="https://apps.apple.com/us/app/nymea-app/id1488785734"><img src="/img/badges/macos.svg" height="50px"/></a>
-<a href="https://snapcraft.io/nymea-app"><img src="/img/badges/snap-store.png" height="50px"/></a>
+<a href="https://apps.apple.com/us/app/nymea-app/id1488785734" target="_blank" rel="noopener"><img src="/img/badges/macos.svg" height="50px"/></a>
+<a href="https://snapcraft.io/nymea-app" target="_blank" rel="noopener"><img src="/img/badges/snap-store.png" height="50px"/></a>
 <a href="https://downloads.nymea.io/nymea-app/nymea-app-win-installer.exe"><img src="/img/badges/windows.svg" height="50px"/></a>
 </div>
 
