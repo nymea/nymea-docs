@@ -146,7 +146,7 @@
 </div>
 
 <p>nymea integrations are extensions to nymea enable a specific device or service, commonly referred to as "things". By default nymea ships with the most commonly used integrations but there is a large list of supported integrations which can be installed depending on the needs of a certain nymea setup.</p>
-<p>This section shows a list of currently supported integrations. If support for a certain device or online service is not in this list, nymea can still be extended for it by developing such an integration. Please see the developers section and don't hesitate to join <a href="https://forum.nymea.io" target="_blank">our forum</a> to meet other users and developers and help creating new integrations.</p>
+<p>This section shows a list of currently supported integrations. If support for a certain device or online service is not in this list, nymea can still be extended for it by developing such an integration. Please see the developers section and don't hesitate to join <a href="https://forum.nymea.io" target="_blank" rel="noopener">our forum</a> to meet other users and developers and help creating new integrations.</p>
 
 <ul class="legend">
   <li>

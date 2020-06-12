@@ -61,22 +61,22 @@
 <nav>
 	<ul class="menu">
 		<li>
-			<a href="https://forum.nymea.io/" target="_blank">
+			<a href="https://forum.nymea.io/" target="_blank" rel="noopener">
 				<ion-icon src="/img/discourse-bw.svg" class="discourse"></ion-icon>
 			</a>
 		</li>
 		<li>
-			<a href="https://t.me/nymeacommunity" target="_blank">
+			<a href="https://t.me/nymeacommunity" target="_blank" rel="noopener">
 				<ion-icon src="/img/telegram-bw.svg" class="telegram"></ion-icon>
 			</a>
 		</li>
 		<li>
-			<a href="https://twitter.com/nymea_io" target="_blank">
+			<a href="https://twitter.com/nymea_io" target="_blank" rel="noopener">
         <ion-icon name="logo-twitter" class="twitter"></ion-icon>
       </a>
 		</li>
 		<li>
-			<a href="https://github.com/nymea" target="_blank">
+			<a href="https://github.com/nymea" target="_blank" rel="noopener">
         <ion-icon name="logo-github" class="github"></ion-icon>
       </a>
 		</li>
