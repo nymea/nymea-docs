@@ -61,7 +61,7 @@
       {#each logos as logo}
         <Col center>
           {#if logo.url}
-            <a href={logo.url} alt={logo.title} title={logo.title}>
+            <a href={logo.url} alt={logo.title} title={logo.title} target="_blank">
               {#if logo.iconSrc}
                 <ion-icon src={logo.iconSrc}></ion-icon>
               {:else if logo.iconName}
