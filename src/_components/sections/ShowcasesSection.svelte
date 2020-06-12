@@ -1,4 +1,5 @@
 <script>
+  import Waypoint from 'svelte-waypoint';
   import { screens } from './_showcases.js';
   import Col from '../grid/Col.svelte';
   import Grid from '../grid/Grid.svelte';
@@ -53,7 +54,9 @@
       </Col>
       <Col span={{'xs': 4, 'sm': 3, 'md': 3, 'lg': 3, 'xl': 3}} offset={{'xs': 0, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
         <div class="phone-frame">
-          <img src="/img/showcases/showcase-collecting-sensor-data.svg" alt="">
+          <Waypoint offset="500">
+            <img src="/img/showcases/showcase-collecting-sensor-data.svg" alt="">
+          </Waypoint>
         </div>
       </Col>
     </Row>
@@ -61,7 +64,9 @@
     <Row>
       <Col span={{'xs': 4, 'sm': 3, 'md': 3, 'lg': 3, 'xl': 3}} offset={{'xs': 0, 'sm': 2, 'md': 2, 'lg': 2, 'xl': 2}}>
         <div class="phone-frame">
-          <img src="/img/showcases/showcase-media.svg" alt="">
+          <Waypoint offset="500">
+            <img src="/img/showcases/showcase-media.svg" alt="">
+          </Waypoint>
         </div>
       </Col>
       <Col middle span={{'xs': 8, 'sm': 4, 'md': 4, 'lg': 4, 'xl': 4}} offset={{'xs': 0, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
@@ -81,7 +86,9 @@
       </Col>
       <Col span={{'xs': 4, 'sm': 3, 'md': 3, 'lg': 3, 'xl': 3}} offset={{'xs': 0, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
         <div class="phone-frame">
-          <img src="/img/showcases/showcase-it-is-magic.svg" alt="">
+          <Waypoint offset="500">
+            <img src="/img/showcases/showcase-it-is-magic.svg" alt="">
+          </Waypoint>
         </div>
       </Col>
     </Row>
@@ -89,7 +96,9 @@
     <Row>
       <Col span={{'xs': 4, 'sm': 3, 'md': 3, 'lg': 3, 'xl': 3}} offset={{'xs': 0, 'sm': 2, 'md': 2, 'lg': 2, 'xl': 2}}>
         <div class="phone-frame">
-          <img src="/img/showcases/showcase-configuration.svg" alt="">
+          <Waypoint offset="500">
+            <img src="/img/showcases/showcase-configuration.svg" alt="">
+          </Waypoint>
         </div>
       </Col>
       <Col middle span={{'xs': 8, 'sm': 4, 'md': 4, 'lg': 4, 'xl': 4}} offset={{'xs': 0, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
@@ -115,7 +124,9 @@
     <Row>
       <Col span={{'xs': 12, 'sm': 8, 'md': 8, 'lg': 8, 'xl': 8}} offset={{'xs': 0, 'sm': 2, 'md': 2, 'lg': 2, 'xl': 2}}>
         <div class="phone-frame">
-          <img src="/img/showcases/showcase-scripting.svg" alt="">
+          <Waypoint offset="500">
+            <img src="/img/showcases/showcase-scripting.svg" alt="">
+          </Waypoint>
         </div>
       </Col>
     </Row>
