@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte';
   import { isActive, url, layout, route, routes } from '@sveltech/routify';
+  import GdprBanner from '@beyonk/gdpr-cookie-consent-banner';
+  // import '@beyonk/gdpr-cookie-consent-banner/dist/style.css';
 
   import Content from '../_components/layout/Content.svelte';
   import Footer from '../_components/layout/Footer.svelte';
@@ -15,6 +17,15 @@
   import Logo from '../_components/Logo.svelte';
   import Nav from '../_components/Nav.svelte';
   import ExternalNav from '../_components/ExternalNav.svelte';
+
+  function analytics() {
+    console.log('toggle analytics');
+    window['ga-disable-UA-76041850-1'] = false;
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-76041850-1');
+  }
 </script>
 
 <style>
@@ -65,3 +76,4 @@
   </div>
 </Layout>
 
+<GdprBanner cookieName="nymea_gdpr" description="Test" on:analytics={analytics} />
