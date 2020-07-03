@@ -18,6 +18,30 @@
   import Nav from '../_components/Nav.svelte';
   import ExternalNav from '../_components/ExternalNav.svelte';
 
+  let gdprBannerConfig = {
+    cookieName: 'nymea_gdpr',
+    cookieConfig: {
+      domain: 'nymea.io',
+      path: '/'
+    },
+    heading: 'We care about your privacy.',
+    description: 'We use cookies to offer a better browsing experience, analyze site traffic and personalize content. Please review our privacy policy & cookies information page. By clicking accept, you consent to our privacy policy & use of cookies.',
+    choices: {
+      necessary: {
+        label: 'Necessary cookies',
+        description: 'Used for cookie control. Can\'t be turned off.',
+        value: true
+      },
+      analytics: {
+        label: 'Analytics cookies',
+        description: 'Used to control Google Analytics, a 3rd party tool offered by Google to track user behavior.',
+        value: true
+      },
+      tracking: false,
+      marketing: false
+    },
+  };
+
   function analytics() {
     console.log('toggle analytics');
     window['ga-disable-UA-76041850-1'] = false;
@@ -76,4 +100,4 @@
   </div>
 </Layout>
 
-<GdprBanner cookieName="nymea_gdpr" description="Test" on:analytics={analytics} />
+<GdprBanner {...gdprBannerConfig} on:analytics={analytics} />
