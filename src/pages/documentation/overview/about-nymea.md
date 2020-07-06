@@ -19,7 +19,7 @@ Nymea consists of three parts: nymea:core, nymea:app and nymea:cloud.
 nymea:core is the core piece of the platform. It refers to the services and libraries used to build the edge or bridge device where the main software is the nymea daemon or nymead. It can run on any Linux powered device:
 
   * A typical smart home setup for instance would run a nymea:core on a Raspberry Pi in a home network and talk to IoT devices in the home via WiFi, Bluetooth, ZigBee etc.
-  * A smart hot tub for instance would run nymea:core in a embedded device in the Hot Tub (e.g. a Beaglebone Black, a Raspberry Pi or any other SoC running Linux) and control the hot tup through GPIOs.
+  * A smart hot tub for instance would run nymea:core in a embedded device in the Hot Tub (e.g. a Beaglebone Black, a Raspberry Pi or any other SoC running Linux) and control the hot tub through GPIOs.
 
 See [nymea:core](/documentation/users/installation/core) for more details.
 
