@@ -68,7 +68,10 @@
   }
 
   .box {
-    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: var(--space-09);
   }
 
   .box header {
@@ -92,10 +95,26 @@
     text-transform: uppercase;
   }
 
+  .box > p {
+    margin-bottom: var(--space-07);
+  }
+
+  .box > :global(.button) {
+    background-color: var(--white);
+    border: 1px solid var(--silver-darken-20);
+    color: var(--text-color);
+    align-self: flex-start;
+    margin-top: auto;
+  }
+
   @media only screen and (min-width: 48em) {
     .box {
       margin-bottom: 0;
     }
+
+    .box > p {
+    margin-bottom: var(--space-09);
+  }
   }
 
   section h2,
@@ -139,6 +158,9 @@
             <p>Play</p>
           </header>
           <p>nymea gets you up and running with your smart home setup in no time. Just install nymea:core and nymea:app and you're all set with a powerful smart home solution that does not require powerful hardware or fiddling with cryptic configuration files. Using 100% free and open source software.</p>
+          <Button text="Learn more" link="users">
+            <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+          </Button>
         </div>
       </Col>
       <Col span={{'xs': 12, 'sm': 4}}>
@@ -149,6 +171,9 @@
             <p>Create</p>
           </header>
           <p>When you're building your own IoT device, nymea will help with all the software efforts. Whether it's connecting your device to others, adding easy set-up features, creating smart hubs for all your devices or adding control and setup frontends, nymea's got your back.</p>
+          <Button text="Learn more" link="developers">
+            <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+          </Button>
         </div>
       </Col>
       <Col span={{'xs': 12, 'sm': 4}}>
@@ -159,6 +184,9 @@
             <p>Build</p>
           </header>
           <p>Building IoT enabled customer grade products can be hard. We've ramped up with all the required know-how and with the nymea stack we'll be supporting your business. Whether it's fast prototyping and consulting, providing necessary components, building entire products or caring for deployments and updates.<!-- Together with our partners we offer in-field experience for all of those aspects. --></p>
+          <Button text="Learn more" link="businesses">
+            <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+          </Button>
         </div>
       </Col>
     </Row>
