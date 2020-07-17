@@ -1,142 +1,383 @@
 ---
-id: plugin-cpp
-title: The plugin code (C++/Qt)
+id: plugin-code
+title: The plugin code
 ---
 
-Once a [plugin JSON](plugin-json) file is created, the according logic is to be implemented in the plugin code. This page will describe how to work with the C++/Qt plugin API. If a plugin is implemented using JavaScript, please refer to [this page](plugin-js).
+<script>
+    import Code from '../../../../_components/Code.svelte';
+</script>
+
+Once a [plugin JSON](plugin-json) file is created, the according logic is to be implemented in the plugin code. The plugin code can be created in different programming languages. Currently supported are C++/Qt and JavaScript.
+
+This section assumes that you already have the basic plugin file structure in place either by having created a new plugin using the instructions in [creating a new plugin](creating-a-new-plugin) or by cloning and editing an existing plugin.
 
 ## Introduction
 
-The plugin codes main entry point is defined by subclassing the [IntegrationPlugin](broken) class. The header file accordingly looks similar to this:
+The main entry point for the plugin code is typically located in a file with the same name as the [plugin JSON](plugin-json) file but using typical filename extension for the chose programming language. For a C++/Qt plugin this is `.h`/`.cpp`, for a JavaScript plugin it is `.js`.
+
+> Note: While for C++/Qt plugins the file name is only recommended, for JavaScript plugins it is a requirement for the file to be named like the json file.
+
+The basic structure of the plugin code will look similar to this:
+
+<Code>
 
 ```C++
+// integrationpluginexample.h
+
 #ifndef INTEGRATIONPLUGINEXAMPLE_H
-#define INTEGRATiONPLUGINEXAMPLE_H
+#define INTEGRATIONPLUGINEXAMPLE_H
 
 #include "integrations/integrationplugin.h"
 
 class IntegrationPluginExample: public IntegrationPlugin
 {
     Q_OBJECT
-
     Q_PLUGIN_METADATA(IID "io.nymea.IntegrationPlugin" FILE "integrationpluginexample.json")
     Q_INTERFACES(IntegrationPlugin)
 
-
 public:
     explicit ThingPluginExample();
-
     void setupThing(ThingSetupInfo *info) override;
-
     void executeAction(ThingActionInfo *info) override;
-
     void thingRemoved(Thing *thing) override;
-
 };
 
-#endif // INTEGRATiONPLUGINEXAMPLE_H
-```
+#endif // INTEGRATIONPLUGINEXAMPLE_H
 
-The according .cpp file would look similar to this:
+// integrationpluginexample.cpp
 
-```c++
 #include "integrationpluginexample.h"
 #include "plugininfo.h"
 
-IntegrationPluginExample::IntegrationPluginExample()
-{
+IntegrationPluginExample::IntegrationPluginExample() { }
 
-}
-
-void  IntegrationPluginExample::setupThing(ThingSetupInfo *info)
-{
-    qCDebug(dcExample()) << "Setup thing" << info->thing()->name() << info->thing()->params();
-
-    ...
-    
+void  IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
+    qCDebug(dcExample()) << "setupThing called for" << info->thing()->name() << info->thing()->params();
+    // Perform required setup here
     info->thing()->setStateValue(exampleConnectedStateTypeId, true);
-    
     info->finish(Thing::ThingErrorNoError);
 }
 
-void IntegrationPluginExample::executeAction(ThingActionInfo *info)
-{
-    qCDebug(dcExample()) << "Executing action for thing" << info->thing()->name() << action.actionTypeId().toString() << action.params();
-
+void IntegrationPluginExample::executeAction(ThingActionInfo *info) {
+    qCDebug(dcExample()) << "executeAction called for thing" << info->thing()->name() << info->action().actionTypeId() << action.params();
+    // Perform action execution here
     info->finish(Thing::ThingErrorNoError);
 }
 
-void IntegrationPluginExample::thingRemoved(Thing *thing)
-{
-    qCDebug(dcExample()) << "Remove thing" << thing->name() << thing->params();
+void IntegrationPluginExample::thingRemoved(Thing *thing) {
+    qCDebug(dcExample()) << "removeThing called for" << thing->name();
+    // Clean up all data related to this thing
+}
 
+```
+
+```JavaScript
+export function setupThing(info) {
+    console.log("setupThing called for", info.thing.name);
+    // Perform required setup here
+    info.thing.setStateValue(exampleConnectedStateTypeId, true);
+    info.finish(Thing.ThingErrorNoError);
+}
+
+export function executeAction(info) {
+    console.log("Execute action called for thing", info.thing.name, info.action.actionTypeId, info.action.params);
+    // Perform action execution here
+    info.finish(Thing.ThingErrorNoError);
+}
+
+export function thingRemoved(thing) {
+    console.log("removeThing called for", thing.name);
     // Clean up all data related to this thing
 }
 ```
 
+</Code>
 
-This is a minimalistic example for a plugin. While there are lots of other methods that a plugin can implement, this is the bare minimum the average plugin will need. For the complete reference of the integration plugin API use this [link TODO!!!!!]().
+
+This is a minimalistic example for a plugin. While there are lots of other methods that a plugin can implement, this is the bare minimum the average plugin will need. <!-- For the complete reference of the integration plugin API use this [link TODO!!!!!](). -->
+
+## IDs and names
+
+As described in the [getting started](getting-started-integration) section, every entity in a plugin is referenced by an ID and a name. A plugin can use the IDs as defined in the JSON file to identify those entities, however, this is discouraged for the sake of readability. Instead, nymea will provide definitions to those IDs in a more readable manner to the developer.
+
+> In C++/Qt plugins, those IDs will be defined in the plugininfo.h header file which can be included in the plugin code. Additionally, a extern-plugininfo.h file can be included to make those definitions available in multiple files without causing multipre references to them. 
+
+> In JavaScript plugins, those definitions will are exported to the global object of the plugins JS engine.
+
+Those definitions are generated using the following scheme:
+
+| Entity | Definion|
+| :-- | :-- |
+| Vendor ID | *name*VendorId |
+| ThingClass ID | *name*ThingClassId |
+| ThingClass paramType ID | *thingClass*Thing*name*ParamTypeId |
+| SettingsType ID | *thingClass*Settings*name*ParamTypeId |
+| EventType ID | *thingClass**name*EventTypeId |
+| Event ParamType ID | *thingClass**event**name*ParamTypeId | 
+| StateType ID | *thingClass**name*StateTypeId |
+| ActionType ID | *thingClass*
+
+
+Let's look at a fictional example for a thing class describing a robot. The first tab contains the JSON definition for the plugin, the other tabs contain the generated definitions for the according programming language.
+
+<Code>
+
+```JSON
+// JSON definition
+{
+    "vendors": [
+        {
+            "id": "ce0d15dc-c479-438d-adb3-90d57e4b1d35",
+            "name": "acme",
+            "thingClasses": [
+                {
+                    "id": "bd2157e3-2f9c-44a5-9d08-e2da2f6aa46f",
+                    "name": "robot",
+                    "paramTypes": [
+                        {
+                            "id": "eb6eeef7-f295-427b-b88f-01bedba49da7",
+                            "name": "name"
+                        }
+                    ],
+                    "settingsTypes": [
+                        {
+                            "id": "b8b4aefc-e6d6-47d7-b689-35d86d79f1fc",
+                            "name": "speed"
+                        }
+                    ],
+                    "discoveryParamTypes": [
+                        {
+                            "id": "df487d2d-dea6-45ac-907c-01b4fae4fd9b",
+                            "name": "language"
+                        }
+                    ],
+                    "eventTypes": [
+                        {
+                            "id": "e0581e22-81ca-4d43-bb0b-6e57312a33e4",
+                            "name": "blinked",
+                            "paramTypes": [
+                                {
+                                    "id": "adff8dbc-db5c-4c5d-9a57-9628dfa0a7e8",
+                                    "name": "color"
+                                }
+                            ]
+                        }
+                    ],
+                    "stateTypes": [
+                        {
+                            "id": "66730571-2776-4187-b29f-d745609353cd",
+                            "name": "connected"
+                        }
+                    ],
+                    "actionTypes": [
+                        {
+                            "id": "33f01f72-80b4-42cf-bdbd-a3439ce8236b",
+                            "name": "sleep",
+                            "paramTypes": [
+                                {
+                                    "id": "0170952a-260a-44be-972c-cc34f8bc8f67",
+                                    "name": "duration"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+```C++
+// In plugininfo.h
+
+VendorId acmeVendorId = VendorId("ce0d15dc-c479-438d-adb3-90d57e4b1d35");
+ThingClassId robotThingClassId = ThingClassId("bd2157e3-2f9c-44a5-9d08-e2da2f6aa46f");
+ParamTypeId robotThingNameParamTypeId = ParamTypeId("eb6eeef7-f295-427b-b88f-01bedba49da7");
+ParamTypeId robotSettingsSpeedParamTypeId = ParamTypeId("b8b4aefc-e6d6-47d7-b689-35d86d79f1fc");
+ParamTypeId robotDiscoveryLanguageParamTypeId = ParamTypeId("df487d2d-dea6-45ac-907c-01b4fae4fd9b");
+EventTypeId robotBlinkedEventTypeId = EventTypeId("e0581e22-81ca-4d43-bb0b-6e57312a33e4");
+ParamTypeId robotBlinkedEventColorParamTypeId = ParamTypeId("adff8dbc-db5c-4c5d-9a57-9628dfa0a7e8");
+StateTypeId robotConnectedStateTypeId = StateTypeId("66730571-2776-4187-b29f-d745609353cd");
+ActionTypeId robotSleepActionTypeId = ActionTypeId("33f01f72-80b4-42cf-bdbd-a3439ce8236b");
+ParamTypeId robotSleepActionDurationParamTypeId = ParamTypeId("0170952a-260a-44be-972c-cc34f8bc8f67");
+```
+
+```JavaScript
+// Exported in the engine's global object
+
+var acmeVendorId = "ce0d15dc-c479-438d-adb3-90d57e4b1d35";
+var robotThingClassId = "bd2157e3-2f9c-44a5-9d08-e2da2f6aa46f";
+var robotThingNameParamTypeId = "eb6eeef7-f295-427b-b88f-01bedba49da7";
+var robotSettingsSpeedParamTypeId = "b8b4aefc-e6d6-47d7-b689-35d86d79f1fc";
+var robotDiscoveryLanguageParamTypeId = "df487d2d-dea6-45ac-907c-01b4fae4fd9b";
+var robotBlinkedEventTypeId = "e0581e22-81ca-4d43-bb0b-6e57312a33e4";
+var robotBlinkedEventColorParamTypeId = "adff8dbc-db5c-4c5d-9a57-9628dfa0a7e8";
+var robotConnectedStateTypeId = "66730571-2776-4187-b29f-d745609353cd";
+var robotSleepActionTypeId = "33f01f72-80b4-42cf-bdbd-a3439ce8236b";
+var robotSleepActionDurationParamTypeId = "0170952a-260a-44be-972c-cc34f8bc8f67";
+
+```
+
+</Code>
 
 ## Setup
 
-The most important method is probably `setupThing()`. This is called when a new thing is configured in the system, as well as on system startup. This method should do all the required stuff to connect to the thing. The `info` parameter will contain all the information for the newly set up thing. Once the connection to the device or online service has been established, the plugin code must call the `finish()` method on the info object. Please note, that there is a timeout in place which will cause the setup to time out eventually if `finish()` is not called. A plugin implementation can react on this by connecting to the `ThingSetupInfo::aborted()` signal. A more complete example for a setup implementation might look like this:
+The most important method is probably `setupThing()`. This is called when a new thing is configured in the system, as well as on system startup. This method should do all the required stuff to connect to the thing. The `info` parameter will contain all the information for the newly set up thing. Once the connection to the device or online service has been established, the plugin code must call the `finish()` method on the info object. Please note, that there is a timeout in place which will cause the setup to time out eventually if `finish()` is not called. A plugin implementation can react on this by connecting to the `aborted()` signal of the info object.
 
-```c++
-void  IntegrationPluginExample::setupThing(ThingSetupInfo *info)
-{
+A more complete example for a setup implementation might look like the following snipped where a plugin sets up a fictional device on the local network by probing its REST API.
+
+<Code>
+
+```C++
+void  IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
+    // Obtain the devices IP as given by the params
     QString deviceIp = info->thing()->paramValue(exampleThingIpParamTypeId).toString();
     
+    // Start a network request
     QNetworkRequest request("http://" + deviceIp + "/api");
     QNetworkReply *reply = hardwareManager()->networkAccessManager()->get(request);
 
+    // Clean up the reply object when it finishes
     connect(reply, &QNetworkReply::finished, reply, &QNetworkReply::deleteLater);
-
+    
+    // Process the network request result if it returns before "info" is destroyed
     connect(reply, &QNetworkReply::finished, info, [info, reply](){
         QByteArray data = reply->readAll();
-        
+        // Finish the setup with an appropriate result code
         if (data == "OK") {
             info->finish(Thing::ThingErrorNoError);
             info->thing()->setStateValue(exampleConnectedStateTypeId, true);
         } else {
-            info->finish(Thing::ThingErrorHarwareFailure);
+            info->finish(Thing::ThingErrorHarwareFailure, QT_TR_NOOP("Error connecting to the device in the network."));
         }
     });
     
+    // If needed, do some cleanup when the setup is aborted
     connect(info, &ThingSetupInfo::aborted, this, [](){
         qCDebug(dcExample) << "Setup timed out...";
     });
 }
 ```
 
-In this example a http GET call to a REST API on a device would be made. The IP adress is obtained from the thing parameters (NOTE: those must be defined in the plugin's JSON file). The `finished` signal of the QNetworkReply is connected to two slots: For one, it will call `deleteLater` on the reply object itself. This is just to clean up the call and prevent to leak memory. More importantly, it is also connected to a lambda function which ready the payload of the GET call and if everything is as expected it calls `info->finish(Thing::ThingErrorNoError)`. If something has gone wrong, it'll call `info->finish(Thing::ThingErrorHarwareFailure)` instead to indicate the failure to the system. Note that the lambda is only invoked if the `info` object is still existing (the 3rd argument in the `connect` method). If the setup times out before the GET call returns, the `info` object will be destroyed and the lambda is never invoked. This is also the reason why we're connecting `deleteLater` separately, as we want that to be called in any case.
+```JavaScript
+export function setupThing(info) {
+    // Obtain the devices IP as given by the params
+    var deviceIp = info.thing.paramValue(exampleThingIpParamTypeId);
+    
+    // Compose the network request
+    var request = new XMLHttpRequest()
+    request.open("GET", "https://" + deviceIp + "/api");
+
+    // Create a handler function for processing the network reply
+    request.onload = function() {
+        var response = JSON.parse(request.response);
+        
+        // Finish the setup with an appropriate result code
+        if (response.status == "OK") {
+            info.finish(Thing.ThingErrorNoError);
+        } else {
+            info.finish(Thing.ThingErrorHarwareFailure, QT_TR_NOOP("Error connecting to the device in the network."));
+        }
+    }
+    
+    // Send the network request
+    request.send();
+    
+    // Clean up/cancel when the setup is aborted
+    info.aborted.connect(function() {
+        console.log("Setup timed out...");
+        request.abort();
+    });
+}
+```
+
+</Code>
+
+In this example a HTTP GET call to a REST API on a device would be made. The IP adress is obtained from the thing parameters (NOTE: those must be defined in the plugin's JSON file). Once the network request returns, a lambda function is executed which reads the responses payload of the GET call and if everything is as expected it calls `finish()` on the setup info object providing the `ThingErrorNoError` status code. If something has gone wrong, it'll call `finish()` but with a different error code, in this case `ThingErrorHarwareFailure` to indicate the failure to the system. If the setup times out before the GET call returns or the user cancels the setup, the `info` object will emit its `aborted` signal and destroyed.
+
+> Note: The info object must not be accessed after it is finished or aborted. Depending on the language this will result in crashes or undefined behavior.
+
+## Settings
+
+Thing settings are very similar to the params used during setup, however, they can change at runtime without having to reconfigure a thing. For that, the plugin should connect to the things `settingChanged()` signal which will provide the `paramTypeId` and `value` for the changed setting and handle it accordingly.
+
+The following example handles the settings for a Bluetooth sensor which is polled according to an interval setting.
+
+<Code>
+
+```C++
+void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
+    // Do thing setup
+    ...
+    
+    // Update refresh schedule when the refresh rate setting is changed
+    connect(thing, &Thing::settingChanged, this, [this] (const ParamTypeId &paramTypeId, const QVariant &value) {
+        if (paramTypeId == myCoolDeviceSettingRefreshIntervalParamTypeId) {
+            qCDebug(dcExample) << "Polling interval changed to" << value.toInt() << "minutes";
+            // Reschedule polling timer here
+            ...
+        }
+    });
+}
+```
+
+```JavaScript
+export function setupThing(info) {
+    // Do thing setup
+    ...
+    
+    // Update refresh schedule when the refresh rate setting is changed
+    info.thing.settingChanged.connect(function() {
+        if (paramTypeId == myCoolDeviceSettingRefreshIntervalParamTypeId) {
+            console.log("Polling interval changed to", value, "minutes");
+            // Reschedule polling timer here
+            ...
+        }
+    });
+}
+```
+
+</Code>
 
 ## Actions
 
-Whenever the user (or some automatism) executes an action in the system, the plugin will get `executeAction` called. The `info` parameter will contain all the required information to process the request. That contains information about the thing as well as the action. Let's have a look at an example switching on/off a device using a REST API.
+Whenever the user (or some automatism) executes an action in the system, nymea will call `executeAction` on the plugin. The `info` parameter will contain all the required information to process the request. That contains information about the thing as well as the action. Let's have a look at an example switching on/off a device using a POST call on its REST API.
+
+<Code>
 
 ```c++
-void IntegrationPluginExample::executeAction(ThingActionInfo *info)
-{
+void IntegrationPluginExample::executeAction(ThingActionInfo *info) {
+    // Obtain the devices IP as given by the params
     QString deviceIp = info->thing()->paramValue(exampleThingIpParamTypeId).toString();
-    
-    ActionTypeId actionTypeId = info->action().actionTypeId();
-    
-    if (actionTypeId == examplePowerActionTypeId) {
-        bool power = info->action().paramValue(exampleActionPowerParamTypeId).toBool();
         
+    // Handle the power action
+    if (info->action().actionTypeId() == examplePowerActionTypeId) {
+        
+        // Obtain the parameter of this action
+        bool power = info->action().paramValue(examplePowerActionPowerParamTypeId).toBool();
+        
+        // Compose the network request
+        QByteArray payload = power ? "on" : "off";
         QNetworkRequest request("http://" + deviceIp + "/api/power");
-        QNetworkReply *reply = hardwareManager()->networkAccessManager()->post(request, power ? "on" : "off");
+        
+        // Send the request
+        QNetworkReply *reply = hardwareManager()->networkAccessManager()->post(request, payload);
 
+        // Clean up the reply object when it finishes
         connect(reply, &QNetworkReply::finished, reply, &QNetworkReply::deleteLater);
 
+        // Process the network request result if it returns before "info" is destroyed
         connect(reply, &QNetworkReply::finished, info, [info, reply, power](){
             QByteArray data = reply->readAll();
         
+            // Finish the action with an appropriate result code
             if (data == "OK") {
                 info->finish(Thing::ThingErrorNoError);
+                // Update the things power state accordingly
                 info->thing()->setStateValue(examplePowerStateTypeId, power);
             } else {
-                info->finish(Thing::ThingErrorHarwareFailure);
+                info->finish(Thing::ThingErrorHarwareFailure, QT_TR_NOOP("Error sending command to network device.");
             }
         });
     } else {
@@ -146,23 +387,70 @@ void IntegrationPluginExample::executeAction(ThingActionInfo *info)
 }
 ```
 
-Again, we're obtaining the devices IP using the thing parameters, just like in `setupThing`. In addition, we're checking out which action it is. The action types are defined in the plugin's JSON file. Once we know which action it is (in this case the "power" action) we can obtain the parameters for it by accessing `info->action().params()`. Again, the actual parameter values can be obtained by using the name for the paramType defined in the plugin's JSON file. Like in the setupThing example we're constructing a HTTP call, in this case a POST one and using the `networkAccessManager` to send it to the network and waiting on the `QNetworkReply` to return to `finish` the action.
+```JavaScript
+export function executeAction(info) {
+    // Obtain the devices IP as given by the params
+    var deviceIp = info.thing.paramValue(exampleThingIpParamTypeId);
+
+    // Handle the power action
+    if (info.actionTypeId() == examplePowerActionTypeId) {
+
+        // Obtain the parameter of this action
+        var power = info.paramValue(examplePowerActionPowerParamTypeId);
+
+        // Compose the network request
+        var payload = power === true ? "on" : "off";
+        var request = new XMLHttpRequest()
+        request.open("POST", "https://" + "deviceIp" + "/api");
+        
+        // Create a handler function for processing the network reply
+        request.onload = function() {
+            var response = JSON.parse(request.response);
+
+            // Finish the action with an appropriate result code
+            if (response.status == "OK") {
+                // Update the things power state accordingly
+                info.thing.setStateValue(examplePowerStateTypeId, power);
+                info.finish(Thing.ThingErrorNoError);
+            } else {
+                info.finish(Thing.ThingErrorHarwareFailure, QT_TR_NOOP("Error sending command to network device."));
+            }
+        }
+
+        // Send the request
+        request.send(payload);
+        
+        // Cancel the request if the action is aborted
+        info.aborted.connect(function() {
+            request.abort();
+        })
+    } else {
+        // Handle other actions...
+    }
+}
+```
+</Code>
+
+Again, we're obtaining the devices IP using the thing parameters, just like in `setupThing()`. In addition, we're checking out which action it is. Once we know which action it is (in this case the "power" action) we can obtain the parameters for it by calling `paramValue()` providing the param type ID we're interested in. Like in the setupThing example we're constructing a HTTP call, in this case a POST one and will be sending it to the network. The handler function for the network reply will again report the status of the execution in the `finish()` call.
+
+There's one more thing to note: If this action is an action that changes a things state, the plugin implementation should also update the things state value accordingly. See the [states section](#states) for more information how to manipulate states.
 
 ## Events
 
-Whenever a thing is triggering an event, for instance a button on a device is pressed, or a trigger is happening on an online service, the plugin implementation should call `emitEvent` passing the information about the event. Let's look at an example that would poll an online service for such triggers.
+Whenever a thing is triggering an event, for instance a button on a device is pressed, or a trigger is happening on an online service, the plugin implementation should call a things `emitEvent()` function, passing the information about the event.
 
-```c++
+Let's look at an example that would poll an online service for such triggers.
+
+<Code>
+
+```C++
 void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
-
     // Doing the regular setup first...
     ...
     
     // And set up the polling
-    
     Thing *thing = info->thing();
     m_pluginTimer = hardwareManager()->pluginTimerManager()->registerTimer(1);
-    
     connect(m_pluginTimer, &PluginTimer::timeout, thing, [this, thing](){
         
         QNetworkRequest request("https://example.com/api");
@@ -174,7 +462,7 @@ void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
             QByteArray data = reply->readAll();
         
             if (data == "eventHappened") {
-
+                // When appropriate, compose an event and emit it in the system
                 Event event(exampleEventTypeId, thing->id());
                 emitEvent(event);
             }
@@ -183,11 +471,44 @@ void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
 }
 
 void IntegrationPlugin::thingRemoved(Thing *thing) {
+    // Unregister the timer when the thing is removed
     hardwareManager()->pluginTimerManager()->unregisterTimer(m_pluginTimer);
 }
 ```
+
+```JavaScript
+var pluginTimer;
+
+export function setupDevice(info) {
+    // Doing the regular setup first...
+    ...
     
-In `setupThing` we're doing the regular setup first. If that succeeds, the plugin is registering a timer which whill emit the `timeout` signal every second. Connected to this timeout signal of the timer, the plugin will poll an online API. If the response of that polling operation contains data that indicates the happening of an event, the plugin constructs an `Event` with the required data. In this case it will contain the event type id which as usual has been defined in the plugin's JSON. In addition to that, it will contain the ID of the thing this event is for. The event could also have additional parameters but in this example we're omitting that for simplicity. Finally, the plugin calls `emitEvent(event)` to indicate the event to the system.
+    // And set up the polling
+    var thing = info.thing;
+    pluginTimer = hardwareManager.pluginTimerManager.registerTimer(5);
+    pluginTimer.timeout.connect(function() {
+    
+        var request = new XMLHttpRequest()
+        request.open("GET", "https://" + "deviceIp" + "/api");
+        request.onload = function() {
+            if (request.response == "eventHappened") {
+                // When appropriate, compose an event and emit it in the system
+                emitEvent(thing.id, exampleEventTypeId, []);
+            }
+        }
+        request.send();
+    })
+}
+
+export function thingRemoved(thing) {
+    // Unregister the timer when the thing is removed
+    hardwareManager.pluginTimerManager.unregisterTimer(pluginTimer);
+}
+```
+
+</Code>
+    
+In `setupThing()` we're doing the regular setup first. If that succeeds, the plugin is registering a timer which whill emit the `timeout()` signal every second. Connected to this timeout signal of the timer, the plugin will poll an online API. If the response of that polling operation contains data that indicates the happening of an event, the plugin constructs an `Event` with the required data. In this case it will contain the event type id which as usual has been defined in the plugin's JSON. In addition to that, it will contain the ID of the thing this event is for. The event could also have additional parameters but in this example we're omitting that for simplicity. Finally, the plugin calls `emitEvent()` to indicate the event to the system.
 
 One more thing to notice here is that the registering of a timer will require the plugin also to unregister it again when it's not needed any more. For that it uses the `thingRemoved()` method.
 
@@ -195,9 +516,10 @@ One more thing to notice here is that the registering of a timer will require th
 
 States are handled very similar to events. But instead of creating an Event object, the plugin would call `thing->setStateValue()`. Let's look at an example that would poll the current temperature from some online API.
 
-```c++
-void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
+<Code>
 
+```C++
+void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
     // Doing the regular setup first...
     ...
     
@@ -217,19 +539,49 @@ void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
             QByteArray data = reply->readAll();
             int temperature = data.toInt();
             
-            thing->setStateValue(exampleTemperatureStateTypeId, temperature);
+            // Update the things state value accordingly
+            thing->setStateValue(temperatureStateTypeId, temperature);
         });
     });
 }
 ```
 
-Also this example would poll the API every second. Whenever the reply comes back, it'll set the thing's state value using the id for the temperature state which is defined in the plugin's JSON file and the actual new value.
+```JavaScript
+var pluginTimer;
+
+export function setupDevice(info) {
+    // Doing the regular setup first...
+    ...
+    
+    // And set up the polling
+    var thing = info.thing;
+    pluginTimer = hardwareManager.pluginTimerManager.registerTimer(1);
+    
+    pluginTimer.timeout.connect(function(){
+        
+        var request = new XMLHttpRequest()
+
+        request.open("GET", "https://example.com/api/temperature");
+        request.onload = function() {
+            var temperature = request.response;
+
+            // Update the things state value accordingly
+            thing.setStateValue(temperatureStateTypeId, temperature)
+        }
+        request.send();
+    });
+}
+```
+
+</Code>
+
+Also this example would poll the API every second. Whenever the reply comes back, it'll set the things state value using the id for the temperature state which is defined in the plugin's JSON file and the actual new value.
 
 ## Discovery
 
 For things that can be discovered (either in the local network or on the internet) will use a `createMethod` of `CreateMethodDiscovery` in the plugin's JSON file. For such things, nymea will call `discoverThings()` on the plugin. For this, an integration plugin must implement that method and deliver discovery results back to the system. Similar as to the setup, an info object is passed to the method which is used to report results and indicate progress.
 
-A plugin implementation shall use `ThingDiscoveryInfo::addThingDescriptor(const ThingDescriptor &descriptor)` in order to add newly discovered things to the results and as usual call `ThingDiscoveryInfo::(Thing::ThingError)` on it when done.
+A plugin implementation shall use `addThingDescriptor()` of the discovery info object in order to add newly discovered things to the results and as usual call `finish()` with the appropriate status code on it when done.
 
 One important note is that such a discovery should report all the found things, even those that are already added to the system but it is important to mark them as such. This is done by setting the ThingId of the existing thing on the ThingDescriptor.
 
@@ -586,25 +938,3 @@ void IntegrationPluginExample::browserItem(BrowserItemResult *result)
 ```
 
 Again, the result object will contain the requested item id. Once the item is found, it is returned in the finish() call. If the item can't be found, the finish() method is to be called with the appropriate error as usual.
-
-## Settings
-
-Things can have settings. For instance, a bluetooth device with a small battery might not be possible to be connected all the time in order to not drain the battery. Such a device might need to be polled regularly. However, for some use cases (i.e. measuring a plant's soil moisture) a polling interval of once per hour might be enough, while for other use cases (i.e. triggering an alarm when something gets moist) a much more frequent interval might be required. To have the plugin catering for both use cases, thing settings can be implemented.
-
-Thing settings are very similar to the params used during setup, however, they can be changed at runtime, without having to reconfigure a thing. Like params, also settings need to be defined in the plugin's JSON file. For that, the plugin should connect to the things `settingChanged(const ParamTypeId &paramTypeId, const QVariant &value)` signal and handle it accordingly.
-
-```c++
-void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
-
-    // Do thing setup
-    ...
-    
-    // Update refresh schedule when the refresh rate setting is changed
-    connect(thing, &Thing::settingChanged, this, [this] (const ParamTypeId &paramTypeId, const QVariant &value) {
-        if (paramTypeId == myCoolDeviceThingRefreshIntervalSettingTypeId) {
-            qCDebug(dcExample) << "Polling interval changed to" << value.toInt() << "minutes";
-            ...
-        }
-    });
-}
-```

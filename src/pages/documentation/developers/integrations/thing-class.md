@@ -35,7 +35,7 @@ There are a set of properties for thing classes which define how the setup is do
 
 The properties of a thing class defining the setup process are the create methods and the setup method. Depending on the create method, a thing class might also have discovery parameters.
 
-The detailed description of the setup flow is described in the [things setup](things-setup) page.
+The detailed description of the setup flow is described in the [things setup](thing-setup) page.
 
 ## Events
 
@@ -57,7 +57,7 @@ Every state change will implicitly trigger an event in the system which will pro
 
 States can be read only or writable. A read only state will only read a certain things state and make its value available to nymea. A writable state can also be changed in nymea, which would then change the state on the thing. A writable state will implicitly generate the according action which is used in nymea to set the states value.
 
-States are defined using the `stateTypes` property in the [plugins JSON](plugin-json#thing-classes) file and can be updated in the plugin code by calling [setStateValue](plugin-code#states) whenever the thing changes a state. If a state is writable, an according [executeAction](plugin-code#actions) will be made by the system when the user triggers a state change.
+States are defined using the `stateTypes` property in the [plugins JSON](plugin-json#thing-classes) file and can be updated in the plugin code by calling [setStateValue](plugin-code#states) whenever the thing changes a state. If a state is writable, an according [executeAction](plugin-code#actions) call to the plugin will be made by nymea when the user (or some automation) triggers a state change.
 
 ## Interfaces
 
@@ -77,7 +77,11 @@ The complete list of available interfaces can be found in the [interfaces](inter
 
 A state in a thing class can be marked as being a generic input or output for when it's not clear what type of interface should be used.
 
-A good example for this is a smart plug. When creating an integration plugin for a smart plug the plugin developer would naturally add the `poowersocket` interface to it. This makes sense as a user will want the smart plug to appear as a power socket in the UI. However, the plugin developer cannot know what the user is actually going to plug into it. The user might connect a light bulb to it but this light bulb will not appear in the lights category of the user interface as nymea is actually controlling the smart plug and not the light. This will have a bad impact on the user experience. To solve this situation, the `power` state of the smart plug can be marked as a generic output. The user can then add a virtual light thing to the system and connect it to the smart plug thing. Now, whenever the user controls the light, nymea will forward this control event to the smart plug.
+A good example for this is a smart plug. When creating an integration plugin for a smart plug the plugin developer would naturally add the `powersocket` interface to it. This makes sense as a user will want the smart plug to appear as a power socket in the UI. However, the plugin developer cannot know what the user is actually going to plug into it. The user might connect a light bulb to it but this light bulb will not appear in the lights category of the user interface as nymea is actually controlling the smart plug and not the light. This will have a bad impact on the user experience. To solve this situation, the `power` state of the smart plug can be marked as a generic output. The user can then add a virtual light thing to the system and connect it to the smart plug thing. Now, whenever the user controls the light, nymea will forward this control event to the smart plug.
+
+The possible options for such generic inputs and outputs are `digitalInput`, `digitalOutput`, `analogInput` or `analogOutput`. A digital input can only be connected to a digital output (and vice versa) just like an analog input can only be connected to an analog output (and vice versa).
+
+Generic inputs and outputs are defined using the `stateTypes` property in the [plugins JSON](plugin-json#thing-classes) file.
 
 ## Browsing
 

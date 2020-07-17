@@ -147,14 +147,6 @@ export const menuOrder = [
           title: 'The plugin JSON file'
         },
         {
-          filename: 'plugin-cpp',
-          title: 'The plugin code (C++/Qt)'
-        },
-        {
-          filename: 'plugin-js',
-          title: 'The plugin code (JS)'
-        },
-        {
           filename: 'plugin-code',
           title: 'The plugin code'
         },
