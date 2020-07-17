@@ -67,7 +67,7 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
               const codeBlock = language
                 ? hljs.highlight(language, code, true).value
                 : hljs.highlightAuto(code, ['asciidoc', 'bash', 'cLike', 'javascript', 'json', 'python', 'qml', 'xml']).value;
-              return `<pre><code class="language-${language} hljs">${escape_curlies(codeBlock)}</code></pre>`;
+              return `<pre class="code"><code class="language-${language} hljs">${escape_curlies(codeBlock)}</code></pre>`;
             },
           },
           layout: path.join(__dirname, './src/pages/documentation/_markdown.svelte'),
