@@ -25,7 +25,7 @@
       path: '/'
     },
     heading: 'We care about your privacy.',
-    description: 'We use cookies to offer a better browsing experience, analyze site traffic and personalize content. Please review our privacy policy & cookies information page. By clicking accept, you consent to our privacy policy & use of cookies.',
+    description: 'We use cookies to offer a better browsing experience and analyze site traffic. Please review our privacy policy & cookies information page. By clicking accept, you consent to our privacy policy & use of cookies.',
     choices: {
       necessary: {
         label: 'Necessary cookies',
