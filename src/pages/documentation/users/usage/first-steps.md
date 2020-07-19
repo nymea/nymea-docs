@@ -32,7 +32,7 @@ If nymea:app is running on the same system as nymea:core, for example on a Raspb
 screen, the network can be set up directly by entering the *Network settings* in the 
 *System Settings* view.
 
-![](/img/setup-wifi.gif)
+![](/img/documentation/users/setup-wifi.gif)
 
 #### Remote WiFi setup via Bluetooth
 
@@ -45,7 +45,7 @@ or Laptop to configure the WiFi of the nymea:core system by connecting via Bluet
 * Select the preferred WiFi from the list and enter the password.
 * If everything went well, the nymea:core system is now connected to the WiFi.
 
-![](/img/bt-wifi-setup.gif)
+![](/img/documentation/users/bt-wifi-setup.gif)
 
 
 ## First setup
@@ -56,4 +56,4 @@ and a password.
 
 Enter your email address as username and pick a new password.
 
-![](/img/user-setup.gif)
+![](/img/documentation/users/user-setup.gif)

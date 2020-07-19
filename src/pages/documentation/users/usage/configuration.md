@@ -103,7 +103,7 @@ When authentication is enabled on an MQTT server interface, a permission needs t
 
 ### Web server
 
-Nymea features an integrated web server. The web server is used to host the [nymea debug interface](#developer-tools) but can also be used to host any website.
+Nymea features an integrated web server. The web server is used to host the [nymea debug interface](#debug-interface) but can also be used to host any website.
 
 ![](/img/configuration/system-settings-webserver.png)
 

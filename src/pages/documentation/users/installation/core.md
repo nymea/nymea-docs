@@ -1,4 +1,4 @@
----
+    ---
 id: core
 title: nymea:core
 ---
@@ -30,7 +30,7 @@ Alternatively, various other options can be found at the
 is built using the same tools as the Raspberry Pi image and all the provided installation guides should work for the nymea image too.
 
 After the image has been written to the SD card, insert the SD card into the Raspberry Pi and connect it to the power supply. nymea:core
-will automatically start upon boot. Please proceed with the [usage guide](TODO-broken).
+will automatically start upon boot. Please proceed with the [usage guide](/documentation/users/usage/first-steps).
 
 ### Manual installation on a Raspberry Pi
 
@@ -132,5 +132,5 @@ sudo snap install nymea
 ## Other distributions or architectures
 
 To install nymea:core on other distributions or architectures, nymea:core needs to be built manually from the sources.
-Please see the [developer section](TODO-broken) for instructions on how to build nymea:core.
+Please see the [developer section](/documentation/developers/build-nymea) for instructions on how to build nymea:core.
 
