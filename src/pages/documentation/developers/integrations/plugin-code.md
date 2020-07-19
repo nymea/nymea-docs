@@ -106,16 +106,18 @@ As described in the [getting started](getting-started-integration) section, ever
 
 Those definitions are generated using the following scheme:
 
-| Entity | Definion|
-| :-- | :-- |
-| Vendor ID | *name*VendorId |
-| ThingClass ID | *name*ThingClassId |
-| ThingClass paramType ID | *thingClass*Thing*name*ParamTypeId |
-| SettingsType ID | *thingClass*Settings*name*ParamTypeId |
-| EventType ID | *thingClass**name*EventTypeId |
-| Event ParamType ID | *thingClass**event**name*ParamTypeId | 
-| StateType ID | *thingClass**name*StateTypeId |
-| ActionType ID | *thingClass*
+| Entity | Definion | Example |
+| :-- | :-- | :-- |
+| Vendor ID | *name* + VendorId | acmeVendorId |
+| ThingClass ID | *name* + ThingClassId | robotThingClassId
+| ThingClass paramType ID | *thingClass* + Thing + *name* + ParamTypeId | robotThingNameParamTypeId |
+| SettingsType ID | *thingClass* + Settings + *name* + ParamTypeId | robotSettingsSpeedParamTypeId |
+| Discovery ParamType ID | *thingClass* + Discovery + *name* + ParamTypeId | robotDiscoveryLanguageParamTypeId |
+| EventType ID | *thingClass* + *name* + EventTypeId | robotBlinkedEventTypeId |
+| Event ParamType ID | *thingClass* + *event* + Event + *name* + ParamTypeId | robotBlinkedEventColorParamTypeId |
+| StateType ID | *thingClass* + *name* + StateTypeId | robotConnectedStateTypeId |
+| ActionType ID | *thingClass* + *name* + ActionTypeId | robotSleepActionTypeId |
+| Action ParamType ID | *thingClass* + *action* + Action + *name* + ParamTypeId | robotSleepActionDurationParamTypeId |
 
 
 Let's look at a fictional example for a thing class describing a robot. The first tab contains the JSON definition for the plugin, the other tabs contain the generated definitions for the according programming language.
@@ -401,7 +403,7 @@ export function executeAction(info) {
         // Compose the network request
         var payload = power === true ? "on" : "off";
         var request = new XMLHttpRequest()
-        request.open("POST", "https://" + "deviceIp" + "/api");
+        request.open("POST", "https://" + deviceIp + "/api");
         
         // Create a handler function for processing the network reply
         request.onload = function() {
@@ -489,7 +491,7 @@ export function setupDevice(info) {
     pluginTimer.timeout.connect(function() {
     
         var request = new XMLHttpRequest()
-        request.open("GET", "https://" + "deviceIp" + "/api");
+        request.open("GET", "https://" + deviceIp + "/api");
         request.onload = function() {
             if (request.response == "eventHappened") {
                 // When appropriate, compose an event and emit it in the system

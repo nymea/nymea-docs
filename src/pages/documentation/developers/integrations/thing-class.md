@@ -17,7 +17,7 @@ Once a parameter is set during the setup, it will stay the same over the the ent
 
 > NOTE: In general it is advisable to keep this to the very minimum set of information required to render the thing usable.
 
-> NOTE: Try to use persistant information here. For example a LAN IP address of a device might change when the DHCP lease renews. A better way would be to find some persistant device ID and perform a discovery of the given device on the network, e.g. via mDNS or UPnP.
+> NOTE: Try to use persistent information here. For example a LAN IP address of a device might change when the DHCP lease renews. A better way would be to find some persistent device ID and perform a discovery of the given device on the network, e.g. via mDNS or UPnP.
 
 Parameters are defined using the `paramTypes` property in the [plugins JSON](plugin-json#thing-classes) file and will be attached to every thing created in the system. The plugin developer may read those parameters during the [setup](plugin-code#setup) or any later point. If the parameters of a thing change, the setup will be performed again.
 
@@ -25,7 +25,7 @@ Parameters are defined using the `paramTypes` property in the [plugins JSON](plu
 
 Things can have settings. Thing settings are very similar to the params used during setup, however, they can be changed at runtime, without having to reconfigure a thing. Settings can be used allow changing the behavior of a thing by the user. Settings must not affect the basic connectivity to a thing or impair the basic functionality.
 
-For instance, a Buetooth device with a small battery might not be possible to be connected all the time in order to not drain the battery. Such a device might need to be polled regularly. However, for some use cases (i.e. measuring a plant’s soil moisture) a polling interval of once per hour might be enough, while for other use cases (i.e. triggering an alarm when something gets moist) a much more frequent interval might be required. To have the plugin catering for both use cases, thing settings can be implemented to provide a "polling interval" setting.
+For instance, a Buetooth device with a small battery might not be possible to be connected all the time in order to not drain the battery. Such a device might need to be polled regularly. However, for some use cases (i.e. measuring a plant’s soil moisture) a polling interval of once per hour might be enough, while for other use cases (i.e. triggering an alarm when water leakage is detected) a much more frequent interval might be required. To have the plugin catering for both use cases, thing settings can be implemented to provide a "polling interval" setting.
 
 Settings are defined using the `settingsTypes` property in the [plugins JSON](plugin-json#thing-classes) file and will be attached to every thing created in the system. The plugin developer may [access those settings](plugin-code#settings) during the [setup](plugin-code#setup) or any later point. If the settings of a thing change, the plugin will be notified about the change. 
 
