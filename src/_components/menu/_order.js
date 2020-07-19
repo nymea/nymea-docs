@@ -131,36 +131,24 @@ export const menuOrder = [
           title: 'Getting started'
         },
         {
-          filename: 'plugin-wizard',
-          title: 'Plugin wizard'
+          filename: 'thing-class',
+          title: 'Things classes'
         },
         {
           filename: 'thing-setup',
           title: 'Things setup'
         },
         {
-          filename: 'events-actions-states',
-          title: 'Events, actions and states'
-        },
-        {
-          filename: 'browsing',
-          title: 'Browsing things'
-        },
-        {
-          filename: 'interfaces',
-          title: 'Interfaces'
+          filename: 'creating-a-new-plugin',
+          title: 'Creating a new plugin'
         },
         {
           filename: 'plugin-json',
           title: 'The plugin JSON file'
         },
         {
-          filename: 'plugin-cpp',
-          title: 'The plugin code (C++/Qt)'
-        },
-        {
-          filename: 'plugin-js',
-          title: 'The plugin code (JS)'
+          filename: 'plugin-code',
+          title: 'The plugin code'
         },
         {
           filename: 'building-testing',
@@ -173,6 +161,10 @@ export const menuOrder = [
         {
           filename: 'tutorial-integration-js',
           title: 'Tutorial (JS)'
+        },
+        {
+          filename: 'interfaces',
+          title: 'Interfaces'
         }
       ],
       {
