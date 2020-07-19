@@ -32,7 +32,7 @@ on the smart plug to actually turn on and off the light:
 
 ## Installing more plugins
 
-By default, nymea comes with a selection of preinstalled plugins. However, those are not all the available ones. If you can't find something in your nymea setup but it's listed on the [integrations](/about/integrations) page, you can install it by entering the *System settings* and opening the *Software update* section. From there, move to *Install or remove software* and you'll find a list of available integration plugins to be installed.
+By default, nymea comes with a selection of preinstalled plugins. However, those are not all the available ones. If you can't find something in your nymea setup but it's listed on the [integrations](/documentation/overview/integrations) page, you can install it by entering the *System settings* and opening the *Software update* section. From there, move to *Install or remove software* and you'll find a list of available integration plugins to be installed.
 
 ![](/img/documentation/users/installing-plugins.gif)
 
