@@ -80,7 +80,7 @@ export function setupThing(info) {
 }
 
 export function executeAction(info) {
-    console.log("Execute action called for thing", info.thing.name, info.action.actionTypeId, info.action.params);
+    console.log("executeAction called for thing", info.thing.name, info.action.actionTypeId, info.action.params);
     // Perform action execution here
     info.finish(Thing.ThingErrorNoError);
 }
@@ -100,7 +100,7 @@ This is a minimalistic example for a plugin. While there are lots of other metho
 
 As described in the [getting started](getting-started-integration) section, every entity in a plugin is referenced by an ID and a name. A plugin can use the IDs as defined in the JSON file to identify those entities, however, this is discouraged for the sake of readability. Instead, nymea will provide definitions to those IDs in a more readable manner to the developer.
 
-> In C++/Qt plugins, those IDs will be defined in the plugininfo.h header file which can be included in the plugin code. Additionally, a extern-plugininfo.h file can be included to make those definitions available in multiple files without causing multipre references to them. 
+> In C++/Qt plugins, those definitions will be defined in the plugininfo.h header file which can be included in the plugin code. Additionally, a extern-plugininfo.h file can be included to make those definitions available in multiple files without causing multipre references to them. 
 
 > In JavaScript plugins, those definitions will are exported to the global object of the plugins JS engine.
 
@@ -222,6 +222,23 @@ var robotSleepActionDurationParamTypeId = "0170952a-260a-44be-972c-cc34f8bc8f67"
 ```
 
 </Code>
+
+
+## A word on the environment
+
+### C++/Qt
+
+C++/Qt plugins are loaded by nymea using [QPluginLoader](https://doc.qt.io/qt-5/qpluginloader.html). This means, they will be executed within the nymea process and will be able to make it crash. As nymea is a long running process, care must be taken to not leak memory or crash by accessing invalid memory.
+
+Plugins are not threaded by default. This means a plugin developer must not use blocking code. There is, however, the Qt event loop, all Qt API and the nymea hardware manager API available which caters for writing event loop based asynchronous code. If for any reason blocking code must be used, a plugin developer must spawn and manage their own threads.
+
+A plugin may link to any C/C++/Qt library but please note that for inclusion of a plugin into the nymea plugin repository, all dependencies must be available in all the supported Ubuntu and Debian versions. In some exceptions it is possible to host dependencies in the nymea package repository too.
+
+### JavaScript
+
+Each JavaScript plugin is ran in separate JS engine. The JS engine is ECMA-5 compliant but does not support node.js nor has a browsers `window` object.
+
+Additional `.mjs` modules may be imported but please note that for inclusion of the plugin into the main plugin repository, the plugin needs to ship all required dependencies.
 
 ## Setup
 
