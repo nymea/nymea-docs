@@ -71,6 +71,27 @@ void IntegrationPluginExample::thingRemoved(Thing *thing) {
 
 ```
 
+```Python
+import nymea
+
+def setupThing(info):
+    logger.log("setupThing called for", info.thing.name)
+    # Perform required setup here
+    info.thing.setStateValue(exampleConnectedStateTypeId, True)
+    info.finish(nymea.ThingErrorNoError)
+
+    
+def executeAction(info):
+    logger.log("executeAction called for thing", info.thing.name, info.actionTypeId, info.params)
+    # Perform action executio here
+    info.finish(nymea.ThingErrorNoError)
+    
+    
+def thingRemoved(thing):
+    logger.log("removeThing called for", thing.name)
+    # Clean up all data related to this thing
+```
+
 ```JavaScript
 export function setupThing(info) {
     console.log("setupThing called for", info.thing.name);
@@ -101,6 +122,8 @@ This is a minimalistic example for a plugin. While there are lots of other metho
 As described in the [getting started](getting-started-integration) section, every entity in a plugin is referenced by an ID and a name. A plugin can use the IDs as defined in the JSON file to identify those entities, however, this is discouraged for the sake of readability. Instead, nymea will provide definitions to those IDs in a more readable manner to the developer.
 
 > In C++/Qt plugins, those definitions will be defined in the plugininfo.h header file which can be included in the plugin code. Additionally, a extern-plugininfo.h file can be included to make those definitions available in multiple files without causing multipre references to them. 
+
+> In Python plugins, those definitions will be added by the interpreter as string constants to the plugin module.
 
 > In JavaScript plugins, those definitions will are exported to the global object of the plugins JS engine.
 
@@ -205,6 +228,22 @@ ActionTypeId robotSleepActionTypeId = ActionTypeId("33f01f72-80b4-42cf-bdbd-a343
 ParamTypeId robotSleepActionDurationParamTypeId = ParamTypeId("0170952a-260a-44be-972c-cc34f8bc8f67");
 ```
 
+```Python
+// Exported by the interpreter into the plugin module
+
+acmeVendorId = "ce0d15dc-c479-438d-adb3-90d57e4b1d35";
+robotThingClassId = "bd2157e3-2f9c-44a5-9d08-e2da2f6aa46f";
+robotThingNameParamTypeId = "eb6eeef7-f295-427b-b88f-01bedba49da7";
+robotSettingsSpeedParamTypeId = "b8b4aefc-e6d6-47d7-b689-35d86d79f1fc";
+robotDiscoveryLanguageParamTypeId = "df487d2d-dea6-45ac-907c-01b4fae4fd9b";
+robotBlinkedEventTypeId = "e0581e22-81ca-4d43-bb0b-6e57312a33e4";
+robotBlinkedEventColorParamTypeId = "adff8dbc-db5c-4c5d-9a57-9628dfa0a7e8";
+robotConnectedStateTypeId = "66730571-2776-4187-b29f-d745609353cd";
+robotSleepActionTypeId = "33f01f72-80b4-42cf-bdbd-a3439ce8236b";
+robotSleepActionDurationParamTypeId = "0170952a-260a-44be-972c-cc34f8bc8f67";
+
+```
+
 ```JavaScript
 // Exported in the engine's global object
 
@@ -233,6 +272,24 @@ C++/Qt plugins are loaded by nymea using [QPluginLoader](https://doc.qt.io/qt-5/
 Plugins are not threaded by default. This means a plugin developer must not use blocking code. There is, however, the Qt event loop, all Qt API and the nymea hardware manager API available which caters for writing event loop based asynchronous code. If for any reason blocking code must be used, a plugin developer must spawn and manage their own threads.
 
 A plugin may link to any C/C++/Qt library but please note that for inclusion of a plugin into the nymea plugin repository, all dependencies must be available in all the supported Ubuntu and Debian versions. In some exceptions it is possible to host dependencies in the nymea package repository too.
+
+### Python
+
+Each Python plugin is ran in a sub-interpreter allocated explicitly for the plugin. The Python version depends on target distribution a nymea instance is build for, it is greater 3.5 in any case tho.
+
+In addition to that, every plugin gets its own thread pool allocated with a maximum thread count matching the amount of managed things + 2. Every function call into a plugin runs in a separate thread, however, if the thread pool is exhausted, calls will be queued and may time out. This means that is is possible to run blocking code in python (e.g. fetch a url using urllib) but this still must be used with caution as it might exceed the thread pool when multiple long running blocking calls are made.
+
+Python plugins may use asyncio. The recommended way is to call `loop.run_forever()` in the plugins `init()` function and call `loop.stop()` in the plugins `deinit()` function. In this case, the asyncio event loop will use one of the plugins allocated threads. Other calls into the plugin should then just use `asyncio.run_coroutine_threadsafe(coro, loop)` to add their tasks to the event loop.
+
+Additional threads may be started by a Python plugin using the `threading` module but note that the plugin is responsible for managing that thread and bringing it down on system shutdown.
+
+A plugin may import any additional Python module but please note that for inclusion of a plugin into the nymea plugin repository all dependencies must be either available in all the supported Ubuntu and Debian versions or the plugin has to ship the dependencies on its own. The `modules` subdir in the plugins code dir will be available as import path. `pip3` may be used in the plugin source dir to install additional modules locally and include them in the build process. 
+
+```Python
+$ pip3 install some-module -t modules
+```
+
+In order for a Python plugin to be included in the main nymea plugin repository, it should be compatible with the default python3 version of all supported Ubuntu and Debian versions.
 
 ### JavaScript
 
@@ -277,6 +334,26 @@ void  IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
         qCDebug(dcExample) << "Setup timed out...";
     });
 }
+```
+
+```Python
+from urllib.request import urlopen, Request
+
+def setupThing(info):
+    # Obtain the devices IP as given by the params
+    deviceIp = info.thing.paramValue(exampleThingIpParamTypeId)
+    
+    # Compose the network request
+    request = Request("https://" + deviceIp + "/api")
+    # Send the request
+    response = urlopen(request)        
+    
+    # Finish the setup with an appropriate result code
+    if response.status == "OK":
+        info.finish(nymea.ThingErrorNoError)
+    else:
+        info.finish(nymea.ThingErrorHarwareFailure, "Error connecting to the device in the network.");
+        
 ```
 
 ```JavaScript
@@ -339,6 +416,21 @@ void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
         }
     });
 }
+```
+
+```Python
+def setupThing(info):
+    # Do thing setup
+    ...
+    
+    # Update refresh schedule when the refresh rate setting is changed    
+    info.thing.settingChangedHandler = thingSettingCanged
+    
+    
+def thingSettingChanged(thing, paramTypeId, value):
+    logger.log("Thing", thing.name, "changed setting", paramTypeId, "to", value)
+    if  paramTypeId == myCoolDeviceSettingRefreshIntervalParamTypeId:
+        # Reschedule polling timer here
 ```
 
 ```JavaScript
