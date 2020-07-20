@@ -24,7 +24,7 @@ The first task for creating a new integration plugin is to create a [plugin JSON
 
 ## The plugin code
 
-Once the thing class is defined, the plugin implementation needs to be added in order to actually implement the features described in the thing class. The plugin implementation can be written either using C++/Qt or using JavaScript and is documented [the plugin code](plugin-code) section.
+Once the thing class is defined, the plugin implementation needs to be added in order to actually implement the features described in the thing class. The plugin implementation can be written using C++/Qt or JavaScript and is documented [the plugin code](plugin-code) section.
 
 ## Testing the plugin
 
