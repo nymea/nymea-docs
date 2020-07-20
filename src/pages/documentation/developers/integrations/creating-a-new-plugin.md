@@ -41,6 +41,13 @@ mv integrationplugintemplate.h integrationpluginmyplugin.h
 mv integrationplugintemplate.json integrationpluginmyplugin.json
 ```
 
+```Python
+cp -r nymea-plugin-examples/templates/python my-plugin
+cd my-plugin
+mv integrationplugintemplate.py integrationpluginmyplugin.py
+mv integrationplugintemplate.json integrationpluginmyplugin.json
+```
+
 ```JavaScript
 cp -r nymea-plugin-examples/templates/js my-plugin
 cd my-plugin
