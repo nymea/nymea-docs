@@ -13,6 +13,10 @@
     text-decoration: none;
   }
 
+  .button:hover {
+    opacity: 0.7;
+  }
+
   .button :global(ion-icon) {
     font-size: 1.125rem;
     transform: translateY(0.15em);
