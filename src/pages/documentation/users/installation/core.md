@@ -1,4 +1,4 @@
-    ---
+---
 id: core
 title: nymea:core
 ---
