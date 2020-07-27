@@ -1,4 +1,8 @@
+
 RewriteEngine On
+
+RewriteRule ^license$ /documentation/overview/license [R=302,NC,L]
+RewriteRule ^license/faq$ /documentation/overview/faq#license [R=302,NC,NE,L]
 
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule !.*.html$ %{REQUEST_FILENAME}.html [L]
