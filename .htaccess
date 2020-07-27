@@ -1,5 +1,5 @@
-Redirect 301 /license https://www.nymea.io/documentation/overview/license
-Redirect 301 /license/faq https://nymea.io/documentation/overview/faq#license
+RewriteRule ^license$ /documentation/overview/license [R=301,NC,L]
+RewriteRule ^license/faq$ /documentation/overview/faq [R=301,NC,L]
 
 RewriteEngine On
 
