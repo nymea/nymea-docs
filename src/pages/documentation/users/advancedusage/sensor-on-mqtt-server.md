@@ -88,13 +88,13 @@ ThingEvent {
 }
 ```
 
-Now deploy the script to nymea but don't leave the script edit yet. If you now use mosquitto_pub to send the event again, the script console will pop up printing this message:
+Now deploy the script to nymea but don't exit the script editor yet. If you now use mosquitto_pub to send the event again, the script console will pop up printing this message:
 
 ```
 MQTT event received {"27ec8baf-0c13-4d0a-aaee-313582592695":"/example/temp1","8af98566-79d9-4e65-b1dc-9067e4f93af1":"18","data":"18","topic":"/example/temp1"}
 ```
 
-Now we can see the payload of the MQTT message in the "data" field of the params. We can access it using `params["value"]`.
+Now we can see the payload of the MQTT message in the `data` field of the params. We can access it using `params["value"]`.
 
 Next thing is to feed that value into the Generic Temperature Sensor thing using such a script snippet:
 
