@@ -8,7 +8,7 @@ In this example we're going to publish sensor values via MQTT to nymea and attac
 Assume you have a home-brew weather station which can read temperature sensor values and publish them to a MQTT server. We will establish a MQTT connection to nymea and post those values to a topic named `/example/temp1/`
 
 ### Enabling the MQTT broker
-First, make sure the MQTT broker is enabled in nymea. For that, open System Settings and go the MQTT broker section. In there, make sure there is at lase one MQTT server interface enabled. If not, click the "Add" button to add one. Pick the desired interface (Leave to "Any" if unsure) and a port. Normally MQTT uses port 1883. Make sure there aren't any other services blocking the port you choose. Enable SSL encryption and/or login if desired. In this example we'll enable authentication but won't enable SSL encryption.
+First, make sure the MQTT broker in nymea is enabled. For that, open System Settings and go to the MQTT broker section. In there, make sure there is at last one MQTT server interface enabled. If not, click the "Add" button to add one. Pick the desired interface (Leave to "Any" if unsure) and a port. Normally MQTT uses port 1883. Make sure there aren't any other services blocking the port you choose. Enable SSL encryption and/or login if desired. In this example we'll enable authentication but won't enable SSL encryption.
 
 ![](/img/documentation/users/mqtt-server.png)
 
@@ -121,6 +121,8 @@ ThingEvent {
 The final script would look something like this:
 
 ![](/img/documentation/users/mqtt-to-temp-script.png)
+
+> Note: For more information on nymea scripts, refer to the [nymea scripting](/documentation/users/usage/scripting) section.
 
 And we're done. Now, whenever you send something to nymea with mosquitto_pub, it will update the temperature sensor. 
 
