@@ -3,7 +3,7 @@ id: sensor-on-mqtt-server
 title: Publishing sensor values to nymea via MQTT
 ---
 
-In this example we're going to publish senso values via MQTT to nymea and attach them to a virtual sensor thing for a nice graph.
+In this example we're going to publish sensor values via MQTT to nymea and attach them to a virtual sensor thing for a nice graph.
 
 Assume you have a home-brew weather station which can read temperature sensor values and publish them to a MQTT server. We will establish a MQTT connection to nymea and post those values to a topic named `/example/temp1/`
 
