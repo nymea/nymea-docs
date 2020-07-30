@@ -14,7 +14,7 @@ First, make sure the MQTT broker in nymea is enabled. For that, open System Sett
 
 
 ### Create a policy for the client
-Because we've enabled authentication with the "login required" option before, we need to create a policy to allow the client to log in. This may can be skipped if the MQTT server interface has been configured without login required.
+Because we've enabled authentication with the "login required" option before, we need to create a policy to allow the client to log in. This may be skipped if the MQTT server interface has been configured without login required.
 
 In the MQTT permissions section, click the "Add" button and fill in the details in the next page. The Client ID cannot be blank. You can pick a random string there. We'll name it `tempsensor1` and enter a username and password of `test` and `test`. The next step is to set up permissions of the client on the MQTT broker. We want it to publish to the `/example/temp1` topic but don't want it to subscribe to anything on the server. For that we remove the default entry of `#` in the "Allowed publish topics" by longpressing/swiping it and add a new one pointing to `/example/temp1`. We can delete the default of `#` in the "Allowed subscribe topcis" section and don't need to add anything. For more details on how MQTT topic filters work, please refer to the MQTT documentation.
     
@@ -76,6 +76,8 @@ For this, we add another thing to the system using "Configure Things -> `+`". Th
 
 Enter the "Magic" section in the app and navigate to the scripting toolbox with the icon on the upper right. Create a new script using the `+` button.
 
+> Note: For more information on nymea scripts, refer to the [nymea scripting](/documentation/users/usage/scripting) section.
+
 In the script we first need to fetch the events from the MQTT client by adding this snippet:
 
 ```QML
@@ -121,8 +123,6 @@ ThingEvent {
 The final script would look something like this:
 
 ![](/img/documentation/users/mqtt-to-temp-script.png)
-
-> Note: For more information on nymea scripts, refer to the [nymea scripting](/documentation/users/usage/scripting) section.
 
 And we're done. Now, whenever you send something to nymea with mosquitto_pub, it will update the temperature sensor. 
 
