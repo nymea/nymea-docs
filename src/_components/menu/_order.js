@@ -98,6 +98,16 @@ export const menuOrder = [
           filename: 'advanced-configuration',
           title: 'Advanced configuration'
         }
+      ],
+      {
+        filename: 'advancedusage',
+        title: 'Advanced usage'
+      },
+      [
+        {
+          filename: 'sensor-on-mqtt-server',
+          title: 'Publishing sensor values to nymea via MQTT'
+        }
       ]
     ],
     {
