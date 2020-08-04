@@ -9,9 +9,13 @@ Now that nymea is up and running it's time to add some things to it, such as dev
 is done from the main menu in the *Configure things* view. From there, select the `+` button in the upper right 
 corner and pick the type of thing to add.
 
-For example, adding a TP-Link Kasa smart plugin would be done like this:
+After selecting the type of thing to add, nymea will start a wizard to guid you through the steps of adding the thing.
+The actual content of the wizard may vary between types of things. The basic flow however is the same for all. For example, adding a TP-Link Kasa smart plugin would be done like this:
 
 ![](/img/documentation/users/connecting-things.gif)
+
+> For documentation on individual things, please check out the documentation for the appropriate integration which can be found in the [integrations](/documentation/overview/integrations) page.
+
 
 After the thing has been added, it will appear in the main screen. In this case a power socket that can be switched 
 on and off, and a smart meter that allows to monitor the power consumption on the smart plug.
