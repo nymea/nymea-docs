@@ -24,7 +24,7 @@ Building a hot tub yourself? No prob with nymea, as shown in [this Hackster arti
 
 ## Smart garage gates
 
-<img src="https://nymea.io/app/default/assets/addons/default/guh/default-theme/resources/img/services/maveobox.jpg" style="width:300px; float: left; margin-bottom: 0.5em; text-align: center; margin-right: 10px;">
+<img src="/img/documentation/about/maveo_box_stick_sensor.jpg" style="width:300px; float: left; margin-bottom: 0.5em; text-align: center; margin-right: 10px;">
 
 Nymea is used to build [maveo](https://smartwithmaveo.com), bringing garage gates to the digital age. Making garage gates smart is maveo's goal and they chose nymea to do the heavy lifting under the hood.
 
