@@ -95,6 +95,10 @@ export const menuOrder = [
           title: 'Configuration'
         },
         {
+          filename: 'remote-connection',
+          title: 'Cloud connection'
+        },
+        {
           filename: 'advanced-configuration',
           title: 'Advanced configuration'
         }
