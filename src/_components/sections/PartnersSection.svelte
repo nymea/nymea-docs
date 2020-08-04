@@ -94,6 +94,11 @@
           <img src="/img/partners/dh-electronics.svg" alt="DH electronics" />
         </a>
       </Col>
+      <Col>
+        <a href="https://www.usedatatolead.com" target="_blank" rel="noopener" class="partner">
+          <img src="/img/partners/UDTL_Logo.svg" alt="Use Data To Lead" />
+        </a>
+      </Col>
     </Row>
   </Grid>
 </section>
