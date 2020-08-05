@@ -50,7 +50,17 @@
 
   @media only screen and (min-width: 48em)  {
     .partners :global(.row:nth-child(2) .col) {
-      flex-basis: 15%;
+      flex-basis: 20%;
+    }
+
+    .partner {
+      padding: var(--space-07);
+    }
+  }
+
+  @media only screen and (min-width: 64em)  {
+    .partners :global(.row:nth-child(2) .col) {
+      flex-basis: 14%;
     }
 
     .partner {
