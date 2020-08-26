@@ -107,8 +107,6 @@
           <dt>Phone</dt>
           <dd>+43 720 230010</dd>
 
-          <dt>Office Address</dt>
-          <dd>Leitermayergasse 25, 1170 Vienna</dd>
         </dl>
       </Col>
     </Row>
