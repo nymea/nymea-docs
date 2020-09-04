@@ -229,7 +229,7 @@ ParamTypeId robotSleepActionDurationParamTypeId = ParamTypeId("0170952a-260a-44b
 ```
 
 ```Python
-// Exported by the interpreter into the plugin module
+# Exported by the interpreter into the plugin module
 
 acmeVendorId = "ce0d15dc-c479-438d-adb3-90d57e4b1d35";
 robotThingClassId = "bd2157e3-2f9c-44a5-9d08-e2da2f6aa46f";
@@ -245,7 +245,7 @@ robotSleepActionDurationParamTypeId = "0170952a-260a-44be-972c-cc34f8bc8f67";
 ```
 
 ```JavaScript
-// Exported in the engine's global object
+// Exported in the engines global object
 
 var acmeVendorId = "ce0d15dc-c479-438d-adb3-90d57e4b1d35";
 var robotThingClassId = "bd2157e3-2f9c-44a5-9d08-e2da2f6aa46f";
@@ -283,11 +283,11 @@ Python plugins may use asyncio. The recommended way is to call `loop.run_forever
 
 Additional threads may be started by a Python plugin using the `threading` module but note that the plugin is responsible for managing that thread and bringing it down on system shutdown.
 
-A plugin may import any additional Python modules but please note that for inclusion of a plugin into the nymea plugin repository, all dependencies must be satisfyable by `pip3`. Python libraries not installable by `pip3` need to be shipped with the plugin code.
+A plugin may import any additional Python modules. For inclusion of a plugin into the nymea plugin repository, all dependencies must be satisfyable by `pip3` or need to be shipped with the plugin code.
 
 > Note: Python modules installed system wide (e.g. in `dist-packages` or `site-packages`) are *NOT* loaded.
 
-The `modules` subdir in the plugins code dir will be available as import path. `pip3` may be used in the plugin source dir to install additional modules locally during development in the source directory:
+The `modules` subdir in the plugins code directory will be available as import path. `pip3` may be used in the plugin source dir to install additional modules locally during development:
 
 ```Bash
 $ pip3 install somemodule -t modules
@@ -311,9 +311,9 @@ Nymea will then take care of installing required dependencies.
 
 ### JavaScript
 
-Each JavaScript plugin is ran in separate JS engine. The JS engine is ECMA-5 compliant but does not support node.js nor has a browsers `window` object.
+Each JavaScript plugin is ran in a separate JS engine. The JS engine is ECMA-5 compliant but does not support node.js nor has a browsers `window` object.
 
-Additional `.mjs` modules may be imported but please note that for inclusion of the plugin into the main plugin repository, the plugin needs to ship all required dependencies.
+Additional `.mjs` modules may be imported by installing them in the plugins source code and shipping them with the plugin.
 
 ## Setup
 
@@ -446,8 +446,8 @@ def setupThing(info):
     
     
 def thingSettingChanged(thing, paramTypeId, value):
-    logger.log("Thing", thing.name, "changed setting", paramTypeId, "to", value)
     if  paramTypeId == myCoolDeviceSettingRefreshIntervalParamTypeId:
+        logger.log("Polling interval changed to", value, minutes)
         # Reschedule polling timer here
 ```
 
@@ -475,7 +475,7 @@ Whenever the user (or some automatism) executes an action in the system, nymea w
 
 <Code>
 
-```c++
+```C++
 void IntegrationPluginExample::executeAction(ThingActionInfo *info) {
     // Obtain the devices IP as given by the params
     QString deviceIp = info->thing()->paramValue(exampleThingIpParamTypeId).toString();
@@ -514,6 +514,31 @@ void IntegrationPluginExample::executeAction(ThingActionInfo *info) {
         ...
     }
 }
+```
+
+```Python
+def executeAction(info):
+    # Obtain the devices IP as given by the params
+    deviceIp = info.thing.paramValue(exampleThingIpParamTypeId)
+    
+    # Handle power action
+    if info.actionTypeId == examplePowerActionTypeId:
+
+        // Obtain the parameter of this action
+        power = info.paramValue(examplePowerActionPowerParamTypeId)
+    
+    # Compose the network request
+    payload = power == True ? "on": "off"
+    request = Request("https://" + deviceIp + "/api", data = payload)
+    # Send the request
+    response = urlopen(request)        
+    
+    # Finish the action with an appropriate result code
+    if response.status == "OK":
+        info.finish(nymea.ThingErrorNoError)
+    else:
+        info.finish(nymea.ThingErrorHarwareFailure, "Error command to the network device.");
+
 ```
 
 ```JavaScript
@@ -605,10 +630,46 @@ void IntegrationPlugin::thingRemoved(Thing *thing) {
 }
 ```
 
+```Python
+# We'll be using threading.timers to do repeating polling in this example
+import threading
+timer = None
+
+def setupThing(info):
+    # Doing the regular setup first...
+    ...
+    
+    # And set up the polling
+    global timer
+    timer = threading.Timer(10, pollService, [info.thing])
+    timer.start()
+    info.finish(nymea.ThingErrorNoError)
+    
+    
+def pollService(thing):
+    request = Request("https://" + deviceIp + "/api")
+    response = urlopen(request)        
+    if response.data == "eventHappened":
+        # When appropriate, compose an event and emit it in the system
+       thing.emitEvent(exampleEventTypeId)
+
+        
+def thingRemoved(thing):
+    # Stop the timer thread when the thing is removed
+    global timer
+    timer.cancel()
+    
+    
+def deinit():
+    # Also make sure to stop all threads on shutdown
+    global timer
+    timer.cancel()
+```
+
 ```JavaScript
 var pluginTimer;
 
-export function setupDevice(info) {
+export function setupThing(info) {
     // Doing the regular setup first...
     ...
     
@@ -653,10 +714,9 @@ void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
     ...
     
     // And set up the polling
-    
-    Thing *thing = info->thing();
     m_pluginTimer = hardwareManager()->pluginTimerManager()->registerTimer(1);
     
+    Thing *thing = info->thing();
     connect(m_pluginTimer, &PluginTimer::timeout, thing, [this, thing](){
         
         QNetworkRequest request("https://example.com/api/temperature");
@@ -673,6 +733,25 @@ void IntegrationPluginExample::setupThing(ThingSetupInfo *info) {
         });
     });
 }
+```
+
+```Python
+
+def setupThing(info):
+    # Doung the regular setup first...
+    ...
+    
+    # And set up the polling
+    threading.Timer(10, pollService, [info.thing])
+    info.finish(nymea.ThingErrorNoError)
+
+def pollService:
+    request = Request("https://" + deviceIp + "/api")
+    response = urlopen(request)        
+    temperature = int(response.data)
+    # Update the things state value accordingly
+    thing.setStateValue(temperatureStateTypeId, temperature):
+    
 ```
 
 ```JavaScript
@@ -718,7 +797,7 @@ A plugin can use arbitrary code to discover devices or services. However, nymea 
 
 In this example we'd be looking for devices in the local network via ZeroConf:
 
-```c++
+```C++
 void IntegrationPluginExample::discoverThings(ThingDiscoveryInfo *info)
 {
     ZeroConfServiceBrowser *zeroconfBrowser = hardwareManager()->zeroConfController()->createServiceBrowser("_http._tcp");
@@ -771,7 +850,7 @@ Let's look at the simplest form of it which is username and password authenticat
 
 The `startPairing()` call is pretty much a no-operation in this case. The only thing a plugin implementation can do here is to provide an informational text to the client.
 
-```c++
+```C++
 void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 {
     info->finish(Thing::ThingErrorNoError, QT_TR_NOOP("Please enter the login credentials for your device."));
@@ -782,7 +861,7 @@ This will advance the pairing process to the next step immediately, presenting t
 
 Once the user has inserted the credentials, nymea will pass them on to the plugin like here:
 
-```c++
+```C++
 void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QString &username, const QString &password)
 {
     // Get the things connection parameters from the thing params.
@@ -820,7 +899,7 @@ void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QStr
 
 This example would pair a device that uses push button authentication:
 
-```c++
+```C++
 void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 {
     info->finish(Thing::ThingErrorNoError, QT_TR_NOOP("Please press the push button on the device and then continue this setup."));
@@ -831,7 +910,7 @@ Again, the `startPairing` call is mostly informative to the user. It tells the u
 
 Once done, nymea will call `confirmPairing` again. In this case neither the `username` nor the `password` arguements will contain meaningful data. Instead, the pairing key (normally a token) can be obtained directly from the device.
 
-```c++
+```C++
 void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QString &username, const QString &secret)
 {
     Q_UNUSED(username)
@@ -875,7 +954,7 @@ OAuth is a little more complex than the previous examples, however, the basic fl
 
 This example shows the OAuth procedure for the google OAuth service. The plugin developer must obtain the clientId and clientSecret from the remote service, usually by signing up for a developer account. When registering for such a developer account, a callback URL must be provided. Nymea requires this callback url to start with "https://127.0.0.1". The rest of the callback URL is not relevant to nymea.
 
-```c++
+```C++
 void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 {
     // Those credentials need to be obtained from the service provider
@@ -902,7 +981,7 @@ void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 
 When the client app completed the OAuth login the procedure continues with `confirmPairing()`
 
-```c++
+```C++
 void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QString &username, const QString &secret)
 {
     Q_UNUSED(username)
@@ -958,7 +1037,7 @@ void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QStr
 
 Some devices are capable of displaying a PIN code. For example smart TVs. Those devices can be handled as following:
 
-```c++
+```C++
 void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 {
     // Compose a network request that would trigger displayig the PIN on the remote device
@@ -984,7 +1063,7 @@ void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 
 The user is then asked to enter the PIN on the client app. Once that is completed, the plugin's `completePairing()` will be called. The PIN is provided in the `secret` parameter.
 
-```c++
+```C++
 void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QString &username, const QString &secret)
 {
     Q_UNUSED(username)
@@ -1032,7 +1111,7 @@ Things that can be browsed, for example media players, need to have `browsable` 
 
 `browseThing()` will be used to actually browse the device or service, while `browserItem()` is used to retrieve a single item from the browser. The browsed items can be flat (i.e. just a list of items) or structured in a tree (i.e. a file system with folders and subfolders). Every item returned in `browseThing()` must be uniquely identifiable so that it can be retrieved at any time in `browserItem()`. This following example would return results from a an object tree:
 
-```c++
+```C++
 void IntegrationPluginMock::browseThing(BrowseResult *result)
 {
     VirtualFsNode *node = m_virtualFs->findNode(result->itemId());
@@ -1054,7 +1133,7 @@ The plugin calls the `finish()` method as usual to indicate when it's done.
 
 At a later point, nymea might retrieve info for a particular item again. This is done by calling `browserItem()` on the plugin:
 
-```c++
+```C++
 void IntegrationPluginExample::browserItem(BrowserItemResult *result)
 {
     VirtualFsNode *node = m_virtualFs->findNode(result->itemId());
