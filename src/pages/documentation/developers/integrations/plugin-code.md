@@ -275,7 +275,7 @@ A plugin may link to any C/C++/Qt library but please note that for inclusion of 
 
 ### Python
 
-Each Python plugin is ran in a sub-interpreter allocated explicitly for the plugin. The Python version depends on target distribution a nymea instance is build for, it is greater 3.5 in any case tho.
+Each Python plugin is ran in a sub-interpreter allocated explicitly for the plugin. The Python version depends on target distribution a nymea instance is build for, it is greater 3.5 in any case though.
 
 In addition to that, every plugin gets its own thread pool allocated with a maximum thread count matching the amount of managed things + 2. Every function call into a plugin runs in a separate thread, however, if the thread pool is exhausted, calls will be queued and may time out. This means that is is possible to run blocking code in python (e.g. fetch a url using urllib) but this still must be used with caution as it might exceed the thread pool when multiple long running blocking calls are made.
 
@@ -283,13 +283,31 @@ Python plugins may use asyncio. The recommended way is to call `loop.run_forever
 
 Additional threads may be started by a Python plugin using the `threading` module but note that the plugin is responsible for managing that thread and bringing it down on system shutdown.
 
-A plugin may import any additional Python module but please note that for inclusion of a plugin into the nymea plugin repository all dependencies must be either available in all the supported Ubuntu and Debian versions or the plugin has to ship the dependencies on its own. The `modules` subdir in the plugins code dir will be available as import path. `pip3` may be used in the plugin source dir to install additional modules locally and include them in the build process. 
+A plugin may import any additional Python modules but please note that for inclusion of a plugin into the nymea plugin repository, all dependencies must be satisfyable by `pip3`. Python libraries not installable by `pip3` need to be shipped with the plugin code.
 
-```Python
-$ pip3 install some-module -t modules
+> Note: Python modules installed system wide (e.g. in `dist-packages` or `site-packages`) are *NOT* loaded.
+
+The `modules` subdir in the plugins code dir will be available as import path. `pip3` may be used in the plugin source dir to install additional modules locally during development in the source directory:
+
+```Bash
+$ pip3 install somemodule -t modules
 ```
 
-In order for a Python plugin to be included in the main nymea plugin repository, it should be compatible with the default python3 version of all supported Ubuntu and Debian versions.
+For inclusion in the nymea-plugins repository, specify any additional modules in a `requirements.txt` file. Note that nymea will require
+hashes and fixed package versions. In order to easily add a module including version and hashes, the tool `hashin` may be used:
+
+```Bash
+# Install hashin
+$ sudo pip3 install hashin
+
+# Create an empty requirements.txt file if it hasn't been create before
+S touch requirements.txt
+
+# Add "somemodule" to the requirements.txt file
+$ hashin somemodule
+```
+Nymea will then take care of installing required dependencies.
+
 
 ### JavaScript
 
