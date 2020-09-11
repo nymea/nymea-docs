@@ -7,6 +7,9 @@ import copy from 'rollup-plugin-copy';
 import del from 'del';
 import * as path from 'path';
 import { mdsvex } from 'mdsvex';
+import autoPreprocess from 'svelte-preprocess';
+import ts from '@rollup/plugin-typescript';
+import typescript from 'typescript'
 
 import hljs from 'highlight.js/lib/core';
 import asciidoc from 'highlight.js/lib/languages/asciidoc';
@@ -44,7 +47,7 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
 
   return {
     inlineDynamicImports,
-    input: `src/main.js`,
+    input: `src/main.ts`,
     output: {
       name: 'app',
       sourcemap: true,
@@ -60,18 +63,21 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
       }),
       svelte({
         extensions: ['.svelte', '.md'],
-        preprocess: mdsvex({
-          extension: '.md',
-          highlight: {
-            highlighter: (code, language) => {
-              const codeBlock = language
-                ? hljs.highlight(language, code, true).value
-                : hljs.highlightAuto(code, ['asciidoc', 'bash', 'cLike', 'javascript', 'json', 'python', 'qml', 'xml']).value;
-              return `<pre class="code"><code class="language-${language} hljs">${escape_curlies(codeBlock)}</code></pre>`;
+        preprocess: [
+          autoPreprocess(),
+          mdsvex({
+            extension: '.md',
+            highlight: {
+              highlighter: (code, language) => {
+                const codeBlock = language
+                  ? hljs.highlight(language, code, true).value
+                  : hljs.highlightAuto(code, ['asciidoc', 'bash', 'cLike', 'javascript', 'json', 'python', 'qml', 'xml']).value;
+                return `<pre class="code"><code class="language-${language} hljs">${escape_curlies(codeBlock)}</code></pre>`;
+              },
             },
-          },
-          layout: path.join(__dirname, './src/pages/documentation/_markdown.svelte'),
-        }),
+            layout: path.join(__dirname, './src/pages/documentation/_markdown.svelte'),
+          })
+        ],
         // enable run-time checks when not in production
         dev: !production,
         hydratable: true,
@@ -81,7 +87,10 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
           css.write(`${buildDir}/bundle.css`);
         }
       }),
-
+      ts({
+        typescript,
+        sourceMap: !production
+      }),
       // If you have external dependencies installed from
       // npm, you'll most likely need these plugins. In
       // some cases you'll need additional configuration —
