@@ -1,4 +1,5 @@
 <script>
+  import { url } from '@sveltech/routify';
   import Col from '../_components/grid/Col.svelte';
   import Row from '../_components/grid/Row.svelte';
   import IntroductionSection from '../_components/sections/IntroductionSection.svelte';
@@ -15,8 +16,8 @@
 <IntroductionSection
   title="Create smart."
   subTitle="With nymea you can focus on your use case. The ground work is done."
-  buttonText="Get started",
-  buttonLink="./documentation/developers" />
+  buttonText="Get started"
+  buttonLink={$url('/documentation/developers')} />
 
 <Section>
   <Row>

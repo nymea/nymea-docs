@@ -1,4 +1,5 @@
 <script>
+  import { url } from '@sveltech/routify';
   import Col from '../_components/grid/Col.svelte';
   import Row from '../_components/grid/Row.svelte';
   import FeaturesSection from '../_components/sections/FeaturesSection.svelte';
@@ -14,8 +15,8 @@
 <IntroductionSection
   title="Live smart."
   subTitle="Nymea gets you up and running with your Smart Home setup in no time."
-  buttonText="Get started",
-  buttonLink="./documentation/users/installation/getting-started" />
+  buttonText="Get started"
+  buttonLink={$url('/documentation/users/installation/getting-started')} />
 
 <FeaturesSection />
 
