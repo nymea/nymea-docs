@@ -1,4 +1,5 @@
 <script>
+  import { url } from '@sveltech/routify';
   import Col from '../_components/grid/Col.svelte';
   import Row from '../_components/grid/Row.svelte';
   import IntroductionSection from '../_components/sections/IntroductionSection.svelte';
@@ -22,8 +23,8 @@
 <IntroductionSection
   title="Build smart."
   subTitle="Build IoT business, not IoT devices."
-  buttonText="Get started",
-  buttonLink="./documentation/developers"
+  buttonText="Get started"
+  buttonLink={$url('/documentation/developers')}
   showButton={false} />
 
 <OffersSection />

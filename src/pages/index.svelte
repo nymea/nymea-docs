@@ -1,4 +1,5 @@
 <script>
+  import { url } from '@sveltech/routify';
   import Col from '../_components/grid/Col.svelte';
   import Grid from '../_components/grid/Grid.svelte';
   import Row from '../_components/grid/Row.svelte';
@@ -139,7 +140,7 @@
           <!-- <Logo height="2rem" text="true" /> -->
           <p>The Open IoT Stack</p>
         </header>
-        <Button text="Get started" link="documentation/overview/about-nymea">
+        <Button text="Get started" link={$url('/documentation/overview/about-nymea')}>
           <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
         </Button>
       </Col>
@@ -158,7 +159,7 @@
             <p>Play</p>
           </header>
           <p>nymea gets you up and running with your smart home setup in no time. Just install nymea:core and nymea:app and you're all set with a powerful smart home solution that does not require powerful hardware or fiddling with cryptic configuration files. Using 100% free and open source software.</p>
-          <Button text="Learn more" link="users">
+          <Button text="Learn more" link={$url('/users')}>
             <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
           </Button>
         </div>
@@ -171,7 +172,7 @@
             <p>Create</p>
           </header>
           <p>When you're building your own IoT device, nymea will help with all the software efforts. Whether it's connecting your device to others, adding easy set-up features, creating smart hubs for all your devices or adding control and setup frontends, nymea's got your back.</p>
-          <Button text="Learn more" link="developers">
+          <Button text="Learn more" link={$url('/developers')}>
             <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
           </Button>
         </div>
@@ -184,7 +185,7 @@
             <p>Build</p>
           </header>
           <p>Building IoT enabled customer grade products can be hard. We've ramped up with all the required know-how and with the nymea stack we'll be supporting your business. Whether it's fast prototyping and consulting, providing necessary components, building entire products or caring for deployments and updates.<!-- Together with our partners we offer in-field experience for all of those aspects. --></p>
-          <Button text="Learn more" link="businesses">
+          <Button text="Learn more" link={$url('/businesses')}>
             <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
           </Button>
         </div>
