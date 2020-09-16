@@ -23,7 +23,7 @@ Like with a regular nymea installation, all the required packages can be obtaine
 
 ```bash
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key A1A19ED6
-sudo apt-add-repositry "deb http://repository.nymea.io `lsb_release -cs` main"
+sudo apt-add-repository "deb http://repository.nymea.io `lsb_release -cs` main"
 sudo apt-get update
 ```
 

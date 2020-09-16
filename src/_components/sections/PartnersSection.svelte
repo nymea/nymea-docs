@@ -50,7 +50,17 @@
 
   @media only screen and (min-width: 48em)  {
     .partners :global(.row:nth-child(2) .col) {
-      flex-basis: 15%;
+      flex-basis: 20%;
+    }
+
+    .partner {
+      padding: var(--space-07);
+    }
+  }
+
+  @media only screen and (min-width: 64em)  {
+    .partners :global(.row:nth-child(2) .col) {
+      flex-basis: 14%;
     }
 
     .partner {
@@ -92,6 +102,11 @@
       <Col>
         <a href="https://www.dh-electronics.com/" target="_blank" rel="noopener" class="partner">
           <img src="/img/partners/dh-electronics.svg" alt="DH electronics" />
+        </a>
+      </Col>
+      <Col>
+        <a href="https://www.usedatatolead.com" target="_blank" rel="noopener" class="partner">
+          <img src="/img/partners/UDTL_Logo.svg" alt="Use Data To Lead" />
         </a>
       </Col>
     </Row>

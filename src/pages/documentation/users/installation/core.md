@@ -19,7 +19,7 @@ Please pick one of the options below:
 
 ### Raspberry Pi images
 
-The latest Raspberry Pi image can be obtained from [the nymea downloads section](https://downloads.nymea.io/images/raspberrypi/latest).
+Download [the latest Raspberry Pi image](https://downloads.nymea.io/images/raspberrypi/latest).
 
 After downloading, this image needs to be written to an SD card. This step varies between operating systems.
 
