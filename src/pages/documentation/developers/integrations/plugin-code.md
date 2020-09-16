@@ -7,15 +7,67 @@ title: The plugin code
     import Code from '../../../../_components/Code.svelte';
 </script>
 
-Once a [plugin JSON](plugin-json) file is created, the according logic is to be implemented in the plugin code. The plugin code can be created in different programming languages. Currently supported are C++/Qt and JavaScript.
+Once a [plugin JSON](plugin-json) file is created, the according logic is to be implemented in the plugin code. The plugin code can be created in different programming languages. Currently supported are C++/Qt, Python and JavaScript.
 
 This section assumes that you already have the basic plugin file structure in place either by having created a new plugin using the instructions in [creating a new plugin](creating-a-new-plugin) or by cloning and editing an existing plugin.
+
+## A word on the environment
+
+### C++/Qt
+
+C++/Qt plugins are loaded by nymea using [QPluginLoader](https://doc.qt.io/qt-5/qpluginloader.html). This means, they will be executed within the nymea process and will be able to make it crash. As nymea is a long running process, care must be taken to not leak memory or crash by accessing invalid memory.
+
+Plugins are not threaded by default. This means a plugin developer must not use blocking code. There is, however, the Qt event loop, all Qt API and the nymea hardware manager API available which caters for writing event loop based asynchronous code. If for any reason blocking code must be used, a plugin developer must spawn and manage their own threads.
+
+A plugin may link to any C/C++/Qt library but please note that for inclusion of a plugin into the nymea plugin repository, all dependencies must be available in all the supported Ubuntu and Debian versions. In some exceptions it is possible to host dependencies in the nymea package repository too.
+
+### Python
+
+Each Python plugin is ran in a sub-interpreter allocated explicitly for the plugin. The Python version depends on the target distribution a nymea instance is build for, it is greater 3.5 in any case though.
+
+In addition to that, every plugin gets its own thread pool allocated with a maximum thread count matching the amount of managed things + 2. Every function call into a plugin runs in a separate thread, however, if the thread pool is exhausted, calls will be queued and may time out. This means that is is possible to run blocking code in python (e.g. fetch a url using urllib) but this still must be used with caution as it might exceed the thread pool when multiple long running blocking calls are made.
+
+Python plugins may use asyncio. The recommended way is to call `loop.run_forever()` in the plugins `init()` function and call `loop.stop()` in the plugins `deinit()` function. In this case, the asyncio event loop will use one of the plugins allocated threads. Other calls into the plugin should then just use `asyncio.run_coroutine_threadsafe(coro, loop)` to add their tasks to the event loop.
+
+Additional threads may be started by a Python plugin using the `threading` module but note that the plugin is responsible for managing that thread and bringing it down on system shutdown.
+
+A plugin may import any additional Python modules. For inclusion of a plugin into the nymea plugin repository, all dependencies must be satisfyable by `pip3` or need to be shipped with the plugin code.
+
+> Note: Python modules installed system wide (e.g. in `dist-packages` or `site-packages`) are *NOT* loaded.
+
+The `modules` subdir in the plugins code directory will be available as import path. `pip3` may be used in the plugin source dir to install additional modules locally during development:
+
+```Bash
+$ pip3 install somemodule -t modules
+```
+
+For inclusion in the nymea-plugins repository, specify any additional modules in a `requirements.txt` file. Note that nymea will require
+hashes and fixed package versions. In order to easily add a module including version and hashes, the tool `hashin` may be used:
+
+```Bash
+# Install hashin
+$ sudo pip3 install hashin
+
+# Create an empty requirements.txt file if it hasn't been create before
+S touch requirements.txt
+
+# Add "somemodule" to the requirements.txt file
+$ hashin somemodule
+```
+Nymea will then take care of installing required dependencies.
+
+
+### JavaScript
+
+Each JavaScript plugin is ran in a separate JS engine. The JS engine is ECMA-5 compliant but does not support node.js nor has a browsers `window` object.
+
+Additional `.mjs` modules may be imported by installing them in the plugins source code and shipping them with the plugin.
 
 ## Introduction
 
 The main entry point for the plugin code is typically located in a file with the same name as the [plugin JSON](plugin-json) file but using typical filename extension for the chose programming language. For a C++/Qt plugin this is `.h`/`.cpp`, for a JavaScript plugin it is `.js`.
 
-> Note: While for C++/Qt plugins the file name is only recommended, for JavaScript plugins it is a requirement for the file to be named like the json file.
+> Note: While for C++/Qt plugins the file name is only recommended, for Python and JavaScript plugins it is a requirement for the file to be named like the json file.
 
 The basic structure of the plugin code will look similar to this:
 
@@ -262,58 +314,6 @@ var robotSleepActionDurationParamTypeId = "0170952a-260a-44be-972c-cc34f8bc8f67"
 
 </Code>
 
-
-## A word on the environment
-
-### C++/Qt
-
-C++/Qt plugins are loaded by nymea using [QPluginLoader](https://doc.qt.io/qt-5/qpluginloader.html). This means, they will be executed within the nymea process and will be able to make it crash. As nymea is a long running process, care must be taken to not leak memory or crash by accessing invalid memory.
-
-Plugins are not threaded by default. This means a plugin developer must not use blocking code. There is, however, the Qt event loop, all Qt API and the nymea hardware manager API available which caters for writing event loop based asynchronous code. If for any reason blocking code must be used, a plugin developer must spawn and manage their own threads.
-
-A plugin may link to any C/C++/Qt library but please note that for inclusion of a plugin into the nymea plugin repository, all dependencies must be available in all the supported Ubuntu and Debian versions. In some exceptions it is possible to host dependencies in the nymea package repository too.
-
-### Python
-
-Each Python plugin is ran in a sub-interpreter allocated explicitly for the plugin. The Python version depends on target distribution a nymea instance is build for, it is greater 3.5 in any case though.
-
-In addition to that, every plugin gets its own thread pool allocated with a maximum thread count matching the amount of managed things + 2. Every function call into a plugin runs in a separate thread, however, if the thread pool is exhausted, calls will be queued and may time out. This means that is is possible to run blocking code in python (e.g. fetch a url using urllib) but this still must be used with caution as it might exceed the thread pool when multiple long running blocking calls are made.
-
-Python plugins may use asyncio. The recommended way is to call `loop.run_forever()` in the plugins `init()` function and call `loop.stop()` in the plugins `deinit()` function. In this case, the asyncio event loop will use one of the plugins allocated threads. Other calls into the plugin should then just use `asyncio.run_coroutine_threadsafe(coro, loop)` to add their tasks to the event loop.
-
-Additional threads may be started by a Python plugin using the `threading` module but note that the plugin is responsible for managing that thread and bringing it down on system shutdown.
-
-A plugin may import any additional Python modules. For inclusion of a plugin into the nymea plugin repository, all dependencies must be satisfyable by `pip3` or need to be shipped with the plugin code.
-
-> Note: Python modules installed system wide (e.g. in `dist-packages` or `site-packages`) are *NOT* loaded.
-
-The `modules` subdir in the plugins code directory will be available as import path. `pip3` may be used in the plugin source dir to install additional modules locally during development:
-
-```Bash
-$ pip3 install somemodule -t modules
-```
-
-For inclusion in the nymea-plugins repository, specify any additional modules in a `requirements.txt` file. Note that nymea will require
-hashes and fixed package versions. In order to easily add a module including version and hashes, the tool `hashin` may be used:
-
-```Bash
-# Install hashin
-$ sudo pip3 install hashin
-
-# Create an empty requirements.txt file if it hasn't been create before
-S touch requirements.txt
-
-# Add "somemodule" to the requirements.txt file
-$ hashin somemodule
-```
-Nymea will then take care of installing required dependencies.
-
-
-### JavaScript
-
-Each JavaScript plugin is ran in a separate JS engine. The JS engine is ECMA-5 compliant but does not support node.js nor has a browsers `window` object.
-
-Additional `.mjs` modules may be imported by installing them in the plugins source code and shipping them with the plugin.
 
 ## Setup
 
@@ -793,13 +793,13 @@ A plugin implementation shall use `addThingDescriptor()` of the discovery info o
 
 One important note is that such a discovery should report all the found things, even those that are already added to the system but it is important to mark them as such. This is done by setting the ThingId of the existing thing on the ThingDescriptor.
 
-A plugin can use arbitrary code to discover devices or services. However, nymea provides some utilities to support the developer with this by providing ZeroConf/mDNS and UPnP discovery apis.
 
-In this example we'd be looking for devices in the local network via ZeroConf:
+<Code>
 
 ```C++
 void IntegrationPluginExample::discoverThings(ThingDiscoveryInfo *info)
 {
+    // In this example we'd be looking for devices in the local network via ZeroConf:
     ZeroConfServiceBrowser *zeroconfBrowser = hardwareManager()->zeroConfController()->createServiceBrowser("_http._tcp");
 
     // Walk through all the found entries on the zeroconf browser
@@ -835,6 +835,47 @@ void IntegrationPluginExample::discoverThings(ThingDiscoveryInfo *info)
 }
 ```
 
+```Python
+def discoverThings(info):
+    # Discover things by scanning the network or quering an API etc...
+    results = ...
+    # Add all the discovery results to the info object
+    for result in results:
+        # Create a new ThingDescriptor
+        descriptor = nymea.ThingDescriptor(exampleThingClassId, result.name, "Some more info"))
+        # Set a unique ID for this discovery result in the params (Param type needs to be defined in the JSON file)
+        descriptor.params = [nymea.Param(exampleThingIdParamTypeId, result.id)]
+        # Check if we already have this thing in the system
+        for existingThing in myThings():
+            if existingThing.paramValue(exampleThingThingIdParamTypeId) == result.id:
+                # If so, set the thingId so nymea can match this discovery result to the existing thing
+                descriptor.thingId = existingThing.id
+
+        # Add the new descriptor to the info object
+        info.addDescriptor(descriptor)
+
+    # Finish the discovery
+    info.finish(nymea.ThingErrorNoError)
+
+```
+
+```JavaScript
+export function discoverThings(info) {
+    // Perform a discovery by scanning the network or quering an API etc...
+    performDiscovery( (response) => {
+        // Add all found results in the response to the info object
+        for (var i = 0; i < response.length; i++) {
+            // Add a unique ID to the params (paramTypeId needs to be definen in the plugin JSON)
+            var params = [{paramTypeId: exampleThingIdParamTypeId, value: response[i].id}];
+            info.addThingDescriptor(exampleThingClassId, response[i].name, "Some more info", params);
+       };
+       // Finish the discovery
+       info.finish(Thing.ThingErrorNoError);
+    });
+}
+```
+
+</Code>
 
 ## Pairing
 
@@ -850,6 +891,8 @@ Let's look at the simplest form of it which is username and password authenticat
 
 The `startPairing()` call is pretty much a no-operation in this case. The only thing a plugin implementation can do here is to provide an informational text to the client.
 
+<Code>
+
 ```C++
 void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 {
@@ -857,9 +900,24 @@ void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
 }
 ```
 
+```Python
+def startPairing(info):
+    info.finish(nymea.ThingErrorNoError, "Please enter the login credentials for your device.");
+```
+
+```JavaScript
+export function startPairing(info) {
+    info.finish(Thing.ThingErrorNoError, "Please enter the login credentials for your device");
+}
+```
+
+</Code>
+
 This will advance the pairing process to the next step immediately, presenting the user with a login interface containing the above informational text. Make sure to use QT_TR_NOOP to wrap the text in order to allow nymea to translate the text to the client's language on the fly.
 
 Once the user has inserted the credentials, nymea will pass them on to the plugin like here:
+
+<Code>
 
 ```C++
 void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QString &username, const QString &password)
@@ -895,9 +953,48 @@ void IntegrationPluginExample::confirmPairing(ThingPairingInfo *info, const QStr
 }
 ```
 
+```Python
+def confirmPairing(info, username, secret):
+    logger.log("confirming pairing for", info.thingName, username, secret)
+    # Compose a request with the credentials set to test the API for a successful login
+    request = Request("https://" + info.paramValue(exampleThingIPParamTypeId) + "/api")
+    base64string = base64.b64encode('%s:%s' % (username, secret))
+    request.add_header("Authorization", "Basic %s" % base64string)
+    response = urlopen(request)
+    # Finish the pairing procedure
+    if response.data == "SUCCESS":
+        info.finish(nymea.ThingErrorNoError)
+    else:
+        info.finish(nymea.ThingErrorAuthenticationFailure, "Error logging in!")
+```
+
+```JavaScript
+export function confirmPairing(info, username, secret) {
+    // Compose a request with the credentials set to test the API for a successful login
+
+    var request = new XMLHttpRequest()
+    request.open("GET", "https://" + info.paramValue(exampleThingIPParamTypeId) + "/api");
+    req.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + secret)); 
+    request.onload = function() {
+        // Update the things state value accordingly
+        if (request.response == "SUCCESS") {
+            info.finish(Thing.ThingErrorNoError)
+        } else {
+            info.finish(Thing.ThingErrorNoError, "Error logging in")
+        }
+    }
+    request.send();
+}
+    
+```
+
+</Code>
+
 ### Push button authentication
 
 This example would pair a device that uses push button authentication:
+
+<Code>
 
 ```C++
 void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
@@ -905,6 +1002,19 @@ void IntegrationPluginExample::startPairing(ThingPairingInfo *info)
     info->finish(Thing::ThingErrorNoError, QT_TR_NOOP("Please press the push button on the device and then continue this setup."));
 }
 ```
+
+```Python
+def startPairing(info):
+    info.finish(nymea.ThingErrorNoError, "Please press the push button on the device and then continue this setup.");
+```
+
+```JavaScript
+export function startPairing(info) {
+    info.finish(Thing.ThingErrorNoError, "Please press the push button on the device and then continue this setup.");
+}
+```
+
+</Code>
 
 Again, the `startPairing` call is mostly informative to the user. It tells the user to press the button on the device now and then continue the setup process in nymea.
 

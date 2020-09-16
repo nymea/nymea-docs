@@ -169,12 +169,8 @@ export const menuOrder = [
           title: 'Building & testing'
         },
         {
-          filename: 'tutorial-integration-cpp',
-          title: 'Tutorial (C++/Qt)'
-        },
-        {
-          filename: 'tutorial-integration-js',
-          title: 'Tutorial (JS)'
+          filename: 'submitting',
+          title: 'Submitting a plugin'
         },
         {
           filename: 'interfaces',
