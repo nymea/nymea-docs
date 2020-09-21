@@ -97,17 +97,34 @@
       <Col span={{'xs': 4, 'sm': 3, 'md': 3, 'lg': 3, 'xl': 3}} offset={{'xs': 0, 'sm': 2, 'md': 2, 'lg': 2, 'xl': 2}}>
         <div class="phone-frame">
           <Waypoint offset="500">
-            <img src="/img/showcases/showcase-configuration.svg" alt="">
+            <img src="/img/showcases/showcase-android-device-controls.svg" alt="">
           </Waypoint>
         </div>
       </Col>
+      <Col middle span={{'xs': 8, 'sm': 4, 'md': 4, 'lg': 4, 'xl': 4}} offset={{'xs': 0, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
+        <div class="showcase">
+          <h3>Seamless integration</h3>
+          <p>To get the most out of your mobile device, nymea integrates with the Android 11 device controls and, if wanted, sends Push Notifications to your phone (iOS, Android, UBPorts) to keep you informed about happenings in your setup.</p>
+        </div>
+      </Col>
+    </Row>
+
+    <Row>
       <Col middle span={{'xs': 8, 'sm': 4, 'md': 4, 'lg': 4, 'xl': 4}} offset={{'xs': 0, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
         <div class="showcase">
           <h3>Configuration</h3>
           <p>Even without the need of a smart home, nymea offers comprehensive configuration capabilities for your hardware. Headless network setup as client or access point, setting up an MQTT broker, easy remote access, running a web server, or updating your system is all right there at your fingertips when nymea is installed.</p>
         </div>
       </Col>
+      <Col span={{'xs': 4, 'sm': 3, 'md': 3, 'lg': 3, 'xl': 3}} offset={{'xs': 0, 'sm': 2, 'md': 2, 'lg': 2, 'xl': 2}}>
+        <div class="phone-frame">
+          <Waypoint offset="500">
+            <img src="/img/showcases/showcase-configuration.svg" alt="">
+          </Waypoint>
+        </div>
+      </Col>
     </Row>
+  
   </Grid>
 </section>
 
