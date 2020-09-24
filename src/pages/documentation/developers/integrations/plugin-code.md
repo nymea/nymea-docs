@@ -65,7 +65,7 @@ Additional `.mjs` modules may be imported by installing them in the plugins sour
 
 ## Introduction
 
-The main entry point for the plugin code is typically located in a file with the same name as the [plugin JSON](plugin-json) file but using typical filename extension for the chose programming language. For a C++/Qt plugin this is `.h`/`.cpp`, for a JavaScript plugin it is `.js`.
+The main entry point for the plugin code is typically located in a file with the same name as the [plugin JSON](plugin-json) file but using the typical filename extension for the chosen programming language. For a C++/Qt plugin this is `.h`/`.cpp`, for a Python plugin `.py` and JavaScript plugin it is `.js`.
 
 > Note: While for C++/Qt plugins the file name is only recommended, for Python and JavaScript plugins it is a requirement for the file to be named like the json file.
 
@@ -124,6 +124,8 @@ void IntegrationPluginExample::thingRemoved(Thing *thing) {
 ```
 
 ```Python
+# integrationpluginexample.py
+
 import nymea
 
 def setupThing(info):
@@ -145,6 +147,8 @@ def thingRemoved(thing):
 ```
 
 ```JavaScript
+// integrationpluginexample.js
+
 export function setupThing(info) {
     console.log("setupThing called for", info.thing.name);
     // Perform required setup here
