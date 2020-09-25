@@ -6,34 +6,39 @@ title: Roadmap
 
 ## nymea
 
-## V 0.21.0
+## V 0.24.0
 
 ```
 nymea 
-    Load/Unload Plug-Ins during run time
-    Password recovery
-    Child devices deleteable
-    Improved DB logging Grafana
-    Generic IOs connection
-    Virtual Devices
+    Add support for python plug-ins
+    Optional events/states/actions for interfaces
+    Remove thing before re-setup on reconfiguration
+    Auto setup retry on thing setup failure
+    New interfaces: Update
  
 nymea plug-ins
     New Plug-In: Wall-Be
     New Plug-In: my-PV
-    New Plug-In: Generic Things
-    Bug fix: Modbus Commander
-    Bug fix: KNX Plug-In
+    New Plug-In: Drexel und Weiss
+    New Plug-In: SunSpec
+    New Plug-In: HomeConnect
+    New Plug-In: Lifx
+    New Plug-In: Fastcom
+    New Plug-In: Sun Position
+    New Plug-In: WS281X
 ```    
 
-### V 0.22.0
+### V 0.25.0
 ```
-nymea 
-    Github JS Plug-In installer
- 
+nymea
+    Script Templates
+    Multi-User System    
+    SPI Hardware Resource
+
 nymea plug-ins
-    New Plug-In: Websocket Commander
+    New Plug-In: Pi-Face
     New Plug-In: FTP Upload
-    New Plug-In: Lifx
     New Plug-In: Yeelight
-    New Plug-In: HomeConnect
+    New Plug-In: iDM
+    New Plug-In: Google Calender
 ```
