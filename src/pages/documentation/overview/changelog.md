@@ -5,6 +5,110 @@ title: Changelog
 
 ## nymea Changelog
 
+### V 0.23.1
+```adoc
+nymea (0.23.1)
+   Make it build with Qt 5.14 and -Wno-deprecated
+   README.md: fix license version
+   Silence the warning about not being able to translate plugins
+nymea-plugins
+   Nanoleaf: Fix IPv6
+   Hue: Don't set invalid states to the hue color light
+   OneWire PlugIn: Add W1 support
+   AnelElektronik: Fix actions and add generic IO types
+   Hue: Don't falsely emit button presses at startup
+nymea-plugin-unipi
+   Add Analog IOs
+   Update Readme
+```
+
+### V 0.23.0
+```adoc
+nymea
+   Loggingcategories
+   Fix conversion of values
+   Use bindValue for composing query strings for the log DB
+   Fix missing name method override for json handlers
+   Rework garage door interfaces
+   Fix update busy flag in GetUpdateStatus API call
+   Fix cleaning up tags that are not needed any more
+nymea-plugins
+   New Plugin: Fronius
+   UsbRelay: Fix initialization of udev device watcher if no matching
+   Generic things: Add extended smart meter
+   Awattar: The token is not needed any more for AT
+   Generic Things: Add generic pressure and co2 sensors
+   Shelly: Allow setting the roller shutter percentage
+   Generic Things: Add generic garagedoors
+```
+
+### V 0.22.0
+```adoc
+nymea
+   Store state changes immediately when they change
+   Allow emitting events from things directly
+   Vaguely inform the plugin about the origin of actions.
+   Fix time filter
+nymea-plugins
+   Make use of generic IO support in smart plugs
+   New plugin: Solar-Log
+   Shelly: Add support for the Shelly Dimmer 2
+   Generic Things: Add venetian blind
+nymea-plugin-modbuscommander (0.1.5)
+   Rework readmes
+nymea-plugin-knx (0.0.4)
+   Rework readmes
+```
+
+### V 0.21.0
+```adoc
+nymea-remoteproxy (0.1.10)
+   Allow multiple tunnels for one valid token
+libnymea-networkmanager (0.4.0)
+   Fix wrong argument when creating an access point
+   Add IP address information
+   Improve AP error handling a bit
+nymea
+   Improve error messages when a plugin fails to load
+   Add support for generic IO connections
+   Reject duplicate ids in plugin json
+   Add an irrigation interface
+   Log DB schema 4
+   Drop internal networkmanager and use libnymea-networkmanager instead
+   Improve networking API
+   Add an I2C hardware resource
+   Add support for restarting nymea in the system api
+   Fix thing class translations
+   Check for cloud certificate file before trying to connect
+   Add a helper function to more easily access ZeroConf txt records
+   Cleanup license headers/files
+   Don't directly link to libssl, we're using the Qt wrappers
+   Fix UPnP discovery if wifi comes up late
+   Add ventilation interface
+nymea-plugins
+   New Plug-In: Doorbird
+   Rework readmes
+   New integration plug-in: BluOS
+   Tado: Add heating interface
+   PhilipsHue: Add support for the Hue Smart Button
+   New Plugin: Generic Things
+   Removed all 433MHz plug-ins
+   New Plugin: I²C devices
+   Shelly: Add switch device to Shelly Dimmer
+   All Plugins: Fix german translations to also work all german regions
+   Avahi Monitor: added address and port
+   Tuya: Fix devId parameter for blinds
+   GPIO: Add support for generic IO connections
+   Denon Plug-in: Fixed discovery and added async actions
+   Philips Hue: Additional discovery method
+nymea-plugins-simulation
+   Fix duplicate UUID for connected state type
+nymea-plugin-unipi
+   Generic IOs
+   Rework readmes
+   Fix UniPi 1 Actions
+```
+
 ### V 0.20.0
 ```adoc
 nymea:app
