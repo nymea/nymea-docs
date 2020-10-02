@@ -87,7 +87,7 @@ The most basic concept in nymea scripting is how to define and refer to certain 
 
 #### id
 
-the id property is part of the QML language. Every element in QML can have an id property. The value for this can be defined freely by the script developer as long as it starts with a lowercase letter and does not contain special characters. Those ids basically give the element a name so that it can be referred to from other places in the script. It is not mandatory to add such id properties if it's not required to "wire" up elements.
+The id property is part of the QML language. Every element in QML can have an id property. The value for this can be defined freely by the script developer as long as it starts with a lowercase letter and does not contain special characters. Those ids basically give the element a name so that it can be referred to from other places in the script. It is not mandatory to add such id properties if it's not required to "wire" up elements.
 
 #### thingId
 
@@ -191,13 +191,47 @@ A `ThingAction` has a function named `execute(params)` which can be called to ac
 For instance, a thing capable to send push notifications could to be used this way:
 
 ```qml
-DeviceAction {
+ThingAction {
     id: notificationAction   // Giving it an id so we can call its execute() function
-    deviceId: "<deviceId>"   // The id of the notification thing
+    thingId: "<thingId>"     // The id of the notification thing
     actionName: "notify"     // Selecting the "notify" action
 }
 ...
 notificationAction.execute({"title": "Hello", "body": "nymea rocks!"})
+```
+    
+### InterfaceEvent
+
+A `InterfaceEvent` is very similar to the `ThingEvent` with the difference that it does not only receive events from a particular thing, but instead it can receive events from a whole group of things.
+
+The `onTriggered` handler will receive the `thingId` as well as the `params` for the event.
+
+This might be useful for cases where a certain event is of inerest, regardless of which thing it comes from. One example would be to notify the user when something runs out of battery.
+
+```qml
+InterfaceEvent {
+    interfaceName: "battery"
+    eventName: "batteryCritical"
+    onTriggered: {
+        console.log("Thing", thingId, "runs out of battery:", JSON.stringify(params));
+    }
+}
+```
+
+### InterfaceAction
+
+A `InterfaceAction` is similar to the `ThingAction` with the difference that it executes actions not only on a single thing, but instead executes the same action on a while group of things.
+
+For example, turning off all lights at once:
+
+```qml
+InterfaceAction {
+    id: allLightsPowerAction
+    interfaceName: "light"
+    actionName: "power"
+}
+...
+allLightsPowerAction.execute({"power": false});
 ```
     
 ### Alarm
@@ -247,9 +281,9 @@ Item {
         id: timer
         interval: 5000
         repeat: false
-        running: root.counter > 0 // The timer only runs when the counter is > 0
+        running: root.counter > 0 // The timer only runs when the counter is > 0.
         onTriggered: {
-            root.counter = 0; // Reset the counter after 5 secs
+            root.counter = 0; // Reset the counter after 5 secs. This will also stop the timer.
         }
     }
     
@@ -257,9 +291,10 @@ Item {
         thingId: "<thingId>" // id of button
         eventName: "pressed"
         onTriggered: {
-            root.counter = root.counter + 1;
+            root.counter = root.counter + 1; // Increase the counter, this will start the timer if not running.
             if (root.counter >= 5) {
                 console.log("Button pressed 5 times within 5 seconds!")
+                root.counter = 0; // Reset the counter. This also stops the timer.
             }
         }
     }
@@ -303,7 +338,7 @@ ThingEvent {
 }
 ThingState {
     id: daylightState
-    thingId: "<dthingId>" // id of daylight sensor
+    thingId: "<thingId>" // id of daylight sensor
     stateName: "daylight"
 }
 ThingState {
