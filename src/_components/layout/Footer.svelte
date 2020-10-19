@@ -12,7 +12,7 @@
     border-top: 1px solid var(--green-base);
     padding: var(--space-10) 0;
     position: relative;
-    z-index: 4;
+    z-index: 0;
   }
 
   @media only screen and (min-width: 48em) {
@@ -26,6 +26,10 @@
   }
 
   @media only screen and (min-width: 64em) {
+    footer {
+      z-index: 4;
+    }
+    
     footer > :global(.grid .row:first-child) {
       height: calc(2 * var(--space-10));
     }
