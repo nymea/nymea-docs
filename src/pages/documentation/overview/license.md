@@ -37,7 +37,7 @@ There are 2 options for building commercial products with nymea:
 This option will only require a nymea license and nymea GmbH will create closed source binaries for your product. This may be a one time purchase or a recurring license agreement for nymea GmbH providing frequent updates.
 
 ### SDK (build upon nymea)
-The nymea developer license will grant access to all of nymeas source code and allow for closed source customizations and changes on the customers side. It is the most flexible option as no Open Source restrictions apply while still getting access to modify the source code. However, please note, that this option will also require a Qt development license in addtion (which can be obtained either at the Qt Company directly or from nymea GmbH bundled with the nymea SDK license.
+The nymea developer license will grant access to all of nymeas source code and allow for closed source customizations and changes on the customers side. It is the most flexible option as no Open Source restrictions apply while still getting access to modify the source code. However, please note, that this option will also require a Qt development license in addition (which can be obtained either at the Qt Company directly or from nymea GmbH bundled with the nymea SDK license).
 
 
 
