@@ -206,7 +206,7 @@ A `InterfaceEvent` is very similar to the `ThingEvent` with the difference that 
 
 The `onTriggered` handler will receive the `thingId` as well as the `params` for the event.
 
-This might be useful for cases where a certain event is of inerest, regardless of which thing it comes from. One example would be to notify the user when something runs out of battery.
+This might be useful for cases where a certain event is of interest, regardless of which thing it comes from. One example would be to notify the user when something runs out of battery.
 
 ```qml
 InterfaceEvent {
