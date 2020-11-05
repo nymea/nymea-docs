@@ -76,7 +76,8 @@ Currently, these versions are officially supported:
 * Debian 10 ("buster")
 * Ubuntu 16.04 ("xenial")
 * Ubuntu 18.04 ("bionic")
-* Ubuntu 19.10 ("eoan")
+* Ubuntu 20.04 ("focal")
+* Ubuntu 20.10 ("groovy")
 
 For each of the repositories four architectures are provided:
 
