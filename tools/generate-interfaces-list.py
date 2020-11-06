@@ -128,11 +128,23 @@ Utils.clone_repo(config["srcdir"], branch)
 targets = Utils.find_targets(config["keyword"], config["outputdir"])
 print("Files to replace: %s" % targets)
 interfaces = load_interfaces(os.path.join(config["srcdir"], "nymea/libnymea/interfaces"))
-tree = build_tree(interfaces)
-markdown = print_tree(tree)
 
-interfaces = load_interfaces(os.path.join(config["srcdir"], "nymea/libnymea/interfaces"))
-markdown += build_markdown(interfaces)
-replacements = {}
-replacements[config["keyword"]] = markdown
-Utils.generate_output_file(targets, replacements)
+outputText = "export const interfaces = %s" % json.dumps(interfaces, indent=2)
+
+for target in targets:
+  fileName = os.path.basename(target)
+  fileName = re.sub(r"^_", "", fileName)
+  fileName = re.sub(".in$", "", fileName)
+  Utils.write_text(os.path.join(os.path.dirname(target), fileName), outputText)
+
+# Generates a .md with the interface tree
+# Not needed any more atm as we do this in json, leaving here for reference
+
+#tree = build_tree(interfaces)
+#markdown = print_tree(tree)
+
+#interfaces = load_interfaces(os.path.join(config["srcdir"], "nymea/libnymea/interfaces"))
+#markdown += build_markdown(interfaces)
+#replacements = {}
+#replacements[config["keyword"]] = markdown
+#Utils.generate_output_file(targets, replacements)

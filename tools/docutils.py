@@ -65,6 +65,7 @@ def build_codeblock(text, language=""):
 
 # replacements is a map of <keyword, content> pairs
 def generate_output_file(targets, replacements):
+  print("****")
   for target in targets:
     print("working on %s" % target)
     fileName = os.path.basename(target)
@@ -72,6 +73,6 @@ def generate_output_file(targets, replacements):
     fileName = re.sub(".in$", "", fileName)
     content = read_text(target)
     for keyword in replacements.keys():
-#      print("replacing %s with %s" % (keyword, replacements[keyword]))
+      print("replacing %s with %s" % (keyword, replacements[keyword]))
       content = re.sub(keyword, replacements[keyword], content)
     write_text(os.path.join(os.path.dirname(target), fileName), content)
