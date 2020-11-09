@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { api } from './_api.js';
+  import { api } from './api.js';
 </script>
 
 <style>

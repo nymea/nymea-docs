@@ -1,2 +1,2 @@
-export * from './_api.js';
+export * from './api.js';
 export * from './_stores.js';
