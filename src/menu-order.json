@@ -161,14 +161,6 @@
               {
                 "filename": "building-testing",
                 "title": "Building & testing"
-              },
-              {
-                "filename": "tutorial-integration-cpp",
-                "title": "Tutorial (C++/Qt)"
-              },
-              {
-                "filename": "tutorial-integration-js",
-                "title": "Tutorial (JS)"
               }
             ]
           },
