@@ -8,7 +8,7 @@
     "https://github.com/nymea/nymea-plugins-simulation"
   ],
   "srcdir": "src",
-  "outputdir": "../src/pages/documentation/overview/integrations",
+  "outputdir": "../src/pages/documentation/resources/integrations",
   "iconoutputdir": "../static/img/integrationlogos",
   "allowed_categories": [
     "light",
@@ -35,6 +35,7 @@
     "serial-port",
     "one-wire",
     "mqtt",
-    "i2c"
+    "i2c",
+    "zigbee"
   ]
 }
