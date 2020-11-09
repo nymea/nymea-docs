@@ -1,5 +1,5 @@
 import { derived, readable, writable } from 'svelte/store';
-import { api } from './_api';
+import { api } from './api';
 
 function createCurrent() {
   const { subscribe, set } = writable(null);
