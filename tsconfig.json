@@ -9,5 +9,12 @@
     "scripts",
     "static",
     "tools"
-  ]
+  ],
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@nymea/utils": ["_utils"],
+      "@nymea/components": ["_components"],
+    }
+  }
 }

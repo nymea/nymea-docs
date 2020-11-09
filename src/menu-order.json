@@ -16,10 +16,6 @@
             "title": "Nymea in action"
           },
           {
-            "filename": "integrations",
-            "title": "Integrations"
-          },
-          {
             "filename": "features",
             "title": "Features"
           },
@@ -173,10 +169,6 @@
               {
                 "filename": "tutorial-integration-js",
                 "title": "Tutorial (JS)"
-              },
-              {
-                "filename": "interfaces",
-                "title": "Interfaces"
               }
             ]
           },
@@ -199,10 +191,6 @@
               {
                 "filename": "nymea-cli-dev",
                 "title": "Python"
-              },
-              {
-                "filename": "raw-api",
-                "title": "API"
               }
             ]
           }
