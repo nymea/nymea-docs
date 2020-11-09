@@ -3,7 +3,7 @@
   import { params, url } from '@sveltech/routify';
   import { isEmptyObject } from '@nymea/utils';
   import { filterItems } from '@nymea/components';
-  import { api } from '../api/_api.js';
+  import { api } from '../api/api.js';
   import Heading from '../api/heading.svelte';
   import { initCodeBlocks } from '../../_documentation-utils.js';
   import { menuItems } from '../../../../_components/menu/_store.js';
