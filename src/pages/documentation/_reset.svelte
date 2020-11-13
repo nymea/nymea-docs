@@ -26,7 +26,7 @@
   let gdprBannerConfig = {
     cookieName: 'nymea_gdpr',
     cookieConfig: {
-      domain: 'nymea.io',
+      domain: window.process.env.GDPR_COOKIE_DOMAIN,
       path: '/'
     },
     heading: 'We care about your privacy.',

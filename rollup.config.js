@@ -9,7 +9,8 @@ import * as path from 'path';
 import { mdsvex } from 'mdsvex';
 import autoPreprocess from 'svelte-preprocess';
 import ts from '@rollup/plugin-typescript';
-import typescript from 'typescript'
+import typescript from 'typescript';
+import injectProcessEnv from 'rollup-plugin-inject-process-env';
 
 import hljs from 'highlight.js/lib/core';
 import asciidoc from 'highlight.js/lib/languages/asciidoc';
@@ -223,6 +224,11 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
         dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
       }),
       commonjs(),
+
+      injectProcessEnv({ 
+        NODE_ENV: process.env.NODE_ENV,
+        GDPR_COOKIE_DOMAIN: process.env.NODE_ENV === 'production' ? 'nymea.io' : 'localhost'
+     }),
 
       // If we're building for production (npm run build
       // instead of npm run dev), minify
