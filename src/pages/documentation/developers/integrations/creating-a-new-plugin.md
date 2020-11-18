@@ -15,9 +15,26 @@ Go to `File` -> `New File or Project`. Select `nymea` in the projects list and t
 
 ![Wizard](/img/wizard1.png)
 
-Follow the steps in the wizard to complete the setup.
+Follow the steps in the wizard to complete the setup. The first step asks for the location of the project. For example a plugin integrating products of a company named "ACME Inc." would likely start with the project location "acme" which would create a folder named "acme" and store the plugin template code in there.
 
-See the [integration plugin tutorial](tutorial-integration) for a more complete walkthrough of the wizard.
+![Wizard](/img/wizard2.png)
+
+On the next page, enter the vendor information consisting of a name and a display name. The name will be used in code to identify this vendor and for thus most not contain any whitespaces or special characters. The display name however will be presented to the user and should be as close as possible to the actual company name, including punctuation and special characters.
+
+![Wizard](/img/wizard3.png)
+
+Once the vendor information is set up, the wizard will ask for the first device or service to be added. The same concept applies, using name for identifying this thing in code and providing a display name which will be presented to the user.
+
+![Wizard](/img/wizard4.png)
+
+The last step is to add information about the developer. This information will be used in license headers, copyright information and other places where contact details for the plugin developer are stored.
+
+![Wizard](/img/wizard5.png)
+
+Now the plugin is configured. Qt Creator will ask for a build configuration to be set up. Check all the options you need to build the plugin for. Normally just keeping the default of "Desktop" is fine for development on your development workstation.
+
+![Wizard](/img/wizard6.png)
+
 
 ## Manual project creation
 
