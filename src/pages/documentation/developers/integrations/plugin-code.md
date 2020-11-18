@@ -177,11 +177,11 @@ This is a minimalistic example for a plugin. While there are lots of other metho
 
 As described in the [getting started](getting-started-integration) section, every entity in a plugin is referenced by an ID and a name. A plugin can use the IDs as defined in the JSON file to identify those entities, however, this is discouraged for the sake of readability. Instead, nymea will provide definitions to those IDs in a more readable manner to the developer.
 
-> In C++/Qt plugins, those definitions will be defined in the plugininfo.h header file which can be included in the plugin code. Additionally, a extern-plugininfo.h file can be included to make those definitions available in multiple files without causing multipre references to them. 
+> In C++/Qt plugins, those definitions are defined in the plugininfo.h header file which can be included in the plugin code. Note that this file can only be included once per plugin. If you need to access those definitions in multiple source files, include extern-plugininfo.h and re-run qmake.
 
-> In Python plugins, those definitions will be added by the interpreter as string constants to the plugin module.
+> In Python plugins, those definitions are added by the interpreter as string constants to the plugin module.
 
-> In JavaScript plugins, those definitions will are exported to the global object of the plugins JS engine.
+> In JavaScript plugins, those definitions are exported to the global object of the plugins JS engine.
 
 Those definitions are generated using the following scheme:
 
