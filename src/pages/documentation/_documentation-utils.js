@@ -10,6 +10,8 @@ import qml from 'highlight.js/lib/languages/qml';
 import xml from 'highlight.js/lib/languages/xml';
 
 export function initCodeBlocks(element) {
+  console.log('initCodeBlocks');
+
   hljs.registerLanguage('asciidoc', asciidoc);
   hljs.registerLanguage('bash', bash);
   hljs.registerLanguage('cLike', cLike);
@@ -22,6 +24,7 @@ export function initCodeBlocks(element) {
   const codeBlocks = element ? element.querySelectorAll('pre > code') : document.querySelectorAll('pre > code');
 
   codeBlocks.forEach((codeBlock) => {
+    console.log('initCodeBlocks - codeBlock', codeBlock);
     hljs.highlightBlock(codeBlock);
   });
 }

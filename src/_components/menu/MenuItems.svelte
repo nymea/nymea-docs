@@ -1,9 +1,14 @@
 <script lang="ts">
-  import { isActive, url } from '@sveltech/routify';
+  import { isActive, route, url } from '@sveltech/routify';
   import type { MenuItem } from './_types';
 
   export let level = 0;
   export let items: MenuItem[] = [];
+
+  function isActiveItem(item) {
+    console.log('isActiveItem()', item.active, $route.path, $route.path.includes('/resources/api') === false, $isActive(item.link));
+    return item.active || ($route.path.includes('/resources/api') === false && $isActive(item.link));
+  }
 </script>
 
 <style>
@@ -85,7 +90,7 @@
   {#each items as item}
     <li>
       {#if item.link}
-        <a class:active={item.active || $isActive(item.link)} href={$url(item.link)}>{item.label}</a>        
+        <a class:active={isActiveItem(item)} href={$url(item.link)}>{item.label}</a>        
       {:else}
         <div>{item.label}</div>
       {/if}

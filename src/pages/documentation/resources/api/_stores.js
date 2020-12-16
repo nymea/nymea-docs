@@ -1,5 +1,6 @@
 import { derived, readable, writable } from 'svelte/store';
-import { api } from './api';
+// import { api } from './api';
+import { api } from './api-highlighted';
 
 function createCurrent() {
   const { subscribe, set } = writable(null);
@@ -51,6 +52,7 @@ function getReferences(refs, value) {
   if (typeof value === 'string') {
     if (value.includes('$ref:')) {
       const key = value.replace('$ref:', '');
+      console.log('getReferences', key, refs, value);
       refs = [
         ...refs,
         { 
@@ -143,8 +145,10 @@ export const currentApiNamespace = createCurrent();
 export const apiNamespaces = readable([], function start(set) {
   const { methods, notifications } = api;
   const namespaceKeys = [
-    ...Object.keys(methods).map(toNamespace),
-    ...Object.keys(notifications).map(toNamespace)
+    ...methods.map(({ label }) => toNamespace(label)),
+    ...notifications.map(({ label }) => toNamespace(label))
+    // ...Object.keys(methods).map(toNamespace),
+    // ...Object.keys(notifications).map(toNamespace)
   ].filter(onlyUnique);
   const namespaces = namespaceKeys
     .map((key) => {
@@ -166,8 +170,17 @@ export const apiNamespaces = readable([], function start(set) {
 //   set(methods);
 // 	return function stop() {};
 // });
+// export const methods = derived([currentApiNamespace], ([$currentApiNamespace]) => {
+//   const methods = getApiItems(api.methods);
+//   const filteredMethods = [
+//     ...methods.filter((methodValue) => !$currentApiNamespace || $currentApiNamespace === methodValue.label.split('.')[0].toLowerCase())
+//   ];
+//   console.log('_stores:methods - methods updated!', filteredMethods);
+//   return filteredMethods;
+// });
+
 export const methods = derived([currentApiNamespace], ([$currentApiNamespace]) => {
-  const methods = getApiItems(api.methods);
+  const methods = api.methods;
   return methods.filter((methodValue) => !$currentApiNamespace || $currentApiNamespace === methodValue.label.split('.')[0].toLowerCase());
 });
 
@@ -180,7 +193,8 @@ export const methods = derived([currentApiNamespace], ([$currentApiNamespace]) =
 // 	return function stop() {};
 // });
 export const notifications = derived([currentApiNamespace], ([$currentApiNamespace]) => {
-  const notifications = getApiItems(api.notifications);
+  // const notifications = getApiItems(api.notifications);
+  const notifications = api.notifications;
   return notifications.filter((notificationValue) => !$currentApiNamespace || $currentApiNamespace === notificationValue.label.split('.')[0].toLowerCase());
 });
 
@@ -194,7 +208,10 @@ export const refs = derived([currentApiNamespace, currentApiType, methods, notif
     }
     return flattenedApi = {
       ...flattenedApi,
-      ...apiTypeValue
+      ...Object.entries(apiTypeValue).reduce((apiTypeValue, [, value]) => {
+        apiTypeValue[value.label] = value;
+        return apiTypeValue;
+      }, {})
     }
   }, {});
 
@@ -233,18 +250,44 @@ export const refs = derived([currentApiNamespace, currentApiType, methods, notif
   }
 
   // types
-  references.forEach((reference) => {
-    if (reference === 'ActionTypes') {
-      const value = flattenedApi[reference];
-      // const typeReferences = getAllReferences([], value, flattenedApi);
-      // const typeReferences = getReferences([], value);
-      // console.log('references - reference, typeReferences - ActionTypes', reference, typeReferences);
-      // references = [
-      //   ...references,
-      //   ...typeReferences.map((typeReference) => typeReference.label)
-      // ];
-    }
-  });
+  // let newReferences = [];
+  // // do {
+  //   newReferences = references
+  //     .map((reference) => {
+  //       console.log('reference - 1', reference, reference.replace('<a[^>]*>(.*?)</a>', '$1'));
+  //       // reference = reference.replace('<a[^>]*>(.*?)</a>', '$1');
+  //       reference = reference.replace(/<a\b[^>]*>/i, '').replace(/<\/a>/i, '');
+  //       console.log('reference - 2', reference);
+  //       // const startIndex = reference.indexOf('<a ');
+  //       // const endIndex = reference.indexOf('</a>');
+  //       // reference = startIndex !== -1 && endIndex !== -1 ? reference.substring(startIndex + 5, endIndex) : reference;
+  //       // console.log('reference', reference, reference.substring(startIndex + 5, endIndex), flattenedApi, flattenedApi[reference.substring(startIndex + 5, endIndex)]);
+  //       const { references: typeReferences } = flattenedApi[reference];
+  //       // only get new references not found in already created references
+  //       return typeReferences
+  //         .filter((typeReference) => {
+  //           return references.findIndex((currentReference) => currentReference === typeReference) === -1;
+  //         });
+  //     })
+  //     .reduce((flattenedArray, currentArray) => (flattenedArray.concat(currentArray)), []);
+
+  //   newReferences = newReferences.filter((currentReference, index) => newReferences.findIndex((duplicateReference) => duplicateReference.label === currentReference.label) === index);
+  //   references = [
+  //     ...references,
+  //     ...newReferences.map((newReference) => newReference.label)
+  //   ].sort((referenceA, referenceB) => referenceA.localeCompare(referenceB));
+  // } while (newReferences.length > 0);
+  
+  
+  // console.log('types', newReferences);
+
+  // references
+  // console.log('references - flattenedApi', flattenedApi);
+  // const newReferences = references.forEach((reference) => {
+  //   const value = flattenedApi[reference];
+  //   console.log('reference', reference, value);
+  // });
+  // console.log('references', references);
 
   return references;
 });
@@ -253,7 +296,8 @@ export const refs = derived([currentApiNamespace, currentApiType, methods, notif
 // Enums
 
 export const enums = derived([refs, currentApiNamespace], ([$refs, $currentApiNamespace]) => {
-  const enums = getApiItems(api.enums);
+  // const enums = getApiItems(api.enums);
+  const enums = api.enums;
   return enums.filter((enumValue) => !$currentApiNamespace || $refs.indexOf(enumValue.label) !== -1);
 });
 
@@ -261,7 +305,8 @@ export const enums = derived([refs, currentApiNamespace], ([$refs, $currentApiNa
 // Flags
 
 export const flags = derived([refs, currentApiNamespace], ([$refs, $currentApiNamespace]) => {
-  const flags = getApiItems(api.flags);
+  // const flags = getApiItems(api.flags);
+  const flags = api.flags;
   return flags.filter((flagValue) => !$currentApiNamespace || $refs.indexOf(flagValue.label) !== -1);
 });
 
@@ -269,7 +314,8 @@ export const flags = derived([refs, currentApiNamespace], ([$refs, $currentApiNa
 // Types
 
 export const types = derived([refs, currentApiNamespace], ([$refs, $currentApiNamespace]) => {
-  const types = getApiItems(api.types);
+  // const types = getApiItems(api.types);
+  const types = api.types;
   return types.filter((typeValue) => !$currentApiNamespace || $refs.indexOf(typeValue.label) !== -1);
 });
 

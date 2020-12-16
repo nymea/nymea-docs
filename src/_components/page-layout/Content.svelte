@@ -1,7 +1,6 @@
 <script lang="ts">
   import { route, url } from '@sveltech/routify';
-  import { flattenedMenuItems } from '@nymea/components';
-import { menuItems } from '_components/menu';
+  import { flattenedMenuItems } from '../menu';
   
   $: links = $flattenedMenuItems.filter((menuItem) => menuItem.link);
   $: currentIndex = links.findIndex((menuItem) => menuItem.link === $route.api.path);

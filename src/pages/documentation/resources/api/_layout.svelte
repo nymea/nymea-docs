@@ -8,7 +8,7 @@
   import { initCodeBlocks } from '../../_documentation-utils.js';
   import { menuItems } from '../../../../_components/menu/_store.js';
   import { tableOfContents } from '../../../../_components/table-of-contents/_store.js';
-  import { apiTypes, apiNamespaces, enums, filteredApi, flags, methods, notifications, types } from '../api';
+  import { apiTypes, apiNamespaces, enums, filteredApi, flags, methods, notifications, refs, types } from '../api';
   import { currentApiNamespace, currentApiType } from '../api/_stores.js';
 
   $: setCurrentFilters($params);
@@ -24,7 +24,7 @@
 
   afterUpdate(() => {
     // TODO: Causes a lot of calls even when changeing the URL hash => find a better way to call initCodeBlocks() only when content changes
-    initCodeBlocks();
+    // initCodeBlocks();
   });
 
   function setCurrentFilters(params) {    
@@ -57,7 +57,7 @@
           //   link: getQueryString('namespace', 'all', params)
           // },
           {
-            active: !params.hasOwnProperty('namespace') || (params.hasOwnProperty('namespace') && params.namespace === 'all'),
+            active: params.hasOwnProperty('namespace') && params.namespace === 'all',
             label: 'All',
             link: './resources/api'
           },
@@ -186,6 +186,7 @@
     font-size: 1.125rem;
     font-weight: 400;
     line-height: 1.5rem;
+    margin-bottom: 1.5rem;
     margin-top: 3rem;
   }
 
@@ -198,6 +199,10 @@
     font-weight: 700;
     text-decoration: none;
   }
+
+  :global(.hljs-string a) {
+    color: #a3be8c;
+  }
 </style>
 
 <svelte:head>
@@ -207,12 +212,16 @@
 <div class="wrapper">
   <slot />
 
+  <!-- {#each $refs as ref}
+    <p>{ref}</p>
+  {/each} -->
+
   {#if $enums.length > 0}
     <h2 id="enums">Enums</h2>
     {#each $enums as nymeaEnum}
       <h3 id={nymeaEnum.id}><a href={$url(nymeaEnum.link)}>{nymeaEnum.label}</a></h3>
       {#if nymeaEnum.code}
-        <pre class="code"><code class="hljs json">{nymeaEnum.code}</code></pre>
+        <pre class="code"><code class="hljs json">{@html nymeaEnum.code}</code></pre>
       {/if}
     {/each}
   {/if}
@@ -222,7 +231,7 @@
     {#each $flags as nymeaFlag}
       <h3 id={nymeaFlag.id}><a href={$url(nymeaFlag.link)}>{nymeaFlag.label}</a></h3>
       {#if nymeaFlag.code}
-        <pre class="code"><code class="hljs json">{nymeaFlag.code}</code></pre>
+        <pre class="code"><code class="hljs json">{@html nymeaFlag.code}</code></pre>
       {/if}
     {/each}
   {/if}
@@ -232,7 +241,7 @@
     {#each $types as nymeaType}
       <h3 id={nymeaType.id}><a href={$url(nymeaType.link)}>{nymeaType.label}</a></h3>
       {#if nymeaType.code}
-        <pre class="code"><code class="hljs json">{nymeaType.code}</code></pre>
+        <pre class="code"><code class="hljs json">{@html nymeaType.code}</code></pre>
       {/if}
       {#if nymeaType.deprecations.length > 0}
         <blockquote>
@@ -245,7 +254,7 @@
       {#if nymeaType.references.length > 0}
         <p>See also: 
           {#each nymeaType.references as reference, index}
-            <a href={$url(reference.link)}>{reference.label}{#if index !== nymeaType.references.length - 1}, {/if}</a>
+            <a href={$url(reference.link)}>{reference.label}{#if index !== nymeaType.references.length - 1},&ensp;{/if} </a>
           {/each}
         </p>
       {/if}
@@ -255,6 +264,8 @@
   {#if $methods.length > 0}
     <h2 id="methods">Methods</h2>
     {#each $methods as nymeaMethod}
+      <!-- <pre>{ JSON.stringify(nymeaMethod) }</pre> -->
+
       <h3 id={nymeaMethod.id}><a href={$url(nymeaMethod.link)}>{nymeaMethod.label}</a></h3>
 
       {#if nymeaMethod.description}
@@ -269,12 +280,12 @@
 
       {#if nymeaMethod.params}
         <p>Params</p>
-        <pre class="code"><code class="hljs json">{nymeaMethod.params}</code></pre>
+        <pre class="code"><code class="hljs json">{@html nymeaMethod.params}</code></pre>
       {/if}
 
       {#if nymeaMethod.returns}
         <p>Returns</p>
-        <pre class="code"><code class="hljs json">{nymeaMethod.returns}</code></pre>
+        <pre class="code"><code class="hljs json">{@html nymeaMethod.returns}</code></pre>
       {/if}
 
       {#if nymeaMethod.deprecations.length > 0}
@@ -289,7 +300,7 @@
       {#if nymeaMethod.references.length > 0}
         <p>See also: 
           {#each nymeaMethod.references as reference, index}
-            <a href={$url(reference.link)}>{reference.label}{#if index !== nymeaMethod.references.length - 1}, {/if}</a>
+            <a href={$url(reference.link)}>{reference.label}{#if index !== nymeaMethod.references.length - 1},&ensp;{/if}</a>
           {/each}
         </p>
       {/if}
@@ -329,7 +340,7 @@
       {#if nymeaNotification.references.length > 0}
         <p>See also: 
           {#each nymeaNotification.references as reference, index}
-            <a href={$url(reference.link)}>{reference.label}{#if index !== nymeaNotification.references.length - 1}, {/if}</a>
+            <a href={$url(reference.link)}>{reference.label}{#if index !== nymeaNotification.references.length - 1},&ensp;{/if}</a>
           {/each}
         </p>
       {/if}
