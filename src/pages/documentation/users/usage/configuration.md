@@ -104,7 +104,7 @@ When authentication is enabled on an MQTT server interface, a permission needs t
 
 ### ZigBee
 
-The ZigBee section allows to manage ZigBee networks within nymea. A ZigBee network requires dedicated hardware in order to form a network and add native ZigBee devices into the system. Once a network has been created, the network can be opend in order to allow new ZigBee nodes to join the network. If the ZigBee device is supported, a new thing will appear once the node has been recognized and initialized from an installed ZigBee plugin.   
+The ZigBee section allows to manage ZigBee networks within nymea. A ZigBee network requires dedicated hardware in order to form a network and add native ZigBee devices into the system. Once a network has been created, the network can be opened in order to allow new ZigBee nodes to join the network. If the ZigBee device is supported, a new thing will appear once the node has been recognized and initialized from an installed ZigBee plugin.
 
 The list of supported ZigBee integrations can be found [here](https://preview.nymea.io/documentation/resources/integrations/?technology=zigbee).
 
@@ -126,15 +126,15 @@ Following hardware modules are supported native and *do not require* any *additi
 
 #### Set up a ZigBee network
 
-Once you connected on of the supported ZigBee hardware modules to your system, you can set up a new ZigBee network in nymea. Adding and managing multiple networks based on different hardware modules, running independent networks on different channels is possible.
+Once you connected one of the supported ZigBee hardware modules to your system, you can set up a new ZigBee network in nymea. Nymea supports multiple ZigBee modules, each running a separate ZigBee network on a different channel and network ID.
 
 ![](/img/configuration/system-settings-zigbee-add-network.png)
 
-Since most ZigBee modules are based on UART communication, the hardware must be detected in the system. Some hardware modules (USB based like ConBee II) can be identified and recognized automatically, other modules based on raw UART connections like the JN5168 or RaspBee II need to be added and configured manually, since there are no hardware related information available except the serial port it self.
+Since most ZigBee modules are based on UART communication, the hardware cannot always be auto-detected. Some hardware modules (USB based like ConBee II) can be identified and recognized automatically, other modules based on raw UART connections like the JN5168 or RaspBee II need to be added and configured manually.
 
 ![](/img/configuration/system-settings-zigbee-adapters.png)
 
-When adding a new ZigBee network in nymea, you can see all detected UART modules and nymea tells you which module has been recognized as known ZigBee adapter. If a module gets recognized, nymea automatically uses the correct configurations and initializes the network by clicking on it.
+When adding a new ZigBee network in nymea, available UART ports can be listed. If a module can be auto-detected, all the UART information will be pre-filled, else it needs to be provided when configuring the ZigBee network.
 
 If a module does not get recognized due to missing hardware information (like JN5168 or ConBee 1 / RaspBee 1), the user has to select the UART port, the backend type to use and the baud rate for this hardware type.
 
@@ -142,7 +142,7 @@ If a module does not get recognized due to missing hardware information (like JN
 
 #### Adding new ZigBee devices
 
-In order to add a new ZigBee device into a nymea managed network, the network needs to be opend for letting new nodes join the mesh network. The default open time window is 120 seconds, but it can be extended if required or closed immediatly if desired.
+In order to add a new ZigBee device into a nymea managed network, the network needs to be opend for letting new nodes join the network. The default open time window is 120 seconds, but it can be extended if required or closed immediatly if desired.
 
 Once the network is open, the pairing prodecure of the ZigBee device can be started and the node will join the network. Depening on the device type and manufacturer the pairing process can be started while the network is open.
 
@@ -154,7 +154,7 @@ If nymea recognized the ZigBee node, a new thing will show up automatically in t
 
 #### Removing a ZigBee device
 
-In order to remove a ZigBee node from the network, there are 2 possibilities which can be performed:
+In order to remove a ZigBee node from the network, there are two possible options:
 
 * **Remove related thing**: if the ZigBee node has been recognized and a device has been created for the node, the device can be removed from the network by removing the thing from the system.
 * **Restart pairing process**: some device can also be removed from a network by restarting the pairing process, while the network is closed. Not all backends support this feature.
