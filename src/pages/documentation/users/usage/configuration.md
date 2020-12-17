@@ -166,7 +166,7 @@ In order to remove an entire network and all releated things within nymea, there
 * **Removing the network**: by removing the network, the UART will be free again for other software to use and all ZigBee nodes, settings and related things will be removed permanent from the system.
 * **Factory reset network**: by factory resetting a network, all nodes and related things will be removed from the network. If the backend supports it, also all configuration on the ZigBee hardware will be wiped. The entire stack performs a restart and will start a new network, perform a new channel scan and pick a new network ID.
 
-system-settings-zigbee-network-settings.png
+![](/img/configuration/system-settings-zigbee-network-settings.png)
 
 ### Web server
 
