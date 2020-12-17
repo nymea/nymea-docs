@@ -156,15 +156,15 @@ If nymea recognized the ZigBee node, a new thing will show up automatically in t
 
 In order to remove a ZigBee node from the network, there are two possible options:
 
-* **Remove related thing**: if the ZigBee node has been recognized and a device has been created for the node, the device can be removed from the network by removing the thing from the system.
-* **Restart pairing process**: some device can also be removed from a network by restarting the pairing process, while the network is closed. Not all backends support this feature.
+* **Remove related thing**: If the ZigBee node has been recognized and a device has been created for the node, the device can be removed from the network by removing the thing from the system.
+* **Restart pairing process**: Some device can also be removed from a network by restarting the pairing process, while the network is closed. Not all backends support this feature.
 
 #### Removing / Resetting a ZigBee network
 
 In order to remove an entire network and all releated things within nymea, there are two possibilies.
 
-* **Removing the network**: by removing the network, the UART will be free again for other software to use and all ZigBee nodes, settings and related things will be removed permanent from the system.
-* **Factory reset network**: by factory resetting a network, all nodes and related things will be removed from the network. If the backend supports it, also all configuration on the ZigBee hardware will be wiped. The entire stack performs a restart and will start a new network, perform a new channel scan and pick a new network ID.
+* **Removing the network**: By removing the network, the UART will be free again for other software to use and all ZigBee nodes, settings and related things will be removed permanent from the system.
+* **Factory reset network**: By factory resetting a network, all nodes and related things will be removed from the network. If the backend supports it, also all configuration on the ZigBee hardware will be wiped. The entire stack performs a restart and will start a new network, perform a new channel scan and pick a new network ID.
 
 ![](/img/configuration/system-settings-zigbee-network-settings.png)
 
