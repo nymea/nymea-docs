@@ -1,7 +1,6 @@
 {
   "plugins": [
     "https://github.com/nymea/nymea-plugins",
-    "https://github.com/nymea/nymea-plugin-unipi",
     "https://github.com/nymea/nymea-plugin-knx",
     "https://github.com/nymea/nymea-plugins-modbus",
     "https://github.com/nymea/nymea-plugins-simulation"
