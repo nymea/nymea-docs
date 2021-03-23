@@ -23,9 +23,7 @@ much every platform supported by Qt. Currrently the app is built and released of
 
 ### Prerequisites
 
-At first, Qt needs to be installed. The minimum Qt version for nymea:app is 5.9. However, that requirement is mostly because
-of the usage of QtQuick.Controls 2 in the QML part. If only the libraries are required, it might be possible to also build with
-Qt 5.6. This however is not a requirement we test at this point so it might require smaller changes backporting to older versions.
+At first, Qt needs to be installed. The minimum Qt version for nymea:app is 5.9. Qt6 is not yet supported.
 
 The recommended way to install Qt for nymea:app is to use the Qt online installer from [qt.io](http://qt.io). The required modules
 are:
@@ -45,16 +43,14 @@ are:
 If building for Android, also the Android component needs to be selected in the Qt install wizard. In addition to that, the android SDK
 and NDK need to be installed. Please refer to the upstream [Qt for android documentation](https://doc.qt.io/qt-5/android.html) for more details.
 
-nymea:app on android also requires the Firebase SDK for Push notifications. The Firebase C++ SDK can be obtained from [https://firebase.google.com/download/cpp](https://firebase.google.com/download/cpp). After download the zip, it should be extracted to /opt/forebase_sdk_cpp or the 
-paths in nymea-app/nymea-app.pro need to be updated.
+A good reference to check if QtCreator as well as android SDK and NDK are set up correctly is by building one of the Qt example applications.
 
 #### iOS/macOS extras
 
-Building nymea:app for iOS or macOS require to also select the iOS/macOS components in the Qt install wizard. In addition to that it is required
+Building nymea:app for iOS or macOS requires to select the iOS or macOS components in the Qt install wizard. In addition to that it is required
 to have XCode installed. Please refer to the upstrea [Qt for iOS](https://doc.qt.io/qt-5/ios.html) and [Qt for macOS](https://doc.qt.io/qt-5/macos.html) documentations for more details.
 
-Also on iOS nymea:app uses the Firebase SDK for push notifications. This can be obtained by cocoa pods as described [here](https://firebase.google.com/docs/ios/setup).
-
+A good reference to check if the QtCreator and XCode are set up correctly is by building one of the Qt example applications.
 
 ### Building
 
