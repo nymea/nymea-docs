@@ -40,7 +40,7 @@ sudo make install
 This module supports the following build configurations:
 
 * debug: `CONFIG+=debug`
-* release: `CONFIG+=debug`
+* release: `CONFIG+=release`
 
 ### libnymea-networkmanager
 
@@ -56,7 +56,7 @@ sudo make install
 This module supports the following build configurations:
 
 * debug: `CONFIG+=debug`
-* release: `CONFIG+=debug`
+* release: `CONFIG+=release`
 
 ### nymea-networkmanager
 
@@ -72,7 +72,7 @@ sudo make install
 This module supports the following build configurations:
 
 * debug: `CONFIG+=debug`
-* release: `CONFIG+=debug`
+* release: `CONFIG+=release`
 
 ### nymea-remoteproxyclient
 
@@ -88,7 +88,7 @@ sudo make install
 This module supports the following build configurations:
 
 * debug: `CONFIG+=debug`
-* release: `CONFIG+=debug`
+* release: `CONFIG+=release`
 
 ### nymea-mqtt
 
@@ -104,7 +104,7 @@ sudo make install
 This module supports the following build configurations:
 
 * debug: `CONFIG+=debug`
-* release: `CONFIG+=debug`
+* release: `CONFIG+=release`
 
 ### nymea
 
@@ -120,9 +120,10 @@ sudo make install
 This module supports the following build configurations:
 
 * debug: `CONFIG+=debug`
-* release: `CONFIG+=debug`
+* release: `CONFIG+=release`
 * build without tests: `CONFIG+=disabletesting`
 * enable code coverage reporting for tests: `CONFIG+=coverage`
+* build with address sanitizer: `CONFIG+=asan`
 
 ### nymea-plugins
 
@@ -138,10 +139,9 @@ sudo make install
 This module supports the following build configurations:
 
 * debug: `CONFIG+=debug`
-* release: `CONFIG+=debug`
-* build individual plugins only: `CONFIG+=selection`
-* select a plugin to be built: `PLUGINS+=pluginname` (requires `CONFIG+=selection`, can be given multiple times)
-
+* release: `CONFIG+=release`
+* select only specific plugins to be built: `WITH_PLUGINS=plugin1 plugin2 ...`
+* exclude specific plugins from being built: `WITHOUT_PLUGINS=plugin1 plugin2 ...`
 
 ## Cross-compiling
 
