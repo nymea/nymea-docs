@@ -33,7 +33,7 @@ nymea:app can be found in the macOS app store and the Ubuntu Core Snap store. Fo
 <div align="center">
 <a href="https://apps.apple.com/us/app/nymea-app/id1488785734" target="_blank" rel="noopener"><img src="/img/badges/macos.svg" height="50px"/></a>
 <a href="https://snapcraft.io/nymea-app" target="_blank" rel="noopener"><img src="/img/badges/snap-store.png" height="50px"/></a>
-<a href="https://downloads.nymea.io/nymea-app/nymea-app-win-installer.exe"><img src="/img/badges/windows.svg" height="50px"/></a>
+<a href="https://downloads.nymea.io/nymea-app/windows/latest"><img src="/img/badges/windows.svg" height="50px"/></a>
 </div>
 
 Minimum system requirements:
