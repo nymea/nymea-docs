@@ -74,7 +74,20 @@ If the command exits without any output, all went fine. If the JSON file contain
 
 Now that we have built the plugin, we want to start up nymea and make it load this plugin for testing. For that, we manually launch nymead, passing it the path where to look for additional plugins.
 
-nymead can be started from the command line using this command
+Please note, that if you've installed nymea into your system, it is configured to be auto started. In order to manually launch an instance and not conflict with the system installation, the
+system instance should be stopped with
+
+```bash
+$ sudo systemctl stop nymead
+```
+
+If you want to prevent it from being auto started again on the next boot, also disable it with
+
+```bash
+$ sudo systemctl disable nymead
+```
+
+Now nymead can be started manually from the command line using this command
 
 ```bash
 $ nymead -n
@@ -82,15 +95,21 @@ $ nymead -n
     
 The `-n` parameter is important to make nymea run in foreground, as opposed to a background service. We want that in order to see the logs. This will make nymea start up, but it won't load your freshly built plugin yet. For that, we need to let it know where the plugin can be found. We can export `NYMEA_PLUGINS_PATH` in the environment to do so:
 
-For C++ plugins, the path should point to the build directory, for Python and C++ plugins, this path should point to the plugin source directory.
+For C++ plugins, the path should point to the build directory, for Python and JS plugins, this path should point to the plugin source directory.
 
 ```bash
 $ NYMEA_PLUGINS_PATH=/path/to/plugin/dir nymead -n
 ```
 
+It is also possible to pass multiple paths, separating them by colons:
+
+```bash
+$ NYMEA_PLUGINS_PATH=/path/to/plugin1:/path/to/plugin2/ nymead -n
+```
+
 ## Debug categories
 
-By default, nymead will only print warning messages, that is messages that have been produced by `qCWarning()` (C++/Qt), `logger.warn()` (Python) or `console.warn()` (JS). In order to also see debug messages produced by `qCDebug()` (C++/Qt), `logger.log()` (Python) or `console.log()` (JS), each plugin has its own debug category. The debug category for a plugin is defined by the `name` property in the plugins [JSON file](plugin-json). In order to see a plugins debug messages, nymead can be started by passing the `-d <Name>` option. For example:
+By default, nymead will only print warning messages, that is, messages that have been produced by `qCWarning()` (C++/Qt), `logger.warn()` (Python) or `console.warn()` (JS). In order to also see debug messages produced by `qCDebug()` (C++/Qt), `logger.log()` (Python) or `console.log()` (JS), each plugin has its own debug category. The debug category for a plugin is defined by the `name` property in the plugins [JSON file](plugin-json). In order to see a plugins debug messages, nymead can be started by passing the `-d <Name>` option. For example:
 
 ```bash
 $ NYMEA_PLUGINS_PATH=/path/to/plugin/builddir nymead -n -d Example
