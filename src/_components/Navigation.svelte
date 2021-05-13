@@ -272,12 +272,6 @@
               <li><a class:active={$isActive('/documentation/resources/api')} href={$url('/documentation/resources/api')}>API Reference</a></li>
             </ul>
           </li>
-          <li class="group">
-            <div class="group-label">
-              <ion-icon name="heart"></ion-icon>
-              Community
-            </div>
-          </li>
         </ul>
       </div>
     </li>
