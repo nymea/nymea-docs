@@ -71,7 +71,7 @@ In general it is a good idea to follow as many interfaces as possible in order t
 
 An interface can extend another interface. For example, the light interface only requires one state called powered of type bool. A dimmablelight extends this type and adds a brightness property to it. This means, if a thing class implements dimmablelight, it also needs to cater for the light interfaces states.
 
-The complete list of available interfaces can be found in the [interfaces](/documentation/resources/interfaces) page.
+The complete list of available interfaces can be found in the [interfaces](interfaces) page.
 
 ## Generic inputs and outputs
 
