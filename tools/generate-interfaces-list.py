@@ -123,13 +123,16 @@ branch = "master"
 if len(sys.argv) > 1:
   branch = sys.argv[1]
 
+
+markdown = ""
+
 config = Utils.read_json("interfaces-config.json")
 Utils.clone_repo(config["srcdir"], branch)
 targets = Utils.find_targets(config["keyword"], config["outputdir"])
 print("Files to replace: %s" % targets)
-interfaces = load_interfaces(os.path.join(config["srcdir"], "nymea/libnymea/interfaces"))
-tree = build_tree(interfaces)
-markdown = print_tree(tree)
+#interfaces = load_interfaces(os.path.join(config["srcdir"], "nymea/libnymea/interfaces"))
+#tree = build_tree(interfaces)
+#markdown = print_tree(tree)
 
 interfaces = load_interfaces(os.path.join(config["srcdir"], "nymea/libnymea/interfaces"))
 markdown += build_markdown(interfaces)
