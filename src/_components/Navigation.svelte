@@ -69,7 +69,6 @@
     transform: translateY(10%);
     transition: transform 0.2s ease, opacity 0.2s ease;
     top: var(--header-height);
-    width: 100%;
     z-index: 100;
   }
 
