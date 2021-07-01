@@ -269,7 +269,7 @@
             <ul>
               <li><a class:active={$isActive('/documentation/resources/integrations')} href={$url('/documentation/resources/integrations')}>Integrations</a></li>
               <li><a class:active={$isActive('/documentation/resources/interfaces')} href={$url('/documentation/resources/interfaces')}>Interfaces</a></li>
-              <li><a class:active={$isActive('/documentation/resources/api')} href={$url('/documentation/resources/api')}>API Reference</a></li>
+              <li><a class:active={$isActive('/documentation/resources/api')} href={$url('/documentation/resources/api')}>Client API Reference</a></li>
             </ul>
           </li>
         </ul>
