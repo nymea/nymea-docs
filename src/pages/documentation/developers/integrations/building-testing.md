@@ -7,6 +7,8 @@ Once the code for the plugin has been created, the next step is to build the plu
 
 ## Building C++/Qt plugins
 
+> Note: This section assumes that your build environment is properly installed. See [Build environment](/documentation/developers/build-env) for more information.
+
 ### Using QtCreator
 
 If a plugin is created using QtCreator, clicking the build button in QtCreator should be all that's needed. QtCreator will typically create a build directory next to the project directory named `build-<project>-Desktop-Debug` (Note: the actual name might differ depending on the QtCreator setup and the selected build type).
