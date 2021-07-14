@@ -90,7 +90,7 @@ The contents of the plugin JSON file is a json object. This JSON object contains
 ```json
 {
   "id": <uuid>,
-  "name: <string>,
+  "name": <string>,
   "displayName": <string>,
   "vendors": [...]
 }
@@ -101,8 +101,8 @@ The information about a plugin consists of an `id`, a `name` and a `displayName`
 ```json
 {
   "id": "35fb22d3-e4f0-4bbf-85d1-d7531111cacd",
-  "name: "onlineServices",
-  "displayName": "Online services,
+  "name": "onlineServices",
+  "displayName": "Online services",
   "vendors": [...]
 }
 ```
