@@ -23,7 +23,8 @@
     "notification",
     "weather",
     "appliance",
-    "shading"
+    "shading",
+    "energy"
   ],
   "allowed_technologies": [
     "network",
