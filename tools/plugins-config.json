@@ -22,6 +22,7 @@
     "switch",
     "notification",
     "weather",
+    "appliance",
     "shading"
   ],
   "allowed_technologies": [
