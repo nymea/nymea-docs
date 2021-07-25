@@ -1,7 +1,7 @@
 <script>
   export let items = [
     {
-      link: 'documentation/overview/integrations?category=light',
+      link: 'documentation/resources/integrations?category=light',
       icon: 'bulb',
       title: 'Lights'
     },
@@ -89,31 +89,31 @@
 
 <ul class="integrations">
   <li>
-    <a href="documentation/overview/integrations?category=light" class="integration">
+    <a href="documentation/resources/integrations?category=light" class="integration">
       <ion-icon name="bulb"></ion-icon>
       <h6>Lights</h6>
     </a>
   </li>
   <li>
-    <a href="documentation/overview/integrations?category=sensor" class="integration">
+    <a href="documentation/resources/integrations?category=sensor" class="integration">
       <ion-icon name="thermometer"></ion-icon>
       <h6>Sensors</h6>
     </a>
   </li>
   <li>
-    <a href="documentation/overview/integrations?category=lock" class="integration">
+    <a href="documentation/resources/integrations?category=lock" class="integration">
       <ion-icon name="key"></ion-icon>
       <h6>Access control</h6>
     </a>
   </li>
   <li>
-    <a href="documentation/overview/integrations?category=weather" class="integration">
+    <a href="documentation/resources/integrations?category=weather" class="integration">
       <ion-icon name="partly-sunny"></ion-icon>
       <h6>Weather</h6>
     </a>
   </li>
   <li>
-    <a href="documentation/overview/integrations?category=multimedia" class="integration">
+    <a href="documentation/resources/integrations?category=multimedia" class="integration">
       <ion-icon name="play"></ion-icon>
       <h6>Media</h6>
     </a>
@@ -121,26 +121,26 @@
 <!-- </ul>
 <ul class="integrations"> -->
   <li>
-    <a href="documentation/overview/integrations?category=tool,sensor" class="integration">
+    <a href="documentation/resources/integrations?category=tool,sensor" class="integration">
       <ion-icon name="water"></ion-icon>
       <h6>Irrigation</h6>
     </a>
   </li>
   <li>
-    <a href="documentation/overview/integrations?category=notification" class="integration">
+    <a href="documentation/resources/integrations?category=notification" class="integration">
       <ion-icon name="notifications"></ion-icon>
       <h6>Notifications</h6>
     </a>
   </li>
   <li>
-    <a href="documentation/overview/integrations?category=online-service" class="integration">
+    <a href="documentation/resources/integrations?category=online-service" class="integration">
       <ion-icon name="location"></ion-icon>
       <h6>Presence Awareness</h6>
     </a>
   </li>
   {#if more}
     <li>
-      <a href="documentation/overview/integrations" class="integration">
+      <a href="documentation/resources/integrations" class="integration">
         <ion-icon name="ellipsis-horizontal"></ion-icon>
         <h6>Many More</h6>
       </a>

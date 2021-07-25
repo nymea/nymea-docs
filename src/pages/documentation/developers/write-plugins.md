@@ -7,7 +7,7 @@ Plugins in nymea are used to extend the functionality and capabilities of nymea.
 
 ## Integration plugins
 
-An integration plugin in nymea is used to add support for devices or services, commonly referred to as "things" in nymea. I might be real devices such as light bulbs, gateways or garage door openers, but can also represent online services, like weather-, or e-mail services, generally everything that can represent a "thing" in IoT - the internet of things. The list of currently available integrations can be found on the [integrations](/documentation/overview/integrations) page.
+An integration plugin in nymea is used to add support for devices or services, commonly referred to as "things" in nymea. I might be real devices such as light bulbs, gateways or garage door openers, but can also represent online services, like weather-, or e-mail services, generally everything that can represent a "thing" in IoT - the internet of things. The list of currently available integrations can be found on the [integrations](/documentation/resources/integrations) page.
 
 Once an integration plugin is loaded by nymea, all of its provided things can be used in all parts of nymea. Be it creating rules to automatically trigger behaviors using this device or service, logging data for later evaluation or controlling things through client applications.
 
