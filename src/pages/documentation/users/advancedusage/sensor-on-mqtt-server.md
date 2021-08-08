@@ -58,7 +58,11 @@ In the debug interface, navigate to the logs tab, enable the MQTT logs and click
 
 Now that we're publishing MQTT messages to nymea, we also need to subscribe to the topic in order to receive the values. For that, we'll be using the MQTT client plugin.
 
-Go to Configure Things and press the `+` button to add a new thing. Select the "Internal MQTT client" thing. In the next page, enter the desired topic to subscribe to. In this example that will be again `/example/temp1`. Once done, click OK. 
+Go to Configure Things and press the `+` button to add a new thing. Select the "Internal MQTT client" thing.
+
+> Note: You may need to install nymea-plugin-mqttclient. See [installing more plugins](/documentation/users/usage/things#installing-more-plugins) on how to install plugins.
+
+In the next page, enter the desired topic to subscribe to. In this example that will be again `/example/temp1`. Once done, click OK. 
 
 ![](/img/documentation/users/internal-mqtt-client.png)
 
