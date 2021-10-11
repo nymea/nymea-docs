@@ -1,3 +1,4 @@
+
 ---
 id: features
 title: Features
@@ -19,7 +20,7 @@ title: Features
 
 ### nymea:app platform support
 
-* nymea:app is written in Qt and supports all platforms supported by Qt natively (better performance than WebApps, more fluid UX).
+* [nymea:app](https://nymea.io/documentation/users/installation/app) is written in Qt and supports all platforms supported by Qt natively (better performance than WebApps, more fluid UX).
    * Continuous integration releasing updates to:
       *   iOS
       *   Android
@@ -30,11 +31,27 @@ title: Features
 *   Other proven setups (experimental/tech previews)
       *   Kiosk: Native application suited for wall-mounted panels, kiosks and similar.
 
+### ZigBee platform support
+nymea also represents a sophisticated ZigBee gateway software to manage all kinds of ZigBee devices. Please check out supported ZigBee hardware platforms at [github.com/nymea/nymea-zigbee](https://github.com/nymea/nymea-zigbee/). 
+Other hardware platforms can be implemented on request.
+* ZigBee 3.0 support
+* Supported models from ZigBee cluster library:
+    * Measurement and Sensing
+    * Lighting
+    * HVAC
+    * Closures
+    * Security and Safety
+    * Smart Energy
+    * Appliances
+
+The ZigBee stack can also be obtained as closed source library / application under nymea's [commercial license](https://nymea.io/documentation/overview/license).
+More information on how to manage ZigBee devices with nymea can be found in the [user documentation under ZigBee](https://www.nymea.io/documentation/users/usage/configuration#zigbee).
+
 ## nymea:cloud integration
 
 * Remote connection
 * Push-notifications
-    * Available on Android, iOS and UBPorts
+	 * Available on Android, iOS and UBPorts
 * Alexa, Google Assistant, IFTTT coming soon ...
 * IoT device services
     * Integrated webserver
@@ -133,16 +150,15 @@ title: Features
     * nymea QtCreator Wizard integration for easy plugin development
     * All standard C++ development/debugging/profiling tools are supported
 * Fully documented
-    * [https://doc.nymea.io](https://doc.nymea.io)
+    * [https://nymea.io/documentation/developers](https://nymea.io/documentation/developers)
     * [https://forum.nymea.io](https://forum.nymea.io)
     * Supported hardware layers
     * Hardware/Protocol abstraction layers for easy plugin development available
+       * ZigBee
        * Bluetooth
        * NFC 
        * CoaP
-       * 443 Mhz radio
        * WiFi/Ethernet/Internet connected devices/services (e.g. HTTP REST APIs usable with minimal code effort)
-       * ZigBee (WIP)
        * MQTT
        * Any other transport protocols can be used hand-crafted in a plugin
        * All libraries available in Linux available to use
