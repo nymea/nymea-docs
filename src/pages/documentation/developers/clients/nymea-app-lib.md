@@ -5,7 +5,7 @@ title: C++/Qt/QML
 
 ## nymea:app
 
-nymea:app, while being a client implementation, is structured in a way that it provides a Qt library that wraps the 
+nymea:app, while being a client application, is structured in a way that it provides a Qt library that wraps the 
 entire [JSONRPC API](raw-api) in a Qt like fashion. It can be used in C++ projects as well as imported in a QML app
 to have all nymea features available in QML.
 
@@ -28,29 +28,23 @@ At first, Qt needs to be installed. The minimum Qt version for nymea:app is 5.9.
 The recommended way to install Qt for nymea:app is to use the Qt online installer from [qt.io](http://qt.io). The required modules
 are:
 
-* Qt itself
+* Qt base for the target plaform
 * Qt Charts
 * Qt Virtual Keyboard
 * Qt WebEngine
 
 ![Wizard](/img/qt-installer-app.png)
 
-> Note: If only the lib is required, only Qt itself is required. The application UI will not work for 100%, however the library will still be built.
-
 
 #### Android extras
 
-If building for Android, also the Android component needs to be selected in the Qt install wizard. In addition to that, the android SDK
+If building for Android, the Qt base for Android component needs to be selected in the Qt install wizard. In addition to that, the android SDK
 and NDK need to be installed. Please refer to the upstream [Qt for android documentation](https://doc.qt.io/qt-5/android.html) for more details.
-
-A good reference to check if QtCreator as well as android SDK and NDK are set up correctly is by building one of the Qt example applications.
 
 #### iOS/macOS extras
 
 Building nymea:app for iOS or macOS requires to select the iOS or macOS components in the Qt install wizard. In addition to that it is required
 to have XCode installed. Please refer to the upstrea [Qt for iOS](https://doc.qt.io/qt-5/ios.html) and [Qt for macOS](https://doc.qt.io/qt-5/macos.html) documentations for more details.
-
-A good reference to check if the QtCreator and XCode are set up correctly is by building one of the Qt example applications.
 
 ### Building
 
@@ -65,15 +59,15 @@ git submodule update --init
 The preferred way of building is using QtCreator by opening nymea-app.pro and clicking the build button. It is also possible to build 
 without QtCreator using the usual build steps.
 
-This requires to have Qt installed and added to the PATH variable.
+This requires to have Qt installed and the `qmake` binary added to the PATH variable.
 
 ```bash
 qmake /path/to/nymea-app/
 make
 ```
 
-This will build the entire app. The library can be found in the build directory in libnymea-app. By dfault it will be built as a static library named
-`libnymea-app.a`. This library can then be linked to any c++ Application.
+This will build the entire nymea:app. The library can be found in the build directory in libnymea-app. By default it will be built as a static library named
+`libnymea-app.a`.
 
 ## Using the library
 
