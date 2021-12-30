@@ -72,23 +72,22 @@ nymea provides a repository for Debian GNU/Linux and Ubuntu.
 
 Currently, these versions are officially supported:
 
-* Debian 9 ("stretch")
 * Debian 10 ("buster")
+* Debian 11 ("bullseye")
 * Ubuntu 16.04 ("xenial")
 * Ubuntu 18.04 ("bionic")
 * Ubuntu 20.04 ("focal")
-* Ubuntu 20.10 ("groovy")
+* Ubuntu 21.10 ("impish")
 
 For each of the repositories four architectures are provided:
 
-* i386
 * amd64
 * armhf
 * arm64
 
 To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.list` with the following content:
 
-> Note: Replace `<distro>` with the codename of the distro, e.g. `buster` for Debian 10 or `bionic` for Ubuntu 18.4
+> Note: Replace `<distro>` with the codename of the distro, e.g. `buster` for Debian 10 or `focal` for Ubuntu 20.04
 
 ```bash
 deb http://repository.nymea.io <distro> main
