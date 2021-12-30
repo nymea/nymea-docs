@@ -8,7 +8,7 @@ title: The nymea JSON-RPC API
 nymea offers a JSON-RPC based API to build client applications. This API is exposed in different ways on the nymea:core instance. The available options are plain TCP sockets or WebSocket based communication, both either plaintext or SSL encrypted. In the default configuration, nymea will expose the API via a SSL enabled TCP socket on port 2222 and an SSL enabled WebSocket on port 4444. However, a nymea:core instance can be configured with any combination of these. The interfaces can be described using URLs:
 
 ### Plaintext nymea TCP sockets
-Plaintext nymea TCP sockets are described in nymea via the URL schema `nymea://`. For instance `telnet` or `ncat` can be used to communicatte with those. Establishing a standdard TCP connection to such a service is enough to communicate with the server. An example URL would be
+Plaintext nymea TCP sockets are described in nymea via the URL schema `nymea://`. For instance `telnet` or `ncat` can be used to communicate with those. Establishing a standard TCP connection to such a service is enough to communicate with the server. An example URL would be
 ```bash
 nymea://192.168.0.10:2222
 ```
