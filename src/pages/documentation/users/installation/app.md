@@ -53,13 +53,16 @@ nymea:app can also be installed from the same package repository as nymea:core.
 Currently, these versions are officially supported:
 
 * Debian 10 ("buster")
+* Debian 11 ("bullseye")
 * Ubuntu 18.04 ("bionic")
 * Ubuntu 20.04 ("focal")
+* Ubuntu 21.10 ("impish")
 
 For each of the repositories the following architectures are provided:
 
 * amd64
 * armhf
+* arm64
 
 To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.list` with the following content:
 
