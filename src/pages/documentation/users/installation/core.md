@@ -19,15 +19,12 @@ Please pick one of the options below:
 
 ### Raspberry Pi images
 
-Download [the latest Raspberry Pi image](https://downloads.nymea.io/images/raspberrypi/latest).
+* [nymea:core image](https://downloads.nymea.io/images/raspberrypi/nymea-core-image-raspios-bullseye-latest.zip) for headless Raspberry Pis.
+* [nymea:kiosk image](https://downloads.nymea.io/images/raspberrypi/nymea-kiosk-image-raspios-bullseye-latest.zip) containing nymea:core and nymea:app for Raspberry Pis with touchscreen or display.
 
 After downloading, this image needs to be written to an SD card. This step varies between operating systems.
 
-nymea recommends to use [balenaEtcher](https://www.balena.io/etcher/) for writing the image to the SD card.
-
-Alternatively, various other options can be found at the 
-[Raspberry Pi installation guide](https://www.raspberrypi.org/documentation/installation/installing-images/windows.md). The nymea image 
-is built using the same tools as the Raspberry Pi image and all the provided installation guides should work for the nymea image too.
+nymea recommends to use [Raspberry Pi imager](https://www.raspberrypi.com/software/) for writing the image to the SD card.
 
 After the image has been written to the SD card, insert the SD card into the Raspberry Pi and connect it to the power supply. nymea:core
 will automatically start upon boot. Please proceed with the [usage guide](/documentation/users/usage/first-steps).
