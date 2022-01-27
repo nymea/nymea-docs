@@ -44,7 +44,11 @@ def has_plugin_meta(path):
 
 def extract_plugin_meta(path):
   with open('%s/meta.json' % path) as metaFile:
-    data = json.load(metaFile)
+    try:
+        data = json.load(metaFile)
+    except Exception as e:
+        print("Error parsing meta.json: %s" % e)
+        raise e
     return data
 
 def extract_plugin_info(path, name):
@@ -91,13 +95,13 @@ def compose_meta(plugins, outputpath, iconoutputpath, categories, technologies):
     try:
       plugin_meta = extract_plugin_meta("%s/%s" % (plugin["path"], plugin["name"]))
     except:
-      print("WARNING: Plugin %s has invalid meta.json" % plugin["name"])
+      print("ERROR: Plugin %s has invalid meta.json" % plugin["name"])
       continue
 
     try:
       plugin_info = extract_plugin_info(plugin["path"], plugin["name"])
     except:
-      print("WARNING: Plugin %s has invalid plugininfo json" % plugin["name"])
+      print("ERROR: Plugin %s has invalid plugininfo json" % plugin["name"])
       continue
 
     ok = True
@@ -105,15 +109,18 @@ def compose_meta(plugins, outputpath, iconoutputpath, categories, technologies):
       if category not in categories:
         ok = False
     if not ok:
-      print("WARNING: Plugin %s has invalid categories: %s. Allowed: %s" % (plugin["name"], plugin_meta["categories"], categories))
+      print("ERROR: Plugin %s has invalid categories: %s. Allowed: %s" % (plugin["name"], plugin_meta["categories"], categories))
       continue
+
+    if len(plugin_meta["categories"]) == 0:
+      print("WARNING: Plugin %s is not in any category!" % plugin["name"])
 
     if "technologies" in plugin_meta:
       for technology in plugin_meta["technologies"]:
         if technology not in technologies:
           ok = False
       if not ok:
-        print("WARNING: Plugin %s has invalid technologies: %s. Allowed: %s" % (plugin["name"], plugin_meta["technologies"], technologies))
+        print("ERROR: Plugin %s has invalid technologies: %s. Allowed: %s" % (plugin["name"], plugin_meta["technologies"], technologies))
         continue
 
     vendors = {}
@@ -126,18 +133,18 @@ def compose_meta(plugins, outputpath, iconoutputpath, categories, technologies):
 
     try:
       shutil.copyfile("%s/%s/README.md" % (plugin["path"], plugin["name"]), "%s/%s.md" % (outputpath, plugin["name"]))
+      plugin_meta["readme"] = "%s.md" % plugin["name"]
     except:
-      print("WARNING: Plugin %s has invalid README.md" % plugin["name"])
+      print("ERROR: Plugin %s has invalid README.md" % plugin["name"])
       continue
-    plugin_meta["readme"] = "%s.md" % plugin["name"]
 
     icon = plugin_meta["icon"]
     try:
       shutil.copyfile("%s/%s/%s" % (plugin["path"], plugin["name"], icon), "%s/%s-%s" % (iconoutputpath, plugin["name"], icon))
+      plugin_meta["icon"] = "%s-%s" % (plugin["name"], icon)
     except:
       print("WARNING: Plugin %s has invalid icon: %s" % (plugin["name"], plugin_meta["icon"]))
-      continue
-    plugin_meta["icon"] = "%s-%s" % (plugin["name"], icon)
+      #continue
 
     meta.append(plugin_meta)
 
