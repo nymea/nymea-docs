@@ -3,7 +3,7 @@
     "https://github.com/nymea/nymea-plugins",
     "https://github.com/nymea/nymea-plugin-knx",
     "https://github.com/nymea/nymea-plugins-modbus",
-    "https://github.com/nymea/nymea-plugins-simulation"
+    "https://github.com/nymea/nymea-plugins-zigbee"
   ],
   "srcdir": "src",
   "outputdir": "../src/pages/documentation/resources/integrations",
@@ -11,20 +11,21 @@
   "allowed_categories": [
     "light",
     "socket",
-    "tool",
     "multimedia",
     "sensor",
     "heating",
     "gateway",
     "online-service",
-    "relay",
-    "lock",
+    "tool",
+    "diy",
+    "door",
     "switch",
     "notification",
     "weather",
     "appliance",
     "shading",
-    "energy"
+    "energy",
+    "garage"
   ],
   "allowed_technologies": [
     "network",
@@ -34,8 +35,11 @@
     "sub-ghz",
     "serial-port",
     "one-wire",
+    "modbus",
     "mqtt",
     "i2c",
-    "zigbee"
+    "zigbee",
+    "gpio",
+    "spi"
   ]
 }
