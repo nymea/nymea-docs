@@ -1,4 +1,4 @@
-<!-- <script context="module">
+<!-- <script context='module'>
   import { img } from '@nymea/components';
   export { img };
 </script> -->
@@ -31,7 +31,7 @@
 
     if (active) {
       const items = $tableOfContents.map((tocItem) => {
-        if(tocItem.link === '#' + active.id) {
+        if (tocItem.link === '#' + active.id) {
           console.log('setActiveToc() - tocItem', tocItem);
           tocItem.active = true;
         } else {
@@ -41,7 +41,7 @@
       });
 
       tableOfContents.set(items);
-      }
+    }
   }
 
   onMount(() => {
@@ -52,10 +52,10 @@
     if (path.startsWith('/documentation/overview')) {
       structure = getMenuStructure(menuOrder, ['documentation', 'overview']);
       items = getMenuItems(structure, '/documentation/overview');
-    } else if (path.startsWith('/documentation/users')) {
+    } else if (path.startsWith('/documentation/users')) {
       structure = getMenuStructure(menuOrder, ['documentation', 'users']);
       items = getMenuItems(structure, '/documentation/users');
-    } else if (path.startsWith('/documentation/developers')) {
+    } else if (path.startsWith('/documentation/developers')) {
       structure = getMenuStructure(menuOrder, ['documentation', 'developers']);
       items = getMenuItems(structure, '/documentation/developers');
     }
@@ -65,12 +65,12 @@
     const pathParts = path.split('/');
     base = `${pathParts[0]}/${pathParts[1]}/${pathParts[2]}`;
 
-    // "/documentation/users/installation/getting-started" => "users"
-    const [,menuRoute] = $route.api.path.replace(base, '').split('/');
+    // '/documentation/users/installation/getting-started' => 'users'
+    const [, menuRoute] = $route.api.path.replace(base, '').split('/');
     const childRoutes = getChildRoutes($route, menuRoute);
 
     // only h2-h6, h1 should be reserved for the page title
-    const headingNodeList = markdown.querySelectorAll('h2, h3, h4, h5, h6')
+    const headingNodeList = markdown.querySelectorAll('h2, h3, h4, h5, h6');
     const headingElements = [];
     headingTopList = [];
 
@@ -78,7 +78,7 @@
       headingElements.push(headingNodeList[i]);
       headingTopList.push({
         id: createIdFromElement(headingNodeList[i]),
-        top: headingNodeList[i].getBoundingClientRect().top
+        top: headingNodeList[i].getBoundingClientRect().top,
       });
     }
 
@@ -86,7 +86,8 @@
   });
 
   function getMenuStructure(menuOrder, pathItems) {
-    const currentPathItem = pathItems.length >= 1 ? pathItems.shift() : undefined;
+    const currentPathItem =
+      pathItems.length >= 1 ? pathItems.shift() : undefined;
 
     return menuOrder
       .filter((menuOrderItem) => menuOrderItem.filename === currentPathItem)
@@ -94,7 +95,10 @@
         if (pathItems.length === 0 && menuOrderItem.children) {
           menuStructureItems = menuOrderItem.children;
         } else if (menuOrderItem.children) {
-          menuStructureItems = getMenuStructure(menuOrderItem.children, pathItems);
+          menuStructureItems = getMenuStructure(
+            menuOrderItem.children,
+            pathItems
+          );
         } else {
           menuStructureItems = [];
         }
@@ -109,14 +113,20 @@
       return {
         label: menuStructureItem.title,
         link: menuStructureItem.children ? undefined : link,
-        children: menuStructureItem.children ? getMenuItems(menuStructureItem.children, link) : undefined
+        children: menuStructureItem.children
+          ? getMenuItems(menuStructureItem.children, link)
+          : undefined,
       };
     });
   }
 
   function getChildRoutes(currentRoute, menuRoute) {
     if (currentRoute.parent !== undefined) {
-      if (currentRoute.parent.isDir && currentRoute.parent.api.path === `${base}` && currentRoute.parent.children !== undefined) {
+      if (
+        currentRoute.parent.isDir &&
+        currentRoute.parent.api.path === `${base}` &&
+        currentRoute.parent.children !== undefined
+      ) {
         return currentRoute.parent.children;
       }
       return getChildRoutes(currentRoute.parent, menuRoute);
@@ -137,7 +147,9 @@
       id = createIdFromElement(element);
 
       originalHtml = element.innerHTML;
-      newHtml = `<a class="toc-link" href="${$url('#' + id)}">${originalHtml}</a>`;
+      newHtml = `<a class='toc-link' href='${$url(
+        '#' + id
+      )}'>${originalHtml}</a>`;
 
       element.id = id;
       element.innerHTML = newHtml;
@@ -148,7 +160,7 @@
         label: element.textContent,
         link: `#${element.id}`,
         level,
-        active: false
+        active: false,
       });
 
       index = index + 1;
@@ -158,7 +170,10 @@
   }
 
   function createIdFromElement(element) {
-    return element.textContent.toLowerCase().replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s/g, '-');
+    return element.textContent
+      .toLowerCase()
+      .replace(/[^a-zA-Z0-9 ]/g, '')
+      .replace(/\s/g, '-');
   }
 
   function createLevelFromElement(element) {
@@ -168,6 +183,16 @@
     return parseInt(element.tagName.replace('H', ''), 10);
   }
 </script>
+
+<svelte:window bind:scrollY={y} />
+
+<div bind:this={markdown}>
+  {#if $route.api.path.substring(0, $route.api.path.lastIndexOf('/')) !== '/documentation/resources/integrations'}
+    <h1>{title}</h1>
+  {/if}
+
+  <slot />
+</div>
 
 <style>
   h1,
@@ -215,7 +240,25 @@
     margin: 0;
   }
 
-  div :global(a) {
+  /* div :global(a) {
+    background-color: hsl(168, 30%, 65%, 10%);
+    border-color: hsl(168, 20%, 30%, 10%);
+    color: var(--turquoise-darken-30);
+  }
+
+  div :global(a:hover) {
+    background-color: hsl(168, 30%, 65%, 40%);
+    border-color: var(--turquoise-darken-30);
+  } */
+
+  div :global(h1 > a),
+  div :global(h2 > a),
+  div :global(h3 > a),
+  div :global(h4 > a),
+  div :global(h5 > a),
+  div :global(h6 > a) {
+    /* background-color: transparent;
+    border-color: transparent; */
     color: var(--text-color);
     text-decoration: none;
   }
@@ -290,13 +333,3 @@
     }
   }
 </style>
-
-<svelte:window bind:scrollY={y}/>
-
-<div bind:this={markdown}>
-  {#if $route.api.path.substring(0, $route.api.path.lastIndexOf('/')) !== '/documentation/resources/integrations'}
-    <h1>{title}</h1>
-  {/if}
-
-  <slot />
-</div>
