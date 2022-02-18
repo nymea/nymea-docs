@@ -116,7 +116,7 @@ Some things, for example smart TVs will require to use a PIN code for authentica
 
 ### Enter PIN
 
-Some things might have an input method (e.g. a number pad) but no display and require the user to enter a PIN on the device. Nymea can display this PIN diuring device setup and allow the user to enter it on the device.
+Some things might have an input method (e.g. a number pad) but no display and require the user to enter a PIN on the device. Nymea can display this PIN during device setup and allow the user to enter it on the device.
 
 ### Push button
 
