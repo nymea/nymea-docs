@@ -112,17 +112,24 @@ The list of supported ZigBee integrations can be found [here](https://preview.ny
 
 #### Supported ZigBee modules
 
-Following hardware modules are supported native and *do not require* any *additional software* in order to work with nymea.
+The following hardware modules are supported:
+
+* [Texas Instruments]
+    This adapter can be found in various shops, either without firmware or preflashed. A z-Stack based firmware is required on the adapter to work with nymea. When choosing an option, select the firmware for zigbee2mqtt which will work fine with nymea (zigbee2mqtt is not required) or manually flash the stick with a build of z-Stack
+    * CC2652 (P/R/RB) - recommended option
+    * CC253x
 
 * [Dresden Elektronik](https://www.dresden-elektronik.de/)
-    * [ConBee](https://phoscon.de/en/conbee) - baud rate `38400`
-    * [ConBee II](https://phoscon.de/en/conbee2) - baud rate `38400`
-    * [RaspBee](https://phoscon.de/en/raspbee) - baud rate `38400`
-    * [RaspBee II](https://phoscon.de/en/raspbee2) - baud rate `38400`
+    All phoscon models are supported, however, only ConBee can be auto-detected. Select baut rate 38400 for RaspBee modules during ZigBee network setup.
+    * [ConBee](https://phoscon.de/en/conbee)
+    * [ConBee II](https://phoscon.de/en/conbee2)
+    * [RaspBee](https://phoscon.de/en/raspbee)
+    * [RaspBee II](https://phoscon.de/en/raspbee2)
 
 * [NXP ZigBee 3.0 Modules](https://www.nxp.com/pages/jn516x-7x-zigbee-3-0:ZIGBEE-3-0)
-    * JN5168 (with nymea firmware) - baud rate `115200`
-    * JN5169 (with nymea firmware) - baud rate `115200`
+    NXP based adapters are supported, provided they are flashed with the nymea firmware.
+    * JN5168
+    * JN5169 
 
 #### Set up a ZigBee network
 
