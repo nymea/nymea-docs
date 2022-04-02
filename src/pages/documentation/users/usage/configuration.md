@@ -114,7 +114,7 @@ The list of supported ZigBee integrations can be found [here](https://preview.ny
 
 The following hardware modules are supported:
 
-* [Texas Instruments]
+* [Texas Instruments](https://www.ti.com/product/CC2652R)
     This adapter can be found in various shops, either without firmware or preflashed. A z-Stack based firmware is required on the adapter to work with nymea. When choosing an option, select the firmware for zigbee2mqtt which will work fine with nymea (zigbee2mqtt is not required) or manually flash the stick with a build of z-Stack
     * CC2652 (P/R/RB) - recommended option
     * CC253x
