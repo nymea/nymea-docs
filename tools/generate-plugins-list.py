@@ -90,6 +90,8 @@ def compose_meta(plugins, outputpath, iconoutputpath, categories, technologies):
   if not os.path.exists(iconoutputpath):
     os.mkdir(iconoutputpath)
 
+  raise_errors = False
+
   for plugin in plugins:
 
     try:
@@ -108,6 +110,7 @@ def compose_meta(plugins, outputpath, iconoutputpath, categories, technologies):
     for category in plugin_meta["categories"]:
       if category not in categories:
         ok = False
+        raise_errors = True
     if not ok:
       print("ERROR: Plugin %s has invalid categories: %s. Allowed: %s" % (plugin["name"], plugin_meta["categories"], categories))
       continue
@@ -119,6 +122,7 @@ def compose_meta(plugins, outputpath, iconoutputpath, categories, technologies):
       for technology in plugin_meta["technologies"]:
         if technology not in technologies:
           ok = False
+          raise_errors = True
       if not ok:
         print("ERROR: Plugin %s has invalid technologies: %s. Allowed: %s" % (plugin["name"], plugin_meta["technologies"], technologies))
         continue
@@ -147,6 +151,10 @@ def compose_meta(plugins, outputpath, iconoutputpath, categories, technologies):
       #continue
 
     meta.append(plugin_meta)
+
+  if raise_errors:
+    print("Stopping because of errors")
+    exit(1)
 
   outputtext = "export const meta = "
   outputtext += json.dumps(meta, indent=2)
