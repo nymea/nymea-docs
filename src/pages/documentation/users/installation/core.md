@@ -74,7 +74,7 @@ Currently, these versions are officially supported:
 * Ubuntu 16.04 ("xenial")
 * Ubuntu 18.04 ("bionic")
 * Ubuntu 20.04 ("focal")
-* Ubuntu 21.10 ("impish")
+* Ubuntu 22.04 ("jammy")
 
 For each of the repositories four architectures are provided:
 
