@@ -56,7 +56,7 @@ Currently, these versions are officially supported:
 * Debian 11 ("bullseye")
 * Ubuntu 18.04 ("bionic")
 * Ubuntu 20.04 ("focal")
-* Ubuntu 21.10 ("impish")
+* Ubuntu 22.04 ("jammy")
 
 For each of the repositories the following architectures are provided:
 
