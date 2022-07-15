@@ -105,26 +105,7 @@ sudo apt-get install nymea nymea-plugins
 
 Once this command completes, nymea:core should be up and running.
 
-
-
-### From the Snap store
-
-The nymea:core snap can be found in the [snap app store](https://snapcraft.io/nymea). For the snap, nymea
-provides amd64 and armhf packages.
-
-<dl>
-<a href="http://snapcraft.io/nymea" target="_blank" rel="noopener" style="display:inline-block;overflow:hidden;background:url(https://snapcraft.io/static/images/badges/en/snap-store-black.svg) no-repeat;width:182px;height:56px;background-size:contain;"></a>
-</dl>
-<br />
-
-
-It can be installed using the app store application of the used distribution, or via this command:
-
-```bash
-sudo snap install nymea
-```
-
-
+> Note: The nymea RPi image will have SSH enabled with username `nymea` and password `nymea` by default. If setting up a nymea instance in a publicly accessible network, consider changing the credentials.
 
 ## Other distributions or architectures
 
