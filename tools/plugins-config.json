@@ -3,7 +3,8 @@
     "https://github.com/nymea/nymea-plugins",
     "https://github.com/nymea/nymea-plugin-knx",
     "https://github.com/nymea/nymea-plugins-modbus",
-    "https://github.com/nymea/nymea-plugins-zigbee"
+    "https://github.com/nymea/nymea-plugins-zigbee",
+    "https://github.com/nymea/nymea-plugins-zwave"
   ],
   "srcdir": "src",
   "outputdir": "../src/pages/documentation/resources/integrations",
@@ -38,6 +39,7 @@
     "mqtt",
     "i2c",
     "zigbee",
+    "z-wave",
     "gpio",
     "spi"
   ]
