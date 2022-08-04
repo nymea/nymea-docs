@@ -36,7 +36,7 @@
     <Row>
       <Col span={{'xs': 12, 'sm': 8, 'md': 8, 'lg': 8, 'xl': 8}}>
         <h2>Connection talent</h2>
-        <p>Connecting things to your smart home is easy and quick. See the list of available <a href={$url('/documentation/overview/integrations')}>integrations</a>.</p>
+        <p>Connecting things to your smart home is easy and quick. See the list of available <a href={$url('/documentation/resources/integrations')}>integrations</a>.</p>
       </Col>
     </Row>
     <Integrations />

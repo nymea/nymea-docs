@@ -104,15 +104,11 @@ When authentication is enabled on an MQTT server interface, a permission needs t
 
 ### ZigBee
 
-The ZigBee section allows to manage ZigBee networks within nymea. A ZigBee network requires dedicated hardware in order to form a network and add native ZigBee devices into the system. Once a network has been created, the network can be opened in order to allow new ZigBee nodes to join the network. If the ZigBee device is supported, a new thing will appear once the node has been recognized and initialized from an installed ZigBee plugin.
+The ZigBee section allows to manage ZigBee networks within nymea. In order to use ZigBee with nymea, a ZigBee adapter is required.
 
-The list of supported ZigBee integrations can be found [here](https://preview.nymea.io/documentation/resources/integrations/?technology=zigbee).
+#### Supported ZigBee adapters
 
-> You can install all supported ZigBee integration plugins using the meta package `nymea-plugins-zigbee`.
-
-#### Supported ZigBee modules
-
-The following hardware modules are supported:
+The following hardware adapters are supported:
 
 * [Texas Instruments](https://www.ti.com/product/CC2652R)
     This adapter can be found in various shops, either without firmware or preflashed. A z-Stack based firmware is required on the adapter to work with nymea. When choosing an option, select the firmware for zigbee2mqtt which will work fine with nymea (zigbee2mqtt is not required) or manually flash the stick with a build of z-Stack
@@ -131,9 +127,9 @@ The following hardware modules are supported:
     * JN5168
     * JN5169 
 
-#### Set up a ZigBee network
+#### Setting up a ZigBee network
 
-Once you connected one of the supported ZigBee hardware modules to your system, you can set up a new ZigBee network in nymea. Nymea supports multiple ZigBee modules, each running a separate ZigBee network on a different channel and network ID.
+With the ZigBee adapter connected to the nymea system, a new ZigBee network can be created from System Settings -> ZigBee. Multiple ZigBee adapters may be used to create multiple separated ZigBee networks.
 
 ![](/img/configuration/system-settings-zigbee-add-network.png)
 
@@ -149,15 +145,19 @@ If a module does not get recognized due to missing hardware information (like JN
 
 #### Adding new ZigBee devices
 
-In order to add a new ZigBee device into a nymea managed network, the network needs to be opend for letting new nodes join the network. The default open time window is 120 seconds, but it can be extended if required or closed immediatly if desired.
+In order to add a new ZigBee device into a nymea managed network, the network needs to be opend for allowing new nodes to join the network. The default open time window is 120 seconds, but it can be extended if required or closed immediatly if desired.
 
-Once the network is open, the pairing prodecure of the ZigBee device can be started and the node will join the network. Depening on the device type and manufacturer the pairing process can be started while the network is open.
+Once the network is open, the pairing prodecure of the ZigBee device can be started and the node will join the network. Initiating the pairing procedure on the device may vary between different devices and manufacturers. Please refer to the manual of the device to learn how to start the pairing procedure.
 
 ![](/img/configuration/system-settings-zigbee-network-overview.png)
 
 ![](/img/configuration/system-settings-zigbee-network-open.png)
 
-If nymea recognized the ZigBee node, a new thing will show up automatically in the system and is ready to use.
+If nymea recognized the ZigBee node, a new thing will show up automatically in the system and is ready to use. If a ZigBee node appears but is listed as unrecognized device, an appropriate nymea integration plugin may be required.
+
+The list of supported ZigBee integration plugins can be found [here](https://preview.nymea.io/documentation/resources/integrations/?technology=zigbee).
+
+> Installing the meta package `nymea-plugins-zigbee` will install all available ZigBee integrations and is recommended for most users.
 
 #### Removing a ZigBee device
 
@@ -174,6 +174,45 @@ In order to remove an entire network and all releated things within nymea, there
 * **Factory reset network**: By factory resetting a network, all nodes and related things will be removed from the network. If the backend supports it, also all configuration on the ZigBee hardware will be wiped. The entire stack performs a restart and will start a new network, perform a new channel scan and pick a new network ID.
 
 ![](/img/configuration/system-settings-zigbee-network-settings.png)
+
+### Z-Wave
+
+The Z-Wave section allows to manage Z-Wave networks within nymea. In order to use Z-Wave with nymea, a Z-Wave adapter is required.
+
+#### Supported Z-Wave adapters
+
+Pretty much all Z-Wave adapters should work with nymea, given Z-Wave uses a standardized protocol. However here's a list of well tested and known to work adapters. Please report any known to work adapters to nymea so this list can be updated.
+
+* [Aotec](https://aeotec.com/)
+    * [Aeotec Z-Stick Gen5](https://aeotec.com/products/aeotec-z-stick-gen5/): This adapter is also sold as other brands such as the Zooz S2 USB controller.
+
+* [Z-Wave.Me](https://z-wave.me/)    
+    * [RaZberry](https://z-wave.me/products/razberry/)
+
+
+#### Setting up a Z-Wave network
+
+With the Z-Wave adapter connected to the nymea system, a new Z-Wave network can be created from System Settings -> Z-Wave. Multiple Z-Wave adapters may be used to create multiple separated Z-Wave networks.
+
+#### Adding new Z-Wave devices
+
+In order to add a Z-Wave device into a nymea managed network, enter the network settings and press the "Add device" button. Once the network is waiting for the new device to join, the pairing prodecure of the Z-Wave device can be started and the node will join the network. Initiating the pairing procedure on the device may vary between different devices and manufacturers. Please refer to the manual of the device to learn how to start the pairing procedure.
+
+If nymea recognized the Z-Wave node, a new thing will show up automatically in the system and is ready to use. If a Z-Wave node appears but is listed as unrecognized device, an appropriate nymea integration plugin may be required.
+
+The list of supported Z-Wave integration plugins can be found [here](https://preview.nymea.io/documentation/resources/integrations/?technology=z-wave).
+
+> Installing the meta package `nymea-plugins-zwave` will install all available Z-Wave integrations and is recommended for most users.
+
+#### Removing a Z-Wave device
+
+In order to remove a Z-Wave node from the network, enter the Z-Wave settings and press the "Remove device" button. Once the network is waiting for the device to leave, initiate the pairing procedure on the device.
+
+#### Removing / Resetting a Z-Wave network
+
+Z-Wave networks can be removed from nymea. This, however, will not reset the configuration of the Z-Wave controller. A network can be removed from one nymea instance and tranferred to another simply by removing it and creating it again on a different instance.
+
+In order to permanently remove the Z-Wave network from the controller, the "Factory reset controller" button may be used from the Z-Wave network settings. Please note that all devices connected to the Z-Wave network need to be factory reset in order to connect to another Z-Wave network again.
 
 ### Web server
 
