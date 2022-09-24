@@ -233,7 +233,65 @@ InterfaceAction {
 ...
 allLightsPowerAction.execute({"power": false});
 ```
-    
+   
+### Thing
+
+A `Thing` allows to interact with a particular thing, that is, reading and setting state values, execute actions and listening to events. If many events/states/actions are needed from a single thing, this may be more convenient than multiple ThingEvent/ThingState/ThingAction items. However, this variant doesn't allow to use property bindings as convenient as the other types. Additionally this allows to retrieve informationa about a thing, such as its name.
+
+Example usage:
+
+```qml
+Thing {
+    id: exampleThing
+    thingId: <thingId>
+    onEventTriggered: console.log("Event triggered for thing:", exampleThing.name, eventName, JSON.stringify(params));
+    onStateValueChanged: console.log("State changed for thing:", exampleThing.name, stateName, value);
+}
+...
+exampleThing.setStateValue("power", true);
+exampleThing.executeAction("notify", {"title": "Hello", "body": "World"});
+```
+ 
+#### Things
+
+The `Things` item holds a model of all things in the system. Specifying the `filterInterface` property allows filtering things by interface. 
+
+```qml
+Things {
+    filterInterface: "light"
+
+    onThingAdded: console.log("A lighting thing has been added to the system:", thingId)
+    onThingRemoved: console.log("A lighting thing has been removed from the system:", thingId)
+}
+```
+Use `get(index)` to retrieve a thing by its index in the model, or `getThing(<thingId>)` to retrieve things by their id.
+```qml
+Things {
+  id: myThings
+}
+InterfaceState {
+    interfaceName: "battery"
+    onStateChanged: console.log("Battery level changed to", value, "for", myThings.getThing(<thingId>).name)
+}
+```
+Things can be used to populate a repeater:
+```qml
+Alarm {
+    id: alarm
+}
+Repeater {
+    model: Things {
+        filterInterface: "light"
+    }
+    delegate: Item {
+        ThingState {
+            thingId: model.thingId
+            stateName: "power"
+            value: alarm.active
+        }
+    }
+}
+```
 ### Alarm
 
 An `Alarm` is used to execute actions or set states at given times.
