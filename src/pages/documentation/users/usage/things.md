@@ -14,7 +14,7 @@ The actual content of the wizard may vary between types of things. The basic flo
 
 ![](/img/documentation/users/connecting-things.gif)
 
-> For documentation on individual things, please check out the documentation for the appropriate integration which can be found in the [integrations](/documentation/overview/integrations) page.
+> For documentation on individual things, please check out the documentation for the appropriate integration which can be found in the [integrations](/documentation/resources/integrations) page.
 
 
 After the thing has been added, it will appear in the main screen. In this case a power socket that can be switched 
@@ -36,7 +36,7 @@ on the smart plug to actually turn on and off the light:
 
 ## Installing more plugins
 
-By default, nymea comes with a selection of preinstalled plugins. However, those are not all the available ones. If you can't find something in your nymea setup but it's listed on the [integrations](/documentation/overview/integrations) page, you can install it by entering the *System settings* and opening the *Software update* section. From there, move to *Install or remove software* and you'll find a list of available integration plugins to be installed.
+By default, nymea comes with a selection of preinstalled plugins. However, those are not all the available ones. If you can't find something in your nymea setup but it's listed on the [integrations](/documentation/resources/integrations) page, you can install it by entering the *System settings* and opening the *Software update* section. From there, move to *Install or remove software* and you'll find a list of available integration plugins to be installed.
 
 ![](/img/documentation/users/installing-plugins.gif)
 
