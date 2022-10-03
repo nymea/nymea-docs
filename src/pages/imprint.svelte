@@ -88,8 +88,8 @@
           <dt>Registered Address</dt>
           <dd>High Tech Campus Vienna, Gutheil-Schoder-Gasse 10, 1100 Wien</dd>
 
-          <dt>Managing Directors</dt>
-          <dd>Simon Seres, Bernhard Trinnes</dd>
+          <dt>Managing Director</dt>
+          <dd>Simon Seres</dd>
 
           <dt>Commercial Register No.</dt>
           <dd>FN446282y</dd>
