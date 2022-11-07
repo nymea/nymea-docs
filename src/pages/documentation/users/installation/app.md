@@ -63,19 +63,38 @@ For each of the repositories the following architectures are provided:
 * amd64
 * armhf
 * arm64
+* riscv64
 
-To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.list` with the following content:
-
-> Note: Replace `<distro>` with the codename of the distro, e.g. `buster` for Debian 10 or `focal` for Ubuntu 20.04
+To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.list` using following command:
 
 ```bash
-deb http://repository.nymea.io <distro> main
+echo "deb http://repository.nymea.io $(lsb_release -s -c) main" | sudo tee /etc/apt/sources.list.d/nymea.list
 ```
 
-Add the repository signing key by running:
+The packages in the nymea repository are signed with nymeas GPG key which can be imported by running:
 
 ```bash
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key A1A19ED6
+sudo wget -O /etc/apt/trusted.gpg.d/nymea.gpg https://repository.nymea.io/nymea.gpg
+```
+
+Optionally, the keys fingerprint can be verified with:
+```bash
+gpg --show-keys --with-fingerprint /etc/apt/trusted.gpg.d/nymea.gpg
+```
+
+```bash
+pub   rsa4096 2016-04-08 [SC]
+      B1C8 9C2A E70D 2FC8 27DF  0BFF 457A 6EE4 A1A1 9ED6
+uid                      nymea GmbH <developer@nymea.io>
+sub   rsa4096 2016-04-08 [E]
+sub   rsa4096 2016-04-08 [S]
+```
+
+Once done so, nymea:core can be installed using apt-get:
+
+```bash
+sudo apt-get update
+sudo apt-get install nymea nymea-plugins
 ```
 
 Once done so, nymea:app can be installed using apt-get:
