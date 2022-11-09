@@ -14,17 +14,24 @@ the other features that are expected from an IDE.
 
 ## Building natively
 
-The nymea source code can be obtained from [GitHub](https://github.com/nymea/). There is a range of repositories. Depending on the
-need, only a selection of those repositories might be checked out.
+The nymea source code can be obtained from [GitHub](https://github.com/nymea/) and consists of multiple modules, distributed across multiple code repositories. The modules have dependencies between each other. This means, that some repositories will be required to be built before others can be built. However, if the objective is to just develop with a single repository or apply a single patch to a particular module, the dependencies may also be installed from the binary pacakge repository instead.
 
-If the entire nymea stack is to be built from source, all those repositories are required.
-
-If only individual parts are to be built from source, each individual repository can be built individually and the others uses 
-from the nymea. After following the instructions for setting up the build environment all parts should be available as binary 
-form on the development machine already.
-
-Each module supports different build configurations. In order to activate those, append the given option to the `qmake` line. For
+The build options may vary a bit between modues. In order to activate particular options, append the given option to the `qmake` line. For
 example: `qmake .. PREFIX=/usr CONFIG+=release`.
+
+### nymea-zigbee
+
+```bash
+git clone https://github.com/nymea/nymea-zigbee
+mkdir nymea-zigbee/builddir
+cd nymea-zigbee/builddir
+qmake .. PREFIX=/usr/
+make sudo make install
+```
+This module supports the following build configurations:
+
+* debug: `CONFIG+=debug`
+* release: `CONFIG+=release`
 
 ### nymea-gpio
 
@@ -60,6 +67,8 @@ This module supports the following build configurations:
 
 ### nymea-networkmanager
 
+> This module requires libnymea-networkmanager and nymea-gpio
+
 ```bash
 git clone https://github.com/nymea/nymea-networkmanager
 mkdir nymea-networkmanager/builddir
@@ -74,12 +83,12 @@ This module supports the following build configurations:
 * debug: `CONFIG+=debug`
 * release: `CONFIG+=release`
 
-### nymea-remoteproxyclient
+### nymea-remoteproxy
 
 ```bash
-git clone https://github.com/nymea/nymea-remoteproxyclient
-mkdir nymea-remoteproxyclient/builddir
-cd nymea-remoteproxyclient/builddir
+git clone https://github.com/nymea/nymea-remoteproxy
+mkdir nymea-remoteproxy/builddir
+cd nymea-remoteproxy/builddir
 qmake .. PREFIX=/usr/
 make
 sudo make install
@@ -108,6 +117,8 @@ This module supports the following build configurations:
 
 ### nymea
 
+> This module requires nymea-gpio, nymea-zigbee, libnymea-networkmanager, nymea-mqtt and nymea-remoteproxy
+
 ```bash
 git clone https://github.com/nymea/nymea
 mkdir nymea/builddir
@@ -124,8 +135,11 @@ This module supports the following build configurations:
 * build without tests: `CONFIG+=disabletesting`
 * enable code coverage reporting for tests: `CONFIG+=coverage`
 * build with address sanitizer: `CONFIG+=asan`
+* build (link) without rpath: `CONFIG+=norpath`
 
 ### nymea-plugins
+
+The nymea-plugins repository only contains some plugins. More plugins can be found in [other plugin repositories](https://github.com/nymea/?q=nymea-plugin). The build instructions for all plugin repositories are the same.
 
 ```bash
 git clone https://github.com/nymea/nymea-plugins
@@ -142,6 +156,7 @@ This module supports the following build configurations:
 * release: `CONFIG+=release`
 * select only specific plugins to be built: `WITH_PLUGINS=plugin1 plugin2 ...`
 * exclude specific plugins from being built: `WITHOUT_PLUGINS=plugin1 plugin2 ...`
+
 
 ## Cross-compiling
 
