@@ -87,3 +87,12 @@ sudo apt-get install nymea-app
 
 Once this command completes, nymea:app should be installed and ready to use from the applications menu.
 
+## Joining the beta tests
+
+> Note: Running experimental or testing builds of nymea is not recommended for users expecting a stable setup.
+
+In order to help with testing prereleases of nymea or give early feedback on features which are still in development, it is possible to join the beta program for nymea:app. 
+* For Android, join the [Beta in the Google Play store](https://play.google.com/apps/testing/io.guh.nymeaapp)
+* For iOS, join the [TestFlight builds](https://testflight.apple.com/join/Y5MifPpT)
+* For snaps, use the edge channel
+* For other platforms, find beta builds on the [downloads server](https://downloads.nymea.io/nymea-app/)
