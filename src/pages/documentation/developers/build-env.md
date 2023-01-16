@@ -28,10 +28,17 @@ If you whish to use a different IDE, you may install the SDK with the following 
 sudo apt-get install --no-install-recommends nymea-sdk
 ```
 
-In order to build existing plugins additional dependencies might be required. Those vary
-between plugins. All the required dependencies for building the main nymea-plugins repository can
-be installed with this command:
+Now that the compiler and build tools are installed, individual repositories may require additional dependencies. Depending on the repository you want to build, install the build dependencies for that particular repository.
+
+For example, to build nymea core:
 
 ```bash
 sudo apt-get build-dep nymea-plugins
 ```
+
+To build nymea-plugins:
+```bash
+sudo apt-get build-dep nymea-plugins
+```
+
+etc.
