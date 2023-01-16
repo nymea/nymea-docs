@@ -33,7 +33,12 @@ Now that the compiler and build tools are installed, individual repositories may
 For example, to build nymea core:
 
 ```bash
-sudo apt-get build-dep nymea-plugins
+sudo apt-get build-dep nymea
+```
+
+To build nymea-zigbee:
+```bash
+sudo apt-get build-dep nymea-zigbee
 ```
 
 To build nymea-plugins:
