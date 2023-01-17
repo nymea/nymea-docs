@@ -65,7 +65,7 @@ For each of the repositories the following architectures are provided:
 * arm64
 * riscv64
 
-To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.list` using following command:
+To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.list` using the following command:
 
 ```bash
 echo "deb http://repository.nymea.io $(lsb_release -s -c) main" | sudo tee /etc/apt/sources.list.d/nymea.list

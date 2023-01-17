@@ -33,7 +33,7 @@ will automatically start upon boot. Please proceed with the [usage guide](/docum
 
 If the nymea Raspberry Pi image is not used, nymea:core can also be installed on an existing Raspberry Pi running Raspbian.
 
-To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.list` using following command:
+To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.list` using the following command:
 
 ```bash
 echo "deb http://repository.nymea.io $(lsb_release -s -c) rpi" | sudo tee /etc/apt/sources.list.d/nymea.list
@@ -97,7 +97,7 @@ For each of the repositories four architectures are provided:
 * arm64
 * riscv64
 
-To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.list` using following command:
+To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.list` using the following command:
 
 ```bash
 echo "deb http://repository.nymea.io $(lsb_release -s -c) main" | sudo tee /etc/apt/sources.list.d/nymea.list
