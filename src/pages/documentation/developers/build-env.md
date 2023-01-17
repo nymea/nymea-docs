@@ -10,7 +10,7 @@ regular repository.
 
 
 ```bash
-echo "deb http://repository.nymea.io $(lsb_release -s -c) main" | sudo tee /etc/apt/sources.list.d/nymea.list
+echo -e "deb http://repository.nymea.io $(lsb_release -s -c) main\ndeb-src http://repository.nymea.io $(lsb_release -s -c) main" | sudo tee /etc/apt/sources.list.d/nymea.list
 ```
 
 The packages in the nymea repository are signed with nymeas GPG key which can be imported by running:
@@ -35,6 +35,7 @@ sub   rsa4096 2016-04-08 [S]
 Now the nymea SDK can be installed with this command:
 
 ```bash
+sudo apt-get update
 sudo apt-get install nymea-sdk
 ```
 
