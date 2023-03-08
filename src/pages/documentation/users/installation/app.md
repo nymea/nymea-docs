@@ -25,14 +25,13 @@ Minimum system requirements:
 
 ## Laptops and Desktops
 
-nymea:app can be found in the macOS app store and the Ubuntu Core Snap store. For Windows we offer an offline installer from our downloads section.
+nymea:app can be found in the macOS app store. For Windows we offer an offline installer from our downloads section. For Linux users, please user our apt-repository (See below).
 
 ![](/img/desktop-app.png)
 
 
 <div align="center">
 <a href="https://apps.apple.com/us/app/nymea-app/id1488785734" target="_blank" style="display: inline-block;" rel="noopener"><img src="/img/badges/macos.svg" height="50px"/></a>
-<a href="https://snapcraft.io/nymea-app" target="_blank" style="display: inline-block;" rel="noopener"><img src="/img/badges/snap-store.png" height="50px"/></a>
 <a href="https://downloads.nymea.io/nymea-app/windows/latest" target="_blank" style="display: inline-block;" rel="noopener"><img src="/img/badges/windows.svg" height="50px"/></a>
 </div>
 
@@ -40,11 +39,9 @@ Minimum system requirements:
 
 * Windows 10 or greater
 * macOS 10.13 or greater
-* Ubuntu Core 18.04 or greater
+* Ubuntu 18.04/Debian 10 or greater
 
 > Please note that installing the app from the downloads section will require to manually redownload to update to newer versions. At this point we are not providing a package for the Windows app store.
-
-> Alternatively, on Ubuntu and Debian GNU/Linux, the repository version can be used too. See below for details.
 
 ## Embedded devices and manual setups
 
@@ -57,12 +54,14 @@ Currently, these versions are officially supported:
 * Ubuntu 18.04 ("bionic")
 * Ubuntu 20.04 ("focal")
 * Ubuntu 22.04 ("jammy")
+* Ubuntu 22.10 ("kinetic")
 
 For each of the repositories the following architectures are provided:
 
 * amd64
 * armhf
 * arm64
+* riscv64
 
 To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.list` with the following content:
 
