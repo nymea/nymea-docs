@@ -61,23 +61,18 @@ The wired connection setup will list all available wired network interfaces of t
 
 The wireless connection setup allows to control the wireless network interfaces of the nymea:core system. Using this section, the nymea:core system can be connected to a wireless network or host an access point. 
 
-### Cloud
+### Connection settings
 
-The cloud settings allow connecting a nymea:core system to nymea:cloud. For this, the nymea:core system needs to be registered in nymea:cloud. Once done so, it will connect to the cloud server and wait for incoming requests through the cloud. This is useful in order to access a nymea:core system from anywhere.
+The connection settings section allows to configure on which ports the clients can connect to this nymea:core system.
+By default, a nymea:core system can be connected to from the local network. If you whish to also connect to your nymea system remotely, the remote connection can be enabled here. This will cause nymea:core to connect to a proxy server in the internet and listen for incoming connections from nymea:app. This does not store any of your data on the proxy server, but merely just forwards the traffic between nymea:app and nymea:core without looking at it.
 
-Using the cloud connection, a user can connect from anywhere to the nymea:core without having to configure any port forwarding or similar in the router or signing up for a dynamic DNS service.
+> Please make sure your user passwords are strong enough to not be guessed easily when enabling the remote connection.
 
-![](/img/configuration/system-settings-cloud.png)
-
-Note that in order to access a nymea:core system through the cloud, nymea:app needs to be signed into nymea:cloud too and the box needs to be paired with a cloud username. If nymea:core and nymea:app are connected to nymea:cloud the pairing will happen automatically when the two are connected locally in the same network first. Once this happens, the remote connection for this user and core system will be activated.
-
-### Connection interfaces
-
-The connection interfaces section allows to configure on which ports the clients can connect to this nymea:core system.
+Nymea uses port 2222 for local network connections. If you have special requirements and want to change that, enter the Connection interfaces settings from here.
 
 ![](/img/configuration/system-settings-api-interfaces.png)
 
-By default, a nymea:core system can be connected to via a TCP socket on port 2222 and a WebSocket on port 4444. For usage with nymea:app, any of them work equally. Due to the overhead that comes with WebSocket compared to a TCP socket, the TCP socket would perform slightly better. When using different clients than nymea:app, for example a self made script, it might be easier to connect using a WebSocket as that is a well supported technology in web browsers.
+For usage with nymea:app, TCP or WebSocket transports work equally. Due to the overhead that comes with WebSocket compared to a TCP socket, the TCP socket would perform slightly better. When using different clients than nymea:app, for example a self made script, it might be easier to connect using a WebSocket as that is a well supported technology in web browsers.
 
 This section also allows to configure the usage of SSL encryption per connection interface. It is strongly advised to keep both, SSL encryption and authentication enabled. However, when using clients that do not support SSL encryption it can be disabled here. Each interface can be configured to listen to only localhost connections (useful for e.g. scripts or nymea-cli on the nymea:core system), to any network interface or only to a particular network interface.
 
