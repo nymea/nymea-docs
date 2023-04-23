@@ -2,20 +2,20 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="296.79169mm"
    height="175.57091mm"
    viewBox="0 0 296.79168 175.57091"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="nymea-overview-1.svg">
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="nymea-overview.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs2">
     <marker
@@ -47,38 +47,6 @@
          d="M 0,0 5,-5 -12.5,0 5,5 Z"
          style="fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:#808080;stroke-width:1.00000003pt;stroke-opacity:1"
          transform="matrix(0.2,0,0,0.2,1.2,0)" />
-    </marker>
-    <marker
-       inkscape:isstock="true"
-       style="overflow:visible"
-       id="marker2418"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Send"
-       inkscape:collect="always">
-      <path
-         transform="matrix(-0.2,0,0,-0.2,-1.2,0)"
-         style="fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:#808080;stroke-width:1.00000003pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         id="path2416"
-         inkscape:connector-curvature="0" />
-    </marker>
-    <marker
-       inkscape:isstock="true"
-       style="overflow:visible"
-       id="marker2378"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Sstart"
-       inkscape:collect="always">
-      <path
-         transform="matrix(0.2,0,0,0.2,1.2,0)"
-         style="fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:#808080;stroke-width:1.00000003pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         id="path2376"
-         inkscape:connector-curvature="0" />
     </marker>
     <marker
        inkscape:stockid="Arrow1Send"
@@ -365,38 +333,6 @@
          style="stop-color:#57BAAE"
          offset="1" />
     </linearGradient>
-    <marker
-       inkscape:isstock="true"
-       style="overflow:visible"
-       id="marker2378-2"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Sstart"
-       inkscape:collect="always">
-      <path
-         transform="matrix(0.2,0,0,0.2,1.2,0)"
-         style="fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:#808080;stroke-width:1.00000003pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         id="path2376-7"
-         inkscape:connector-curvature="0" />
-    </marker>
-    <marker
-       inkscape:isstock="true"
-       style="overflow:visible"
-       id="marker2418-0"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Send"
-       inkscape:collect="always">
-      <path
-         transform="matrix(-0.2,0,0,-0.2,-1.2,0)"
-         style="fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:#808080;stroke-width:1.00000003pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         id="path2416-9"
-         inkscape:connector-curvature="0" />
-    </marker>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -405,9 +341,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="449.86449"
-     inkscape:cy="303.50673"
+     inkscape:zoom="0.83621633"
+     inkscape:cx="646.36384"
+     inkscape:cy="309.72847"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -415,11 +351,12 @@
      fit-margin-left="50"
      fit-margin-right="50"
      fit-margin-bottom="5"
-     inkscape:window-width="2792"
-     inkscape:window-height="1698"
-     inkscape:window-x="88"
-     inkscape:window-y="44"
-     inkscape:window-maximized="1">
+     inkscape:window-width="1466"
+     inkscape:window-height="933"
+     inkscape:window-x="70"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="0">
     <inkscape:grid
        type="xygrid"
        id="grid815"
@@ -434,7 +371,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1710,7 +1646,7 @@
        style="opacity:1;fill:none;fill-opacity:1;stroke:#808080;stroke-width:0.99999994;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0;font-family:KaapeliW01-Medium;-inkscape-font-specification:KaapeliW01-Medium;letter-spacing:0px;word-spacing:0px;fill:#fffffc;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;line-height:0;font-family:KaapeliW01-Medium;-inkscape-font-specification:KaapeliW01-Medium;letter-spacing:0px;word-spacing:0px;fill:#fffffc;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="77.801666"
        y="45.819183"
        id="text1916"><tspan
@@ -1718,10 +1654,10 @@
          id="tspan1914"
          x="77.801666"
          y="45.819183"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#fffffc;fill-opacity:1;stroke-width:0.26458332">nymea:ux clients</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#fffffc;fill-opacity:1;stroke-width:0.264583">nymea:ux clients</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0;font-family:KaapeliW01-Medium;-inkscape-font-specification:KaapeliW01-Medium;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;line-height:0;font-family:KaapeliW01-Medium;-inkscape-font-specification:KaapeliW01-Medium;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="61.878876"
        y="168.13786"
        id="text1920"><tspan
@@ -1729,22 +1665,16 @@
          id="tspan1918"
          x="61.878876"
          y="168.13786"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:ubuntu;-inkscape-font-specification:ubuntu;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332">Smart devices and services</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:ubuntu;-inkscape-font-specification:ubuntu;fill:#ffffff;fill-opacity:1;stroke-width:0.264583">Smart devices and services</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Sstart);marker-end:url(#Arrow1Send)"
        d="M 105,87.979167 V 106.5"
        id="path1928"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0" />
-    <path
-       inkscape:connector-curvature="0"
-       inkscape:connector-type="polyline"
-       id="path2374"
-       d="M 161.54467,87.979169 V 106.5"
-       style="fill:none;fill-rule:evenodd;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker2378);marker-end:url(#marker2418)" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0;font-family:KaapeliW01-Medium;-inkscape-font-specification:KaapeliW01-Medium;letter-spacing:0px;word-spacing:0px;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;line-height:0;font-family:KaapeliW01-Medium;-inkscape-font-specification:KaapeliW01-Medium;letter-spacing:0px;word-spacing:0px;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="51.858326"
        y="121.20731"
        id="text2615"><tspan
@@ -1752,67 +1682,13 @@
          id="tspan2613"
          x="51.858326"
          y="121.20731"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#808080;fill-opacity:1;stroke-width:0.26458332">nymea:core</tspan></text>
-    <g
-       transform="matrix(0.26458333,0,0,0.26458333,166.79854,86.787204)"
-       id="layer1-6"
-       inkscape:label="Layer 1">
-      <g
-         style="display:inline"
-         id="g4845-75"
-         transform="matrix(0,-1,-1,0,373.50506,516.50504)">
-        <g
-           inkscape:label="Layer 1"
-           id="g4778-35"
-           transform="matrix(-0.9996045,0,0,1,575.94296,-611.00001)"
-           inkscape:export-filename="next01.png"
-           inkscape:export-xdpi="90"
-           inkscape:export-ydpi="90">
-          <g
-             style="display:inline"
-             id="g4780-62"
-             transform="matrix(-1,0,0,1,575.99999,611)">
-            <rect
-               transform="scale(-1,1)"
-               y="345.36221"
-               x="-438.00244"
-               height="96"
-               width="96.037987"
-               id="rect4782-91"
-               style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:none;stroke-width:4;marker:none;enable-background:accumulate" />
-            <path
-               id="path4181"
-               transform="matrix(0,-1,-1.0003957,0,438.00245,441.36222)"
-               d="m 51.539062,16.888672 c -11.88341,0 -21.979611,7.324149 -26.800781,17.787109 l -0.322265,0.701172 -0.769532,0.05664 C 12.678934,36.232468 3.9980469,45.714566 3.9980469,57.255859 c 0,12.060878 9.4410081,21.962891 21.1113281,21.962891 H 51.539062 76.175781 C 84.926381,79.21875 92,71.787763 92,62.779297 92,55.94799 87.899411,50.217256 82.082031,47.746094 l -0.757812,-0.322266 -0.03711,-0.820312 C 80.540729,30.134022 67.596276,16.888672 51.541016,16.888672 Z m 0,4 c 13.854191,0 25.095834,11.416699 25.751954,25.894531 l -0.002,-0.0039 0.148438,3.337891 3.078125,1.310546 c 4.39133,1.865392 7.482422,6.120093 7.482422,11.351563 0,6.915674 -5.339519,12.439453 -11.824219,12.439453 H 51.539062 25.109375 c -9.40646,0 -17.1113281,-7.988237 -17.1113281,-17.962891 0,-9.536826 7.1058401,-17.190689 15.9375001,-17.833984 h 0.002 L 27.0645,39.191412 28.371141,36.349615 C 32.601051,27.169797 41.30029,20.888678 51.539109,20.888678 Z"
-               style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;color-interpolation:sRGB;color-interpolation-filters:linearRGB;fill:#808080;fill-opacity:1;stroke:none;stroke-width:4.00000048;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-               inkscape:connector-curvature="0" />
-          </g>
-        </g>
-      </g>
-    </g>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#808080;fill-opacity:1;stroke-width:0.264583">nymea:core</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker3205);marker-end:url(#marker3257)"
        d="m 105.83333,135.60419 v 18.52084"
        id="path3201"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0" />
-    <path
-       inkscape:connector-curvature="0"
-       inkscape:connector-type="polyline"
-       id="path2374-3"
-       d="m 123.70928,120.25833 h 18.52083"
-       style="fill:none;fill-rule:evenodd;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker2378-2);marker-end:url(#marker2418-0)" />
-    <text
-       id="text4022"
-       y="136.024"
-       x="143.40413"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0;font-family:KaapeliW01-Medium;-inkscape-font-specification:KaapeliW01-Medium;letter-spacing:0px;word-spacing:0px;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#808080;fill-opacity:1;stroke-width:0.26458332"
-         y="136.024"
-         x="143.40413"
-         id="tspan4020"
-         sodipodi:role="line">nymea:cloud</tspan></text>
   </g>
   <style
      id="style1219"
