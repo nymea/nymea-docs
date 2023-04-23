@@ -112,7 +112,7 @@ The following hardware adapters are supported:
 
 * [Texas Instruments](https://www.ti.com/product/CC2652R)
     This adapter can be found in various shops, either without firmware or preflashed. A z-Stack based firmware is required on the adapter to work with nymea. When choosing an option, select the firmware for zigbee2mqtt which will work fine with nymea (zigbee2mqtt is not required) or manually flash the stick with a build of z-Stack
-    * CC2652 (P/R/RB) - recommended option (e.g. the [slae.sh](https://slae.sh) or [Sonoff ZigBee 3.0 USB - Dongle-P](https://sonoff.tech/product/gateway-amd-sensors/sonoff-zigbee-3-0-usb-dongle-plus-p/)(V2 is *not* supported)
+    * CC2652 (P/R/RB) - recommended option (e.g. the [slae.sh](https://slae.sh) or [Sonoff ZigBee 3.0 USB - Dongle-P](https://sonoff.tech/product/gateway-amd-sensors/sonoff-zigbee-3-0-usb-dongle-plus-p/) (Note: V2/Dongle-E is *not* supported)
     * CC253x
 
 * [Dresden Elektronik](https://www.dresden-elektronik.de/)
