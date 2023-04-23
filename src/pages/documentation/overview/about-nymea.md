@@ -27,13 +27,3 @@ See [nymea:core](/documentation/users/installation/core) for more details.
 
 nymea:app is the user facing frontend of a nymea system. It is a client app running on a phone, on the IoT edge device (in case it has a display) or a Laptop/PC. Please refer to the [nymea:app](/documentation/users/installation/app) page for more details.
 
-### nymea:cloud
-
-nymea:cloud is optional and extends nymea with cloud centric features such as delivering push notifications to client devices or enabling remote connections from nymea:app to nymea:core in an easy to setup and secure manner.
-
-## Plug-in based and extensible
-
-nymea is made of building blocks. Using plugins for many tasks, a large variety of setup combinations is possible.
-
-![nymea structure](https://raw.githubusercontent.com/guh/nymea-wiki/master/docs/en/images/home-stack.png)
-
