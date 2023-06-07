@@ -187,6 +187,8 @@ A `ThingAction` is used to execute an action on a particular thing.
 A `ThingAction` is required to have the `thingId` property set in order to identify a particular thing and the `actionName` property to match the desired acton.
 
 A `ThingAction` has a function named `execute(params)` which can be called to actually execute the action. The params are a map for the parameters this action requires.
+    
+A `ThingAction` has an event named `executed(status, params, triggeredBy)` which will be triggered whenever the action is executed. Optionally, this can be used to track any executions on this action. The event has parameters informing about the execution status, the parameters and whether the action was triggered by the user e.g. using nymea:app or by a rule or script.
 
 For instance, a thing capable to send push notifications could to be used this way:
 
@@ -195,6 +197,15 @@ ThingAction {
     id: notificationAction   // Giving it an id so we can call its execute() function
     thingId: "<thingId>"     // The id of the notification thing
     actionName: "notify"     // Selecting the "notify" action
+    onExecuted: {
+        console.log("Action was executed with status", status, "and params", params, "by", triggeredBy)
+        if (status != Thing.ThingErrorNoError) {
+            console.warn("Error", status, "happened during action execution") 
+        }
+        if (triggeredBy == Action.TriggeredByUser) {
+            print("The action was exectued by the user.") 
+        }
+    }
 }
 ...
 notificationAction.execute({"title": "Hello", "body": "nymea rocks!"})
@@ -246,6 +257,7 @@ Thing {
     thingId: <thingId>
     onEventTriggered: console.log("Event triggered for thing:", exampleThing.name, eventName, JSON.stringify(params));
     onStateValueChanged: console.log("State changed for thing:", exampleThing.name, stateName, value);
+    onActionExecuted: console.log("Action", actionName, "executed on", exampleThing.name, "with status", status, "and params", JSON.stringify(params), "by", triggeredBy)
 }
 ...
 exampleThing.setStateValue("power", true);
