@@ -33,10 +33,13 @@ will automatically start upon boot. Please proceed with the [usage guide](/docum
 
 If the nymea Raspberry Pi image is not used, nymea:core can also be installed on an existing Raspberry Pi running Raspbian.
 
+Currently, the following Raspberry Pi Models are supported:<br>
+Raspberry Pi 2, 3, 4, 5 and Zero 2W
+
 To enable the repository, create a file named `/etc/apt/sources.list.d/nymea.list` using the following command:
 
 ```bash
-echo "deb http://repository.nymea.io $(lsb_release -s -c) rpi" | sudo tee /etc/apt/sources.list.d/nymea.list
+echo "deb http://repository.nymea.io $(lsb_release -s -c) main" | sudo tee /etc/apt/sources.list.d/nymea.list
 ```
 
 The packages in the nymea repository are signed with nymeas GPG key which can be imported by running:
@@ -58,7 +61,6 @@ sub   rsa4096 2016-04-08 [E]
 sub   rsa4096 2016-04-08 [S]
 ```
 
-
 Once done so, nymea:core can be installed using apt-get:
 
 ```bash
@@ -67,6 +69,18 @@ sudo apt-get install nymea
 ```
 
 Once this command completes, nymea:core should be up and running on the Raspberry Pi.
+
+#### Important note:
+
+If you are still using an older installation running with the old rpi-repo you need to switch to the main-repo.
+
+In this case you need to change the repository line in `/etc/apt/sources.list.d/nymea.list` <br>from `deb http://repository.nymea.io bullseye rpi` to `deb http://repository.nymea.io bullseye main`.<br>
+Without this change, your Raspberry Pi will stop receiveing updates from now on.<br>
+In order to simplify this for users, a package named `nymea-rpi-repo-migration` will be provided.<br> 
+Installing that package either via `apt-get` or via the app in `system settings -> system updates`<br> will do everything required and the system will continue to work as it did before.<br> 
+After installing the migration package, an update for the entire system will be available.
+
+
 
 ## Debian GNU/Linux and Ubuntu
 
