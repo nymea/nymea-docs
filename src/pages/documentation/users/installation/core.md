@@ -63,7 +63,7 @@ Once done so, nymea:core can be installed using apt-get:
 
 ```bash
 sudo apt-get update
-sudo apt-get install nymea nymea-plugins
+sudo apt-get install nymea
 ```
 
 Once this command completes, nymea:core should be up and running on the Raspberry Pi.
@@ -126,7 +126,7 @@ Once done so, nymea:core can be installed using apt-get:
 
 ```bash
 sudo apt-get update
-sudo apt-get install nymea nymea-plugins
+sudo apt-get install nymea
 ```
 
 Once this command completes, nymea:core should be up and running.
