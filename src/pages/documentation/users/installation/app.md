@@ -49,12 +49,18 @@ nymea:app can also be installed from the same package repository as nymea:core.
 
 Currently, these versions are officially supported:
 
+Debian:
+
 * Debian 10 ("buster")
 * Debian 11 ("bullseye")
+* Debian 12 ("bookworm")
+
+Ubuntu:
+
 * Ubuntu 18.04 ("bionic")
 * Ubuntu 20.04 ("focal")
 * Ubuntu 22.04 ("jammy")
-* Ubuntu 22.10 ("kinetic")
+* Ubuntu 23.10 ("mantic")
 
 For each of the repositories the following architectures are provided:
 

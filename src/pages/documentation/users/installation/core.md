@@ -97,12 +97,18 @@ nymea provides a repository for Debian GNU/Linux and Ubuntu.
 
 Currently, these versions are officially supported:
 
+Debian:
+
 * Debian 10 ("buster")
 * Debian 11 ("bullseye")
-* Ubuntu 16.04 ("xenial")
+* Debian 12 ("bookworm")
+
+Ubuntu:
+
 * Ubuntu 18.04 ("bionic")
 * Ubuntu 20.04 ("focal")
 * Ubuntu 22.04 ("jammy")
+* Ubuntu 23.10 ("mantic")
 
 For each of the repositories four architectures are provided:
 
