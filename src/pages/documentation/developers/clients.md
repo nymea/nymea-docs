@@ -22,5 +22,7 @@ instructions on how to get started.
 
 ### Python
 
+> Note: nymea-cli is deprecated and will not be supported any more.
+
 For python developers there is nymea-cli providing examples how to interact with nymea. Please refer to 
 the [nymea:cli documentation](clients/nymea-cli-dev).
