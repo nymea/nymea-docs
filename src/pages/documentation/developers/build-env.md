@@ -39,7 +39,7 @@ sudo apt-get update
 sudo apt-get install nymea-sdk
 ```
 
-This will install nymea and all the development packages. It will also install QtCreator as the recommended IDE.
+This will install nymea and all the development packages in order to build a nymea-plugin. It will also install QtCreator as the recommended IDE.
 
 If you whish to use a different IDE, you may install the SDK with the following command instead:
 
@@ -47,22 +47,10 @@ If you whish to use a different IDE, you may install the SDK with the following 
 sudo apt-get install --no-install-recommends nymea-sdk
 ```
 
-Now that the compiler and build tools are installed, individual repositories may require additional dependencies. Depending on the repository you want to build, install the build dependencies for that particular repository.
+In order to build existing plugins additional dependencies might be required. Those vary
+between plugins. All the required dependencies for building the main nymea-plugins repository can
+be installed with this command:
 
-For example, to build nymea core:
-
-```bash
-sudo apt-get build-dep nymea
-```
-
-To build nymea-zigbee:
-```bash
-sudo apt-get build-dep nymea-zigbee
-```
-
-To build nymea-plugins:
 ```bash
 sudo apt-get build-dep nymea-plugins
 ```
-
-etc.

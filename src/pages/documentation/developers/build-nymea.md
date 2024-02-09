@@ -26,7 +26,8 @@ git clone https://github.com/nymea/nymea-zigbee
 mkdir nymea-zigbee/builddir
 cd nymea-zigbee/builddir
 qmake .. PREFIX=/usr/
-make sudo make install
+make 
+sudo make install
 ```
 This module supports the following build configurations:
 
@@ -98,6 +99,8 @@ This module supports the following build configurations:
 
 * debug: `CONFIG+=debug`
 * release: `CONFIG+=release`
+* build without tests: `CONFIG+=disabletesting`
+* enable code coverage reporting for tests: `CONFIG+=coverage`
 
 ### nymea-mqtt
 
@@ -114,6 +117,7 @@ This module supports the following build configurations:
 
 * debug: `CONFIG+=debug`
 * release: `CONFIG+=release`
+* build without tests: `CONFIG+=disabletesting`
 
 ### nymea
 
@@ -132,10 +136,13 @@ This module supports the following build configurations:
 
 * debug: `CONFIG+=debug`
 * release: `CONFIG+=release`
+* set the server version: `NYMEA_VERSION=1.2.3-custom`
 * build without tests: `CONFIG+=disabletesting`
 * enable code coverage reporting for tests: `CONFIG+=coverage`
 * build with address sanitizer: `CONFIG+=asan`
 * build (link) without rpath: `CONFIG+=norpath`
+* build only the nymea-plugininfo-compiler: `CONFIG+=piconly`
+* build only the libraries required for building nymea-plugins: `CONFIG+=minimal`
 
 ### nymea-plugins
 
@@ -156,6 +163,7 @@ This module supports the following build configurations:
 * release: `CONFIG+=release`
 * select only specific plugins to be built: `WITH_PLUGINS=plugin1 plugin2 ...`
 * exclude specific plugins from being built: `WITHOUT_PLUGINS=plugin1 plugin2 ...`
+
 
 
 ## Cross-compiling
@@ -184,7 +192,7 @@ $ crossbuilder setup-lxd
 
 ### Building
 
-Assuming you are running crossbuilder on a `amd64` Ubuntu machine, and you want to build a project for `armhf` debian `stretch` you can do following steps.
+Assuming you are running crossbuilder on a `amd64` Ubuntu machine, and you want to build a project for `armhf` debian `bookworm` you can do following steps.
 
 You clone a project repository (in this example the `nymea` project) and change to the project directory:
 ```bash
@@ -194,10 +202,12 @@ $ cd nymea
     
 If you run the crossbuilder the first time, we need to specify the architecture and the distribution we want to build packages for:
 ```bash
-$ crossbuilder -a armhf -u stretch
+$ crossbuilder -a armhf -u bookworm
 ```
+
+> Note: if your lxc container cannot reach the network and you have docker running in parallel on your host system, you can enable the networking for lxc containers with following command: `sudo iptables -F FORWARD && sudo iptables -P FORWARD ACCEPT`. Docker seem to destroyes the firewall rules for lxc containers: https://github.com/docker/for-linux/issues/103
     
-Crossbuilder will now contact the nymea lxc host server (https://jenkins.nymea.io:8443) and check if the available image for crosscompilation exists for the target achitecture and distribution (`stretch armhf`). If the image was found, a new local lxc container will be created for exactly this repository.
+Crossbuilder will now contact the nymea lxc host server (https://images.nymea.io:8443) and check if the available image for crosscompilation exists for the target achitecture and distribution (`bookworm armhf`). If the image was found, a new local lxc container will be created for exactly this repository.
 
 The next step for crossbuilder is mounting the current source directory into the new created container and will start building the packages (containing build dependencies installing). If you change the source code and want to run the build process again, crossbuilder will reuse this container and also the already created build outputs. If you change the build dependencies of the package you don't need to rebuild the container, you just need to run following command in order to install the missing build dependencies inside the container:
 ```bash
@@ -211,11 +221,11 @@ $ lxc list
 +--------------------------------------------------------+---------+-------------------+------+------------+-----------+
 |                          NAME                          |  STATE  |       IPV4        | IPV6 |    TYPE    | SNAPSHOTS |
 +--------------------------------------------------------+---------+-------------------+------+------------+-----------+
-| nymea-nymea-builder-stretch-amd64-armhf                | RUNNING | 10.0.1.106 (eth0) |      | PERSISTENT | 0         |
+| nymea-nymea-bookworm-amd64-armhf                       | RUNNING | 10.0.1.106 (eth0) |      | PERSISTENT | 0         |
 +--------------------------------------------------------+---------+-------------------+------+------------+-----------+
 ```
 
-Her you can see the created container for building nymea. The naming of the container is `<project>-nymea-builder-<distribution>-<host-architecture>-<target-architecture>`.
+Her you can see the created container for building nymea. The naming of the container is `<project>-nymea-<distribution>-<host-architecture>-<target-architecture>`.
 
 ### Cleaning the build
 
@@ -230,34 +240,43 @@ A compressed file containing the debian packages and also the source packages wi
 ```bash
 $ tar xfv debs_*
 
-libnymea1_0.9.0+201803271733~c348a6b~stretch_armhf.deb
-libnymea1-dev_0.9.0+201803271733~c348a6b~stretch_armhf.deb
-nymea_0.9.0+201803271733~c348a6b~stretch_armhf.deb
-nymead_0.9.0+201803271733~c348a6b~stretch_armhf.deb
-nymea-dbg_0.9.0+201803271733~c348a6b~stretch_armhf.deb
-nymea-tests_0.9.0+201803271733~c348a6b~stretch_armhf.deb
-nymea-translations_0.9.0+201803271733~c348a6b~stretch_all.deb
-source_repository/nymea_0.9.0+201803271733~c348a6b~stretch.dsc
-source_repository/nymea_0.9.0+201803271733~c348a6b~stretch_source.changes
-source_repository/nymea_0.9.0+201803271733~c348a6b~stretch.tar.xz
+libnymea1_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+libnymea1-dbgsym_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+libnymea-core_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+libnymea-core-dbgsym_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+libnymea-core-dev_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+libnymea-dev_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+libnymea-tests_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+libnymea-tests-dbgsym_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+libnymea-tests-dev_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+nymea_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+nymead_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+nymea-data_1.9.1+202402090827~cb960749~bookworm_all.deb
+nymead-dbgsym_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+nymea-dev-tools_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+nymea-dev-tools-dbgsym_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+nymea-sdk_1.9.1+202402090827~cb960749~bookworm_all.deb
+nymea-tests_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+nymea-tests-dbgsym_1.9.1+202402090827~cb960749~bookworm_armhf.deb
+nymea-translations_1.9.1+202402090827~cb960749~bookworm_all.deb
 ```
 
 The content will be extracted in the source directory. If you want to see the content of the resulting packages you can use the `dpkg` command:
 ```bash
-$ dpkg -c libnymea1_0.9.0+201803271733~c348a6b~stretch_armhf.deb
+$ dpkg -c libnymea1_1.9.1+202402090827~cb960749~bookworm_armhf.deb
 
-drwxr-xr-x root/root         0 2018-03-27 17:36 ./
-drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/
-drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/lib/
-drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/lib/arm-linux-gnueabihf/
--rw-r--r-- root/root    539272 2018-03-27 17:36 ./usr/lib/arm-linux-gnueabihf/libnymea.so.1.0.0
-drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/share/
-drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/share/doc/
-drwxr-xr-x root/root         0 2018-03-27 17:36 ./usr/share/doc/libnymea1/
--rw-r--r-- root/root      1436 2018-03-27 17:36 ./usr/share/doc/libnymea1/changelog.gz
--rw-r--r-- root/root      1942 2018-03-27 17:30 ./usr/share/doc/libnymea1/copyright
-lrwxrwxrwx root/root         0 2018-03-27 17:36 ./usr/lib/arm-linux-gnueabihf/libnymea.so.1 -> libnymea.so.1.0.0
-lrwxrwxrwx root/root         0 2018-03-27 17:36 ./usr/lib/arm-linux-gnueabihf/libnymea.so.1.0 -> libnymea.so.1.0.0
+drwxr-xr-x root/root         0 2024-02-09 09:34 ./
+drwxr-xr-x root/root         0 2024-02-09 09:34 ./usr/
+drwxr-xr-x root/root         0 2024-02-09 09:34 ./usr/lib/
+drwxr-xr-x root/root         0 2024-02-09 09:34 ./usr/lib/arm-linux-gnueabihf/
+-rw-r--r-- root/root   1138248 2024-02-09 09:34 ./usr/lib/arm-linux-gnueabihf/libnymea.so.1.0.0
+drwxr-xr-x root/root         0 2024-02-09 09:34 ./usr/share/
+drwxr-xr-x root/root         0 2024-02-09 09:34 ./usr/share/doc/
+drwxr-xr-x root/root         0 2024-02-09 09:34 ./usr/share/doc/libnymea1/
+-rw-r--r-- root/root      8435 2024-02-09 09:34 ./usr/share/doc/libnymea1/changelog.gz
+-rw-r--r-- root/root      1340 2020-08-07 07:56 ./usr/share/doc/libnymea1/copyright
+lrwxrwxrwx root/root         0 2024-02-09 09:34 ./usr/lib/arm-linux-gnueabihf/libnymea.so.1 -> libnymea.so.1.0.0
+lrwxrwxrwx root/root         0 2024-02-09 09:34 ./usr/lib/arm-linux-gnueabihf/libnymea.so.1.0 -> libnymea.so.1.0.0
 ```
 
 
@@ -275,7 +294,7 @@ If you run the crossbuilder a second time, you just need to run `crossbuilder`, 
 $ cat .crossbuilder/cache.conf
 
 TARGET_ARCH=armhf
-TARGET_UBUNTU=stretch
+TARGET_UBUNTU=bookworm
 ```
 
 ### Delete the container
@@ -292,7 +311,7 @@ If you want crossbuilder to deploy the packages to a remote machine and install 
 $ nano .crossbuilder/deploy.conf
 ```
 
-Here you can add the remote information of the target machine (in this example an `armhf stretch` machine running on `10.10.10.10` where you want to install the debian packages built with the `crosscompiler`.
+Here you can add the remote information of the target machine (in this example an `armhf bookworm` machine running on `10.10.10.10` where you want to install the debian packages built with the `crosscompiler`.
 
 > Note: the packages need to be already installed once on the target machine, since crossbuilder is just updating them, not installing them from scretch. If that is not the case, you can install them manually after crossbuilder copied them to the target and created the local repository: on the target `sudo dpkg -i /tmp/repo/*.deb`.
 
@@ -316,10 +335,10 @@ $ lxc list
 +--------------------------------------------------------+---------+-------------------+------+------------+-----------+
 |                          NAME                          |  STATE  |       IPV4        | IPV6 |    TYPE    | SNAPSHOTS |
 +--------------------------------------------------------+---------+-------------------+------+------------+-----------+
-| nymea-nymea-builder-stretch-amd64-armhf                | RUNNING | 10.0.1.106 (eth0) |      | PERSISTENT | 0         |
+| nymea-nymea-bookworm-amd64-armhf                       | RUNNING | 10.0.1.106 (eth0) |      | PERSISTENT | 0         |
 +--------------------------------------------------------+---------+-------------------+------+------------+-----------+
 
-$ lxc delete nymea-nymea-builder-stretch-amd64-armhf --force
+$ lxc delete nymea-nymea-bookworm-amd64-armhf --force
 ```
 
 
@@ -329,9 +348,18 @@ nymea can be built with yocto. For that, we offer a meta layer which can be foun
 
 This meta layer can be added to a yocto image and offers the following packages:
 
-* nymea-mqtt
-* nymea-networkmanager
-* nymea-remoteproxy
+* libnymea-networkmanager
+* nymea
+* nymea-app
+* nymea-experience-plugin-energy
 * nymea-gpio
-* nymead
+* nymea-mqtt
 * nymea-plugins
+* nymea-plugins-genericthings
+* nymea-plugins-modbus
+* nymea-plugins-zigbee
+* nymea-remoteproxy
+* nymea-system-plugin-systemd
+* nymea-zeroconf-plugin-avahi
+* nymea-zeroconf-plugin-dnssd
+* nymea-zigbee
