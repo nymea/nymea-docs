@@ -65,7 +65,7 @@
     <Row>
       <Col span={{'xs': 12, 'sm': 8, 'md': 8, 'lg': 8, 'xl': 8}} offset={{'xs': 0, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
         <header>
-          <h1>nymea GmbH</h1>
+          <h1>chargebyte austria GmbH</h1>
           <p>Development and distribution of hard- and software as well as software applications</p>
         </header>
         <p>Information in accordance with sec. 5 of the Austrian E-Commerce Act, sec. 14 of the Commercial Code, and sec. 63 of the Trade Regulation Act, and disclosure in accordance with sec. 25 of the Media Act</p>
@@ -86,7 +86,7 @@
       <Col span={{'xs': 12, 'sm': 4, 'md': 4, 'lg': 4, 'xl': 4}} offset={{'xs': 0, 'sm': 1, 'md': 1, 'lg': 1, 'xl': 1}}>
         <dl class="info">
           <dt>Registered Address</dt>
-          <dd>High Tech Campus Vienna, Gutheil-Schoder-Gasse 10, 1100 Wien</dd>
+          <dd>Handelskai 94-94, Millennium Tower 23/24 floor, 1200 Wien</dd>
 
           <dt>Managing Director</dt>
           <dd>Simon Seres</dd>
@@ -103,10 +103,6 @@
         <dl class="info">
           <dt>VAT ID</dt>
           <dd>ATU70200659</dd>
-
-          <dt>Phone</dt>
-          <dd>+43 1 9977068</dd>
-
         </dl>
       </Col>
     </Row>
