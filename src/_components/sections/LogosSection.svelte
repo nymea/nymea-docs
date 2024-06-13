@@ -17,21 +17,6 @@
       url: 'https://github.com/nymea',
       iconName: 'logo-github'
     },
-    {
-      title: 'Twitter',
-      url: 'https://twitter.com/nymea_io',
-      iconName: 'logo-twitter'
-    },
-    {
-      title: 'Facebook',
-      url: 'https://www.facebook.com/nymea.io',
-      iconName: 'logo-facebook'
-    },
-    {
-      title: 'YouTube',
-      url: 'https://www.youtube.com/user/gearupyourhome',
-      iconName: 'logo-youtube'
-    }
   ];
 </script>
 
