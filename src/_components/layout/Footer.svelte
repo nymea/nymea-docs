@@ -173,6 +173,12 @@
                 <li>
                   <a href="https://github.com/nymea" target="_blank" rel="noopener">Github</a>
                 </li>
+                <li>
+                  <a href="https://t.me/nymeacommunity" target="_blank" rel="noopener">Telegram</a>
+                </li>
+                <li>
+                  <a href="https://discord.gg/tX9YCpD" target="_blank" rel="noopener">Discord</a>
+                </li>
               </ul>
             </li>
           </ul>

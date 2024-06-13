@@ -113,7 +113,7 @@
         <Col span={{'xs': 12, 'sm': 6, 'md': 4, 'lg': 4, 'xl': 4}}>
           <p class="mission">Nymea strives to simplify communication for connected products. We are dedicated to open-source and we believe that transparency and openness is a better way to bind customers than to lock them in.</p>
           <div class="copyright">
-            <p>&copy; 2020 nymea GmbH &middot; All rights reserved.</p>
+            <p>&copy; 2024 chargebyte austria GmbH &middot; All rights reserved.</p>
           </div>
         </Col>
         <Col span={{'xs': 12, 'sm': 2, 'md': 2, 'lg': 2, 'xl': 2}} offset={{'xs': 0, 'sm': 5, 'md': 1, 'lg': 1, 'xl': 1}}>
@@ -175,9 +175,6 @@
               <span>Community</span>
               <ul>
                 <li>
-                  <a href="https://forum.nymea.io/" target="_blank" rel="noopener">Forum</a>
-                </li>
-                <li>
                   <a href="https://github.com/nymea" target="_blank" rel="noopener">Github</a>
                 </li>
                 <li>
@@ -187,13 +184,7 @@
                   <a href="https://discord.gg/tX9YCpD" target="_blank" rel="noopener">Discord</a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/nymea_io" target="_blank" rel="noopener">Twitter</a>
-                </li>
-                <li>
-                  <a href="https://www.facebook.com/nymea.io" target="_blank" rel="noopener">Facebook</a>
-                </li>
-                <li>
-                  <a href="https://www.youtube.com/user/gearupyourhome" target="_blank" rel="noopener">YouTube</a>
+                  <a href="https://forum.nymea.io/" target="_blank" rel="noopener">Forum</a>
                 </li>
               </ul>
             </li>
