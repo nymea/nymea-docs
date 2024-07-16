@@ -139,9 +139,6 @@
             <li>
               <a href={$url('/imprint')}>Imprint</a>
             </li>
-            <li>
-              <a href={$url('/contact')}>Contact</a>
-            </li>
           </ul>
         </Col>
         <Col span={{'xs': 12, 'sm': 2, 'md': 2, 'lg': 2, 'xl': 2}}>

@@ -96,6 +96,10 @@
 
           <dt>Commercial Court</dt>
           <dd>Vienna Commercial Court</dd>
+          
+          <dt>Contact</dt>
+          <dd>info (@) nymea.io</dd>
+          
         </dl>
       </Col>
       <!-- <Col middle span={{'xs': 12, 'md': 4}}> -->
