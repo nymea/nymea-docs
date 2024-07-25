@@ -21,58 +21,6 @@ enabled=false
 
 Offers the nymea API through a Bluetooth RFCOMM service. Requires Bluetooth hardware and Bluez installed. Enabling this option will expose the nymea API over Bluetooth. This way a nymea setup can be used without TCP/IP networking at all.
 
-### Section [Logs]
-
-```bash
-[Logs]
-logDBDriver=QSQLITE
-logDBHost=
-logDBMaxEntries=200000
-logDBName=/var/log/nymead.sqlite
-logDBPassword=
-logDBUser=
-```
-
-This section configures where the log database is stored. By default, this is SQLite but it can also be configured to log to other databases such as MySQL/MariaDB, PostgreSQL, OracleDB etc.
-
-Note that this requires the according Qt database backend plugin to be installed and the according database server must be set up prior to enabling it.
-
-An example to configure nymea to log into MySQL instead of SQLite:
-
-```bash
-[Logs]
-logDBDriver=QMYSQL
-logDBHost=127.0.0.1
-logDBMaxEntries=200000
-logDBName=nymea
-logDBPassword=nymea
-logDBUser=nymea
-```
-
-#### logDBDriver
-
-See the [Qt SQL Database Drivers documentation](https://doc.qt.io/qt-5/sql-driver.html) for a list of supported database drivers.
-
-#### logDBHost
-
-Specifies the host of the database server. For SQLite, this value is not used. For client/server based databases this normally is the IP address and port combination.
-
-#### logDBMaxEntries
-
-The maximum amount of database entries. If the database reaches the limit older entries will be deleted.
-
-#### logDBName
-
-The database name of the database to log to. For SQLite, this is a path to a local file. For client/server base databases this normally is the name of the database on the server which has to be created manually before attempting to start nymea with this configuration.
-
-#### logDBUser
-
-Username for the log database. For SQLite, this is a path to a local file. 
-
-#### logDBPassword
-
-Password for the log database. For SQLite, this value is not used.
-
 ### Section [SSL]
 
 ```bash
