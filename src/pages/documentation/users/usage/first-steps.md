@@ -40,7 +40,7 @@ If nymea:core is running on a headless system, nymea:app can be used from anothe
 or Laptop to configure the WiFi of the nymea:core system by connecting via Bluetooth.
 
 * In nymea:app, open the *Wireless setup* menu and wait for `BT WLAN Setup` to appear in the list.
-* Connecto to nymea:core by selecting it from the list.
+* Connect to nymea:core by selecting it from the list.
 * Once connected, nymea:core will start scanning for WiFi networks and present the result to nymea:app.
 * Select the preferred WiFi from the list and enter the password.
 * If everything went well, the nymea:core system is now connected to the WiFi.
