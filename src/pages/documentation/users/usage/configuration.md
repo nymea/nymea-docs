@@ -37,7 +37,7 @@ Tapping the "Change password" field allows to change the current password.
 
 #### Devices/Apps accessing nymea:core
 
-This list holds all the clients that have successfully authenticated to this nymea system. If a device has been stolen or lost, the authentication token can be removed here and with that this particular device will be locked out of the system and needs to authenticate again before accessing the system. Swipe or longpress an entry to reveal the delete button.
+This list holds all the clients that have successfully authenticated to this nymea system. If a device has been stolen or lost, the authentication token can be removed here and with that this particular device will be locked out of the system and needs to authenticate again before accessing the system. Swipe or long-press an entry to reveal the delete button.
 
 ### Network settings
 
@@ -76,7 +76,7 @@ For usage with nymea:app, TCP or WebSocket transports work equally. Due to the o
 
 This section also allows to configure the usage of SSL encryption per connection interface. It is strongly advised to keep both, SSL encryption and authentication enabled. However, when using clients that do not support SSL encryption it can be disabled here. Each interface can be configured to listen to only localhost connections (useful for e.g. scripts or nymea-cli on the nymea:core system), to any network interface or only to a particular network interface.
 
-Swipe an entry to the left or longpress on it to revleal the remove button and disable it.
+Swipe an entry to the left or long-press on it to reveal the remove button and disable it.
 
 > Note that removing the connection interface currently used will disconnect the connection immediately. The currently used connection interface is shown via the highlighted icon.
 
@@ -88,7 +88,7 @@ Nymea features an integrated MQTT broker. This section allows to configure it.
 
 #### MQTT server interfaces
 
-Similar to the Connection interfaces, this section allows to configure all the network interfaces and ports where the MQTT broker should be avaialbe. For each interface/port SSL encryption and authentication can be enabled or disabled. Longpress or swipe to the left in order to remove an interface. In order to use integration plugins that use MQTT, at least one MQTT server interface must be enabled.
+Similar to the Connection interfaces, this section allows to configure all the network interfaces and ports where the MQTT broker should be available. For each interface/port SSL encryption and authentication can be enabled or disabled. Long-press or swipe to the left in order to remove an interface. In order to use integration plugins that use MQTT, at least one MQTT server interface must be enabled.
 
 #### MQTT permissions
 
@@ -106,12 +106,12 @@ The ZigBee section allows to manage ZigBee networks within nymea. In order to us
 The following hardware adapters are supported:
 
 * [Texas Instruments](https://www.ti.com/product/CC2652R)
-    This adapter can be found in various shops, either without firmware or preflashed. A z-Stack based firmware is required on the adapter to work with nymea. When choosing an option, select the firmware for zigbee2mqtt which will work fine with nymea (zigbee2mqtt is not required) or manually flash the stick with a build of z-Stack
+    This adapter can be found in various shops, either without firmware or pre-flashed. A z-Stack based firmware is required on the adapter to work with nymea. When choosing an option, select the firmware for zigbee2mqtt which will work fine with nymea (zigbee2mqtt is not required) or manually flash the stick with a build of z-Stack
     * CC2652 (P/R/RB) - recommended option (e.g. the [slae.sh](https://slae.sh) or [Sonoff ZigBee 3.0 USB - Dongle-P](https://sonoff.tech/product/gateway-amd-sensors/sonoff-zigbee-3-0-usb-dongle-plus-p/) (Note: V2/Dongle-E is *not* supported)
     * CC253x
 
 * [Dresden Elektronik](https://www.dresden-elektronik.de/)
-    All phoscon models are supported, however, only ConBee can be auto-detected. Select baut rate 38400 for RaspBee modules during ZigBee network setup.
+    All phoscon models are supported, however, only ConBee can be auto-detected. Select baud rate 38400 for RaspBee modules during ZigBee network setup.
     * [ConBee](https://phoscon.de/en/conbee)
     * [ConBee II](https://phoscon.de/en/conbee2)
     * [RaspBee](https://phoscon.de/en/raspbee)
@@ -140,9 +140,9 @@ If a module does not get recognized due to missing hardware information (like JN
 
 #### Adding new ZigBee devices
 
-In order to add a new ZigBee device into a nymea managed network, the network needs to be opend for allowing new nodes to join the network. The default open time window is 120 seconds, but it can be extended if required or closed immediatly if desired.
+In order to add a new ZigBee device into a nymea managed network, the network needs to be opened for allowing new nodes to join the network. The default open time window is 120 seconds, but it can be extended if required or closed immediately if desired.
 
-Once the network is open, the pairing prodecure of the ZigBee device can be started and the node will join the network. Initiating the pairing procedure on the device may vary between different devices and manufacturers. Please refer to the manual of the device to learn how to start the pairing procedure.
+Once the network is open, the pairing procedure of the ZigBee device can be started and the node will join the network. Initiating the pairing procedure on the device may vary between different devices and manufacturers. Please refer to the manual of the device to learn how to start the pairing procedure.
 
 ![](/img/configuration/system-settings-zigbee-network-overview.png)
 
@@ -163,7 +163,7 @@ In order to remove a ZigBee node from the network, there are two possible option
 
 #### Removing / Resetting a ZigBee network
 
-In order to remove an entire network and all releated things within nymea, there are two possibilies.
+In order to remove an entire network and all related things within nymea, there are two possibilities.
 
 * **Removing the network**: By removing the network, the UART will be free again for other software to use and all ZigBee nodes, settings and related things will be removed permanent from the system.
 * **Factory reset network**: By factory resetting a network, all nodes and related things will be removed from the network. If the backend supports it, also all configuration on the ZigBee hardware will be wiped. The entire stack performs a restart and will start a new network, perform a new channel scan and pick a new network ID.
@@ -191,7 +191,7 @@ With the Z-Wave adapter connected to the nymea system, a new Z-Wave network can 
 
 #### Adding new Z-Wave devices
 
-In order to add a Z-Wave device into a nymea managed network, enter the network settings and press the "Add device" button. Once the network is waiting for the new device to join, the pairing prodecure of the Z-Wave device can be started and the node will join the network. Initiating the pairing procedure on the device may vary between different devices and manufacturers. Please refer to the manual of the device to learn how to start the pairing procedure.
+In order to add a Z-Wave device into a nymea managed network, enter the network settings and press the "Add device" button. Once the network is waiting for the new device to join, the pairing procedure of the Z-Wave device can be started and the node will join the network. Initiating the pairing procedure on the device may vary between different devices and manufacturers. Please refer to the manual of the device to learn how to start the pairing procedure.
 
 If nymea recognized the Z-Wave node, a new thing will show up automatically in the system and is ready to use. If a Z-Wave node appears but is listed as unrecognized device, an appropriate nymea integration plugin may be required.
 
@@ -205,7 +205,7 @@ In order to remove a Z-Wave node from the network, enter the Z-Wave settings and
 
 #### Removing / Resetting a Z-Wave network
 
-Z-Wave networks can be removed from nymea. This, however, will not reset the configuration of the Z-Wave controller. A network can be removed from one nymea instance and tranferred to another simply by removing it and creating it again on a different instance.
+Z-Wave networks can be removed from nymea. This, however, will not reset the configuration of the Z-Wave controller. A network can be removed from one nymea instance and transferred to another simply by removing it and creating it again on a different instance.
 
 In order to permanently remove the Z-Wave network from the controller, the "Factory reset controller" button may be used from the Z-Wave network settings. Please note that all devices connected to the Z-Wave network need to be factory reset in order to connect to another Z-Wave network again.
 
@@ -219,13 +219,72 @@ In order to use the debug interface, at least one web server interface needs to 
 
 > At this point nymea does not support server-side code execution like php or similar.
 
+### Modbus RTU
+
+The modbus RTU section allows to manage RS485 interfaces within nymea. In order to use modbus RTU integration plugins in nymea, a RS485 adapter (USB) or an internal RS485 serial port is required.
+
+![](/img/configuration/system-settings-modbus-rtu.png)
+
+#### Configure a new modbus RTU master
+
+In order to add a new modbus RTU master the server offers you the available internal and external connected (i.e. USB adapters) interfaces for communicating modbus RTU slaves.
+
+> In this example you can see one available internal RS485 serial port.
+
+![](/img/configuration/system-settings-modbus-rtu-add-master.png)
+
+Once you select the port you want to use as modbus RTU resource you can specify the port configurations.
+
+![](/img/configuration/system-settings-modbus-rtu-configure.png)
+
+Once the modbus RTU master has been set up, new modbus RTU devices can be added by configuring new things in nymea. While adding new modbus RTU things you can specify on which modbus slave ID and on which modbus RTU master the device can be found.
+
+> Important: if you remove and re-add the modbus RTU master, you need to reconfigure all modbus things which have been configured using the old, removed modbus RTU master. The devices will not be able to communicate until a new modbus RTU master has been assigned to them.
+
+#### Static modbus RTU platform configuration
+
+For platform maintainers there is an optional static configuration file which can be used for filtering out internal serial interfaces (i.E. HCI-UART or serial tty communication).
+
+The name of the file has to be `/etc/nymea/modbus-rtu-platform.conf` and the format look like following:
+
+> Note: only existing interfaces will be interpreted or filtered.
+
+```json
+{
+    "interfaces" : [
+        {
+            "name": "ttymxc0",
+            "description": "Debug UART",
+            "serialPort": "/dev/ttymxc0",
+            "usable": false
+        },
+        {
+            "name": "ttymxc1",
+            "description": "BT HCI-UART",
+            "serialPort": "/dev/ttymxc1",
+            "usable": false
+        },
+        {
+            "name": "ttymxc2",
+            "description": "RS485 interface",
+            "serialPort": "/dev/ttymxc2",
+            "usable": true
+        }
+    ]
+}
+```
+
+If a serial port is marked as `"usable": false` it will be filtered out an cannot be added as modbus RTU resource. If the port is marked as `"usable": true`, the description of the configuration file will be shown to the user in the app.
+
 ### Plugins
 
 This section lists all the installed integration plugins. Some integration plugins may offer a plugin wide configuration which can be accessed here.
 
 ![](/img/configuration/system-settings-plugins.png)
 
-### Deverloper tools
+
+
+### Developer tools
 
 The developer tools section hosts options specific to development and trouble shooting.
 
@@ -245,9 +304,9 @@ When system updates are available, they will be listed here and can be updated i
 
 #### Testing and experimental
 
-For users that want to test prereleases of nymea software, the configuration button on the upper right allows to enable additional repositories.
+For users that want to test pre-releases of nymea software, the configuration button on the upper right allows to enable additional repositories.
 
-> Please be aware that using testing or experimental repositories is likely to introduce issues into a nymea system occationally. Please only enable those sections if acknowledging this and being ready to repair things.
+> Please be aware that using testing or experimental repositories is likely to introduce issues into a nymea system occasionally. Please only enable those sections if acknowledging this and being ready to repair things.
 
 ### Log viewer
 
@@ -257,7 +316,7 @@ The log viewer shows everything that happens in the nymea system. Every button p
 
 ### About nymea:core
 
-The last section in the system setttings shows version numbers, license information and other useful details that might be of interest when reporting issues.
+The last section in the system settings shows version numbers, license information and other useful details that might be of interest when reporting issues.
 
 ![](/img/configuration/system-settings-about.png)
 
