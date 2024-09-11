@@ -19,8 +19,8 @@ Please pick one of the options below:
 
 ### Raspberry Pi images
 
-* [nymea:core image](https://downloads.nymea.io/images/raspberrypi/nymea-core-image-raspios-bullseye-latest.zip) for headless Raspberry Pis.
-* [nymea:kiosk image](https://downloads.nymea.io/images/raspberrypi/nymea-kiosk-image-raspios-bullseye-latest.zip) containing nymea:core and nymea:app for Raspberry Pis with touchscreen or display.
+* [nymea:core image](https://downloads.nymea.io/images/raspberrypi/nymea-core-image-raspios-bookworm-latest.zip) for headless Raspberry Pis.
+* [nymea:kiosk image](https://downloads.nymea.io/images/raspberrypi/nymea-kiosk-image-raspios-bookworm-latest.zip) containing nymea:core and nymea:app for Raspberry Pis with touchscreen or display.
 
 After downloading, this image needs to be written to an SD card. This step varies between operating systems.
 
@@ -157,3 +157,24 @@ Once this command completes, nymea:core should be up and running.
 To install nymea:core on other distributions or architectures, nymea:core needs to be built manually from the sources.
 Please see the [developer section](/documentation/developers/build-nymea) for instructions on how to build nymea:core.
 
+
+## Joining the beta tests
+
+> Note: Running experimental or testing builds of nymea is not recommended for users expecting a stable setup.
+
+In order to help with testing pre-releases of nymea or give early feedback on features which are still in development, it is possible to install packages that are still under development and not released to stable yet.
+
+We have 3 different stability channels:
+
+* `stable`: The current stable release which is also referring to the current `master` branch on each repository. This is the default repository described in the [Using apt-get](#using-apt-get) section
+* `landing`: The next candidate for the next release. You may also call it beta release. This is where the testing for the new releases happens. 
+* `experimental`: The current construction zone. Might be very unstable. Using this may break your setup, only use it if you know what you are doing and be prepared to reset everything related to nymea.
+
+Assuming you already added the stable repository, you can add following lines in the  `/etc/apt/sources.list.d/nymea.list` file, depending on the channel you want to use.
+
+> Note: replace `$(lsb_release -s -c)` with your distribution name, like `bookworm`.
+
+```bash
+deb http://repository.nymea.io/landing $(lsb_release -s -c) main
+deb http://repository.nymea.io/experimental $(lsb_release -s -c) main
+```

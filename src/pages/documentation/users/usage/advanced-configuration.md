@@ -29,7 +29,7 @@ certificate=
 certificate-key=
 ```
 
-The SSL section allows to provide an SSL certificate which will be used for all serverfaces, such as API interfaces, the web server and the MQTT server. If nymea is started for the first time without any SSL certification configured, a new self-signed certificate will be generated.
+The SSL section allows to provide an SSL certificate which will be used for all server interfaces, such as API interfaces, the web server and the MQTT server. If nymea is started for the first time without any SSL certification configured, a new self-signed certificate will be generated.
 
 ### Section [LoggingRules]
 

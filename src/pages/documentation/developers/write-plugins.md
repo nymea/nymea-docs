@@ -25,7 +25,7 @@ Experience plugins allow to inject custom functionality into nymea. Unlike devic
 
 * Extend the JSON-RPC API
 
-If nymea's intended use is a very specific use case, with a custom client application tailored for this very specific use case, addditional JSONRPC API can be exposed. One example could be a service API which might be used to expose service data for all connected devices and provide that to a service app.
+If nymea's intended use is a very specific use case, with a custom client application tailored for this very specific use case, additional JSONRPC API can be exposed. One example could be a service API which might be used to expose service data for all connected devices and provide that to a service app.
 
 * Directly interact with multiple devices
 
