@@ -17,7 +17,7 @@ Once the build succeeded, the build directory will contain the plugin file named
 
 ### Manual compilation
 
-If QtCreator is not used, the plugin can be compiled manually on the command line. It is recommended to create a new build directory instead of directly building in the source directory. For example as a subdirectory named `builddir` in the source directory. From there it is requried to run `qmake` and `make`:
+If QtCreator is not used, the plugin can be compiled manually on the command line. It is recommended to create a new build directory instead of directly building in the source directory. For example as a subdirectory named `builddir` in the source directory. From there it is required to run `qmake` and `make`:
 
 ```bash
 $ cd /path/to/plugin/source
@@ -192,7 +192,7 @@ For C++ plugins this would already produce a compile error, however, if a plugin
 The debug output would also tell you about this in such a way:
 
 ```bash
-W: ThingManager: ThingClass Example claims to implement interface "power" but doesnt implement state "power".
+W: ThingManager: ThingClass Example claims to implement interface "power" but doesn't implement state "power".
 ```
 
 Another way to discover those issues is to run `nymea-plugininfocompiler` on the json file (this is ran automatically during building of C++ plugins)

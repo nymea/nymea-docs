@@ -25,7 +25,7 @@ on and off, and a smart meter that allows to monitor the power consumption on th
 
 ## General purpose devices
 
-Sometimes there is a need to connect gneral purpose devices. Examples for such devices are smart plugs or GPIOs. A smart plug for example
+Sometimes there is a need to connect general purpose devices. Examples for such devices are smart plugs or GPIOs. A smart plug for example
 will be shown in nymea as power socket and can be turned on and off. However, in practice, a user will connect some other device to the
 smart plug, for instance a light. In order to also have the light showing up in nymea as an individual thing, a generic light can be created
 and connected to the smart plug in nymea. When nymea:app is then used to switch the light, nymea will know that it needs to control power
