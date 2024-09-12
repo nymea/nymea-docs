@@ -51,8 +51,7 @@ More information on how to manage ZigBee devices with nymea can be found in the 
 
 * Remote connection
 * Push-notifications
-	 * Available on Android, iOS and UBPorts
-* Alexa, Google Assistant, IFTTT coming soon ...
+	* Available on Android, iOS and UBPorts
 * IoT device services
     * Integrated webserver
         * Serves nymea-internal services (e.g. debug interface, see below)

@@ -7,6 +7,8 @@ title: Python
 
 ## nymea-cli
 
+> Note: the nymea-cli tool is deprecated and will not be supported any more.
+
 The *nymea-cli* command-line interface is an admin tool written in Python to communicate with the [*nymea*](https://github.com/nymea/nymea) [JSONRPC API](raw-api) and test functionality of *nymea*.
 
 The nymea-cli does *not* provide a python library ready to be used at this point. Instead it should be seen as an example of
