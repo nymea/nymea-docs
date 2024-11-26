@@ -58,8 +58,8 @@ Ubuntu:
 
 * Ubuntu 20.04 ("focal")
 * Ubuntu 22.04 ("jammy")
-* Ubuntu 23.10 ("mantic")
 * Ubuntu 24.04 ("noble")
+* Ubuntu 24.10 ("oracular")
 
 
 For each of the repositories the following architectures are provided:
