@@ -45,7 +45,7 @@
     "clipboard": "^2.0.6",
     "highlight.js": "^10.4.1",
     "markdown-it-replace-link": "^1.0.1",
-    "svelte": "^3.23.0",
+    "svelte": "^3.49.0",
     "svelte-waypoint": "^0.1.4"
   }
 }
