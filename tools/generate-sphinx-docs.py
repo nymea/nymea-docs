@@ -77,11 +77,15 @@ def clone_or_update(name, url, branch):
     SOURCE_CACHE.mkdir(parents=True, exist_ok=True)
     target = SOURCE_CACHE / name
     if target.exists():
-        repo = git.Repo(target)
         try:
-            repo.git.fetch("origin", "+refs/heads/*:refs/remotes/origin/*", "--tags")
-        except git.GitCommandError as error:
-            print(f"Warning: could not refresh {name}; using cached checkout. {error}")
+            repo = git.Repo(target)
+            try:
+                repo.git.fetch("origin", "+refs/heads/*:refs/remotes/origin/*", "--tags")
+            except git.GitCommandError as error:
+                print(f"Warning: could not refresh {name}; using cached checkout. {error}")
+        except git.InvalidGitRepositoryError:
+            shutil.rmtree(target)
+            repo = git.Repo.clone_from(url, target)
     else:
         repo = git.Repo.clone_from(url, target)
     try:
