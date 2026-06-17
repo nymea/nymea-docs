@@ -1,3 +1,6 @@
 [build]
-  command = "make generate html"
+  command = "git fetch --unshallow --tags 2>/dev/null || git fetch --tags; bash tools/build-all-versions.sh"
   publish = "public/"
+
+[build.environment]
+  MAX_VERSIONS = "5"
