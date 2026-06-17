@@ -1,0 +1,336 @@
+/* ===== Dark mode: nymea color variables ===== */
+html[data-theme=dark] {
+    --pst-color-primary:        #57baae;
+    --pst-color-secondary:      #5ccd95;
+    --pst-color-link:           #57baae;
+    --pst-color-link-hover:     #5ccd95;
+    --pst-color-background:     #1e1e1e;
+    --pst-color-on-background:  #252a31;  /* admonition / card surfaces */
+    --pst-color-surface:        #252a31;
+    --pst-color-on-surface:     #2d3340;
+    --pst-color-text-base:      #e6edf3;
+    --pst-color-text-muted:     gray;
+    --pst-color-muted:          gray;
+    --pst-color-border:         #4b5563;
+    --pst-color-border-muted:   #333c47;
+    --pst-color-shadow:         rgba(0, 0, 0, 0.4);
+    --pst-color-inline-code:    #5ccdcd;
+    --pst-color-heading:        #e6edf3;
+    --pst-color-target:         rgba(87, 186, 174, 0.15);
+}
+
+/* ===== Light mode: nymea color variables ===== */
+html[data-theme=light] {
+    --pst-color-primary:        #336f69;
+    --pst-color-link:           #336f69;
+    --pst-color-link-hover:     #27615a;
+    --pst-color-inline-code:    #27615a;
+}
+
+/* ===== Inline code ===== */
+code.literal,
+tt.literal {
+    background: var(--pst-color-surface, #252a31);
+    border: 1px solid var(--pst-color-border, #4b5563);
+    border-radius: 3px;
+    color: var(--pst-color-inline-code, #5ccdcd);
+    font-family: monospace;
+    font-size: 0.92em;
+    padding: 0.12em 0.34em;
+    text-shadow: none;
+    white-space: nowrap;
+}
+
+code.literal span.pre,
+tt.literal span.pre {
+    color: inherit;
+}
+
+/* ===== Search field ===== */
+.bd-search:focus-within {
+    border-color: #cd5c5c;
+    box-shadow: 0 0 0 .1875rem rgba(205, 92, 92, 0.35);
+}
+
+.search-button-field:hover,
+.search-button-field:focus-visible {
+    border-color: #cd5c5c;
+    box-shadow: 0 0 0 .1875rem rgba(205, 92, 92, 0.35);
+}
+
+/* ===== Navbar logo ===== */
+.navbar-brand img.logo__image {
+    height: 8rem;
+    width: auto;
+}
+
+/* ===== Page width ===== */
+.bd-page-width {
+    max-width: 100rem;
+}
+
+:root {
+    --pst-sidebar-secondary: 14rem;
+}
+
+/* ===== Code blocks: shared layout (both modes) ===== */
+div[class*="highlight-"],
+.nymea-code-block,
+table.highlighttable {
+    border-radius: 4px;
+    margin: 1em 0;
+    overflow: hidden;
+    position: relative;
+}
+
+div[class*="highlight-"] div.highlight,
+table.highlighttable div.highlight {
+    border: 0;
+    box-shadow: none;
+    margin: 0;
+}
+
+div.highlight pre,
+.nymea-code-block pre,
+table.highlighttable pre,
+td.code div.highlight pre {
+    font-size: 0.92em;
+    line-height: 1.55;
+    margin: 0;
+    overflow-x: auto;
+    padding: 0.9em 3.2em 0.9em 1em;
+    text-shadow: none;
+    white-space: pre;
+    width: auto;
+}
+
+.nymea-code-block code {
+    font-family: monospace;
+    font-size: inherit;
+}
+
+/* ===== Code blocks: light mode ===== */
+html[data-theme=light] div[class*="highlight-"],
+html[data-theme=light] .nymea-code-block,
+html[data-theme=light] table.highlighttable {
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    box-shadow: none;
+}
+
+html[data-theme=light] div[class*="highlight-"] div.highlight,
+html[data-theme=light] table.highlighttable div.highlight {
+    background: transparent;
+}
+
+html[data-theme=light] div.highlight pre,
+html[data-theme=light] .nymea-code-block pre,
+html[data-theme=light] table.highlighttable pre,
+html[data-theme=light] td.code div.highlight pre {
+    background: transparent;
+    color: #24292f;
+}
+
+/* ===== Code blocks: dark mode ===== */
+html[data-theme=dark] div[class*="highlight-"],
+html[data-theme=dark] .nymea-code-block,
+html[data-theme=dark] table.highlighttable {
+    background: #1f2328;
+    border: 1px solid #4b5563;
+    box-shadow: none;
+}
+
+html[data-theme=dark] div[class*="highlight-"] div.highlight,
+html[data-theme=dark] table.highlighttable div.highlight {
+    background: transparent;
+}
+
+html[data-theme=dark] div.highlight pre,
+html[data-theme=dark] .nymea-code-block pre,
+html[data-theme=dark] table.highlighttable pre,
+html[data-theme=dark] td.code div.highlight pre {
+    background: transparent;
+    color: #e6edf3;
+}
+
+html[data-theme=dark] .nymea-code-block code {
+    color: inherit;
+}
+
+/* ===== Syntax highlighting: nymea palette (dark mode only) ===== */
+html[data-theme=dark] .highlight .c,
+html[data-theme=dark] .highlight .cm,
+html[data-theme=dark] .highlight .c1 {
+    color: gray !important;
+    font-style: italic;
+}
+
+html[data-theme=dark] .highlight .k,
+html[data-theme=dark] .highlight .kc,
+html[data-theme=dark] .highlight .kd,
+html[data-theme=dark] .highlight .kn,
+html[data-theme=dark] .highlight .kp,
+html[data-theme=dark] .highlight .kr,
+html[data-theme=dark] .highlight .kt,
+html[data-theme=dark] .highlight .ow {
+    color: #cd5c5c !important;
+    font-weight: normal;
+}
+
+html[data-theme=dark] .highlight .s,
+html[data-theme=dark] .highlight .s1,
+html[data-theme=dark] .highlight .s2,
+html[data-theme=dark] .highlight .sb,
+html[data-theme=dark] .highlight .sc,
+html[data-theme=dark] .highlight .sd,
+html[data-theme=dark] .highlight .se,
+html[data-theme=dark] .highlight .sh,
+html[data-theme=dark] .highlight .si,
+html[data-theme=dark] .highlight .sr,
+html[data-theme=dark] .highlight .ss {
+    color: #5ccdcd !important;
+}
+
+html[data-theme=dark] .highlight .m,
+html[data-theme=dark] .highlight .mi,
+html[data-theme=dark] .highlight .mf,
+html[data-theme=dark] .highlight .mh,
+html[data-theme=dark] .highlight .mo {
+    color: #5c95cd !important;
+}
+
+html[data-theme=dark] .highlight .nf {
+    color: #cd955c !important;
+}
+
+html[data-theme=dark] .highlight .nc {
+    color: #cd5ccd !important;
+}
+
+html[data-theme=dark] .highlight .nt {
+    color: #5ccd95 !important;
+}
+
+html[data-theme=dark] .highlight .na {
+    color: #95cd5c !important;
+}
+
+html[data-theme=dark] .highlight .n,
+html[data-theme=dark] .highlight .nb,
+html[data-theme=dark] .highlight .bp,
+html[data-theme=dark] .highlight .o,
+html[data-theme=dark] .highlight .p {
+    color: #e6edf3 !important;
+    font-weight: normal;
+}
+
+/* ===== Tab widget ===== */
+.nymea-tabs {
+    margin: 1em 0;
+}
+
+.nymea-tab-list {
+    border-bottom: 1px solid var(--pst-color-border, #4b5563);
+    display: flex;
+    gap: 0.35em;
+    margin-bottom: 0.75em;
+}
+
+.nymea-tab {
+    background: var(--pst-color-surface, #252a31);
+    border: 1px solid rgba(87, 186, 174, 0.4);
+    border-bottom: 0;
+    border-radius: 4px 4px 0 0;
+    color: #57baae;
+    cursor: pointer;
+    font-size: 0.9em;
+    padding: 0.5em 0.75em;
+}
+
+.nymea-tab[aria-selected="true"] {
+    background: #57baae;
+    border-color: #57baae;
+    color: #fff;
+}
+
+.nymea-tab-panel[hidden] {
+    display: none;
+}
+
+.nymea-tab-panel p {
+    margin-bottom: 0.75em;
+}
+
+/* ===== Copy button ===== */
+.nymea-copy-code {
+    background: #336f69;
+    border: 1px solid #57baae;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    line-height: 0;
+    place-items: center;
+    height: 2em;
+    padding: 0;
+    position: absolute;
+    right: 0.6em;
+    top: 0.6em;
+    width: 2em;
+}
+
+.nymea-copy-code:hover,
+.nymea-copy-code:focus {
+    background: #27615a;
+}
+
+.nymea-copy-icon {
+    background-color: currentColor;
+    display: block;
+    height: 0.95em;
+    position: relative;
+    transform: none;
+    width: 0.95em;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H10V7h9v14z'/%3E%3C/svg%3E") no-repeat center / contain;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H10V7h9v14z'/%3E%3C/svg%3E") no-repeat center / contain;
+    pointer-events: none;
+}
+
+.nymea-copy-code-done .nymea-copy-icon {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='m9.0 16.2-4.2-4.2-1.4 1.4 5.6 5.6L21 6.6l-1.4-1.4z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='m9.0 16.2-4.2-4.2-1.4 1.4 5.6 5.6L21 6.6l-1.4-1.4z'/%3E%3C/svg%3E");
+    transform: translateY(-0.06em);
+}
+
+/* ===== Images ===== */
+a.nymea-doc-image {
+    background: transparent;
+    display: block;
+}
+
+img.nymea-doc-image {
+    background: transparent;
+    border-radius: 4px;
+    display: block;
+    height: auto;
+    margin: 1.2em auto 1.6em;
+    max-width: 100%;
+    width: 70% !important;
+}
+
+/* ===== Environment table ===== */
+table.nymea-env-table {
+    margin: 1.2em 0 1.6em;
+    table-layout: fixed;
+    width: 100%;
+}
+
+table.nymea-env-table th:first-child,
+table.nymea-env-table td:first-child {
+    width: 30%;
+}
+
+table.nymea-env-table th:last-child,
+table.nymea-env-table td:last-child {
+    width: 70%;
+}

@@ -1,0 +1,185 @@
+.. _integration-onewire:
+
+Connect one-wire based temperature sensors and switches.
+
+**Categories:** sensor, diy
+
+**Technologies:** one-wire
+
+One-Wire
+========
+
+One-Wire
+--------
+
+
+This integration plugin allows to integrate one-wire devices like temperature sensors and switches.
+
+Supported Things
+----------------
+
+
+* OWFS Interface
+
+::
+
+   * Gateway device
+
+::
+
+   * Initializes OWFS
+
+* Temperature Sensors
+
+::
+
+   * Family Code 10
+
+::
+
+   * DS18S20
+
+::
+
+   * DS1820
+
+::
+
+   * DS18S20-PAR
+
+::
+
+   * DS1920
+
+::
+
+   * Family Code 22
+
+::
+
+   * DS1822
+
+::
+
+   * DS1822-PAR
+
+::
+
+   * Family Code 28
+
+::
+
+   * DS18B20
+
+::
+
+   * DS18B20-PAR
+
+::
+
+   * DS18B20X
+
+::
+
+   * Family Code 3B
+
+::
+
+   * DS1825
+
+* Temperature and Humidity Sensors
+
+::
+
+   * Familiy Code 26
+
+::
+
+   *DS2834
+
+* Switches
+
+::
+
+   * Family Code 05
+
+::
+
+   * Single channel switch
+
+::
+
+   * DS2405
+
+::
+
+   * Family Code 12
+
+::
+
+   * Dual channel switch
+
+::
+
+   * DS2406
+
+::
+
+   * DS2407
+
+::
+
+   * Family Code 3A
+
+::
+
+   * Dual channel switch
+
+::
+
+   * DS2413
+
+::
+
+   * Family Code 29
+
+::
+
+   * Eight channel switch
+
+::
+
+   * DS2408
+
+        
+Usage
+-----
+
+
+OWFS Interface
+--------------
+
+First step is to setup the "One wire interface". During the device setup it is required to enter the OWFS init arguments. Default arguments are "--i2c=ALL:ALL", means OWFS is about to scan for one-wire bus masters on all I2C interfaces.
+
+You can simulate one-wire device with following init argument: "--fake=10,22,28,05"
+
+More about init arguments here: https://www.owfs.org
+
+W1 Kernel Driver
+----------------
+
+Install the kernel driver w1. Raspberry Pi users can use rasp-config to enable 'one wire' which enables W1. There are not further steps necessary, temperature sensors will be discovered if the driver has been loaded successfully.
+
+
+Requirements
+------------
+
+
+* The package “nymea-plugin-onewire” must be installed.
+
+
+More
+----
+
+
+This plug-in uses "OWFS" the one-wire file system: https://owfs.org

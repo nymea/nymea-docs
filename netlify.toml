@@ -1,0 +1,3 @@
+[build]
+  command = "make generate html"
+  publish = "public/"

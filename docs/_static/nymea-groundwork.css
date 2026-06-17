@@ -1,0 +1,284 @@
+/* Keep Groundwork's layout, but make code blocks readable in nymea docs. */
+div.body a {
+    color: #418b83;
+}
+
+div.body a:visited {
+    color: #336f69;
+}
+
+div.body a:hover {
+    color: #27615a;
+}
+
+div.sphinxsidebar a,
+a.headerlink {
+    color: #7bc09a;
+}
+
+div.sphinxsidebar a:hover,
+a.headerlink:hover {
+    color: #59baae;
+}
+
+div.sphinxsidebar {
+    bottom: 0;
+    display: flex;
+    top: 0;
+}
+
+div.sphinxsidebarwrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    overflow: visible;
+}
+
+div.sphinxsidebarwrapper > div:first-child {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+div.sphinxsidebarwrapper > div:first-child > ul {
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 0.4em;
+}
+
+div.sphinxsidebarwrapper > div:not(:first-child) {
+    flex: 0 0 auto;
+}
+
+div.sphinxsidebar h3,
+div.sphinxsidebar h4 {
+    border-radius: 0;
+    box-sizing: border-box;
+    clip-path: none;
+    margin-left: 0;
+    width: 100%;
+}
+
+div.body code.literal,
+div.body tt.literal {
+    background: #252a31;
+    border: 1px solid #4b5563;
+    border-radius: 3px;
+    color: #e6edf3;
+    font-family: monospace;
+    font-size: 0.92em;
+    padding: 0.12em 0.34em;
+    text-shadow: none;
+    white-space: nowrap;
+}
+
+div.body code.literal span.pre,
+div.body tt.literal span.pre {
+    color: inherit;
+}
+
+div.body div[class*="highlight-"],
+div.body .nymea-code-block,
+div.body table.highlighttable {
+    background: #1f2328;
+    border: 1px solid #4b5563;
+    border-radius: 4px;
+    box-shadow: none;
+    margin: 1em 0;
+    overflow: hidden;
+    position: relative;
+}
+
+div.body div[class*="highlight-"] div.highlight,
+div.body table.highlighttable div.highlight {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    margin: 0;
+}
+
+div.body div.highlight pre,
+div.body .nymea-code-block pre,
+div.body table.highlighttable pre,
+div.body td.code div.highlight pre {
+    background: transparent;
+    color: #e6edf3;
+    font-size: 0.92em;
+    line-height: 1.55;
+    margin: 0;
+    overflow-x: auto;
+    padding: 0.9em 3.2em 0.9em 1em;
+    text-shadow: none;
+    white-space: pre;
+    width: auto;
+}
+
+div.body .nymea-code-block code {
+    color: inherit;
+    font-family: monospace;
+    font-size: inherit;
+}
+
+div.body .nymea-tabs {
+    margin: 1em 0;
+}
+
+div.body .nymea-tab-list {
+    border-bottom: 1px solid #4b5563;
+    display: flex;
+    gap: 0.35em;
+    margin-bottom: 0.75em;
+}
+
+div.body .nymea-tab {
+    background: #ecf0f3;
+    border: 1px solid #9fb8b3;
+    border-bottom: 0;
+    border-radius: 4px 4px 0 0;
+    color: #27615a;
+    cursor: pointer;
+    font-size: 0.9em;
+    padding: 0.5em 0.75em;
+}
+
+div.body .nymea-tab[aria-selected="true"] {
+    background: #336f69;
+    border-color: #336f69;
+    color: #fff;
+}
+
+div.body .nymea-tab-panel[hidden] {
+    display: none;
+}
+
+div.body .nymea-tab-panel p {
+    margin-bottom: 0.75em;
+}
+
+div.body .nymea-copy-code {
+    background: #336f69;
+    border: 1px solid #59baae;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    line-height: 0;
+    place-items: center;
+    height: 2em;
+    padding: 0;
+    position: absolute;
+    right: 0.6em;
+    top: 0.6em;
+    width: 2em;
+}
+
+div.body .nymea-copy-code:hover,
+div.body .nymea-copy-code:focus {
+    background: #27615a;
+}
+
+div.body .nymea-copy-icon {
+    background-color: currentColor;
+    display: block;
+    height: 0.95em;
+    position: relative;
+    transform: none;
+    width: 0.95em;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H10V7h9v14z'/%3E%3C/svg%3E") no-repeat center / contain;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H10V7h9v14z'/%3E%3C/svg%3E") no-repeat center / contain;
+    pointer-events: none;
+}
+
+div.body .nymea-copy-code-done .nymea-copy-icon {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='m9.0 16.2-4.2-4.2-1.4 1.4 5.6 5.6L21 6.6l-1.4-1.4z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='m9.0 16.2-4.2-4.2-1.4 1.4 5.6 5.6L21 6.6l-1.4-1.4z'/%3E%3C/svg%3E");
+    transform: translateY(-0.06em);
+}
+
+div.body .highlight .c,
+div.body .highlight .cm,
+div.body .highlight .c1 {
+    color: #8b949e !important;
+    font-style: italic;
+}
+
+div.body .highlight .k,
+div.body .highlight .kc,
+div.body .highlight .kd,
+div.body .highlight .kn,
+div.body .highlight .kp,
+div.body .highlight .kr,
+div.body .highlight .kt,
+div.body .highlight .ow {
+    color: #ff7b72 !important;
+    font-weight: normal;
+}
+
+div.body .highlight .s,
+div.body .highlight .s1,
+div.body .highlight .s2,
+div.body .highlight .sb,
+div.body .highlight .sc,
+div.body .highlight .sd,
+div.body .highlight .se,
+div.body .highlight .sh,
+div.body .highlight .si,
+div.body .highlight .sr,
+div.body .highlight .ss {
+    color: #a5d6ff !important;
+}
+
+div.body .highlight .m,
+div.body .highlight .mi,
+div.body .highlight .mf,
+div.body .highlight .mh,
+div.body .highlight .mo {
+    color: #79c0ff !important;
+}
+
+div.body .highlight .na,
+div.body .highlight .nc,
+div.body .highlight .nf,
+div.body .highlight .nt {
+    color: #d2a8ff !important;
+}
+
+div.body .highlight .n,
+div.body .highlight .nb,
+div.body .highlight .bp,
+div.body .highlight .o,
+div.body .highlight .p {
+    color: #e6edf3 !important;
+    font-weight: normal;
+}
+
+div.body img.nymea-doc-image {
+    background: #444;
+    border: 1px solid #5d6673;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.24);
+    display: block;
+    height: auto;
+    margin: 1.2em 0 1.6em;
+    max-width: 100%;
+}
+
+div.body table.nymea-env-table {
+    margin: 1.2em 0 1.6em;
+    table-layout: fixed;
+    width: 100%;
+}
+
+div.body table.nymea-env-table th:first-child,
+div.body table.nymea-env-table td:first-child {
+    width: 30%;
+}
+
+div.body table.nymea-env-table th:last-child,
+div.body table.nymea-env-table td:last-child {
+    width: 70%;
+}
