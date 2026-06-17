@@ -31,6 +31,12 @@ html_theme_options = {
     "use_repository_button": False,
     "pygments_light_style": "tango",
     "pygments_dark_style": "monokai",
+    "switcher": {
+        "json_url": "/switcher.json",
+        "version_match": os.environ.get("DOCS_VERSION", "latest"),
+    },
+    "navbar_end": ["version-switcher"],
+    "show_version_warning_banner": True,
 }
 
 
