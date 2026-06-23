@@ -16,7 +16,6 @@ Runtime configuration
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 70
 
    * - Variable
      - Description
@@ -40,7 +39,6 @@ Integration plugins
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 70
 
    * - Variable
      - Description
@@ -58,7 +56,6 @@ Platform plugins
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 70
 
    * - Variable
      - Description
@@ -76,7 +73,6 @@ API keys plugins
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 70
 
    * - Variable
      - Description
@@ -94,7 +90,6 @@ Experience plugins
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 70
 
    * - Variable
      - Description
@@ -112,7 +107,6 @@ Z-Wave
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 70
 
    * - Variable
      - Description
@@ -127,7 +121,6 @@ Other
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 70
 
    * - Variable
      - Description

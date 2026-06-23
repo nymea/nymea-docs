@@ -321,16 +321,14 @@ img.nymea-doc-image {
 /* ===== Environment table ===== */
 table.nymea-env-table {
     margin: 1.2em 0 1.6em;
-    table-layout: fixed;
+    table-layout: auto;
     width: 100%;
 }
 
+/* Size the variable-name column to its content (longest name, one line);
+   the description column takes the remaining width. */
 table.nymea-env-table th:first-child,
 table.nymea-env-table td:first-child {
-    width: 30%;
-}
-
-table.nymea-env-table th:last-child,
-table.nymea-env-table td:last-child {
-    width: 70%;
+    white-space: nowrap;
+    width: 1%;
 }
