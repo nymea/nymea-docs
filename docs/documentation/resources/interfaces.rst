@@ -19,6 +19,12 @@ accesscontrol
      ]
    }
 
+Used in:
+
+* `useraccesscontrol <#interface-useraccesscontrol>`__
+
+  * `fingerprintreader <#interface-fingerprintreader>`__
+
 .. _interface-account:
 
 account
@@ -99,6 +105,10 @@ Simple awnings which can be opened and closed. Note that awnings operate inverte
 
 See also: `closable <#interface-closable>`__
 
+Used in:
+
+* `extendedawning <#interface-extendedawning>`__
+
 .. _interface-barcodescanner:
 
 barcodescanner
@@ -162,6 +172,11 @@ battery
      ]
    }
 
+Used in:
+
+* `electricvehicle <#interface-electricvehicle>`__
+* `energystorage <#interface-energystorage>`__
+
 .. _interface-blind:
 
 blind
@@ -177,6 +192,12 @@ Simple blinds which can be opened and closed.
    }
 
 See also: `closable <#interface-closable>`__
+
+Used in:
+
+* `extendedblind <#interface-extendedblind>`__
+
+  * `venetianblind <#interface-venetianblind>`__
 
 .. _interface-button:
 
@@ -196,6 +217,18 @@ The base for all buttons that emit a pressed event.
        }
      ]
    }
+
+Used in:
+
+* `longpressbutton <#interface-longpressbutton>`__
+* `multibutton <#interface-multibutton>`__
+
+  * `simplemultibutton <#interface-simplemultibutton>`__
+
+    * `longpressmultibutton <#interface-longpressmultibutton>`__
+
+* `powerswitch <#interface-powerswitch>`__
+* `simplebutton <#interface-simplebutton>`__
 
 .. _interface-childlock:
 
@@ -284,6 +317,38 @@ Interface for generic devices that can be opened and closed. The process of open
    }
 
 See also: `simpleclosable <#interface-simpleclosable>`__
+
+Used in:
+
+* `awning <#interface-awning>`__
+
+  * `extendedawning <#interface-extendedawning>`__
+
+* `blind <#interface-blind>`__
+
+  * `extendedblind <#interface-extendedblind>`__
+
+    * `venetianblind <#interface-venetianblind>`__
+
+* `extendedclosable <#interface-extendedclosable>`__
+
+  * `extendedawning <#interface-extendedawning>`__
+  * `extendedblind <#interface-extendedblind>`__
+
+    * `venetianblind <#interface-venetianblind>`__
+
+  * `extendedshutter <#interface-extendedshutter>`__
+  * `extendedstatefulgaragedoor <#interface-extendedstatefulgaragedoor>`__
+
+* `garagegate <#interface-garagegate>`__
+* `shutter <#interface-shutter>`__
+
+  * `extendedshutter <#interface-extendedshutter>`__
+
+* `simplegaragedoor <#interface-simplegaragedoor>`__
+* `statefulgaragedoor <#interface-statefulgaragedoor>`__
+
+  * `extendedstatefulgaragedoor <#interface-extendedstatefulgaragedoor>`__
 
 .. _interface-closablesensor:
 
@@ -376,6 +441,10 @@ colortemperaturelight
 
 See also: `dimmablelight <#interface-dimmablelight>`__
 
+Used in:
+
+* `colorlight <#interface-colorlight>`__
+
 .. _interface-conductivitysensor:
 
 conductivitysensor
@@ -414,6 +483,12 @@ connectable
        }
      ]
    }
+
+Used in:
+
+* `account <#interface-account>`__
+* `gateway <#interface-gateway>`__
+* `wirelessconnectable <#interface-wirelessconnectable>`__
 
 .. _interface-cooling:
 
@@ -522,6 +597,12 @@ dimmablelight
    }
 
 See also: `light <#interface-light>`__
+
+Used in:
+
+* `colortemperaturelight <#interface-colortemperaturelight>`__
+
+  * `colorlight <#interface-colorlight>`__
 
 .. _interface-doorbell:
 
@@ -848,6 +929,10 @@ Blinds that support indicating their position and the moving state.
 
 See also: `blind <#interface-blind>`__, `extendedclosable <#interface-extendedclosable>`__
 
+Used in:
+
+* `venetianblind <#interface-venetianblind>`__
+
 .. _interface-extendedclosable:
 
 extendedclosable
@@ -878,6 +963,16 @@ A more advanced form of devices that support opening and closing in a more fine 
    }
 
 See also: `closable <#interface-closable>`__
+
+Used in:
+
+* `extendedawning <#interface-extendedawning>`__
+* `extendedblind <#interface-extendedblind>`__
+
+  * `venetianblind <#interface-venetianblind>`__
+
+* `extendedshutter <#interface-extendedshutter>`__
+* `extendedstatefulgaragedoor <#interface-extendedstatefulgaragedoor>`__
 
 .. _interface-extendednavigationpad:
 
@@ -1092,6 +1187,15 @@ The base for all garage door interfaces. Can be used by the client to filter for
      "description": "The base for all garage door interfaces. Can be used by the client to filter for garage doors in the system."
    }
 
+Used in:
+
+* `garagegate <#interface-garagegate>`__
+* `impulsegaragedoor <#interface-impulsegaragedoor>`__
+* `simplegaragedoor <#interface-simplegaragedoor>`__
+* `statefulgaragedoor <#interface-statefulgaragedoor>`__
+
+  * `extendedstatefulgaragedoor <#interface-extendedstatefulgaragedoor>`__
+
 .. _interface-garagegate:
 
 garagegate
@@ -1236,6 +1340,11 @@ The base for all heat pump interfaces. Can be used by the client to filter for h
      ]
    }
 
+Used in:
+
+* `simpleheatpump <#interface-simpleheatpump>`__
+* `smartgridheatpump <#interface-smartgridheatpump>`__
+
 .. _interface-humiditysensor:
 
 humiditysensor
@@ -1326,6 +1435,14 @@ light
 
 See also: `power <#interface-power>`__
 
+Used in:
+
+* `dimmablelight <#interface-dimmablelight>`__
+
+  * `colortemperaturelight <#interface-colortemperaturelight>`__
+
+    * `colorlight <#interface-colorlight>`__
+
 .. _interface-lightsensor:
 
 lightsensor
@@ -1409,6 +1526,17 @@ The base for all media interfaces. Client applications might use this to group/f
    {
      "description": "The base for all media interfaces. Client applications might use this to group/filter things supporting media playback/control. When implementing a plugin use mediaplayer or mediacontroller for actual devices."
    }
+
+Used in:
+
+* `mediacontroller <#interface-mediacontroller>`__
+* `mediametadataprovider <#interface-mediametadataprovider>`__
+* `mediaplayer <#interface-mediaplayer>`__
+* `navigationpad <#interface-navigationpad>`__
+
+  * `extendednavigationpad <#interface-extendednavigationpad>`__
+
+* `volumecontroller <#interface-volumecontroller>`__
 
 .. _interface-mediacontroller:
 
@@ -1625,6 +1753,12 @@ A remote control with multiple buttons. Emits pressed(buttonName) on button pres
 
 See also: `button <#interface-button>`__
 
+Used in:
+
+* `simplemultibutton <#interface-simplemultibutton>`__
+
+  * `longpressmultibutton <#interface-longpressmultibutton>`__
+
 .. _interface-navigationpad:
 
 navigationpad
@@ -1659,6 +1793,10 @@ Many media devices have a navigation pad for browsing a library or a menu. This 
    }
 
 See also: `media <#interface-media>`__
+
+Used in:
+
+* `extendednavigationpad <#interface-extendednavigationpad>`__
 
 .. _interface-networkdevice:
 
@@ -1954,6 +2092,24 @@ power
      ]
    }
 
+Used in:
+
+* `cooling <#interface-cooling>`__
+* `evcharger <#interface-evcharger>`__
+* `heating <#interface-heating>`__
+* `irrigation <#interface-irrigation>`__
+* `light <#interface-light>`__
+
+  * `dimmablelight <#interface-dimmablelight>`__
+
+    * `colortemperaturelight <#interface-colortemperaturelight>`__
+
+      * `colorlight <#interface-colorlight>`__
+
+* `powersocket <#interface-powersocket>`__
+* `simpleheatpump <#interface-simpleheatpump>`__
+* `ventilation <#interface-ventilation>`__
+
 .. _interface-powersocket:
 
 powersocket
@@ -2047,6 +2203,35 @@ sensor
 
    {}
 
+Used in:
+
+* `closablesensor <#interface-closablesensor>`__
+* `co2sensor <#interface-co2sensor>`__
+* `conductivitysensor <#interface-conductivitysensor>`__
+* `cosensor <#interface-cosensor>`__
+* `daylightsensor <#interface-daylightsensor>`__
+* `firesensor <#interface-firesensor>`__
+* `gassensor <#interface-gassensor>`__
+* `humiditysensor <#interface-humiditysensor>`__
+* `lightsensor <#interface-lightsensor>`__
+* `moisturesensor <#interface-moisturesensor>`__
+* `no2sensor <#interface-no2sensor>`__
+* `noisesensor <#interface-noisesensor>`__
+* `o2sensor <#interface-o2sensor>`__
+* `o3sensor <#interface-o3sensor>`__
+* `orpsensor <#interface-orpsensor>`__
+* `phsensor <#interface-phsensor>`__
+* `pm10sensor <#interface-pm10sensor>`__
+* `pm25sensor <#interface-pm25sensor>`__
+* `presencesensor <#interface-presencesensor>`__
+* `pressuresensor <#interface-pressuresensor>`__
+* `temperaturesensor <#interface-temperaturesensor>`__
+* `vibrationsensor <#interface-vibrationsensor>`__
+* `vocsensor <#interface-vocsensor>`__
+* `waterlevelsensor <#interface-waterlevelsensor>`__
+* `watersensor <#interface-watersensor>`__
+* `windspeedsensor <#interface-windspeedsensor>`__
+
 .. _interface-shutter:
 
 shutter
@@ -2062,6 +2247,10 @@ Simple roller shutters which can be opened and closed.
    }
 
 See also: `closable <#interface-closable>`__
+
+Used in:
+
+* `extendedshutter <#interface-extendedshutter>`__
 
 .. _interface-simplebutton:
 
@@ -2099,6 +2288,40 @@ Interface for very basic devices that support opening and closing.
        }
      ]
    }
+
+Used in:
+
+* `closable <#interface-closable>`__
+
+  * `awning <#interface-awning>`__
+
+    * `extendedawning <#interface-extendedawning>`__
+
+  * `blind <#interface-blind>`__
+
+    * `extendedblind <#interface-extendedblind>`__
+
+      * `venetianblind <#interface-venetianblind>`__
+
+  * `extendedclosable <#interface-extendedclosable>`__
+
+    * `extendedawning <#interface-extendedawning>`__
+    * `extendedblind <#interface-extendedblind>`__
+
+      * `venetianblind <#interface-venetianblind>`__
+
+    * `extendedshutter <#interface-extendedshutter>`__
+    * `extendedstatefulgaragedoor <#interface-extendedstatefulgaragedoor>`__
+
+  * `garagegate <#interface-garagegate>`__
+  * `shutter <#interface-shutter>`__
+
+    * `extendedshutter <#interface-extendedshutter>`__
+
+  * `simplegaragedoor <#interface-simplegaragedoor>`__
+  * `statefulgaragedoor <#interface-statefulgaragedoor>`__
+
+    * `extendedstatefulgaragedoor <#interface-extendedstatefulgaragedoor>`__
 
 .. _interface-simplegaragedoor:
 
@@ -2153,6 +2376,10 @@ Deprecated - Use multibutton instead
    }
 
 See also: `multibutton <#interface-multibutton>`__
+
+Used in:
+
+* `longpressmultibutton <#interface-longpressmultibutton>`__
 
 .. _interface-smartgridheatpump:
 
@@ -2238,6 +2465,16 @@ Base interface for things that can monitor energy consumption/production.
      "description": "Base interface for things that can monitor energy consumption/production."
    }
 
+Used in:
+
+* `energymeter <#interface-energymeter>`__
+* `energystorage <#interface-energystorage>`__
+* `smartmeterconsumer <#interface-smartmeterconsumer>`__
+* `smartmeterproducer <#interface-smartmeterproducer>`__
+
+  * `extendedsmartmeterproducer <#interface-extendedsmartmeterproducer>`__
+  * `solarinverter <#interface-solarinverter>`__
+
 .. _interface-smartmeterconsumer:
 
 smartmeterconsumer
@@ -2298,6 +2535,11 @@ This interface is used for things that can monitor energy production. At least t
 
 See also: `smartmeter <#interface-smartmeter>`__
 
+Used in:
+
+* `extendedsmartmeterproducer <#interface-extendedsmartmeterproducer>`__
+* `solarinverter <#interface-solarinverter>`__
+
 .. _interface-solarinverter:
 
 solarinverter
@@ -2346,6 +2588,10 @@ A garagedoor which can be controller like a closable, with open and close action
    }
 
 See also: `garagedoor <#interface-garagedoor>`__, `closable <#interface-closable>`__
+
+Used in:
+
+* `extendedstatefulgaragedoor <#interface-extendedstatefulgaragedoor>`__
 
 .. _interface-system:
 
@@ -2542,6 +2788,10 @@ useraccesscontrol
    }
 
 See also: `accesscontrol <#interface-accesscontrol>`__
+
+Used in:
+
+* `fingerprintreader <#interface-fingerprintreader>`__
 
 .. _interface-valve:
 

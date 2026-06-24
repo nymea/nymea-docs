@@ -303,9 +303,39 @@ def load_interfaces(nymea_path):
     return interfaces
 
 
+def parents_of(data):
+    extends = data.get("extends") or []
+    return [extends] if isinstance(extends, str) else list(extends)
+
+
+def build_children_map(interfaces):
+    children = {name: [] for name in interfaces}
+    for name, data in interfaces.items():
+        for parent in parents_of(data):
+            if parent in children:
+                children[parent].append(name)
+    return {name: sorted(kids) for name, kids in children.items()}
+
+
+def flatten_descendants(name, children, ancestors):
+    rows = []
+    for child in children.get(name, []):
+        if child in ancestors:
+            continue
+        rows.append((len(ancestors), child))
+        rows.extend(flatten_descendants(child, children, ancestors | {child}))
+    return rows
+
+
+def interface_link(name):
+    return f"`{name} <#interface-{slug(name)}>`__"
+
+
 def generate_interfaces(nymea_path):
+    interfaces = load_interfaces(nymea_path)
+    children = build_children_map(interfaces)
     parts = [underline("Interfaces")]
-    for name, data in load_interfaces(nymea_path).items():
+    for name, data in interfaces.items():
         parts.append(f".. _interface-{slug(name)}:\n\n")
         parts.append(underline(name, "-"))
         description = data.get("description")
@@ -315,12 +345,20 @@ def generate_interfaces(nymea_path):
         for line in json.dumps(data, indent=2).splitlines():
             parts.append(f"   {line}\n")
         parts.append("\n")
-        extends = data.get("extends")
+        extends = parents_of(data)
         if extends:
-            if isinstance(extends, str):
-                extends = [extends]
-            links = ", ".join(f"`{item} <#interface-{slug(item)}>`__" for item in extends)
+            links = ", ".join(interface_link(item) for item in extends)
             parts.append(f"See also: {links}\n\n")
+        descendants = flatten_descendants(name, children, frozenset())
+        if descendants:
+            parts.append("Used in:\n\n")
+            prev_depth = None
+            for depth, child in descendants:
+                if prev_depth is not None and depth != prev_depth:
+                    parts.append("\n")
+                parts.append(f"{'  ' * depth}* {interface_link(child)}\n")
+                prev_depth = depth
+            parts.append("\n")
     write(DOCS / "documentation" / "resources" / "interfaces.rst", "".join(parts))
 
 
