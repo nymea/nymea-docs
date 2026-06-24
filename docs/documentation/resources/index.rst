@@ -7,3 +7,4 @@ Resources
    api/index
    interfaces
    integrations/index
+   changelog/index

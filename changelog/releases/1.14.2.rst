@@ -1,0 +1,37 @@
+nymea 1.14.2
+============
+
+nymea
+-----
+
+* Improve system update plugin API
+
+nymea-plugins-zigbee
+--------------------
+
+* Typecast to get the correct constructor.
+
+nymea-plugins-modbus
+--------------------
+
+* PCE: Set propper modbus defaults and phaseCount state handling
+
+nymea-update-plugin-packagekit
+------------------------------
+
+* Add UpdateType to plugin implementation
+
+nymea-update-plugin-rauc
+------------------------
+
+* Initial release of the nymea RAUC update plugin
+
+nymea-update-plugin-mender
+--------------------------
+
+* Add UpdateType to plugin implementation
+
+nymea-update-plugin-mender-inro
+-------------------------------
+
+* Add UpdateType to plugin implementation

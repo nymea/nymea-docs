@@ -2543,6 +2543,29 @@ useraccesscontrol
 
 See also: `accesscontrol <#interface-accesscontrol>`__
 
+.. _interface-valve:
+
+valve
+-----
+
+Valve with an opening position. 0% means fully closed, while 100% indicates the valve is fully open.
+
+.. code-block:: json
+
+   {
+     "description": "Valve with an opening position. 0% means fully closed, while 100% indicates the valve is fully open.",
+     "states": [
+       {
+         "name": "percentage",
+         "type": "int",
+         "unit": "Percentage",
+         "minValue": 0,
+         "maxValue": 100,
+         "writable": true
+       }
+     ]
+   }
+
 .. _interface-venetianblind:
 
 venetianblind

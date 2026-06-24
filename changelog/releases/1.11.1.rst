@@ -1,0 +1,39 @@
+nymea 1.11.1
+============
+
+nymea
+-----
+
+* NetworkDiscovery: Add localhost functionality
+* Update mac address database
+
+nymea-plugins
+-------------
+
+* New Package build
+* New plugin: v2xeamberelectric
+* Meross: Improve datetime performance
+* EVerest: Fix crash on locahost monitor setup
+* Shelly: Add support for Shelly Pro 3EM 400A model
+
+nymea-plugins-simulation
+------------------------
+
+* Wallbox: Add connectable interface and dedicated actions
+
+nymea-plugins-modbus
+--------------------
+
+* SunSpec: Fix enable charging/discharging actions for energy storages
+* SMA: Improve datetime performance
+* Sungrow: Fix battery calculations and add device type string
+* Mennekes: Fix network device monitor setup handling
+* PCE: Add new settings and adopt to firmware 0.22
+* Wattsonic: Refactor connection structure and improve gen2 / gen3
+* Sma: Fix setup of monitor based sma devices
+
+nymea-energy-plugin-nymea
+-------------------------
+
+* Stop charging if the battery is under the consideration point
+* Fix wrong warning regarding configuration ENV loading

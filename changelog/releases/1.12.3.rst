@@ -1,0 +1,18 @@
+nymea 1.12.3
+============
+
+nymea
+-----
+
+* Update mac address database
+* Update systemd service documentation url
+
+nymea-update-plugin-packagekit
+------------------------------
+
+* Add debian trixie support
+
+nymea-energy-plugin-chargingsessions
+------------------------------------
+
+* Add tests package

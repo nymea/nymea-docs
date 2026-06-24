@@ -1,0 +1,127 @@
+nymea 1.13.0
+============
+
+nymea-zigbee
+------------
+
+* Update license text and add SPDX identifier
+
+nymea-mqtt
+----------
+
+* Update license text and add SPDX identifier
+
+nymea-remoteproxy
+-----------------
+
+* Update license text and add SPDX identifier
+
+nymea-gpio
+----------
+
+* Update license text and add SPDX identifier
+
+libnymea-networkmanager
+-----------------------
+
+* Update license text and add SPDX identifier
+
+nymea-networkmanager
+--------------------
+
+* Update license text and add SPDX identifier
+
+nymea
+-----
+
+* Update license text and add SPDX identifier
+
+nymea-plugins
+-------------
+
+* Update license text and add SPDX identifier
+
+nymea-plugins-zigbee
+--------------------
+
+* Update license text and add SPDX identifier
+
+nymea-plugins-zwave
+-------------------
+
+* Update license text and add SPDX identifier
+
+nymea-plugins-simulation
+------------------------
+
+* Update license text and add SPDX identifier
+
+nymea-plugins-genericthings
+---------------------------
+
+* Update license text and add SPDX identifier
+
+nymea-plugins-modbus
+--------------------
+
+* Update license text and add SPDX identifier
+
+nymea-update-plugin-packagekit
+------------------------------
+
+* Update license text and add SPDX identifier
+
+nymea-system-plugin-systemd
+---------------------------
+
+* Update license text and add SPDX identifier
+
+nymea-zeroconf-plugin-avahi
+---------------------------
+
+* Update license text and add SPDX identifier
+
+nymea-zwave-plugin-openzwave
+----------------------------
+
+* Update license text and add SPDX identifier
+
+nymea-experience-plugin-energy
+------------------------------
+
+* Update license text and add SPDX identifier
+
+nymea-experience-plugin-airconditioning
+---------------------------------------
+
+* Update license text and add SPDX identifier
+
+nymea-qtcreator-wizards
+-----------------------
+
+* Update project template license
+
+nymea-update-plugin-mender
+--------------------------
+
+* Update license text and add SPDX identifier
+
+nymea-update-plugin-mender-inro
+-------------------------------
+
+* Update license text and add SPDX identifier
+
+nymea-apikeysprovider-plugin-community
+--------------------------------------
+
+* Update license text and add SPDX identifier
+
+nymea-energy-plugin-nymea
+-------------------------
+
+* Update license text and add SPDX identifier
+
+nymea-energy-plugin-chargingsessions
+------------------------------------
+
+* Update license text and add SPDX identifier

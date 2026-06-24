@@ -1,0 +1,129 @@
+nymea 1.12.0
+============
+
+nymea-zigbee
+------------
+
+* Add Qt6 support
+
+nymea-mqtt
+----------
+
+* Add Qt6 support
+
+nymea-remoteproxy
+-----------------
+
+* Add Qt6 support
+
+nymea-gpio
+----------
+
+* Add Qt6 support
+
+libnymea-networkmanager
+-----------------------
+
+* Add Qt6 support
+
+nymea-networkmanager
+--------------------
+
+* Add Qt6 support
+
+nymea
+-----
+
+* Add Qt6 support
+* Fix some typos in the code base
+* Make sure NetworkDeviceMonitor on localhost are always reachable
+* Update mac address database
+
+nymea-plugins
+-------------
+
+* EVerest: Add RPC API module support
+* Add Qt6 support
+* shelly: Add support for shelly 3EM gen3
+
+nymea-plugins-zigbee
+--------------------
+
+* Add Qt6 support
+
+nymea-plugins-zwave
+-------------------
+
+* Add Qt6 packaging
+
+nymea-plugins-simulation
+------------------------
+
+* energy: Add session energy to EV charger
+* Add Qt6 support
+
+nymea-plugins-genericthings
+---------------------------
+
+* Add Qt6 debian packaging
+
+nymea-plugins-modbus
+--------------------
+
+* Huawei: Add smart logger 3000 support
+* Kostal: Switch to queued requests and add PIKO CI support
+* Wattsonic: Improve inverter generation detection and provide
+* PhoenixConnect: Send requests sequential instead of parallel
+* Add Qt6 support
+
+nymea-update-plugin-packagekit
+------------------------------
+
+* Add Qt6 support
+
+nymea-system-plugin-systemd
+---------------------------
+
+* Add Qt6 support
+
+nymea-zeroconf-plugin-avahi
+---------------------------
+
+* Add Qt6 support
+
+nymea-zwave-plugin-openzwave
+----------------------------
+
+* Add Qt6 support
+
+nymea-experience-plugin-energy
+------------------------------
+
+* Add Qt6 support
+
+nymea-experience-plugin-airconditioning
+---------------------------------------
+
+* Add Qt6 support
+
+nymea-plugin-streamunlimited
+----------------------------
+
+* Add Qt6 support
+
+nymea-apikeysprovider-plugin-community
+--------------------------------------
+
+* Add Qt6 support
+
+nymea-energy-plugin-nymea
+-------------------------
+
+* Add Qt6 support
+* Fix phase switching available logic
+
+nymea-energy-plugin-chargingsessions
+------------------------------------
+
+* Mute some warnings which are spaming the logs until a solution has
+* Add Qt6 support

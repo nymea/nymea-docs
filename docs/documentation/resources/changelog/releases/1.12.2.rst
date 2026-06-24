@@ -1,0 +1,12 @@
+nymea 1.12.2
+============
+
+nymea
+-----
+
+* debian: Fix debian packaging scripts for Qt6 based packages
+
+nymea-energy-plugin-nymea
+-------------------------
+
+* debian: Fix debian packaging for Qt6 packages

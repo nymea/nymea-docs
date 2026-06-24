@@ -557,6 +557,26 @@ def generate_integrations(repo_paths):
     write(integrations_root / "categories.rst", categories_index)
 
 
+def version_key(name):
+    return tuple(int(part) if part.isdigit() else 0 for part in re.split(r"[.\-]", name))
+
+
+def copy_changelog():
+    source = ROOT / "changelog" / "releases"
+    if not source.is_dir():
+        return
+    target_root = DOCS / "documentation" / "resources" / "changelog"
+    if target_root.exists():
+        shutil.rmtree(target_root)
+    releases = sorted(source.glob("*.rst"), key=lambda p: version_key(p.stem), reverse=True)
+    for release in releases:
+        write(target_root / "releases" / release.name, release.read_text(encoding="utf-8"))
+    body = underline("Changelog")
+    body += ".. toctree::\n   :maxdepth: 1\n\n"
+    body += "".join(f"   releases/{release.stem}\n" for release in releases)
+    write(target_root / "index.rst", body)
+
+
 def generate_redirects():
     redirects = {
         "documentation/resources/integrations.html": "documentation/resources/integrations/",
@@ -587,6 +607,7 @@ def main():
     generate_api(nymea)
     generate_plugin_json_doc(nymea)
     generate_integrations(plugin_repos)
+    copy_changelog()
     generate_redirects()
 
 
