@@ -1,0 +1,74 @@
+nymea 1.11.0
+============
+
+libnymea-networkmanager
+-----------------------
+
+* Fix some typos in the debug prints
+
+nymea
+-----
+
+* Rework network discovery
+* Update copyright to 2025
+* Update MAC address database
+
+nymea-plugins
+-------------
+
+* NetworkDetector: Update to networkdevice interface
+* EVerest: Update to networkdevice interface
+* Bosswerk: Update to networkdevice interface
+* Fronius: Update to networkdevice interface
+* go-eCharger: Update to networkdevice interface
+* Keba: Update to networkdevice interface
+* Meross: Update to networkdevice interface
+* WakeOnLan: Update to new network device discovery
+* ESP Somfy RTS: Update to networkdevice interface
+* Shelly: Add support for Gen3 hardware and fix #739
+* go-e: Update phase detection for charging and connected phases
+* EVerest: Fix invalid data handling from multiport charger
+* EVerest: Add phase switching
+* Tado: Update account authentication to device code grant
+
+nymea-plugins-simulation
+------------------------
+
+* energy: Add free selectable consumer
+
+nymea-plugins-genericthings
+---------------------------
+
+* Energy: Make energy meter a three phase meter
+
+nymea-plugins-modbus
+--------------------
+
+* Alphainnotec: Update to networkdevice interface
+* Amperfied: Update to networkdevice interface
+* Huawei: Update to networkdevice interface
+* IDM: Update to networkdevice interface
+* Kostal: Update to networkdevice interface
+* Mennekes: Update to networkdevice interface
+* Modbuscommander: Update network device discovery
+* MTec: Update to networkdevice interface
+* PC-Electric: Update to networkdevice interface
+* PhoenixConnect: Update to networkdevice interface
+* SMA: Update to networkdevice interface
+* Solax: Update to networkdevice interface
+* Stiebeleltron: Update to the networkdevice interface
+* Sungrow: Update to networkdevice interface
+* SunSpec: Update to networkdevice interface
+* Vestel: Update to networkdevice interface
+* Webasto: Update to networkdevice interface
+* Inro: Pantabox improve connected handling
+* Schrack: Default to 3-phase connection
+
+nymea-energy-plugin-nymea
+-------------------------
+
+* Add support for houshold battery level consideration
+* Update permissions in order to allow a non admin system user
+* Improve overload protection
+* Improve phase switching logic
+* Fix invalid max phase count calculation on single phase car with

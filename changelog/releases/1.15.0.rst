@@ -1,0 +1,113 @@
+nymea 1.15.0
+============
+
+nymea-zigbee
+------------
+
+* Fix clang build flags and APDU bit parsing
+* Update default configuration directory from /etc/nymea to
+
+nymea-mqtt
+----------
+
+* Fix Clang-safe MQTT packet parsing
+
+libnymea-networkmanager
+-----------------------
+
+* Bluetooth: Make the bluetooth server work with Qt6 bluez5 backend
+
+nymea-networkmanager
+--------------------
+
+* Migtrate configuration files from /etc/nymea to /var/lib/nymea
+* Update nymea DBus interface usage
+
+nymea
+-----
+
+* Update nymead settings behavior
+* Fix Qt 6 Clang build issues
+* Fix invalid QML element name Action warning
+* Add data transport interface and provide backup data up/download
+* Update UPnP discovery and make it work with generic discovery agents
+
+nymea-plugins
+-------------
+
+* Fix Qt 6 Clang build issues
+* EVerest: Fix max charging current AC charge param parsing
+
+nymea-plugins-zigbee
+--------------------
+
+* Fix Qt 6 Clang build issues
+
+nymea-plugins-simulation
+------------------------
+
+* energy: Add simulated wallbox (no meter)
+* energy: Update default values for battery and inverter
+
+nymea-plugins-genericthings
+---------------------------
+
+* genericcar: Update translations
+
+nymea-plugins-modbus
+--------------------
+
+* Fix Qt 6 Clang build issues
+* PCE: Improve info log level informatio
+
+nymea-update-plugin-rauc
+------------------------
+
+* Add --no-image-install parameter and use sqfscat only if available
+* Update configuration handling and improve debug information
+
+nymea-zeroconf-plugin-avahi
+---------------------------
+
+* Fix Qt 6 Clang build issues
+
+nymea-experience-plugin-evdash
+------------------------------
+
+* Update to the Energymanager 1.0 API
+* Add charging station filter and update help screen
+
+nymea-update-plugin-mender
+--------------------------
+
+* Update configuration directory from /etc/nymea to /var/lib/nymea
+
+nymea-update-plugin-mender-inro
+-------------------------------
+
+* Add UpdateType to plugin implementation
+* Update configuration directory from /etc/nymea to /var/lib/nymea
+
+nymea-apikeysprovider-plugin-community
+--------------------------------------
+
+* Fix Qt 6 Clang build issues
+
+nymea-energy-plugin-nymea
+-------------------------
+
+* Introduce charging configuration and charging state
+* Add stop on target percentage configuration
+* Handle single phase car phase switching behavior
+* Add missing dbus config for debian Qt6 packages
+
+nymea-energy-plugin-chargingsessions
+------------------------------------
+
+* Update to the Energymanager 1.0 API
+* Update mailgun token and avoid exposing the full key to trivial
+
+maveod
+------
+
+* Update nymea DBus interface usage

@@ -1,0 +1,27 @@
+nymea 1.14.1
+============
+
+nymea
+-----
+
+* LogEngine: Improve behavior of disabled logengine
+* JsonRpc Server: Improve token verification handling
+* Update default loations for the mac-addresses.db to be more generic
+* Thing: Add state name based set method for possible values
+
+nymea-plugins-genericthings
+---------------------------
+
+* energy: Add connectable interface to the generic wallbox
+
+nymea-plugins-modbus
+--------------------
+
+* schrack: Fix version regular expression in the discovery
+* PCE: Assume current power for firmware version 0.19
+* PCE: Add R37 registers and the thing class witout meter
+
+nymea-update-plugin-mender-inro
+-------------------------------
+
+* Add Qt6 support

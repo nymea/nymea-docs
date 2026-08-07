@@ -1,0 +1,64 @@
+nymea 1.15.1
+============
+
+nymea-remoteproxy
+-----------------
+
+* Migtrate configuration files from /etc/nymea to /var/lib/nymea (`#49 <https://github.com/nymea/nymea-remoteproxy/pull/49>`__)
+* Fix leftover Qt6 porting issues (`#50 <https://github.com/nymea/nymea-remoteproxy/pull/50>`__)
+* Add multi-certificate file loading for fullchain SSL support (`#51 <https://github.com/nymea/nymea-remoteproxy/pull/51>`__)
+* Add nymea-tunnelproxy-testutils for online server tests (`#52 <https://github.com/nymea/nymea-remoteproxy/pull/52>`__)
+
+nymea-cli
+---------
+
+* Project reboot in c++ and ftxui (`#8 <https://github.com/nymea/nymea-cli/pull/8>`__)
+
+nymea
+-----
+
+* Valve interface (`#723 <https://github.com/nymea/nymea/pull/723>`__)
+* NetworkDeciceDiscovery: Fix crash on empty MAC address (`#744 <https://github.com/nymea/nymea/pull/744>`__)
+* Update mac-addresses database (`#745 <https://github.com/nymea/nymea/pull/745>`__)
+
+nymea-plugins
+-------------
+
+* New plugin: Add OpenCCU based floor heating controller (`#781 <https://github.com/nymea/nymea-plugins/pull/781>`__)
+* goe: Improve parallel discovery and IP assignment (`#790 <https://github.com/nymea/nymea-plugins/pull/790>`__)
+
+nymea-plugins-zigbee
+--------------------
+
+* Add nymea-plugin-osram to the meta-package (`#93 <https://github.com/nymea/nymea-plugins-zigbee/pull/93>`__)
+
+nymea-plugins-modbus
+--------------------
+
+* Sungrow: Update meter current power reading (`#233 <https://github.com/nymea/nymea-plugins-modbus/pull/233>`__)
+* Kostal: Improve thing setup and monitor handling (`#234 <https://github.com/nymea/nymea-plugins-modbus/pull/234>`__)
+
+nymea-update-plugin-packagekit
+------------------------------
+
+* Update to new Qt6 resolute include layout (`#34 <https://github.com/nymea/nymea-update-plugin-packagekit/pull/34>`__)
+
+nymea-experience-plugin-airconditioning
+---------------------------------------
+
+* Add optional valve assignment to a zone (`#8 <https://github.com/nymea/nymea-experience-plugin-airconditioning/pull/8>`__)
+
+nymea-energy-plugin-nymea
+-------------------------
+
+* Fix system DBus configuration installation for dbus (`#67 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/67>`__)
+
+nymea-energy-plugin-chargingsessions
+------------------------------------
+
+* Clean up debian install file (`#14 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-chargingsessions/-/merge_requests/14>`__)
+
+nymea-docs
+----------
+
+* Initial release of the new documentation (`#1 <https://github.com/nymea/nymea-docs/pull/1>`__)

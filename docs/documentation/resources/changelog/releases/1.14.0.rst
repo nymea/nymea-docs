@@ -1,0 +1,76 @@
+nymea 1.14.0
+============
+
+nymea-remoteproxy
+-----------------
+
+* UnixSocketServer: Fix missing include in the
+
+nymea-gpio
+----------
+
+* Add clang-format
+* Add libgpiod support to libnymea-gpio
+
+nymea
+-----
+
+* Thing based user permissions
+* Extend webserver resource management
+* Update translations
+* NymeaCore: class cleanup and statup improvements
+* Stabalize verify action exectued tests
+* ExperienceManager: Provide LogEngine access to experience plugins
+* Introduce optional stepSize for StateTypes and ParamTypes
+* Update electric vehicle inteface
+* Update README.md
+* Update mac address database
+* Update copyright year to 2026
+
+nymea-plugins
+-------------
+
+* Tado: Synch cached states delayed
+* Update EV charger interface and add full charging current resolution
+
+nymea-plugins-simulation
+------------------------
+
+* Energy simulation: Update EV charger interface
+
+nymea-plugins-genericthings
+---------------------------
+
+* GenericCar: Add max charging current for generic car
+* Generic energy: Update EV charger interface
+
+nymea-plugins-modbus
+--------------------
+
+* SunSpec: Fix reading data of large SunSpec models
+* PCE: Add status state representing the EV state
+* Update EV charger interface and add full charging current resolution
+
+nymea-experience-plugin-energy
+------------------------------
+
+* Create database maintenance thread and remove blocking operations
+
+nymea-experience-plugin-evdash
+------------------------------
+
+* Initial release.
+* Initial version of the EV Dash experience
+
+nymea-energy-plugin-nymea
+-------------------------
+
+* Provide dbus interface
+* Take optional maximum charging current from assigned cars into
+* Set charging current according to available accuracy
+* Fix spotmarket weighted scores drop on date changed
+
+nymea-energy-plugin-chargingsessions
+------------------------------------
+
+* Add dbus interface for charging sessions

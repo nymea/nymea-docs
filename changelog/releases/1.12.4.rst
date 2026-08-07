@@ -1,0 +1,15 @@
+nymea 1.12.4
+============
+
+nymea
+-----
+
+* JSONRPC: Improve list handling of API list types
+* NetworkDeviceMonitor: Improve ping and network device monitor
+* RuleEngine: Improve TimeDescriptor and CalendarItem DateTime Time
+* server: Add fallback to TSL 1.2 or later for encrypted connections
+
+nymea-plugins
+-------------
+
+* Keba: Add missing interface for the Keba german edition

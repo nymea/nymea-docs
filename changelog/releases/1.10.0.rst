@@ -1,0 +1,50 @@
+nymea 1.10.0
+============
+
+libnymea-networkmanager
+-----------------------
+
+* Add wireless network device capabilities
+
+nymea
+-----
+
+* Add systemd notify support
+* Debug JSONRPC API handler
+* Use default cache location for the plugin info caches
+* Influxdb: Disable debug print if database is disabled or not
+* NetworkManager: add wireless device capabilities
+* core: Fix shutdown crash and improve application logging
+* Update MAC address database
+
+nymea-plugins
+-------------
+
+* New plugin: ESP Somfy RTS
+* go-E: Disable unsupported IPv6 discovery
+* EVerest: Autosetup connectors on localhost
+* Kodi: Fix unregister nonexisting plugin timer
+* Fronius: Improve connection handling and fix dead connection failing
+
+nymea-plugins-modbus
+--------------------
+
+* Vestel: Improve Vestel/Webasto discovery
+* Fix duplicated pluginid senseair
+* Wattsonic: Add modbus slave ID as discovery parameter
+
+nymea-update-plugin-packagekit
+------------------------------
+
+* Fix update based on bug in packagekit reporting invalid Info on
+
+nymea-energy-plugin-nymea
+-------------------------
+
+* Add spot market charing
+
+nymea-energy-plugin-chargingsessions
+------------------------------------
+
+* Make sure the final session energy is valid and will no be
+* Fix sending charging session reports for individual car IDs

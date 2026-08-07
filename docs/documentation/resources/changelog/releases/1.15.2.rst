@@ -1,0 +1,14 @@
+nymea 1.15.2
+============
+
+2026-06-19
+
+nymea
+-----
+
+* Revert evcharger interface rework (prematurely merged PR) (`#746 <https://github.com/nymea/nymea/pull/746>`__)
+
+nymea-docs
+----------
+
+* Initial release of the new documentation (`#1 <https://github.com/nymea/nymea-docs/pull/1>`__)

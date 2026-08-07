@@ -15,6 +15,7 @@ clean:
 	rm -rf $(BUILDDIR)
 	rm -rf docs/documentation/resources/integrations
 	rm -rf docs/documentation/resources/api
+	rm -rf docs/documentation/resources/changelog
 	rm -f docs/documentation/resources/interfaces.rst
 	rm -f docs/documentation/developers/clients/raw-api.rst
 	rm -f docs/documentation/developers/integrations/plugin-json.rst
