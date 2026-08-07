@@ -1,0 +1,92 @@
+nymea 1.16.0
+============
+
+2026-08-07
+
+nymea-remoteproxy
+-----------------
+
+* Rework the monitor using ftxui (`#53 <https://github.com/nymea/nymea-remoteproxy/pull/53>`__)
+
+nymea-cli
+---------
+
+* Settings: Add server logging categories (`#10 <https://github.com/nymea/nymea-cli/pull/10>`__)
+* Settings: Add modbus RTU configuration (`#11 <https://github.com/nymea/nymea-cli/pull/11>`__)
+* Settings: Improve system and package update views (`#12 <https://github.com/nymea/nymea-cli/pull/12>`__)
+* Settings: Add server interface configuration settings (`#13 <https://github.com/nymea/nymea-cli/pull/13>`__)
+* Logging: Add graphs an logs (`#14 <https://github.com/nymea/nymea-cli/pull/14>`__)
+* Restructure the source code and improve maintainability (`#15 <https://github.com/nymea/nymea-cli/pull/15>`__)
+
+nymea
+-----
+
+* Rework EV charger interface (`#747 <https://github.com/nymea/nymea/pull/747>`__)
+* Interface: add optional stepUp/stepDown actions to extendedclosable  (`#749 <https://github.com/nymea/nymea/pull/749>`__)
+* Allow insecure localhost server interfaces (`#751 <https://github.com/nymea/nymea/pull/751>`__)
+* NetworkDeviceDiscovery: Prevent monitor from being blocked forever (`#752 <https://github.com/nymea/nymea/pull/752>`__)
+
+nymea-plugins
+-------------
+
+* Add optional newline setting for TCP client (`#778 <https://github.com/nymea/nymea-plugins/pull/778>`__)
+* Update EV charger interfaces (`#787 <https://github.com/nymea/nymea-plugins/pull/787>`__)
+* Add EVerest DC charger and extend the RpcApi regarding DC charging (`#789 <https://github.com/nymea/nymea-plugins/pull/789>`__)
+* ESPSomfyRTS: Fix step up/down for blinds (`#791 <https://github.com/nymea/nymea-plugins/pull/791>`__)
+* Fronius: Improve reply handling on connection timout (`#792 <https://github.com/nymea/nymea-plugins/pull/792>`__)
+
+nymea-plugins-simulation
+------------------------
+
+* Add DC charger and HLC charger (`#51 <https://github.com/nymea/nymea-plugins-simulation/pull/51>`__)
+* Improve AC wallbox energy states (`#52 <https://github.com/nymea/nymea-plugins-simulation/pull/52>`__)
+
+nymea-plugins-genericthings
+---------------------------
+
+* Update EV charger and electric vehicle interfaces (`#32 <https://github.com/nymea/nymea-plugins-genericthings/pull/32>`__)
+
+nymea-plugins-modbus
+--------------------
+
+* New plugin: ABB Terra AC charger (`#232 <https://github.com/nymea/nymea-plugins-modbus/pull/232>`__)
+* New plugin: Add Bender EVSE controller support (`#235 <https://github.com/nymea/nymea-plugins-modbus/pull/235>`__)
+* Add modbus reply guard for error exceptions (`#236 <https://github.com/nymea/nymea-plugins-modbus/pull/236>`__)
+* Sungrow: Update battery detection and improve overall string handling (`#237 <https://github.com/nymea/nymea-plugins-modbus/pull/237>`__)
+* Add Compleo eBox professional support (`#239 <https://github.com/nymea/nymea-plugins-modbus/pull/239>`__)
+* PCE: Add modbus TLS support (`#241 <https://github.com/nymea/nymea-plugins-modbus/pull/241>`__)
+* PCE: Add mDNS discovery (`#242 <https://github.com/nymea/nymea-plugins-modbus/pull/242>`__)
+* libnymea-modbus: Add modbus TLS support (`#243 <https://github.com/nymea/nymea-plugins-modbus/pull/243>`__)
+* Amperfied: Cache charging current state and power (`#244 <https://github.com/nymea/nymea-plugins-modbus/pull/244>`__)
+* Update evcharger interface to evchargerac (`#245 <https://github.com/nymea/nymea-plugins-modbus/pull/245>`__)
+* nymea-modbus-cli: Add man, bash completion and improve read write (`#246 <https://github.com/nymea/nymea-plugins-modbus/pull/246>`__)
+* libnymea-sunpsec-dev: Fix model header installation path  (`#249 <https://github.com/nymea/nymea-plugins-modbus/pull/249>`__)
+
+nymea-energy-plugin-nymea
+-------------------------
+
+* Introduce DC surplus charging and V2H (`#63 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/63>`__)
+* Add DC charging and loadbalancing (`#64 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/64>`__)
+* Restructure simulations and run them parallel (`#65 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/65>`__)
+* Improve overload protection and use charging share calculator for overload calculations (`#66 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/66>`__)
+* Add battery level consideration lower and upper limit handling (`#68 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/68>`__)
+* Improve ChargingState information handling and add waiting conditions (`#69 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/69>`__)
+* Improve execute charging actions and phase count debugs (`#71 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/71>`__)
+* Improve overloadprotection behavior and propper power lock (`#72 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/72>`__)
+
+nymea-energy-plugin-chargingsessions
+------------------------------------
+
+* db: Log session even without assigned car (`#16 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-chargingsessions/-/merge_requests/16>`__)
+* CSV: Improve near zero session energy handling (`#17 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-chargingsessions/-/merge_requests/17>`__)
+
+maveod
+------
+
+* Add Qt6 support (`#13 <http://gitlab.nymea.io/maveo/maveod/-/merge_requests/13>`__)
+
+nymea-docs
+----------
+
+* Update environment tables (`#3 <https://github.com/nymea/nymea-docs/pull/3>`__)
+* Update interfaces (`#4 <https://github.com/nymea/nymea-docs/pull/4>`__)
