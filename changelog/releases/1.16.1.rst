@@ -1,0 +1,14 @@
+nymea 1.16.1
+============
+
+2026-09-03
+
+nymea-cli
+---------
+
+* Use debian version as application version (`#16 <https://github.com/nymea/nymea-cli/pull/16>`__)
+
+nymea-energy-plugin-nymea
+-------------------------
+
+* Improve overload protection shared throttling (`#73 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/73>`__)
