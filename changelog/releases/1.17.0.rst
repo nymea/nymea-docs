@@ -1,0 +1,54 @@
+nymea 1.17.0
+============
+
+2026-09-03
+
+nymea-cli
+---------
+
+* Use debian version as application version (`#16 <https://github.com/nymea/nymea-cli/pull/16>`__)
+
+nymea
+-----
+
+* WIP: NetworkDeviceDiscovery: Improve network discovery speed for larger ne… (`#736 <https://github.com/nymea/nymea/pull/736>`__)
+* Add influxdb to backup (`#743 <https://github.com/nymea/nymea/pull/743>`__)
+* Update usermanager and add RFID interface (`#750 <https://github.com/nymea/nymea/pull/750>`__)
+* Introduce user invitation (`#753 <https://github.com/nymea/nymea/pull/753>`__)
+
+nymea-plugins-simulation
+------------------------
+
+* Add RFID wallbox simulation (`#53 <https://github.com/nymea/nymea-plugins-simulation/pull/53>`__)
+
+nymea-plugins-modbus
+--------------------
+
+* PCE: Add RFID support (`#247 <https://github.com/nymea/nymea-plugins-modbus/pull/247>`__)
+
+nymea-experience-plugin-evdash
+------------------------------
+
+* Add session user information and optionally RFID infos (`#4 <https://github.com/nymea/nymea-experience-plugin-evdash/pull/4>`__)
+
+nymea-energy-plugin-nymea
+-------------------------
+
+* Add RFID authorization handling (`#70 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/70>`__)
+* Improve overload protection shared throttling (`#73 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/73>`__)
+
+nymea-energy-plugin-chargingsessions
+------------------------------------
+
+* Add user information and optionally RFID information to sessions (`#15 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-chargingsessions/-/merge_requests/15>`__)
+* Add charging profiles and drop sender email (`#18 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-chargingsessions/-/merge_requests/18>`__)
+
+maveo-system-builder-config-nymea-energy
+----------------------------------------
+
+* experimental only: enable mender-connect, enable wpa_supplicant logs, set autoinstall update timeout to 2 hours (`#1 <http://gitlab.nymea.io/nymea/maveo-system-builder-config-nymea-energy/-/merge_requests/1>`__)
+
+maveo-system-builder-config-i-charge-connect
+--------------------------------------------
+
+* experimental only: set autoinstall update timeout to 2 hours, install systemd-coredump (`#1 <http://gitlab.nymea.io/schrack/maveo-system-builder-config-i-charge-connect/-/merge_requests/1>`__)
