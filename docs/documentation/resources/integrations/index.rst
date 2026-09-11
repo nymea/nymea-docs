@@ -7,6 +7,7 @@ This section lists the currently supported nymea integrations.
    :maxdepth: 1
 
    categories
+   abbterra
    aqi
    alphainnotec
    amperfied
