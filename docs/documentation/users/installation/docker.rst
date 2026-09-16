@@ -8,6 +8,31 @@ The official `nymea Docker image <https://hub.docker.com/r/nymea/nymea/>`__ runs
 in a folder on the Docker host, so they survive container replacement and image
 updates.
 
+Image tags
+----------
+
+Use ``nymea/nymea:latest`` for the newest stable release, or pin a deployment to
+an exact release tag such as ``nymea/nymea:1.16.0`` for reproducible upgrades.
+Maintainers also publish channel images for testing:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Tag
+     - Purpose
+   * - ``latest``
+     - Latest stable release from the stable nymea repository.
+   * - ``<version>``
+     - Exact stable release version, for example ``1.16.0``.
+   * - ``landing``
+     - QA image built from the landing nymea repository.
+   * - ``experimental``
+     - Test image built from the experimental nymea repository.
+
+Production installations should use ``latest`` or a version tag. The
+``landing`` and ``experimental`` tags are intended for validation before release.
+
 Requirements
 ------------
 
@@ -310,6 +335,7 @@ nymea daemon version and ``latest``:
 
    docker buildx build \
      --platform linux/amd64,linux/arm64 \
+     --build-arg NYMEA_APT_REPOSITORY=https://repository.nymea.io \
      --tag nymea/nymea:<version> \
      --tag nymea/nymea:latest \
      --push .
