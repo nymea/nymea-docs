@@ -1,7 +1,7 @@
 API Reference
 =============
 
-The current JSON-RPC API version is ``9.0``.
+The current JSON-RPC API version is ``10.0``.
 
 For a namespace-based overview see :doc:`namespaces`.
 

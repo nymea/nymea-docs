@@ -3,7 +3,7 @@
 The complete API
 ================
 
-In the following section you can find a detailed description of the current API version ``9.0``.
+In the following section you can find a detailed description of the current API version ``10.0``.
 
 Enums
 -----
