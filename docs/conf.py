@@ -13,15 +13,15 @@ extensions = []
 templates_path = ["_templates"]
 exclude_patterns = []
 
-html_logo = "../static/img/logo.svg"
-html_favicon = "../static/img/logo.svg"
+html_logo = "../static/img/nymea-app-icon.png"
+html_favicon = "../static/img/nymea-app-icon.png"
 html_extra_path = ["../static"]
 html_static_path = ["_static"]
 html_css_files = ["nymea.css"]
 html_js_files = ["nymea-copy-code.js"]
 html_theme = "sphinx_book_theme"
 html_context = {
-    "default_mode": "dark",
+    "default_mode": "light",
 }
 html_theme_options = {
     "navigation_with_keys": False,
