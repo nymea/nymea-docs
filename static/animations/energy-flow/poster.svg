@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="880" viewBox="0 0 1280 880" role="img" aria-labelledby="diagram-title diagram-desc">
+<title id="diagram-title">Energy in balance — a connected home energy system</title>
+<desc id="diagram-desc">Energy Management software receives tariff, solar and meter data and exchanges control information with the inverter, home, EV charger and app. Lilac and blue pulses indicate data and control. Mint streams indicate electricity flowing from solar and grid through the meter to the home and vehicle. Electricity does not pass through the software. Flow values are illustrative.</desc>
+<defs>
+<linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8cc1b6"/><stop offset=".53" stop-color="#819dbd"/><stop offset="1" stop-color="#9d8cc1"/></linearGradient>
+<radialGradient id="halo"><stop stop-color="#819dbd" stop-opacity=".15"/><stop offset="1" stop-color="#819dbd" stop-opacity="0"/></radialGradient>
+<filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#182e40" flood-opacity=".07"/></filter>
+<filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3"/></filter>
+</defs>
+<style>
+:root { color-scheme:light; --bg:#f6f8f8; --card:#fff; --ink:#292f34; --muted:#5d6972; --line:#d8e2e0; --blue:#819dbd; --mint:#8cc1b6; --lilac:#9d8cc1; --sage:#69938c; --soft:#edf2f0; --hub:#fff; }
+:root[data-theme="dark"] {color-scheme:dark; --bg:#191d24; --card:#222832; --ink:#e8eaed; --muted:#aeb7c2; --line:#46505e; --soft:#2b3340; --hub:#222832;}
+@media(prefers-color-scheme:dark) { :root:not([data-theme="light"]) {color-scheme:dark; --bg:#191d24; --card:#222832; --ink:#e8eaed; --muted:#aeb7c2; --line:#46505e; --soft:#2b3340; --hub:#222832;} }
+svg {font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:var(--ink);}
+text {fill:var(--ink);} .muted {fill:var(--muted);} .eyebrow {font-size:13px; font-weight:650; letter-spacing:2px;} .title {font-size:32px; font-weight:650; letter-spacing:-1px;} .label {font-size:19px; font-weight:600; letter-spacing:-.3px;} .small {font-size:14px;} .tiny {font-size:12px;}
+.card {fill:var(--card); stroke:var(--line); stroke-width:1.4;} .icon {fill:none; stroke:var(--blue); stroke-width:2.7; stroke-linecap:round; stroke-linejoin:round;}
+.track {fill:none;stroke:var(--lilac);stroke-width:1.5;opacity:.3;} .power-track {fill:none;stroke:var(--mint);stroke-width:3;opacity:.35;}
+.flow {fill:none;stroke:var(--lilac);stroke-width:4;stroke-linecap:round;} .power-flow {stroke:var(--mint);stroke-width:5;} .return {stroke:var(--blue);stroke-width:3;}
+</style>
+
+<rect width="1280" height="880" fill="var(--bg)"/>
+<text x="58" y="48" class="eyebrow muted">NYMEA / CONNECTED ENERGY</text>
+<text x="58" y="91" class="title">Energy in balance.</text>
+<text x="58" y="121" class="small muted">One management service. A connected energy ecosystem.</text>
+<g transform="translate(862 51)"><circle r="4" cx="0" cy="0" fill="var(--mint)"/><text x="14" y="5" class="small muted">Electricity</text><circle r="4" cx="122" cy="0" fill="var(--lilac)"/><text x="136" y="5" class="small muted">Data &amp; control</text></g>
+<ellipse cx="644" cy="424" rx="240" ry="230" fill="url(#halo)"/>
+
+<path id="track-tariff" d="M294 226 H370 Q392 226 392 248 V326 Q392 348 414 348 H478" class="track"/>
+<path id="track-solar-in" d="M294 411 H478" class="track"/>
+<path id="track-solar-out" d="M478 429 H294" class="track"/>
+<path id="track-app-out" d="M802 348 H868 Q890 348 890 326 V248 Q890 226 912 226 H980" class="track"/>
+<path id="track-app-in" d="M980 245 H932 Q909 245 909 267 V345 Q909 367 887 367 H802" class="track"/>
+<path id="track-ev-out" d="M802 492 H870 Q892 492 892 514 V553 Q892 575 914 575 H970" class="track"/>
+<path id="track-ev-in" d="M970 594 H895 Q873 594 873 572 V533 Q873 511 851 511 H802" class="track"/>
+<path id="track-home-control" d="M546 560 V605 Q546 625 526 625 H470 Q450 625 450 645" class="track"/>
+<path id="track-meter-data" d="M751 711 V641 Q751 620 730 620 H691 Q670 620 670 599 V560" class="track"/>
+<path id="track-solar-power" d="M294 465 H326 Q344 465 344 483 V753 Q344 773 364 773 H703" class="power-track"/>
+<path id="track-grid-power" d="M294 618 H313 Q328 618 328 634 V773 Q328 791 346 791 H703" class="power-track"/>
+<path id="track-home-power" d="M703 753 H615" class="power-track"/>
+<path id="track-ev-power" d="M815 773 H903 Q929 773 929 747 V638 Q929 618 949 618 H970" class="power-track"/>
+<path id="flow-tariff" d="M294 226 H370 Q392 226 392 248 V326 Q392 348 414 348 H478" class="flow" data-flow="data" stroke-dasharray="3 44"/>
+<path id="flow-solar-in" d="M294 411 H478" class="flow" data-flow="data" stroke-dasharray="3 44"/>
+<path id="flow-solar-out" d="M478 429 H294" class="flow return" data-flow="return" stroke-dasharray="3 44"/>
+<path id="flow-app-out" d="M802 348 H868 Q890 348 890 326 V248 Q890 226 912 226 H980" class="flow" data-flow="data" stroke-dasharray="3 44"/>
+<path id="flow-app-in" d="M980 245 H932 Q909 245 909 267 V345 Q909 367 887 367 H802" class="flow return" data-flow="return" stroke-dasharray="3 44"/>
+<path id="flow-ev-out" d="M802 492 H870 Q892 492 892 514 V553 Q892 575 914 575 H970" class="flow" data-flow="data" stroke-dasharray="3 44"/>
+<path id="flow-ev-in" d="M970 594 H895 Q873 594 873 572 V533 Q873 511 851 511 H802" class="flow return" data-flow="return" stroke-dasharray="3 44"/>
+<path id="flow-home-control" d="M546 560 V605 Q546 625 526 625 H470 Q450 625 450 645" class="flow" data-flow="data" stroke-dasharray="3 44"/>
+<path id="flow-meter-data" d="M751 711 V641 Q751 620 730 620 H691 Q670 620 670 599 V560" class="flow return" data-flow="return" stroke-dasharray="3 44"/>
+<path id="flow-solar-power" d="M294 465 H326 Q344 465 344 483 V753 Q344 773 364 773 H703" class="flow power-flow" data-flow="power" stroke-dasharray="3 44"/>
+<path id="flow-grid-power" d="M294 618 H313 Q328 618 328 634 V773 Q328 791 346 791 H703" class="flow power-flow" data-flow="power" stroke-dasharray="3 44"/>
+<path id="flow-home-power" d="M703 753 H615" class="flow power-flow" data-flow="power" stroke-dasharray="3 44"/>
+<path id="flow-ev-power" d="M815 773 H903 Q929 773 929 747 V638 Q929 618 949 618 H970" class="flow power-flow" data-flow="power" stroke-dasharray="3 44"/>
+
+<g id="tariff-node">
+<rect x="58" y="166" width="236" height="136" rx="20" class="card"/>
+<rect x="78" y="184" width="44" height="44" rx="13" fill="var(--soft)"/>
+<g class="icon"><path d="M89 215 V198 M89 215 H114 M93 208 L99 202 104 206 113 194"/></g>
+<text x="136" y="204" class="label">Energy market</text><text x="136" y="225" class="small muted">Tariffs &amp; forecasts</text>
+<path d="M80 273 L104 266 127 272 150 253 174 260 198 247 224 260 248 249 272 251" fill="none" stroke="var(--lilac)" stroke-width="2.5" stroke-linecap="round"/>
+</g>
+<g id="solar-node">
+<rect x="58" y="347" width="236" height="160" rx="20" class="card"/>
+<g class="icon" transform="translate(80 369)"><path d="M10 8 H60 L70 48 H0 Z M7 22 H64 M3 35 H67 M27 8 L23 48 M44 8 L48 48 M35 48 V59 M20 59 H50"/><circle cx="84" cy="10" r="9" stroke="var(--mint)"/><path d="M84 -5 V-10 M99 10 H104 M95 -1 L99 -5" stroke="var(--mint)"/></g>
+<text x="80" y="462" class="label">Solar &amp; inverter</text><text x="80" y="486" class="small muted">Local generation</text>
+</g>
+<g id="grid-node">
+<rect x="58" y="552" width="236" height="126" rx="20" class="card"/>
+<g class="icon" transform="translate(80 573)"><path d="M24 0 L6 66 M24 0 L42 66 M12 44 H36 M16 26 H32 M7 15 H41 M0 32 H48 M9 15 V23 M39 15 V23 M2 32 V41 M46 32 V41 M12 44 L36 61 M36 44 L12 61"/></g>
+<text x="145" y="602" class="label">Grid</text><text x="145" y="626" class="small muted">Energy supply</text><text x="145" y="648" class="tiny muted">Import as needed</text>
+</g>
+
+
+<g id="software-node" filter="url(#shadow)">
+<rect id="hub-halo" x="468" y="288" width="344" height="282" rx="33" fill="none" stroke="url(#brand)" stroke-width="2" opacity=".25"/>
+<rect x="478" y="298" width="324" height="262" rx="26" fill="var(--hub)" stroke="url(#brand)" stroke-width="2"/>
+<rect x="500" y="319" width="280" height="38" rx="10" fill="var(--soft)"/>
+<circle cx="519" cy="338" r="4" fill="var(--mint)"/><text x="531" y="343" class="tiny muted">LOCAL MANAGEMENT SERVICE</text>
+<g transform="translate(604 377)">
+<rect width="72" height="57" rx="11" fill="var(--soft)" stroke="var(--blue)" stroke-width="1.5"/>
+<path d="M0 16 H72" stroke="var(--blue)" opacity=".6"/><circle cx="9" cy="8" r="2" fill="var(--lilac)"/><circle cx="17" cy="8" r="2" fill="var(--mint)"/>
+<rect id="bar-1" x="13" y="31" width="8" height="15" rx="3" fill="var(--mint)"/>
+<rect id="bar-2" x="31" y="24" width="8" height="22" rx="3" fill="var(--blue)"/>
+<rect id="bar-3" x="49" y="29" width="8" height="17" rx="3" fill="var(--lilac)"/>
+</g>
+<text x="640" y="475" text-anchor="middle" style="font-size:28px;font-weight:650;letter-spacing:-.8px">Energy Management</text>
+<text x="640" y="501" text-anchor="middle" class="small muted">Monitor. Optimise. Coordinate.</text>
+<circle id="status-pulse" cx="574" cy="534" r="3.5" fill="var(--sage)"/><text x="587" y="539" class="tiny muted">Connected locally</text>
+</g>
+<g id="app-node">
+<rect x="980" y="166" width="242" height="186" rx="20" class="card"/>
+<rect x="1002" y="188" width="60" height="111" rx="12" fill="var(--soft)" stroke="var(--blue)" stroke-width="2"/>
+<path d="M1023 196 H1042 M1026 289 H1038" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/>
+<circle cx="1032" cy="240" r="18" fill="none" stroke="var(--line)" stroke-width="4"/>
+<path d="M1032 222 A18 18 0 1 1 1014 240" fill="none" stroke="var(--mint)" stroke-width="4" stroke-linecap="round"/>
+<text x="1080" y="222" class="label">Your app</text><text x="1080" y="247" class="small muted">Insights &amp;</text><text x="1080" y="268" class="small muted">preferences</text>
+<text x="1003" y="329" class="tiny muted">A clear view of your energy</text>
+</g>
+<g id="ev-node">
+<rect x="970" y="501" width="252" height="177" rx="20" class="card"/>
+<g class="icon" transform="translate(996 520)">
+<rect x="0" y="1" width="25" height="47" rx="5"/><rect x="6" y="9" width="13" height="10" rx="2"/><path d="M13 48 V62 M4 62 H22 M25 19 Q37 19 37 32 V46 Q37 56 45 56 H48"/>
+<path d="M55 49 L65 26 Q69 20 77 20 H126 Q132 20 138 27 L150 42 171 47 Q177 49 177 56 V65 H168 M69 65 H89 M111 65 H146 M49 65 V56 Q49 49 55 49 Z M68 42 H144 M91 22 L86 42 M123 23 L132 42"/><circle cx="100" cy="64" r="11"/><circle cx="157" cy="64" r="11"/>
+</g>
+<text x="992" y="632" class="label">EV charging</text><text x="992" y="656" class="small muted">Charge with available energy</text>
+</g>
+<g id="home-node" transform="translate(0 -37)">
+<rect x="405" y="682" width="210" height="119" rx="18" class="card"/>
+<g class="icon" transform="translate(426 705)"><path d="M0 21 L27 0 54 21 M7 17 V57 H47 V17 M22 57 V36 H34 V57 M36 6 V0 H44 V12"/></g>
+<text x="495" y="728" class="label">Home</text><text x="495" y="751" class="small muted">Flexible</text><text x="495" y="772" class="small muted">consumption</text>
+</g>
+<g id="meter-node">
+<rect x="703" y="711" width="112" height="90" rx="16" class="card"/>
+<g class="icon" transform="translate(741 726)"><path d="M0 25 A18 18 0 0 1 36 25 M18 23 L27 12"/><circle cx="18" cy="25" r="2"/></g>
+<text x="759" y="780" text-anchor="middle" class="small">Smart meter</text>
+</g>
+<text x="58" y="846" class="tiny muted">ILLUSTRATIVE FLOWS</text>
+<text x="1222" y="846" text-anchor="end" class="tiny muted">Electricity connects devices. Software coordinates them.</text>
+</svg>
