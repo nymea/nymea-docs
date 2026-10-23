@@ -1,0 +1,91 @@
+nymea 1.17.0
+============
+
+2026-10-23
+
+nymea-zigbee
+------------
+
+* Re-enable TI backend for Qt6 builds (`#95 <https://github.com/nymea/nymea-zigbee/pull/95>`__)
+
+nymea-cli
+---------
+
+* Rework main navigation (`#17 <https://github.com/nymea/nymea-cli/pull/17>`__)
+
+nymea
+-----
+
+* WIP: NetworkDeviceDiscovery: Improve network discovery speed for larger ne… (`#736 <https://github.com/nymea/nymea/pull/736>`__)
+* Add influxdb to backup (`#743 <https://github.com/nymea/nymea/pull/743>`__)
+* Update usermanager and add RFID interface (`#750 <https://github.com/nymea/nymea/pull/750>`__)
+* Zigbee: Reenable TI backend for Qt6 based builds and keep it optional (`#754 <https://github.com/nymea/nymea/pull/754>`__)
+* Configuration: Fuse data storage with settings storage (`#755 <https://github.com/nymea/nymea/pull/755>`__)
+* Server: Update default server port usage (`#757 <https://github.com/nymea/nymea/pull/757>`__)
+* server: Add internal webserver websocket forwarding support (`#758 <https://github.com/nymea/nymea/pull/758>`__)
+* WebServer: Add optional webserver proxy configuration (`#759 <https://github.com/nymea/nymea/pull/759>`__)
+* FactoryReset: Introduce external factory reset mechanism (`#760 <https://github.com/nymea/nymea/pull/760>`__)
+
+nymea-plugins
+-------------
+
+* New plugin: Senec: Add support for SENEC.home energy storages (`#771 <https://github.com/nymea/nymea-plugins/pull/771>`__)
+* EVerest: Add RFID thing class and functionality (`#795 <https://github.com/nymea/nymea-plugins/pull/795>`__)
+* Everest: Add PCE EV11.4 charger (`#796 <https://github.com/nymea/nymea-plugins/pull/796>`__)
+
+nymea-plugins-simulation
+------------------------
+
+* Add RFID wallbox simulation (`#53 <https://github.com/nymea/nymea-plugins-simulation/pull/53>`__)
+
+nymea-plugins-modbus
+--------------------
+
+* PCE: Add RFID support (`#247 <https://github.com/nymea/nymea-plugins-modbus/pull/247>`__)
+* PCE: Add RFID charger with no meter support (`#251 <https://github.com/nymea/nymea-plugins-modbus/pull/251>`__)
+
+nymea-experience-plugin-evdash
+------------------------------
+
+* Add session user information and optionally RFID infos (`#4 <https://github.com/nymea/nymea-experience-plugin-evdash/pull/4>`__)
+* websockets: Use internal webserver websocket support (`#5 <https://github.com/nymea/nymea-experience-plugin-evdash/pull/5>`__)
+* Add websocket proxy configuration (`#6 <https://github.com/nymea/nymea-experience-plugin-evdash/pull/6>`__)
+* Load backend version from runtime application  (`#7 <https://github.com/nymea/nymea-experience-plugin-evdash/pull/7>`__)
+
+nymea-experience-plugin-rfid
+----------------------------
+
+* Initial implementation of the experience plugin (`#1 <http://gitlab.nymea.io/nymea/nymea-experience-plugin-rfid/-/merge_requests/1>`__)
+
+nymea-experience-plugin-ngw
+---------------------------
+
+* Initial version of the NGW experience (`#1 <http://gitlab.nymea.io/nymea/nymea-experience-plugin-ngw/-/merge_requests/1>`__)
+
+nymea-energy-plugin-nymea
+-------------------------
+
+* Add RFID authorization handling (`#70 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/70>`__)
+* Add optional car assignment to RFID tags (`#76 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/76>`__)
+* Add unknown vehicle handling and Tag car assignement support (`#77 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-nymea/-/merge_requests/77>`__)
+
+nymea-energy-plugin-chargingsessions
+------------------------------------
+
+* Introduce charging profiles (`#21 <http://gitlab.nymea.io/nymea/nymea-energy-plugin-chargingsessions/-/merge_requests/21>`__)
+
+maveo-system-builder-config-nymea-energy
+----------------------------------------
+
+* experimental only: enable mender-connect, enable wpa_supplicant logs, set autoinstall update timeout to 2 hours (`#1 <http://gitlab.nymea.io/nymea/maveo-system-builder-config-nymea-energy/-/merge_requests/1>`__)
+
+maveo-system-builder-config-i-charge-connect
+--------------------------------------------
+
+* experimental only: set autoinstall update timeout to 2 hours, install systemd-coredump (`#1 <http://gitlab.nymea.io/schrack/maveo-system-builder-config-i-charge-connect/-/merge_requests/1>`__)
+
+nymea-docs
+----------
+
+* Add docker documentation (`#5 <https://github.com/nymea/nymea-docs/pull/5>`__)
+* Configuration: Add webserver proxy documentation (`#8 <https://github.com/nymea/nymea-docs/pull/8>`__)
