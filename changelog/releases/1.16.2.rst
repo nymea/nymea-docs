@@ -1,0 +1,24 @@
+nymea 1.16.2
+============
+
+2026-10-25
+
+nymea-cli
+---------
+
+* Rework main navigation (`#17 <https://github.com/nymea/nymea-cli/pull/17>`__)
+
+nymea-experience-plugin-energy
+------------------------------
+
+* Fix energy sample repair loop during DST fallback (`#24 <https://github.com/nymea/nymea-experience-plugin-energy/pull/24>`__)
+
+maveo-system-builder-config-nymea-energy
+----------------------------------------
+
+* Install the update withon 1h for fast fix distribution (`#23 <http://gitlab.nymea.io/nymea/maveo-system-builder-config-nymea-energy/-/merge_requests/23>`__)
+
+maveo-system-builder-config-i-charge-connect
+--------------------------------------------
+
+* Install the update withon 1h for fast fix distribution (`#13 <http://gitlab.nymea.io/schrack/maveo-system-builder-config-i-charge-connect/-/merge_requests/13>`__)
