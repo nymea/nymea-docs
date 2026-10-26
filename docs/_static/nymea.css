@@ -1,30 +1,53 @@
-/* ===== Dark mode: nymea color variables ===== */
-html[data-theme=dark] {
-    --pst-color-primary:        #57baae;
-    --pst-color-secondary:      #5ccd95;
-    --pst-color-link:           #57baae;
-    --pst-color-link-hover:     #5ccd95;
-    --pst-color-background:     #1e1e1e;
-    --pst-color-on-background:  #252a31;  /* admonition / card surfaces */
-    --pst-color-surface:        #252a31;
-    --pst-color-on-surface:     #2d3340;
-    --pst-color-text-base:      #e6edf3;
-    --pst-color-text-muted:     gray;
-    --pst-color-muted:          gray;
-    --pst-color-border:         #4b5563;
-    --pst-color-border-muted:   #333c47;
-    --pst-color-shadow:         rgba(0, 0, 0, 0.4);
-    --pst-color-inline-code:    #5ccdcd;
-    --pst-color-heading:        #e6edf3;
-    --pst-color-target:         rgba(87, 186, 174, 0.15);
+/* CI palette: blue #819dbd, lilac #9d8cc1, mint #8cc1b6,
+   sage #69938c, blush #d9a5ad, charcoal #222, gray #676767. */
+:root {
+    --nymea-blue: #819dbd;
+    --nymea-lilac: #9d8cc1;
+    --nymea-mint: #8cc1b6;
+    --nymea-sage: #69938c;
+    --nymea-blush: #d9a5ad;
+    --nymea-gradient: linear-gradient(135deg, #8cc1b6 0%, #819dbd 53%, #9d8cc1 100%);
+    --pst-sidebar-secondary: 15rem;
 }
 
-/* ===== Light mode: nymea color variables ===== */
+/* Theme colors keep text and interactive elements readable on both surfaces. */
+html[data-theme=dark] {
+    --pst-color-primary:        #b7c6d9;
+    --pst-color-secondary:      #b7c6d9;
+    --pst-color-link:           #b7c6d9;
+    --pst-color-link-hover:     #d4deea;
+    --pst-color-background:     #191d24;
+    --pst-color-on-background:  #222832;
+    --pst-color-surface:        #222832;
+    --pst-color-on-surface:     #2b3340;
+    --pst-color-text-base:      #e8eaed;
+    --pst-color-text-muted:     #aeb7c2;
+    --pst-color-muted:          #aeb7c2;
+    --pst-color-border:         #46505e;
+    --pst-color-border-muted:   #343c48;
+    --pst-color-shadow:         rgba(0, 0, 0, 0.28);
+    --pst-color-inline-code:    #b7c6d9;
+    --pst-color-heading:        #f4f5f6;
+    --pst-color-target:         rgba(140, 193, 182, 0.16);
+}
+
 html[data-theme=light] {
-    --pst-color-primary:        #336f69;
-    --pst-color-link:           #336f69;
-    --pst-color-link-hover:     #27615a;
-    --pst-color-inline-code:    #27615a;
+    --pst-color-primary:        #526373;
+    --pst-color-secondary:      #526373;
+    --pst-color-link:           #435a6e;
+    --pst-color-link-hover:     #2e465a;
+    --pst-color-background:     #ffffff;
+    --pst-color-on-background:  #f6f8f8;
+    --pst-color-surface:        #f4f7f6;
+    --pst-color-on-surface:     #edf2f0;
+    --pst-color-text-base:      #292f34;
+    --pst-color-text-muted:     #5d6972;
+    --pst-color-muted:          #5d6972;
+    --pst-color-border:         #d8e2e0;
+    --pst-color-border-muted:   #e6ecea;
+    --pst-color-inline-code:    #435a6e;
+    --pst-color-heading:        #22282d;
+    --pst-color-target:         rgba(140, 193, 182, 0.2);
 }
 
 /* ===== Inline code ===== */
@@ -32,13 +55,13 @@ code.literal,
 tt.literal {
     background: var(--pst-color-surface, #252a31);
     border: 1px solid var(--pst-color-border, #4b5563);
-    border-radius: 3px;
+    border-radius: 0.35rem;
     color: var(--pst-color-inline-code, #5ccdcd);
-    font-family: monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.92em;
     padding: 0.12em 0.34em;
     text-shadow: none;
-    white-space: nowrap;
+    overflow-wrap: anywhere;
 }
 
 code.literal span.pre,
@@ -48,36 +71,49 @@ tt.literal span.pre {
 
 /* ===== Search field ===== */
 .bd-search:focus-within {
-    border-color: #cd5c5c;
-    box-shadow: 0 0 0 .1875rem rgba(205, 92, 92, 0.35);
+    border-color: var(--nymea-lilac);
+    box-shadow: 0 0 0 .1875rem rgba(157, 140, 193, 0.22);
 }
 
 .search-button-field:hover,
 .search-button-field:focus-visible {
-    border-color: #cd5c5c;
-    box-shadow: 0 0 0 .1875rem rgba(205, 92, 92, 0.35);
+    border-color: var(--nymea-lilac);
+    box-shadow: 0 0 0 .1875rem rgba(157, 140, 193, 0.22);
 }
 
-/* ===== Navbar logo ===== */
+/* Compact brand mark with a readable wordmark. */
+.navbar-brand.logo {
+    align-items: center;
+    display: inline-flex;
+    flex-direction: row;
+    gap: 0.8rem;
+    min-height: 3rem;
+    text-decoration: none;
+}
+
 .navbar-brand img.logo__image {
-    height: 8rem;
-    width: auto;
+    height: 2.9rem;
+    width: 2.9rem;
+}
+
+.navbar-brand.logo::after {
+    color: var(--pst-color-heading);
+    content: "nymea docs";
+    font-size: 1.15rem;
+    font-weight: 650;
+    letter-spacing: -0.025em;
 }
 
 /* ===== Page width ===== */
 .bd-page-width {
-    max-width: 100rem;
-}
-
-:root {
-    --pst-sidebar-secondary: 14rem;
+    max-width: 94rem;
 }
 
 /* ===== Code blocks: shared layout (both modes) ===== */
 div[class*="highlight-"],
 .nymea-code-block,
 table.highlighttable {
-    border-radius: 4px;
+    border-radius: 0.65rem;
     margin: 1em 0;
     overflow: hidden;
     position: relative;
@@ -113,8 +149,8 @@ td.code div.highlight pre {
 html[data-theme=light] div[class*="highlight-"],
 html[data-theme=light] .nymea-code-block,
 html[data-theme=light] table.highlighttable {
-    background: #f6f8fa;
-    border: 1px solid #d0d7de;
+    background: #f6f8f8;
+    border: 1px solid var(--pst-color-border);
     box-shadow: none;
 }
 
@@ -128,15 +164,15 @@ html[data-theme=light] .nymea-code-block pre,
 html[data-theme=light] table.highlighttable pre,
 html[data-theme=light] td.code div.highlight pre {
     background: transparent;
-    color: #24292f;
+    color: #292f34;
 }
 
 /* ===== Code blocks: dark mode ===== */
 html[data-theme=dark] div[class*="highlight-"],
 html[data-theme=dark] .nymea-code-block,
 html[data-theme=dark] table.highlighttable {
-    background: #1f2328;
-    border: 1px solid #4b5563;
+    background: #171d25;
+    border: 1px solid var(--pst-color-border);
     box-shadow: none;
 }
 
@@ -150,7 +186,7 @@ html[data-theme=dark] .nymea-code-block pre,
 html[data-theme=dark] table.highlighttable pre,
 html[data-theme=dark] td.code div.highlight pre {
     background: transparent;
-    color: #e6edf3;
+    color: #e8eaed;
 }
 
 html[data-theme=dark] .nymea-code-block code {
@@ -161,7 +197,7 @@ html[data-theme=dark] .nymea-code-block code {
 html[data-theme=dark] .highlight .c,
 html[data-theme=dark] .highlight .cm,
 html[data-theme=dark] .highlight .c1 {
-    color: gray !important;
+    color: #aeb7c2 !important;
     font-style: italic;
 }
 
@@ -173,7 +209,7 @@ html[data-theme=dark] .highlight .kp,
 html[data-theme=dark] .highlight .kr,
 html[data-theme=dark] .highlight .kt,
 html[data-theme=dark] .highlight .ow {
-    color: #cd5c5c !important;
+    color: #e2afb7 !important;
     font-weight: normal;
 }
 
@@ -188,7 +224,7 @@ html[data-theme=dark] .highlight .sh,
 html[data-theme=dark] .highlight .si,
 html[data-theme=dark] .highlight .sr,
 html[data-theme=dark] .highlight .ss {
-    color: #5ccdcd !important;
+    color: #abd8cf !important;
 }
 
 html[data-theme=dark] .highlight .m,
@@ -196,23 +232,23 @@ html[data-theme=dark] .highlight .mi,
 html[data-theme=dark] .highlight .mf,
 html[data-theme=dark] .highlight .mh,
 html[data-theme=dark] .highlight .mo {
-    color: #5c95cd !important;
+    color: #a8bfdb !important;
 }
 
 html[data-theme=dark] .highlight .nf {
-    color: #cd955c !important;
+    color: #d4c0a3 !important;
 }
 
 html[data-theme=dark] .highlight .nc {
-    color: #cd5ccd !important;
+    color: #c5b2e1 !important;
 }
 
 html[data-theme=dark] .highlight .nt {
-    color: #5ccd95 !important;
+    color: #abd8cf !important;
 }
 
 html[data-theme=dark] .highlight .na {
-    color: #95cd5c !important;
+    color: #bfdbb1 !important;
 }
 
 html[data-theme=dark] .highlight .n,
@@ -220,7 +256,7 @@ html[data-theme=dark] .highlight .nb,
 html[data-theme=dark] .highlight .bp,
 html[data-theme=dark] .highlight .o,
 html[data-theme=dark] .highlight .p {
-    color: #e6edf3 !important;
+    color: #e8eaed !important;
     font-weight: normal;
 }
 
@@ -230,27 +266,27 @@ html[data-theme=dark] .highlight .p {
 }
 
 .nymea-tab-list {
-    border-bottom: 1px solid var(--pst-color-border, #4b5563);
+    border-bottom: 1px solid var(--pst-color-border);
     display: flex;
     gap: 0.35em;
     margin-bottom: 0.75em;
 }
 
 .nymea-tab {
-    background: var(--pst-color-surface, #252a31);
-    border: 1px solid rgba(87, 186, 174, 0.4);
+    background: var(--pst-color-surface);
+    border: 1px solid var(--pst-color-border);
     border-bottom: 0;
-    border-radius: 4px 4px 0 0;
-    color: #57baae;
+    border-radius: 0.55rem 0.55rem 0 0;
+    color: var(--pst-color-link);
     cursor: pointer;
     font-size: 0.9em;
     padding: 0.5em 0.75em;
 }
 
 .nymea-tab[aria-selected="true"] {
-    background: #57baae;
-    border-color: #57baae;
-    color: #fff;
+    background: var(--pst-color-primary);
+    border-color: var(--pst-color-primary);
+    color: var(--pst-color-background);
 }
 
 .nymea-tab-panel[hidden] {
@@ -263,10 +299,10 @@ html[data-theme=dark] .highlight .p {
 
 /* ===== Copy button ===== */
 .nymea-copy-code {
-    background: #336f69;
-    border: 1px solid #57baae;
-    border-radius: 3px;
-    color: #fff;
+    background: var(--pst-color-surface);
+    border: 1px solid var(--pst-color-border);
+    border-radius: 0.45rem;
+    color: var(--pst-color-text-base);
     cursor: pointer;
     display: grid;
     line-height: 0;
@@ -281,7 +317,8 @@ html[data-theme=dark] .highlight .p {
 
 .nymea-copy-code:hover,
 .nymea-copy-code:focus {
-    background: #27615a;
+    background: var(--pst-color-on-surface);
+    border-color: var(--pst-color-primary);
 }
 
 .nymea-copy-icon {
@@ -310,12 +347,12 @@ a.nymea-doc-image {
 
 img.nymea-doc-image {
     background: transparent;
-    border-radius: 4px;
+    border-radius: 0.75rem;
     display: block;
     height: auto;
     margin: 1.2em auto 1.6em;
     max-width: 100%;
-    width: 70% !important;
+    width: min(100%, 44rem) !important;
 }
 
 /* ===== Environment table ===== */
@@ -331,4 +368,191 @@ table.nymea-env-table th:first-child,
 table.nymea-env-table td:first-child {
     white-space: nowrap;
     width: 1%;
+}
+
+/* Reading layout */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.bd-article-container {
+    max-width: 61rem;
+}
+
+.bd-article {
+    font-size: 1.025rem;
+    line-height: 1.72;
+}
+
+.bd-article p,
+.bd-article li {
+    max-width: 76ch;
+}
+
+.bd-article h1,
+.bd-article h2,
+.bd-article h3,
+.bd-article h4 {
+    color: var(--pst-color-heading);
+    font-weight: 650;
+    letter-spacing: -0.028em;
+    line-height: 1.22;
+}
+
+.bd-article h1 {
+    font-size: clamp(2.1rem, 3vw, 2.7rem);
+    letter-spacing: -0.04em;
+    margin-bottom: 1.15rem;
+}
+
+.bd-article h2 {
+    font-size: 1.65rem;
+    margin-top: 2.4rem;
+}
+
+.bd-article h3 {
+    font-size: 1.3rem;
+    margin-top: 1.9rem;
+}
+
+.bd-article p {
+    margin-bottom: 1.05rem;
+}
+
+.bd-article a {
+    text-decoration-color: var(--nymea-blue);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+}
+
+.bd-article a:hover {
+    text-decoration-thickness: 2px;
+}
+
+.bd-article blockquote,
+.bd-article .admonition {
+    border-radius: 0.7rem;
+}
+
+.bd-article table {
+    font-size: 0.95rem;
+}
+
+.bd-article th {
+    font-weight: 650;
+}
+
+/* Navigation stays quiet so article content remains the focus. */
+.bd-sidebar-primary {
+    background: var(--pst-color-on-background);
+    border-right: 1px solid var(--pst-color-border-muted);
+}
+
+.bd-sidebar-primary .sidebar-primary-items__start {
+    padding-top: 0.6rem;
+}
+
+.bd-sidebar-primary .caption {
+    color: var(--pst-color-text-muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.bd-sidebar-primary .bd-links .nav a {
+    border-radius: 0.45rem;
+    line-height: 1.38;
+}
+
+.bd-sidebar-primary .bd-links .nav a:hover {
+    background: var(--pst-color-on-surface);
+    color: var(--pst-color-link-hover);
+}
+
+.bd-header,
+.bd-header-article {
+    border-bottom: 1px solid var(--pst-color-border-muted);
+}
+
+:where(a, button, summary, input):focus-visible {
+    outline: 2px solid var(--nymea-lilac);
+    outline-offset: 3px;
+}
+
+/* A compact landing page replaces the full expanded table of contents. */
+.nymea-home-links {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 2.2rem 0 2.8rem;
+}
+
+.bd-article .nymea-home-card {
+    background: var(--pst-color-on-background);
+    border: 1px solid var(--pst-color-border);
+    border-radius: 0.9rem;
+    box-shadow: 0 3px 14px rgba(34, 40, 45, 0.03);
+    min-width: 0;
+    padding: 1.45rem 1.4rem 1.35rem;
+}
+
+.nymea-home-card::before {
+    background: var(--nymea-gradient);
+    border-radius: 999px;
+    content: "";
+    display: block;
+    height: 0.25rem;
+    margin-bottom: 1.2rem;
+    width: 2.5rem;
+}
+
+.nymea-home-card:nth-child(2)::before {
+    background: var(--nymea-lilac);
+}
+
+.nymea-home-card:nth-child(3)::before {
+    background: var(--nymea-blue);
+}
+
+.nymea-home-card p:first-child {
+    color: var(--pst-color-heading);
+    font-size: 1.15rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+}
+
+.nymea-home-card p:nth-child(2) {
+    color: var(--pst-color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    min-height: 4.4em;
+}
+
+.nymea-home-card p:last-child {
+    font-size: 0.92rem;
+    font-weight: 650;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .nymea-home-links {
+        grid-template-columns: 1fr;
+    }
+
+    .nymea-home-card p:nth-child(2) {
+        min-height: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .bd-article {
+        font-size: 1rem;
+    }
+
+    .bd-article h1 {
+        font-size: 2rem;
+    }
 }

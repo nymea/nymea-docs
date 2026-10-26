@@ -2,9 +2,9 @@
 (function () {
   var mode = localStorage.getItem("mode");
   if (!mode || mode === "auto") {
-    mode = "dark";
-    localStorage.setItem("mode", "dark");
-    localStorage.setItem("theme", "dark");
+    mode = "light";
+    localStorage.setItem("mode", "light");
+    localStorage.setItem("theme", "light");
   }
   document.documentElement.dataset.mode = mode;
   document.documentElement.dataset.theme = mode;
@@ -103,9 +103,26 @@
     });
   }
 
+  // The theme renders two of each sidebar toggle but wires only the site-header copies.
+  function patchSidebarToggles() {
+    ["primary", "secondary"].forEach(function (side) {
+      var headerToggle = document.querySelector("#pst-header ." + side + "-toggle");
+      var articleToggle = document.querySelector(".bd-header-article ." + side + "-toggle");
+      if (!headerToggle || !articleToggle) {
+        return;
+      }
+
+      articleToggle.setAttribute("aria-controls", "pst-" + side + "-sidebar");
+      articleToggle.addEventListener("click", function () {
+        headerToggle.click();
+      });
+    });
+  }
+
   function init() {
     initTabs();
     addCopyButtons();
+    patchSidebarToggles();
     window.setTimeout(patchThemeToggle, 0);
   }
 
