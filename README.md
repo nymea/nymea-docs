@@ -58,6 +58,9 @@ This removes the Sphinx output and generated RST files. It keeps `tools/source/`
 
 The LXC helper creates an Ubuntu container, mounts the repository, installs the Sphinx build dependencies, and runs the same build:
 
+Python dependencies from `requirements.txt` are installed in
+`~/.venvs/nymea-docs` inside the container, separately from any host virtual environment.
+
 ```sh
 ./build-lxc.sh build
 ```
