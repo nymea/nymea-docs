@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nymea — Energy in balance</title>
+  <link rel="stylesheet" href="embed.css">
+  <script src="vendor/hyperframes-player.global.js" defer></script>
+  <script src="embed.js" defer></script>
+</head>
+<body>
+  <main aria-label="Animated home energy system">
+    <div class="diagram">
+      <img id="fallback" src="poster.svg" width="1280" height="880"
+        alt="Energy Management software exchanges data and control with tariffs, solar, the smart meter, home, EV charging and an app. Separate mint paths show electricity between devices.">
+      <hyperframes-player id="player" src="composition.html" width="1280" height="880"
+        loop muted aria-label="Energy flow animation"></hyperframes-player>
+    </div>
+    <footer>
+      <span id="state" role="status">Energy flow diagram</span>
+      <div class="actions">
+        <label class="theme-label">Theme
+          <select id="theme" aria-label="Diagram colour theme">
+            <option value="auto">Auto</option><option value="light">Light</option><option value="dark">Dark</option>
+          </select>
+        </label>
+        <button id="play" type="button" disabled>Play animation</button>
+      </div>
+    </footer>
+    <noscript><p>The static diagram is shown. Enable JavaScript to play the animation.</p></noscript>
+  </main>
+</body>
+</html>
