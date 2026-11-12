@@ -175,7 +175,12 @@ battery
 Used in:
 
 * `electricvehicle <#interface-electricvehicle>`__
+
+  * `electricvehiclehlc <#interface-electricvehiclehlc>`__
+
 * `energystorage <#interface-energystorage>`__
+
+  * `extendedenergystorage <#interface-extendedenergystorage>`__
 
 .. _interface-blind:
 
@@ -628,12 +633,12 @@ An interface for doorbells. Emits "doorbellPressed" when the doorbell is pressed
 electricvehicle
 ---------------
 
-Interface for electric vehicles. Some cars require a minimum charging current to start charging (typically 6 A), and may also enforce a maximum charging current even if the charger supports more.
+Interface for electric vehicles with common battery, charging capability and session states.
 
 .. code-block:: json
 
    {
-     "description": "Interface for electric vehicles. Some cars require a minimum charging current to start charging (typically 6 A), and may also enforce a maximum charging current even if the charger supports more.",
+     "description": "Interface for electric vehicles with common battery, charging capability and session states.",
      "extends": [
        "battery"
      ],
@@ -641,10 +646,37 @@ Interface for electric vehicles. Some cars require a minimum charging current to
        {
          "name": "capacity",
          "type": "double",
-         "unit": "KiloWattHour"
+         "unit": "KiloWattHour",
+         "optional": true
        },
        {
-         "name": "minChargingCurrent",
+         "name": "chargingInterfaces",
+         "type": "QString",
+         "allowedValues": [
+           "ac",
+           "dc",
+           "acdc"
+         ],
+         "optional": true
+       },
+       {
+         "name": "activeChargingInterface",
+         "type": "QString",
+         "allowedValues": [
+           "ac",
+           "dc"
+         ],
+         "optional": true,
+         "logged": false
+       },
+       {
+         "name": "connectedChargerThingId",
+         "type": "QString",
+         "optional": true,
+         "logged": false
+       },
+       {
+         "name": "acMinChargingCurrent",
          "type": "uint",
          "unit": "Ampere",
          "minValue": 6,
@@ -652,7 +684,7 @@ Interface for electric vehicles. Some cars require a minimum charging current to
          "optional": true
        },
        {
-         "name": "maxChargingCurrent",
+         "name": "acMaxChargingCurrent",
          "type": "uint",
          "unit": "Ampere",
          "minValue": 16,
@@ -660,16 +692,52 @@ Interface for electric vehicles. Some cars require a minimum charging current to
          "optional": true
        },
        {
-         "name": "phaseCount",
+         "name": "acPhaseCount",
          "type": "uint",
          "minValue": 1,
          "maxValue": 3,
+         "optional": true
+       },
+       {
+         "name": "dcMaxChargingPower",
+         "type": "double",
+         "unit": "Watt",
          "optional": true
        }
      ]
    }
 
 See also: `battery <#interface-battery>`__
+
+Used in:
+
+* `electricvehiclehlc <#interface-electricvehiclehlc>`__
+
+.. _interface-electricvehiclehlc:
+
+electricvehiclehlc
+------------------
+
+Interface for vehicle-side HLC session state.
+
+.. code-block:: json
+
+   {
+     "description": "Interface for vehicle-side HLC session state.",
+     "extends": [
+       "electricvehicle"
+     ],
+     "states": [
+       {
+         "name": "hlcSessionActive",
+         "type": "bool",
+         "optional": true,
+         "logged": true
+       }
+     ]
+   }
+
+See also: `electricvehicle <#interface-electricvehicle>`__
 
 .. _interface-energymeter:
 
@@ -802,12 +870,12 @@ See also: `smartmeter <#interface-smartmeter>`__
 energystorage
 -------------
 
-Interfaces for devices that store electrical energy and can return it at a later point, such as batteries. The currentPower state follows the usual convention that positive is 'consumed' energy and negative values represent 'produced' or in this case 'returned' energy.
+Interfaces for devices that store electrical energy such as batteries. The 'currentPower' state represents the AC measurement and follows the usual convention that positive is 'consumed' energy and negative values represent 'produced' or in this case 'returned' energy.
 
 .. code-block:: json
 
    {
-     "description": "Interfaces for devices that store electrical energy and can return it at a later point, such as batteries. The currentPower state follows the usual convention that positive is 'consumed' energy and negative values represent 'produced' or in this case 'returned' energy.",
+     "description": "Interfaces for devices that store electrical energy such as batteries. The 'currentPower' state represents the AC measurement and follows the usual convention that positive is 'consumed' energy and negative values represent 'produced' or in this case 'returned' energy.",
      "extends": [
        "battery",
        "smartmeter"
@@ -822,26 +890,61 @@ Interfaces for devices that store electrical energy and can return it at a later
        {
          "name": "capacity",
          "type": "double",
-         "unit": "KiloWattHour"
+         "unit": "KiloWattHour",
+         "optional": true
        }
      ]
    }
 
 See also: `battery <#interface-battery>`__, `smartmeter <#interface-smartmeter>`__
 
+Used in:
+
+* `extendedenergystorage <#interface-extendedenergystorage>`__
+
 .. _interface-evcharger:
 
 evcharger
 ---------
 
-An electric vehicle charger. Extends the power interface to report plug/charge state and session energy, and to optionally control charging current and phase count in addition to on/off power control.
+An interface for chargers such as AC / DC electrical vehicle chargers. Extends the power interface for charging/not charging an electric vehicle.
 
 .. code-block:: json
 
    {
-     "description": "An electric vehicle charger. Extends the power interface to report plug/charge state and session energy, and to optionally control charging current and phase count in addition to on/off power control.",
+     "description": "An interface for chargers such as AC / DC electrical vehicle chargers. Extends the power interface for charging/not charging an electric vehicle.",
      "extends": [
        "power"
+     ],
+     "states": [
+       {
+         "name": "pluggedIn",
+         "type": "bool",
+         "optional": true
+       }
+     ]
+   }
+
+See also: `power <#interface-power>`__
+
+Used in:
+
+* `evchargerac <#interface-evchargerac>`__
+* `evchargerdc <#interface-evchargerdc>`__
+
+.. _interface-evchargerac:
+
+evchargerac
+-----------
+
+An AC electrical vehicle charger. Supports regulation of the max. charging current in addition to be powered on or off. Phase switching, if available, can be performed by setting the desired phase count. The session energy can provide information how much energy has been charged since the car has been plugged in.
+
+.. code-block:: json
+
+   {
+     "description": "An AC electrical vehicle charger. Supports regulation of the max. charging current in addition to be powered on or off. Phase switching, if available, can be performed by setting the desired phase count. The session energy can provide information how much energy has been charged since the car has been plugged in.",
+     "extends": [
+       "evcharger"
      ],
      "states": [
        {
@@ -851,11 +954,6 @@ An electric vehicle charger. Extends the power interface to report plug/charge s
          "unit": "Ampere",
          "minValue": "any",
          "maxValue": "any"
-       },
-       {
-         "name": "pluggedIn",
-         "type": "bool",
-         "optional": true
        },
        {
          "name": "charging",
@@ -889,7 +987,26 @@ An electric vehicle charger. Extends the power interface to report plug/charge s
      ]
    }
 
-See also: `power <#interface-power>`__
+See also: `evcharger <#interface-evcharger>`__
+
+.. _interface-evchargerdc:
+
+evchargerdc
+-----------
+
+A DC electrical vehicle charger.
+
+.. code-block:: json
+
+   {
+     "description": "A DC electrical vehicle charger.",
+     "extends": [
+       "evcharger",
+       "powerflowcontroller"
+     ]
+   }
+
+See also: `evcharger <#interface-evcharger>`__, `powerflowcontroller <#interface-powerflowcontroller>`__
 
 .. _interface-extendedawning:
 
@@ -938,12 +1055,12 @@ Used in:
 extendedclosable
 ----------------
 
-A more advanced form of devices that support opening and closing in a more fine grained manner. They can report whether the opening/closing is currently in progress and provide a percentage of the opening/closing position. 0% means fully opened, while 100% indicates the device is fully closed
+A more advanced form of devices that support opening and closing in a more fine grained manner. They can report whether the opening/closing is currently in progress and provide a percentage of the opening/closing position. 0% means fully opened, while 100% indicates the device is fully closed. Some devices also support step up and step down for finetuning a position.
 
 .. code-block:: json
 
    {
-     "description": "A more advanced form of devices that support opening and closing in a more fine grained manner. They can report whether the opening/closing is currently in progress and provide a percentage of the opening/closing position. 0% means fully opened, while 100% indicates the device is fully closed",
+     "description": "A more advanced form of devices that support opening and closing in a more fine grained manner. They can report whether the opening/closing is currently in progress and provide a percentage of the opening/closing position. 0% means fully opened, while 100% indicates the device is fully closed. Some devices also support step up and step down for finetuning a position.",
      "extends": "closable",
      "states": [
        {
@@ -959,6 +1076,16 @@ A more advanced form of devices that support opening and closing in a more fine 
          "maxValue": 100,
          "writable": true
        }
+     ],
+     "actions": [
+       {
+         "name": "stepUp",
+         "optional": true
+       },
+       {
+         "name": "stepDown",
+         "optional": true
+       }
      ]
    }
 
@@ -973,6 +1100,25 @@ Used in:
 
 * `extendedshutter <#interface-extendedshutter>`__
 * `extendedstatefulgaragedoor <#interface-extendedstatefulgaragedoor>`__
+
+.. _interface-extendedenergystorage:
+
+extendedenergystorage
+---------------------
+
+An extended energy storage can be controlled using a charge/discharge power setpoint.
+
+.. code-block:: json
+
+   {
+     "description": "An extended energy storage can be controlled using a charge/discharge power setpoint.",
+     "extends": [
+       "energystorage",
+       "powerflowcontroller"
+     ]
+   }
+
+See also: `energystorage <#interface-energystorage>`__, `powerflowcontroller <#interface-powerflowcontroller>`__
 
 .. _interface-extendednavigationpad:
 
@@ -1344,6 +1490,44 @@ Used in:
 
 * `simpleheatpump <#interface-simpleheatpump>`__
 * `smartgridheatpump <#interface-smartgridheatpump>`__
+
+.. _interface-hlccharger:
+
+hlccharger
+----------
+
+Interface for charger-side HLC session state.
+
+.. code-block:: json
+
+   {
+     "description": "Interface for charger-side HLC session state.",
+     "states": [
+       {
+         "name": "hlcSessionActive",
+         "type": "bool",
+         "logged": true
+       },
+       {
+         "name": "vehicleIdentified",
+         "type": "bool",
+         "logged": true
+       },
+       {
+         "name": "connectedVehicleThingId",
+         "type": "QString",
+         "optional": true,
+         "logged": false
+       },
+       {
+         "name": "maxChargingPower",
+         "type": "double",
+         "unit": "Watt",
+         "optional": true,
+         "logged": false
+       }
+     ]
+   }
 
 .. _interface-humiditysensor:
 
@@ -2096,6 +2280,10 @@ Used in:
 
 * `cooling <#interface-cooling>`__
 * `evcharger <#interface-evcharger>`__
+
+  * `evchargerac <#interface-evchargerac>`__
+  * `evchargerdc <#interface-evchargerdc>`__
+
 * `heating <#interface-heating>`__
 * `irrigation <#interface-irrigation>`__
 * `light <#interface-light>`__
@@ -2109,6 +2297,84 @@ Used in:
 * `powersocket <#interface-powersocket>`__
 * `simpleheatpump <#interface-simpleheatpump>`__
 * `ventilation <#interface-ventilation>`__
+
+.. _interface-powerflowcontroller:
+
+powerflowcontroller
+-------------------
+
+Interface for assets that can be controlled using a charge/discharge power setpoint.
+
+.. code-block:: json
+
+   {
+     "description": "Interface for assets that can be controlled using a charge/discharge power setpoint.",
+     "states": [
+       {
+         "name": "chargingPower",
+         "type": "double",
+         "unit": "Watt",
+         "writable": true,
+         "logged": true
+       },
+       {
+         "name": "chargingCapabilities",
+         "type": "QString",
+         "allowedValues": [
+           "charging",
+           "discharging",
+           "bidirectional"
+         ]
+       },
+       {
+         "name": "maxChargingPower",
+         "type": "double",
+         "unit": "Watt",
+         "optional": true,
+         "logged": false
+       },
+       {
+         "name": "minChargingPower",
+         "type": "double",
+         "unit": "Watt",
+         "optional": true,
+         "logged": false
+       },
+       {
+         "name": "maxDischargingPower",
+         "type": "double",
+         "unit": "Watt",
+         "optional": true,
+         "logged": false
+       },
+       {
+         "name": "minDischargingPower",
+         "type": "double",
+         "unit": "Watt",
+         "optional": true,
+         "logged": false
+       },
+       {
+         "name": "totalEnergyConsumed",
+         "type": "double",
+         "unit": "KiloWattHour",
+         "optional": true,
+         "logged": true
+       },
+       {
+         "name": "totalEnergyProduced",
+         "type": "double",
+         "unit": "KiloWattHour",
+         "optional": true,
+         "logged": true
+       }
+     ]
+   }
+
+Used in:
+
+* `evchargerdc <#interface-evchargerdc>`__
+* `extendedenergystorage <#interface-extendedenergystorage>`__
 
 .. _interface-powersocket:
 
@@ -2469,6 +2735,9 @@ Used in:
 
 * `energymeter <#interface-energymeter>`__
 * `energystorage <#interface-energystorage>`__
+
+  * `extendedenergystorage <#interface-extendedenergystorage>`__
+
 * `smartmeterconsumer <#interface-smartmeterconsumer>`__
 * `smartmeterproducer <#interface-smartmeterproducer>`__
 
