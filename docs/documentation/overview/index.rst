@@ -7,5 +7,6 @@ Overview
    about-nymea
    contribute
    features
+   nymea-as-hems
    license
    nymea-in-action

@@ -1,0 +1,21 @@
+:root { color-scheme: light; --bg: #f6f8f8; --ink: #292f34; --muted: #5d6972; --line: #d8e2e0; --button: #fff; }
+:root[data-theme="dark"] { color-scheme: dark; --bg: #191d24; --ink: #e8eaed; --muted: #aeb7c2; --line: #46505e; --button: #222832; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+main { max-width: 1440px; margin: auto; }
+.diagram { position: relative; aspect-ratio: 1280 / 880; }
+#fallback, hyperframes-player { display: block; width: 100%; height: 100%; }
+#fallback { position: absolute; inset: 0; object-fit: contain; }
+hyperframes-player { opacity: 0; }
+.ready hyperframes-player { opacity: 1; }
+.ready #fallback { visibility: hidden; }
+footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 22px; min-height: 62px; border-top: 1px solid var(--line); font-size: 13px; }
+#state { color: var(--muted); }
+.actions { display: flex; align-items: center; gap: 12px; }
+.theme-label { display: flex; align-items: center; gap: 8px; color: var(--muted); }
+button, select { font: inherit; font-size: 13px; color: var(--ink); border: 1px solid var(--line); border-radius: 8px; background: var(--button); min-height: 38px; padding: 7px 12px; }
+button { cursor: pointer; min-width: 132px; }
+button:disabled { opacity: .5; cursor: default; }
+button:hover:not(:disabled) { border-color: #819dbd; }
+:focus-visible { outline: 3px solid #9d8cc1; outline-offset: 3px; }
+@media (max-width: 540px) { footer { padding: 9px 12px; font-size: 12px; } #state { max-width: 105px; } .theme-label { font-size: 0; gap: 0; } .actions { gap: 6px; } button { min-width: 118px; } }
