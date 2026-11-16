@@ -20,6 +20,32 @@ After changing the configuration file, restart ``nymead``:
    sudo systemctl restart nymead
 
 
+Product information
+-------------------
+
+An operating system image can provide optional, static product information in
+``/usr/share/nymea/product-info``. This is a separate file from ``nymead.conf``.
+Use UTF-8 text with one ``key=value`` pair per line, for example::
+
+   vendor=chargebyte GmbH.
+   vendorurl=https://chargebyte.com/
+   model=Cool nymea based prouct
+   hardwareRevision=HW1
+   producttype=wallbox
+
+All five keys are optional. ``vendor`` identifies the product vendor, while
+``model`` identifies the product model. ``producttype`` can be used by clients
+to choose a suitable icon or setup flow (for example, ``gateway``, ``wallbox``,
+``router`` or ``node``). The file is read when ``nymead`` starts; restart the
+service after changing it.
+
+If any value is set, the ``JSONRPC.Hello`` reply contains a ``productInfo``
+object with all five keys. Missing values are empty strings. The zeroconf TXT
+records advertise nonempty ``vendor``, ``model`` and ``producttype`` values.
+If the file is absent or all values are empty, ``productInfo`` and these TXT
+records are omitted.
+
+
 Section [BluetoothServer]
 -------------------------
 
