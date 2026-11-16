@@ -373,6 +373,11 @@ Web server
 
 Nymea features an integrated web server. The web server is used to host the `nymea debug interface <#debug-interface>`__ but can also be used to host any website.
 
+For deployments behind a reverse proxy, :ref:`web-server-reverse-proxy` describes
+how to advertise its public port, HTTPS setting and shared path prefix. nymea:app
+uses these settings for both debug interface and EvDash links while selecting the
+server's LAN address itself.
+
 
 .. image:: ../../../../static/img/configuration/system-settings-webserver.png
    :alt: Configuration screenshot
@@ -509,6 +514,9 @@ Debug interface
 
 
 When the debug interface is enabled, it will be served on all the enabled `web server <#web-server>`__ interfaces. The debug interface allows to inspect system logs and create debug information bundles that can be submitted to developers to help with development.
+
+App-generated debug links honor the :ref:`web-server-reverse-proxy` settings,
+including a shared prefix such as ``/nymea``. The interface must still be enabled.
 
 System update
 -------------

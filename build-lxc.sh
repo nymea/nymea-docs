@@ -36,7 +36,7 @@ variables() {
     LXD_IMAGE=ubuntu:$LXD_IMAGE_NAME
 #    LXD_IMAGE=$LXD_IMAGE_NAME
     LXD_CONTAINER=builder-$CONTAINER_PREFIX$LXD_IMAGE_NAME
-    DEPENDENCIES="python3 python3-pip python3-venv python3-git python3-sphinx make git"
+    DEPENDENCIES="python3 python3-pip python3-venv make git"
 
     USERDIR=/home/$USERNAME
     MOUNTED_DIRECTORY=$PWD
@@ -139,7 +139,9 @@ exec_container () {
 }
 
 build () {
-    exec_container ./build.sh --branch=$BRANCH
+    # Keep the container's Python environment outside the host-mounted checkout.
+    local venv="$USERDIR/.venvs/$PACKAGE"
+    exec_container "python3 -m venv '$venv' && '$venv/bin/python' -m pip install -r requirements.txt && . '$venv/bin/activate' && ./build.sh --branch='$BRANCH'"
 }
 
 clean () {
