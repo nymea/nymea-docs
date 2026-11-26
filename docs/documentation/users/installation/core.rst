@@ -24,9 +24,22 @@ Once the repository has been configured, update the package index and install ny
 ::
 
    sudo apt update
-   sudo apt install nymea nymea-plugins
+   sudo apt install nymea
 
 Once this command completes, nymea:core should be up and running.
+
+Search for available plugins and install the ones you need:
+
+::
+
+   apt search nymea-plugin
+
+For example, the ``nymea-plugins-zigbee`` and ``nymea-plugins-zwave`` meta packages install the
+corresponding plugin bundles:
+
+::
+
+   sudo apt install nymea-plugins-zigbee nymea-plugins-zwave
 
 Raspberry Pi
 ------------
